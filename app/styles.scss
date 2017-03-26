@@ -1,5 +1,9 @@
-@import '../node_modules/bulma/bulma';
+$red-youtube: #CC181E;
+$primary: $red-youtube;
 
 .nav__logo {
    margin-right: 10px;
 }
+
+@import '../node_modules/bulma/bulma';
+
