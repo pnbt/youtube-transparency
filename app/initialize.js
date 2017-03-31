@@ -18,12 +18,12 @@ $(document).ready(function() {
             `,
          );
       });
-      appendVideo(Object.keys(data)[0]);
+      appendVideo(Object.keys(data)[0], 4);
    });
 
    $(document).on('click', '.panel-event', function(event) {
       const key = $(this).children('#panel-key').text();
-      appendVideo(key);
+      appendVideo(key, $('#depth').val());
    });
 
    // $('#selectTheme').change((event) => {
@@ -31,9 +31,10 @@ $(document).ready(function() {
    // });
 
    // Permet d'actualiser les vidéos correspond au theme "key".
-   function appendVideo(key) {
+   function appendVideo(key, depth) {
+      console.log($('#depth').val());
       $('.videos').empty();
-      jsonLocal[key].filter((item) => item.likes !== -1 && item.depth < 4).forEach((item, index) => {
+      jsonLocal[key].filter((item) => item.likes !== -1 && item.depth >= depth).forEach((item, index) => {
          $('.videos').append(
             `
             <div class="box">
@@ -49,7 +50,7 @@ $(document).ready(function() {
                   <div class="content">
                      <p>
                      <a href="https://www.youtube.com/watch?v=${item.id}"><strong>${item.title}</strong></a><br>
-                     <span class="tag ${item.title.toLowerCase().latinise().includes(key.split(' ').pop().toLowerCase().latinise()) ? 'is-success' : 'is-primary'}">Suggéré ${item.recommendations} fois</span>  <small>${item.views} vues - ${item.likes} likes - ${item.dislikes} unlikes</small><br>
+                     <span class="tag ${item.title.toLowerCase().latinise().includes(key.split(' ').pop().toLowerCase().latinise()) ? 'is-success' : 'is-primary'}">Suggéré ${item.recommendations} fois</span> <small>${item.views} vues - ${item.likes} likes - ${item.dislikes} unlikes</small><br>
                      </p>
                   </div>
                </div>
