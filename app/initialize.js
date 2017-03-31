@@ -1,27 +1,42 @@
-import $ from "jquery";
+import $ from 'jquery';
+import './js/helpers';
 
-$(document).ready(function () {
+$(document).ready(function() {
    let jsonLocal = {};
-   $.get("https://jsonblob.com/api/e1e7fb29-125b-11e7-a0ba-17d4fd61f6e6", function (data) {
+   $.get('https://jsonblob.com/api/e1e7fb29-125b-11e7-a0ba-17d4fd61f6e6', function(data) {
       jsonLocal = data;
       console.log(data);
-      Object.keys(data).forEach((key) => {
-         $('#selectTheme').append(`<option>${key}</option>`)
+      Object.keys(data).forEach((key, index) => {
+         $('#sidebar').append(
+            `
+            <a class="panel-block panel-event ${index === 0 ? 'is-active' : ''}">
+               <span class="panel-img">
+                  <img class="circular--square" src="http://placehold.it/150x150" alt=""/>
+               </span> 
+               <span id="panel-key">${key}</span>
+            </a>
+            `,
+         );
       });
-      appendVideo($('#selectTheme option').first().text())
+      appendVideo(Object.keys(data)[0]);
    });
 
-   $('#selectTheme').change((e) => {
-      appendVideo(e.target.value)
+   $(document).on('click', '.panel-event', function(event) {
+      const key = $(this).children('#panel-key').text();
+      appendVideo(key);
    });
+
+   // $('#selectTheme').change((event) => {
+   //    appendVideo(event.target.value);
+   // });
 
    // Permet d'actualiser les vidéos correspond au theme "key".
    function appendVideo(key) {
       $('.videos').empty();
-      jsonLocal[key].filter((item)=> item.likes !== -1).forEach((item, index) => {
+      jsonLocal[key].filter((item) => item.likes !== -1 && item.depth < 4).forEach((item, index) => {
          $('.videos').append(
             `
-            <div class="box column is-5">
+            <div class="box">
             <article class="media">
                <figure class="media-left">
                <a href="https://www.youtube.com/watch?v=${item.id}">
@@ -33,25 +48,15 @@ $(document).ready(function () {
                <div class="media-content">
                   <div class="content">
                      <p>
-                     <a href="https://www.youtube.com/watch?v=${item.id}"><strong>${item.title}</strong></a> <small>${item.views} vues</small><br>
-                     <span class="tag is-primary">${index+1}${index == 0 ? 'ère' : 'ème'}&nbsp;vidéo la plus recommandée</span><br>
-                      &nbsp;<small>${item.recommendations} recommendations</small>
-                     <!-- <span class="tag is-primary">${item.recommendations} recommandations</span>--><br>
-                     &nbsp;${item.likes} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                     ${item.dislikes} <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                     
+                     <a href="https://www.youtube.com/watch?v=${item.id}"><strong>${item.title}</strong></a><br>
+                     <span class="tag ${item.title.toLowerCase().latinise().includes(key.split(' ').pop().toLowerCase().latinise()) ? 'is-success' : 'is-primary'}">Suggéré ${item.recommendations} fois</span>  <small>${item.views} vues - ${item.likes} likes - ${item.dislikes} unlikes</small><br>
                      </p>
                   </div>
                </div>
-               <div class="media-right">
-               </div>
-               </article></div><div class="column is-1"></div>
-         
-         `);
-      })
+               </article></div>
+
+         `,
+         );
+      });
    }
-
 });
-
-
-

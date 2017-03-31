@@ -1,9 +1,31 @@
 $red-youtube: #CC181E;
 $primary: $red-youtube;
 
+@import '../node_modules/bulma/bulma';
+
 .nav__logo {
    margin-right: 10px;
 }
 
-@import '../node_modules/bulma/bulma';
+.hero, .section, .nav{
+   background-color: #F5F5F5;
+}
+
+.panel {
+   background-color: white;
+   padding: 0;
+}
+
+.panel-heading {
+   text-align: center;
+}
+.panel-img {
+   width: 60px;
+   margin-right: 20px;
+}
+
+.circular--square {
+   border-radius: 50%;
+}
+
 

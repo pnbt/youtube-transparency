@@ -16,8 +16,10 @@
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "^6.1.1",
+    "babel-eslint": "^7.2.1",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "eslint": "^3.18.0",
     "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "^2"
   }
