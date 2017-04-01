@@ -5,11 +5,10 @@ $(document).ready(function() {
    let jsonLocal = {};
    $.get('https://jsonblob.com/api/e1e7fb29-125b-11e7-a0ba-17d4fd61f6e6', function(data) {
       jsonLocal = data;
-      console.log(data);
-      Object.keys(data).forEach((key, index) => {
+      Object.keys(data).forEach((key) => {
          $('#sidebar').append(
             `
-            <a class="panel-block panel-event ${index === 0 ? 'is-active' : ''}">
+            <a class="panel-block panel-event" id="panel-block-${key.split(' ').pop()}">
                <span class="panel-img">
                   <img class="circular--square" src="http://placehold.it/150x150" alt=""/>
                </span> 
@@ -19,20 +18,42 @@ $(document).ready(function() {
          );
       });
       appendVideo(Object.keys(data)[0], 4);
+      appendPresentation(Object.keys(data)[0]);
    });
 
-   $(document).on('click', '.panel-event', function(event) {
+   $(document).on('click', '.panel-event', function() {
       const key = $(this).children('#panel-key').text();
+      appendPresentation(key);
       appendVideo(key, $('#depth').val());
    });
 
-   // $('#selectTheme').change((event) => {
-   //    appendVideo(event.target.value);
-   // });
+   $('#depth').on('change', (event) => {
+      appendVideo($('#presentation-title').text(), event.target.value);
+   });
+
+   function appendPresentation(key) {
+      $('#presentation').empty();
+      $('#presentation').append(
+         `
+         <div class="columns">
+            <div class="column is-2">
+               <img class="circular--square level-item" src="http://placehold.it/150x150" alt=""/>
+            </div>
+            <div class="column is-10">
+                  <h1 class="title" id="presentation-title">${key}</h1><br>
+                  <h2 class="subtitle">Top 20 des vidéos les plus sugérées par Youtube.</h2>
+            </div>
+         </div>
+         `,
+      );
+   }
 
    // Permet d'actualiser les vidéos correspond au theme "key".
    function appendVideo(key, depth) {
-      console.log($('#depth').val());
+      [].forEach.call($('.panel-block'), (item) => {
+         $(item).removeClass('is-active');
+      });
+      $('#panel-block-' + key.split(' ').pop()).addClass('is-active');
       $('.videos').empty();
       jsonLocal[key].filter((item) => item.likes !== -1 && item.depth >= depth).forEach((item, index) => {
          $('.videos').append(
