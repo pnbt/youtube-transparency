@@ -70,7 +70,7 @@ $(document).ready(function() {
                <div class="media-content">
                   <div class="content">
                      <p>
-                     <a href="https://www.youtube.com/watch?v=${item.id}"><strong>${item.title}</strong></a><br>
+                     <a href="https://www.youtube.com/watch?v=${item.id}"><strong class="video-title">${item.title}</strong></a><br>
                      <span class="tag ${item.title.toLowerCase().latinise().includes(key.split(' ').pop().toLowerCase().latinise()) ? 'is-success' : 'is-primary'}">Suggéré ${item.recommendations} fois</span> <small>${item.views} vues - ${item.likes} likes - ${item.dislikes} unlikes</small><br>
                      </p>
                   </div>

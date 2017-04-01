@@ -95,5 +95,13 @@ input[type=range] {
    padding-bottom: 0;
 }
 
+.video-title {
+   color: #3177C3;
+
+   &:hover {
+      text-decoration: underline;
+   }
+}
+
 
 
