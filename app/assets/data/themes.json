@@ -1,0 +1,14 @@
+{"presidentielle": [
+    {"name": "Emmanuel Macron", "picture": "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-1/p480x480/16864810_1919864808246096_1470703470296910366_n.jpg?oh=1091332f00a02c4fb1008c831a1e44bd&oe=59921F27", "tag": "Emmanuel Macron"},
+    {"name": "Marine Le Pen", "picture": "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-1/p480x480/15319278_1557154164300902_8060476038922262045_n.png?oh=82400d482dc5cc42cb5e58f076956d48&oe=59528A38", "tag": "Marine Le Pen"},
+    {"name": "François Fillon", "picture": "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-1/p480x480/17498818_10155179517882533_3952581464827400601_n.jpg?oh=7786fb41655cbe3c4663c0ce0c1329ad&oe=598C0A88", "tag": "Francois Fillon"},
+    {"name": "Jean-Luc Mélenchon", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/17553496_10155219998348750_8480163725066440835_n.jpg?oh=e154554eff9bbcc79b611aea547a951c&oe=598AD6EC", "tag": "Jean Luc Melenchon"},
+    {"name": "Benoît Hamon", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/17352403_10155140315462264_4411290616706207521_n.jpg?oh=0fe00ae1e3a33919bd65b6efd20c85fe&oe=594EFF43", "tag": "Benoit Hamon"},
+    {"name": "Nicolas Dupont-Aignan", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/12308802_10153375794142991_3710588287202877171_n.jpg?oh=7ab4a564ef29cedefdc5acb68e877c39&oe=599B320D", "tag": "Nicolas Dupont Aignan"},
+    {"name": "Philippe Poutou", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/14938147_1148322701887592_4517154665162575958_n.jpg?oh=c58012b86ae2ebda28296f76d768afd0&oe=5991DC61", "tag": "Philippe Poutou"},
+    {"name": "Nathalie Arthaud", "picture": "https://scontent.xx.fbcdn.net/v/t31.0-1/c315.137.400.400/p720x720/1039532_853789508060427_1793815333024300161_o.jpg?oh=ba16ce7d1dfd73a999e82cc6367b96eb&oe=5993D444", "tag": "Nathalie Arthaud"},
+    {"name": "Jean Lassalle", "picture": "https://pbs.twimg.com/profile_images/847165852315201538/UD8nO_nH_400x400.jpg", "tag": "Jean Lassalle"},
+    {"name": "François Asselineau", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/17630027_1839446059641564_1436940451637752122_n.jpg?oh=295a0622dba5669372bc8c840a7d6c03&oe=5956A72F", "tag": "Francois Asselineau"},
+    {"name": "Jacques Cheminade", "picture": "https://scontent.xx.fbcdn.net/v/t1.0-1/c0.121.480.480/p480x480/12986993_1177163402294926_7753710793001688284_n.jpg?oh=dbe74dad02cb45817aa94a68a9c243ba&oe=596039BE", "tag": "Jacques Cheminade"}
+    ]
+}

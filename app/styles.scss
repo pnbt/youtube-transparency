@@ -26,10 +26,18 @@ $primary: $red-youtube;
    border-radius: 0;   
 }
 .panel-img img {
-   width: 60px;
-   height: 60px;
+   width: 50px;
+   height: 50px;
    max-width: none;
-   margin-right: 20px;
+   margin-right: 10px;
+   margin-top: 7px;
+
+   &:hover {
+      border: 2px solid $primary;
+   }
+}
+.is-active img {
+   border: 2px solid $primary;
 }
 
 .circular--square {
@@ -51,8 +59,6 @@ input[type=range]::-webkit-slider-thumb {
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 14px;
-//   cursor: pointer;
-  animate: 0.2s;
   box-shadow: 0px 0px 3px #000000;
   background: $primary;
   border-radius: 5px;
@@ -76,23 +82,50 @@ input[type=range] {
       margin-bottom: 0;
    }
    img {
-      width: 120px;
+      width: 100px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+   }
+   .subtitle {
+      font-size: 1rem;
    }
 }
 
 .box {
    border-radius: 0;
    &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+   }
+
+   .fa {
+      color: #b5b5b5;
+      font-size: 1rem;
+      vertical-align: baseline;
+      margin-right: 3px;
    }
 }
 .sidebar-right {
    padding: 20px;
    background-color: white;
+   margin-bottom: 20px;
+
+   .small {
+      font-size: 0.7rem;
+      color: #b5b5b5;
+      a {
+         color: #b5b5b5;
+         text-decoration: underline;
+      }
+   }
 }
 
 .videos .box {
-   padding-bottom: 0;
+   padding-bottom: 10px;
+   padding-top: 10px;
+
+   small {
+      margin-right: 20px;
+   }
 }
 
 .video-title {
@@ -103,5 +136,41 @@ input[type=range] {
    }
 }
 
+.video__header{
+   background-color: #fff;
+   padding: 20px;
+   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+   display: block;
+}
 
+// HELPERS
 
+.no-mgb {
+   margin-bottom: 0 !important;
+}
+
+.no-pdb {
+   padding-bottom: 0 !important;
+}
+.no-mgt {
+   margin-top: 0 !important;
+}
+
+.no-pdt {
+   padding-top: 0 !important;
+}
+
+.nav .nav-item {
+   font-size: 0.8rem;
+}
+
+#sidebar {
+   border: none;
+}
+.sidebar-right .at-style-responsive .at-share-btn {
+    margin: 15px 5px;
+}
+
+.at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover {
+   transform: none !important;
+}

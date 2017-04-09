@@ -3,7 +3,12 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
-   <title>Youtube Transparency</title>
+   <title>AlgoTransparency</title>
+   <meta property="og:url"           content="http://www.algotransparency.com" />
+  <meta property="og:type"          content="AlgoTransparency" />
+  <meta property="og:title"         content="AlgoTransparency" />
+  <meta property="og:description"   content="AlgoTransparency est un projet qui informe les citoyens sur les algorithmes influencant l'accès à l'information. Développé dans le cadre de l'association Data for Good" />
+  <!--<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="/app.css">
    <script src="/app.js"></script>
@@ -20,7 +25,10 @@
             <div class="container">
                <div class="nav-left">
                   <a class="nav-item" href="#">
-                     <img src="images/YouTube.svg" width="30px" alt="Logo" class="nav__logo"> Transparency
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
                   </a>
                   <a class="nav-item is-hidden-mobile">
                      <h1></h1>
@@ -31,35 +39,56 @@
                <span></span>
                <span></span>
                </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item">
+                     Revoir l'intro
+                  </a>
+                  <a class="nav-item">
+                     Presse
+                  </a>
+                   <a class="nav-item">
+                     Notre démarche
+                  </a>
+                  <div class="addthis_inline_share_toolbox nav-item"></div>
+               </div>
             </div>
          </header>
+         <nav class="nav">
+         <div class="nav-center">
+            <div class="panel-block" id="sidebar"></div>
+         </div>
       </div>
    </section>
-   <section class="section columns">
-      <section class="column is-2 is-offset-1">
-         <nav class="panel" id="sidebar">
-            <p class="panel-heading">
-               Candidats
-            </p>
-         </nav>
-      </section>
-      <div class="container column is-5">
-         <div class="presentation" id="presentation">
-         </div>
+   <section class="section columns no-pdb no-mgb">
+       <div class="presentation column is-8 is-offset-2" id="presentation"></div>
+   </section>
+   <section class="section columns no-pdt">
+      <div class="container column is-5 is-offset-2" >
+         <header class="video__header">
+            <strong>Top 20</strong>
+            <span id="video__date"></span>
+         </header>
          <div class="videos">
          </div>
       </div>
-      <div class="container column is-2">
+      <div class="container column is-3">
+         <!--<section class="sidebar-right">
+            <strong class="is-block">Représentation des candidats</strong>
+               <small>dans les titres de vidéos mentionant un candidat</small>
+         </section>-->
+         <section class="sidebar-right has-text-centered">
+            <strong class="is-block">Partagez AlgoTransparency</strong>
+                  <div class="addthis_inline_share_toolbox"></div>            
+               <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
+         </section>
          <section class="sidebar-right">
-            <strong class="is-block">Explorer en profondeur</strong>
-            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat pariatur assumenda cum ipsam aut repellendus officia quia, maiores.</small>
-            <div class="has-text-centered">
-               <input oninput="document.getElementById('depth-value').innerHTML = this.value;" step="1" type="range" name="depth" id="depth"
-                  value="4" min="1" max="5" />
-               <span class="tag is-primary" id="depth-value">4</span>
-            </div>
+            <strong class="is-block">Notre démarche</strong>
+               <small>AlgoTransparency est un projet qui informe les citoyens sur les algorithmes influencant l'accès à l'information.<br/> <a href="#">En savoir plus</a></small>
+               <div class="small">Développé dans le cadre de l'association<br/> <a href="http://www.dataforgood.fr/">Data for Good</a></div>
          </section>
       </div>
+      <div class="column is-2"></div>
    </section>
 
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>   
 </body>
