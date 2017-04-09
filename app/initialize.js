@@ -23,9 +23,14 @@ $(document).ready(function() {
       });
    });
    $.get(
-      'https://jsonblob.com/api/e1e7fb29-125b-11e7-a0ba-17d4fd61f6e6',
+      'data/ytrecos-presidentielle/ytrecos-presidentielle-2017-04-08.json',
       function(data) {
          jsonLocal = data;
+         let count = 0;
+         Object.keys(jsonLocal).forEach((item) => {
+            count += jsonLocal[item].length;
+         });
+         $('#nb_video').append(count);
          appendVideo(Object.keys(data)[0]);
          appendPresentation(Object.keys(data)[0]);
       },
@@ -37,6 +42,13 @@ $(document).ready(function() {
       appendVideo(key);
    });
 
+   $(document).on('change', '#video-select', function(event) {
+      $.get('data/ytrecos-presidentielle/'+event.target.value+'.json', (data) => {
+         jsonLocal = data;
+         appendVideo($('#selected-key').text());         
+      });
+   });
+
    function appendPresentation(key) {
       $('#presentation').empty();
       $('#presentation').append(
@@ -45,7 +57,7 @@ $(document).ready(function() {
             <div class="column is-8 is-offset-2 has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                   <h1 class="title" id="presentation-title">Vidéos les plus suggérées par YouTube</h1><br>
-                  <h2 class="subtitle">dans la liste de lecture à droite à partir de la recherche "<a href="https://www.youtube.com/results?search_query=${key}">${key}</a>"</h2>
+                  <h2 class="subtitle">dans la liste de lecture à droite à partir de la recherche "<a href="https://www.youtube.com/results?search_query=${key}"><span id="selected-key">${key}</span></a>"</h2>
             </div>
          </div>
          `,
