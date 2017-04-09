@@ -22,19 +22,24 @@ $(document).ready(function() {
          });
       });
    });
-   $.get(
-      'data/ytrecos-presidentielle/ytrecos-presidentielle-2017-04-08.json',
-      function(data) {
-         jsonLocal = data;
-         let count = 0;
-         Object.keys(jsonLocal).forEach((item) => {
-            count += jsonLocal[item].length;
-         });
-         $('#nb_video').append(count);
-         appendVideo(Object.keys(data)[0]);
-         appendPresentation(Object.keys(data)[0]);
-      },
-   );
+   let url = getUrlVar('file') || 'ytrecos-presidentielle-2017-04-08';
+   if (getUrlVar('file')) {
+      $('#video-select').children().each(function() {
+         if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
+      });
+   }
+   $.get('data/ytrecos-presidentielle/' + url + '.json', function(data) {
+      jsonLocal = data;
+      let count = 0;
+      Object.keys(jsonLocal).forEach((item) => {
+         count += jsonLocal[item].length;
+      });
+      $('#nb_video').append(count);
+      let key = getUrlVar('candidat') || Object.keys(data)[0];
+      appendVideo(key);
+      appendPresentation(key);
+      changeUrlParam('file', url);
+   });
 
    $(document).on('click', '.panel-event', function() {
       const key = $(this).data('key');
@@ -43,10 +48,21 @@ $(document).ready(function() {
    });
 
    $(document).on('change', '#video-select', function(event) {
-      $.get('data/ytrecos-presidentielle/'+event.target.value+'.json', (data) => {
-         jsonLocal = data;
-         appendVideo($('#selected-key').text());         
-      });
+      $.get(
+         'data/ytrecos-presidentielle/' + event.target.value + '.json',
+         (data) => {
+            url = event.target.value;
+            jsonLocal = data;
+            let count = 0;
+            changeUrlParam('file', event.target.value);
+            Object.keys(jsonLocal).forEach((item) => {
+               count += jsonLocal[item].length;
+            });
+            $('#nb_video').empty();
+            $('#nb_video').append(count);
+            appendVideo($('#selected-key').text());
+         },
+      );
    });
 
    function appendPresentation(key) {
@@ -57,7 +73,7 @@ $(document).ready(function() {
             <div class="column is-8 is-offset-2 has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                   <h1 class="title" id="presentation-title">Vidéos les plus suggérées par YouTube</h1><br>
-                  <h2 class="subtitle">dans la liste de lecture à droite à partir de la recherche "<a href="https://www.youtube.com/results?search_query=${key}"><span id="selected-key">${key}</span></a>"</h2>
+                  <h2 class="subtitle">dans la liste de lecture à droite à partir de la recherche "<a href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
             </div>
          </div>
          `,
@@ -66,6 +82,8 @@ $(document).ready(function() {
 
    // Permet d'actualiser les vidéos correspond au theme "key".
    function appendVideo(key) {
+      changeUrlParam('candidat', key);
+      changeUrlParam('file', url);
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
       });
@@ -81,7 +99,7 @@ $(document).ready(function() {
             <article class="media">
                <figure class="media-left level">
                   <small class="level-item">${index + 1}</small>
-                  <a href="https://www.youtube.com/watch?v=${item.id}">
+                  <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
                      <div class="is-inline-block level-item">
                         <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
                      </div>
@@ -90,7 +108,7 @@ $(document).ready(function() {
                <div class="media-content">
                   <div class="content">
                      <p>
-                     <a href="https://www.youtube.com/watch?v=${item.id}"><strong class="video-title">${item.title}</strong></a><br>
+                     <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank"><strong class="video-title">${item.title}</strong></a><br>
                   <small>${item.views} vues &nbsp; &nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i>${item.likes}  <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes}</small><br>
                      </p>
                   </div>
@@ -102,3 +120,47 @@ $(document).ready(function() {
          });
    }
 });
+
+function getURLParameter(name) {
+   return decodeURIComponent(
+      (new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(
+         location.search,
+      ) || [, ''])[1]
+         .replace(/\+/g, '%20'),
+   ) || null;
+}
+
+function changeUrlParam(param, value) {
+   const currentURL = window.location.href + '&';
+   const change = new RegExp('(' + param + ')=(.*)&', 'g');
+   const newURL = currentURL.replace(change, '$1=' + value + '&');
+
+   if (getURLParameter(param) !== null) {
+      try {
+         window.history.replaceState('', '', newURL.slice(0, -1));
+      } catch (err) {
+         console.err(err);
+      }
+   } else {
+      const currURL = window.location.href;
+      if (currURL.indexOf('?') !== -1) {
+         window.history.replaceState(
+            '',
+            '',
+            currentURL.slice(0, -1) + '&' + param + '=' + value,
+         );
+      } else {
+         window.history.replaceState(
+            '',
+            '',
+            currentURL.slice(0, -1) + '?' + param + '=' + value,
+         );
+      }
+   }
+}
+function getUrlVar(key) {
+   const result = new RegExp(key + '=([^&]*)', 'i').exec(
+      window.location.search,
+   );
+   return (result && unescape(result[1])) || '';
+}
