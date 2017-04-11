@@ -35,7 +35,8 @@ $(document).ready(function() {
          count += jsonLocal[item].length;
       });
       $('#nb_video').append(count);
-      let key = getUrlVar('candidat') || Object.keys(data)[1];
+      let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+      let key = getUrlVar('candidat') || Object.keys(data)[random];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);
@@ -132,6 +133,11 @@ $(document).ready(function() {
    });
    $(document).on('click', '.showIntro', function() {
       $('#intro').show();
+      currentIndex = 0;
+      cycleSlides(currentIndex);
+      markDots(currentIndex + 1);            
+      $('.btn__next').html('Suivant');
+      $('.btn__next').removeClass('hideIntro');
       localStorage.setItem('introDone', 'no');
    });
    //basic variables for slide information
