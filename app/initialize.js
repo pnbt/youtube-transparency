@@ -119,6 +119,70 @@ $(document).ready(function() {
             );
          });
    }
+
+   // SLIDER
+   if (localStorage.getItem('introDone') === 'yes') {
+      $('#intro').hide();
+   }
+   $(document).on('click', '.hideIntro', function() {
+      if (currentIndex > slidesLength - 1) {
+         $('#intro').hide();
+         localStorage.setItem('introDone', 'yes');
+      }
+   });
+   $(document).on('click', '.showIntro', function() {
+      $('#intro').show();
+      localStorage.setItem('introDone', 'no');
+   });
+   //basic variables for slide information
+   var currentIndex = 0, //first slide
+      slides = $('.slide'),
+      slidesLength = slides.length; //how many slides
+   $('.btn__prev').hide(); //hide previous button
+   createDots(slidesLength); //funtion for creating pagination dots
+   function cycleSlides(current) {
+      //function which handles slide traversing
+      var slide = $('.slide').eq(current);
+      slides.hide();
+      slide.show();
+   }
+   function markDots(position) {
+      //function to add active class to active dot
+      $('.paginationDot').removeClass('paginationDot--active');
+      $('.paginationDot:nth-child(' + position + ')').addClass(
+         'paginationDot--active',
+      );
+   }
+   markDots(1); //add active class to the first dot
+   cycleSlides(currentIndex);
+   $('.btn__next').on('click', function() {
+      //function for 'next' button
+      $('.btn__prev').show(); //show the previous button
+      currentIndex += 1; //increment the value of current slide
+      cycleSlides(currentIndex); //call slide handle function
+      if (currentIndex > slidesLength - 2) {
+         //if it second to last slide show 'done' instead of 'next'
+         $('.btn__next').html('Découvrir !');
+         $('.btn__next').addClass('hideIntro');
+         // $('.btn__next').attr('disabled', true);
+      } else {
+         $('.btn__next').attr('disabled', false);
+      }
+      cycleSlides(currentIndex);
+      markDots(currentIndex + 1);
+   });
+   $('.btn__prev').on('click', function() {
+      //function for previous slide
+      $('.btn__next').attr('disabled', false);
+      currentIndex -= 1;
+      if (currentIndex <= 0) {
+         $('.btn__prev').hide();
+      }
+      $('.btn__next').html('Suivant');
+      $('.btn__next').removeClass('hideIntro');
+      cycleSlides(currentIndex);
+      markDots(currentIndex + 1);
+   });
 });
 
 function getURLParameter(name) {
@@ -128,6 +192,13 @@ function getURLParameter(name) {
       ) || [, ''])[1]
          .replace(/\+/g, '%20'),
    ) || null;
+}
+
+function createDots(length) {
+   //function to create pagination dots
+   for (let i = 0; i <= length - 1; i++) {
+      $('.pagination').append('<div class="paginationDot"></div>');
+   }
 }
 
 function changeUrlParam(param, value) {
