@@ -35,7 +35,7 @@ $(document).ready(function() {
          count += jsonLocal[item].length;
       });
       $('#nb_video').append(count);
-      let key = getUrlVar('candidat') || Object.keys(data)[0];
+      let key = getUrlVar('candidat') || Object.keys(data)[1];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);
