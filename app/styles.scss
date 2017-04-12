@@ -139,7 +139,6 @@ a {
 
 // PANEL ------------ //
 
-
 .panel {
   padding: 0;
   border-radius: 0;   
@@ -240,11 +239,11 @@ input[type=range] {
     @extend .h3; 
     margin-bottom: 10px;
   }
+}
 
-  .searched-value {
-    background-color: $bg-yellow;
-    padding: 0 2px;
-  }
+.searched-value {
+  background-color: $bg-yellow;
+  padding: 0 2px;
 }
 
 // VIDEOS ----- //
@@ -265,7 +264,6 @@ input[type=range] {
       margin-right: 4px;
    }
 }
-
 
 .video-header {
   position: relative;
@@ -350,7 +348,6 @@ input[type=range] {
   }
 }
 
-
 // .video__header{
    // background-color: #fff;
    // padding: 20px;
@@ -378,10 +375,9 @@ input[type=range] {
 //    }
 // }
 
-
-.demarche .title {
-   margin-top: 24px;
-}
+// .demarche .title {
+//    margin-top: 24px;
+// }
 
 // HELPERS -------- //
 
