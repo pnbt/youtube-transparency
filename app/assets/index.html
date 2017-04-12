@@ -74,13 +74,15 @@
    </section>
    <section class="section columns" style="padding-bottom:50px">
       <div class="container column is-5 is-offset-2">
-         
             <header class="box-wrapper video-header">
-               <div class="box-title">Top 20</div>
+               <div class="box-title">Top </div>
                <span class="float-right">
                   <span class="video-date" id="video__date">sur <span id="nb_video"></span> vidéos collectées le</span>
                   <span class="select is-small">
                      <select id="video-select">
+                        <option value="ytrecos-presidentielle-2017-04-12">12 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-11">11 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-09">9 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-08">8 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-07">7 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-06">6 avril 2017</option>
@@ -98,7 +100,6 @@
             </header>
             <div class="box-wrapper videos">
             </div>
-         
       </div>
       <div class="container column is-3">
          <!--<section class="sidebar-right">
@@ -111,6 +112,14 @@
                <div class="addthis_inline_share_toolbox mb2"></div>
                <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
             </div>
+         <section class="sidebar-right">
+            <strong>Candidats mentionés dans les titres de ces vidéos:<strong>
+            <div id="representation"></div>
+         </section>
+         <section class="sidebar-right has-text-centered">
+            <strong class="is-block">Partagez AlgoTransparency</strong>
+            <div class="addthis_inline_share_toolbox"></div>
+            <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
          </section>
          <section class="box-wrapper">
             <div class="box-title mb2">Notre démarche</div>
@@ -122,7 +131,6 @@
             <small>Développé dans le cadre de l'association <a href="http://www.dataforgood.fr/">Data for Good</a></small>
          </section>
       </div>
-      <div class="column is-2"></div>
    </section>
    <section id="intro">
       <div class="slides-container has-text-centered">

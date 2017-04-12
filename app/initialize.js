@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import './js/helpers';
 
+
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
@@ -74,7 +75,7 @@ $(document).ready(function() {
       $('#presentation').append(
          `
          <div class="columns">
-            <div class="column is-10 is-offset-1 has-text-centered">
+            <div class="column has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                   <h1 class="" id="presentation-title">Vidéos les plus suggérées par YouTube</h1>
                   <h2 class="">dans la liste de lecture à droite à partir de la recherche "<a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
@@ -83,6 +84,7 @@ $(document).ready(function() {
          `,
       );
    }
+
 
    // Permet d'actualiser les vidéos correspond au theme "key".
    function appendVideo(key) {
@@ -96,6 +98,11 @@ $(document).ready(function() {
       jsonLocal[key]
          .filter((item) => item.likes !== -1)
          .forEach((item, index) => {
+            const views = item.views > 0 ? `${item.views.toLocaleString(true)} vues` : '';
+            const multiplicator = item.mult;
+            const mult = multiplicator ? `<div class="mult"><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
+               <div class="mult-text"> plus suggérée que la moyenne </div> </div>` : '';
+
             if (index > 19) return;
             $('.videos').append(
                `
@@ -112,14 +119,77 @@ $(document).ready(function() {
                <div class="media-content">
                   <div class="content">
                      <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
-                     <small class="video-stats">${item.views} vues <i class="fa fa-thumbs-up" aria-hidden="true"></i>${item.likes}  <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes}</small>
+                     <div><small class="video-stats">` + views + `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                     ${item.likes.toLocaleString(true)}
+                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes.toLocaleString(true)}</small></div>
                   </div>
                </div>
-               </article></div>
-
+               </article>` + mult +`</div>
          `,
             );
          });
+
+
+      $('#representation').empty();
+      const cscores = {};
+      jsonLocal[key]
+         .filter((item) => item.likes !== -1)
+         .forEach((item) => {
+            const title = item.title.toLowerCase();
+            if (title.indexOf('macron') > -1) {
+               cscores['Émmanuel Macron'] = (cscores['Émmanuel Macron'] || 0) + 1;
+            }
+            if (title.indexOf('asselineau') > -1 || title.indexOf('asselinau') > -1) {
+               cscores['François Asselineau'] = (cscores['François Asselineau'] || 0) + 1;
+            }
+            if (title.indexOf('lepen') > -1 || title.indexOf('le pen') > -1) {
+               cscores['Marine Le Pen'] = (cscores['Marine Le Pen'] || 0) + 1;
+            }
+            if (title.indexOf('fillon') > -1) {
+               cscores['François Fillon'] = (cscores['François Fillon'] || 0) + 1;
+            }
+            if (title.indexOf('melenchon') > -1 || title.indexOf('mélenchon') > -1) {
+               cscores['Jean-Luc Mélenchon'] = (cscores['Jean-Luc Mélenchon'] || 0) + 1;
+            }
+            if (title.indexOf('hamon') > -1) {
+               cscores['Benoît Hamon'] = (cscores['Benoît Hamon'] || 0) + 1;
+            }
+            if (title.indexOf('aignan') > -1) {
+               cscores['Nicolas Dupont-Aignan'] = (cscores['Nicolas Dupont-Aignan'] || 0) + 1;
+            }
+            if (title.indexOf('poutou') > -1) {
+               cscores['Philippe Poutou'] = (cscores['Philippe Poutou'] || 0) + 1;
+            }
+            if (title.indexOf('arthaud') > -1) {
+               cscores['Nathalie Arthaud'] = (cscores['Nathalie Arthaud'] || 0) + 1;
+            }
+            if (title.indexOf('lassale') > -1 || title.indexOf('lassalle') > -1) {
+               cscores['Jean Lassalle'] = (cscores['Jean Lassalle'] || 0) + 1;
+            }
+            if (title.indexOf('cheminade') > -1) {
+               cscores['Jacques Cheminade'] = (cscores['Jacques Cheminade'] || 0) + 1;
+            }
+         });
+      const sumValues = Object.values(cscores).reduce((a, b) => a + b);
+
+      for (const key in cscores) {
+         cscores[key] = cscores[key] / sumValues;
+      }
+
+      const sortable = [];
+      for (const vehicle in cscores) {
+         sortable.push([vehicle, cscores[vehicle]]);
+      }
+
+      sortable.sort(function(a, b) {
+         return b[1] - a[1];
+      });
+
+      for (const i in sortable) {
+         $('#representation').append(`<div class="candidate-score"><span>${sortable[i][0]}
+            </span> <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
+         </span></div><div class="greybar"><div class="redbar" style="width:${sortable[i][1]*100}%"></div>`);
+      }
    }
 
    // SLIDER
@@ -136,7 +206,7 @@ $(document).ready(function() {
       $('#intro').show();
       currentIndex = 0;
       cycleSlides(currentIndex);
-      markDots(currentIndex + 1);            
+      markDots(currentIndex + 1);
       $('.btn__next').html('Suivant');
       $('.btn__next').removeClass('hideIntro');
       localStorage.setItem('introDone', 'no');
