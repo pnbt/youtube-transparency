@@ -419,6 +419,13 @@ input[type=range] {
 .mb2 { margin-bottom: 20px; }
 .mb4 { margin-bottom: 40px; }
 
+
+.mt1 { margin-top: 10px; }
+.mt2 { margin-top: 20px; }
+
+.mb1 { margin-bottom: 10px; }
+.mb2 { margin-bottom: 20px; }
+
 .no-mgb {
    margin-bottom: 0 !important;
 }
@@ -605,8 +612,8 @@ input[type=range] {
 
 // RESPONSIVE --------- //
 
-@media screen and (max-width: 768px){
-   .nav-menu {
-      top: 120px;
-   }
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    top: 120px;
+  }
 }
