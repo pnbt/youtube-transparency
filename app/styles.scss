@@ -37,6 +37,17 @@ h3, .h3 {
   // font-weight: 700;
 }
 
+small, .small  {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  color: $gray-medium;
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
 strong {
   color: $gray-dark;
 }
@@ -48,6 +59,12 @@ a {
     color: $blue-medium;
     text-decoration: underline;
   }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 // HERO AND NAV  -------- //
@@ -103,8 +120,21 @@ a {
 .box-wrapper {
   border: 1px solid $border-color;
   padding: 15px;
-  // margin-bottom: 10px;
   background-color: white;
+}
+
+.column, .columns {
+  padding: 0 5px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.columns:not(:last-child) {
+ margin-bottom: 0; 
+}
+
+.columns:last-child {
+  margin-bottom: 0;
 }
 
 // PANEL ------------ //
@@ -236,6 +266,57 @@ input[type=range] {
    }
 }
 
+
+.video-header {
+  position: relative;
+  @extend .clearfix;
+}
+
+.video-date {
+  font-size: 12px;
+  line-height: 30px;
+  color: $gray-medium;
+}
+
+.select {
+  height: auto;
+  &:after {
+    right: 8px;
+  }
+  &:hover {
+    &:after {
+      border-color: red;
+    }
+  }
+  select {
+    font-size: 12px;
+    line-height: 20px;
+    height: auto;
+    padding: 5px 10px 5px 8px;
+    vertical-align: middle;
+    border: none;
+    border-radius: 0;
+    color: $gray-medium;
+    transition: .2s ease background-color, .2s ease color;
+    &:hover {
+      background-color: $gray-pale;
+      color: $gray-dark;
+    }
+  }
+}
+
+.box-title {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 5px 0;
+  font-weight: 700;
+}
+
+.float-right {
+  float: right;
+}
+
 .videos .box {
   padding: 15px 0;
   border-bottom: 1px solid $border-color;
@@ -282,20 +363,20 @@ input[type=range] {
 //    // float: right;
 // }
 
-.sidebar-right {
-   padding: 20px;
-   background-color: white;
-   margin-bottom: 20px;
+// .sidebar-right {
+//    padding: 20px;
+//    background-color: white;
+//    margin-bottom: 20px;
 
-   .small {
-      font-size: 0.7rem;
-      color: #b5b5b5;
-      a {
-         color: #b5b5b5;
-         text-decoration: underline;
-      }
-   }
-}
+//    .small {
+//       font-size: 0.7rem;
+//       color: #b5b5b5;
+//       a {
+//          color: #b5b5b5;
+//          text-decoration: underline;
+//       }
+//    }
+// }
 
 
 .demarche .title {
@@ -303,6 +384,13 @@ input[type=range] {
 }
 
 // HELPERS -------- //
+
+
+.mt1 { margin-top: 10px; }
+.mt2 { margin-top: 20px; }
+
+.mb1 { margin-bottom: 10px; }
+.mb2 { margin-bottom: 20px; }
 
 .no-mgb {
    margin-bottom: 0 !important;
@@ -476,9 +564,6 @@ input[type=range] {
     background: $primary;
   }
 }
-
-
-
 
 // RESPONSIVE
 @media screen and (max-width: 768px){

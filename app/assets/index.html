@@ -67,19 +67,19 @@
          </nav>
       </div>
    </section>
-   <section class="section columns no-pdb no-mgb">
+   <section class="section columns">
       <div class="container column is-8 is-offset-2">
-         <div class="box-wrapper presentation" id="presentation"></div>
+         <div class="box-wrapper presentation mb1" id="presentation"></div>
       </div>
    </section>
-   <section class="section columns no-pdt">
+   <section class="section columns">
       <div class="container column is-5 is-offset-2">
          
-            <header class="box-wrapper">
-               <strong>Top 20</strong>
-               <span id="video__date">
-                  sur <span id="nb_video"></span> vidéos collectées le
-               <span class="select is-small">
+            <header class="box-wrapper video-header">
+               <div class="box-title">Top 20</div>
+               <span class="float-right">
+                  <span class="video-date" id="video__date">sur <span id="nb_video"></span> vidéos collectées le</span>
+                  <span class="select is-small">
                      <select id="video-select">
                         <option value="ytrecos-presidentielle-2017-04-08">8 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-07">7 avril 2017</option>
@@ -105,17 +105,21 @@
             <strong class="is-block">Représentation des candidats</strong>
                <small>dans les titres de vidéos mentionant un candidat</small>
          </section>-->
-         <section class="sidebar-right has-text-centered">
-            <strong class="is-block">Partagez AlgoTransparency</strong>
-            <div class="addthis_inline_share_toolbox"></div>
-            <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
+         <section class="box-wrapper mb1">
+            <div class="box-title mb2">Partagez AlgoTransparency</div>
+            <div class="">
+               <div class="addthis_inline_share_toolbox mb2"></div>
+               <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
+            </div>
          </section>
-         <section class="sidebar-right">
-            <strong class="is-block">Notre démarche</strong>
-            <small>AlgoTransparency est un projet qui informe les citoyens sur les algorithmes influencant l'accès à l'information.<br/> <a href="#">En savoir plus</a></small></br>
-            <span class="small">Suivez nous : </span>
-            <div class="addthis_inline_follow_toolbox"></div>
-            <div class="small">Développé dans le cadre de l'association<br/> <a href="http://www.dataforgood.fr/">Data for Good</a></div>
+         <section class="box-wrapper">
+            <div class="box-title mb2">Notre démarche</div>
+            <p class="mb1">AlgoTransparency est un projet qui informe les citoyens sur les algorithmes influencant l'accès à l'information. <a href="#">En savoir plus</a></p>
+            <div class="mb2">
+               <span class="small">Suivez nous : </span>
+               <div class="addthis_inline_follow_toolbox"></div>
+            </div>
+            <small>Développé dans le cadre de l'association <a href="http://www.dataforgood.fr/">Data for Good</a></small>
          </section>
       </div>
       <div class="column is-2"></div>
