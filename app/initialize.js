@@ -47,6 +47,9 @@ $(document).ready(function() {
       appendPresentation(key);
       appendVideo(key);
    });
+   $('.nav-toggle').click(function() {
+      $('.nav-right').toggleClass('is-active');
+   });
 
    $(document).on('change', '#video-select', function(event) {
       $.get(

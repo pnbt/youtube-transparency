@@ -477,3 +477,12 @@ input[type=range] {
   }
 }
 
+
+
+
+// RESPONSIVE
+@media screen and (max-width: 768px){
+   .nav-menu {
+      top: 120px;
+   }
+}
