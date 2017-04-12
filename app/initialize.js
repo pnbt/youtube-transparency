@@ -4,6 +4,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
+   const lastDate = 'ytrecos-presidentielle-2017-04-08';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -19,10 +20,20 @@ $(document).ready(function() {
             </a>
             `,
             );
+            $('#candidatsIntro').append(
+               `
+                  <li class="candidatIntro">
+                     <img class="circular--square is-inline-block" src="${item.picture}" alt="" style="height: 70px; width: 70px;"/>
+                     <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
+                        <h2 class="is-inline-block">${item.name}</h2>
+                     </a>
+                  </li> 
+               `
+            );
          });
       });
    });
-   let url = getUrlVar('file') || 'ytrecos-presidentielle-2017-04-08';
+   let url = getUrlVar('file') || lastDate;
    if (getUrlVar('file')) {
       $('#video-select').children().each(function() {
          if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
@@ -126,19 +137,20 @@ $(document).ready(function() {
    if (localStorage.getItem('introDone') === 'yes') {
       $('#intro').hide();
    }
-   $(document).on('click', '.hideIntro', function() {
-      if (currentIndex > slidesLength - 1) {
-         $('#intro').hide();
-         localStorage.setItem('introDone', 'yes');
-      }
-   });
+   // $(document).on('click', '.hideIntro', function() {
+   //    if (currentIndex > slidesLength - 1) {
+   //       $('#intro').hide();
+   //       localStorage.setItem('introDone', 'yes');
+   //    }
+   // });
    $(document).on('click', '.showIntro', function() {
       $('#intro').show();
       currentIndex = 0;
       cycleSlides(currentIndex);
       markDots(currentIndex + 1);            
-      $('.btn__next').html('Suivant');
-      $('.btn__next').removeClass('hideIntro');
+      // $('.btn__next').html('Suivant');
+      $('.btn__next').show();      
+      // $('.btn__next').removeClass('hideIntro');
       localStorage.setItem('introDone', 'no');
    });
    //basic variables for slide information
@@ -169,8 +181,9 @@ $(document).ready(function() {
       cycleSlides(currentIndex); //call slide handle function
       if (currentIndex > slidesLength - 2) {
          //if it second to last slide show 'done' instead of 'next'
-         $('.btn__next').html('Découvrir !');
-         $('.btn__next').addClass('hideIntro');
+         // $('.btn__next').html('Découvrir !');
+         $('.btn__next').hide();
+         // $('.btn__next').addClass('hideIntro');
          // $('.btn__next').attr('disabled', true);
       } else {
          $('.btn__next').attr('disabled', false);
@@ -186,7 +199,7 @@ $(document).ready(function() {
          $('.btn__prev').hide();
       }
       $('.btn__next').html('Suivant');
-      $('.btn__next').removeClass('hideIntro');
+      // $('.btn__next').removeClass('hideIntro');
       cycleSlides(currentIndex);
       markDots(currentIndex + 1);
    });

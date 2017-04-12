@@ -466,6 +466,26 @@ input[type=range] {
    height: 100%;
    background-color: #F1F1F1;
 }
+.candidatIntro {
+   background-color: #fff;
+    margin: 10px;
+    text-align: left;
+    width: 280px;
+    height: 100px;
+    display: inline-block;
+
+    a{
+      //  padding: 10px;    
+    }
+    img {
+       margin:0 5px; 
+    }
+
+    h2 {
+       line-height: 90px;
+       vertical-align: bottom
+    }
+}
 
 .slides-container {
   position: relative;
@@ -574,16 +594,6 @@ input[type=range] {
 // PAGINATION ---------- //
 
 .pagination {
-  // height: 10px;
-  // max-width: 140px;
-  // display: -webkit-box;
-  // display: -ms-flexbox;
-  // display: flex;
-  // -webkit-box-pack: center;
-  //     -ms-flex-pack: center;
-  //         justify-content: center;
-  // margin: 0 auto;
-  // clear: both;
   position: absolute;
   bottom: 60px;
   left: 50%;
