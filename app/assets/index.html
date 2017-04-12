@@ -16,6 +16,7 @@
    />
    <!--<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
    <link rel="stylesheet" href="/app.css">
    <script src="/app.js"></script>
    <script>
@@ -27,7 +28,7 @@
    <section class="hero is-small">
       <!-- Hero header: will stick at the top -->
       <div class="hero-head">
-         <header class="nav">
+         <header class="nav nav-first">
             <div class="container">
                <div class="nav-left">
                   <a class="nav-item" href="index.html">
@@ -59,7 +60,7 @@
                </div>
             </div>
          </header>
-         <nav class="nav">
+         <nav class="nav nav-second">
             <div class="nav-center">
                <div class="panel-block" id="sidebar"></div>
             </div>
@@ -67,33 +68,37 @@
       </div>
    </section>
    <section class="section columns no-pdb no-mgb">
-      <div class="presentation column is-8 is-offset-2" id="presentation"></div>
+      <div class="container column is-8 is-offset-2">
+         <div class="box-wrapper presentation" id="presentation"></div>
+      </div>
    </section>
    <section class="section columns no-pdt">
       <div class="container column is-5 is-offset-2">
-         <header class="video__header">
-            <strong>Top 20</strong>
-            <span id="video__date">
-               sur <span id="nb_video"></span> vidéos collectées le
-            <span class="select is-small">
-                  <select id="video-select">
-                     <option value="ytrecos-presidentielle-2017-04-08">8 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-04-07">7 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-04-06">6 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-04-05">5 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-04-03">3 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-04-01">1 avril 2017</option>
-                     <option value="ytrecos-presidentielle-2017-03-31">31 mars 2017</option>
-                     <option value="ytrecos-presidentielle-2017-03-30">30 mars 2017</option>
-                     <option value="ytrecos-presidentielle-2017-03-29">29 mars 2017</option>
-                     <option value="ytrecos-presidentielle-2017-03-28">28 mars 2017</option>
-                     <option value="ytrecos-presidentielle-2017-03-27">27 mars 2017</option>
-                  </select>
+         
+            <header class="box-wrapper">
+               <strong>Top 20</strong>
+               <span id="video__date">
+                  sur <span id="nb_video"></span> vidéos collectées le
+               <span class="select is-small">
+                     <select id="video-select">
+                        <option value="ytrecos-presidentielle-2017-04-08">8 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-07">7 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-06">6 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-05">5 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-03">3 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-01">1 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-31">31 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-30">30 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-29">29 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-28">28 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-27">27 mars 2017</option>
+                     </select>
+                  </span>
                </span>
-            </span>
-         </header>
-         <div class="videos">
-         </div>
+            </header>
+            <div class="box-wrapper videos">
+            </div>
+         
       </div>
       <div class="container column is-3">
          <!--<section class="sidebar-right">

@@ -71,10 +71,10 @@ $(document).ready(function() {
       $('#presentation').append(
          `
          <div class="columns">
-            <div class="column is-8 is-offset-2 has-text-centered">
+            <div class="column is-10 is-offset-1 has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
-                  <h1 class="title" id="presentation-title">Vidéos les plus suggérées par YouTube</h1><br>
-                  <h2 class="subtitle">dans la liste de lecture à droite à partir de la recherche "<a href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
+                  <h1 class="" id="presentation-title">Vidéos les plus suggérées par YouTube</h1>
+                  <h2 class="">dans la liste de lecture à droite à partir de la recherche "<a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
             </div>
          </div>
          `,
@@ -99,7 +99,7 @@ $(document).ready(function() {
             <div class="box">
             <article class="media">
                <figure class="media-left level">
-                  <small class="level-item">${index + 1}</small>
+                  <small class="video-position level-item">${index + 1}</small>
                   <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
                      <div class="is-inline-block level-item">
                         <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
@@ -108,10 +108,8 @@ $(document).ready(function() {
                </figure>
                <div class="media-content">
                   <div class="content">
-                     <p>
-                     <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank"><strong class="video-title">${item.title}</strong></a><br>
-                  <small>${item.views} vues &nbsp; &nbsp;<i class="fa fa-thumbs-up" aria-hidden="true"></i>${item.likes}  <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes}</small><br>
-                     </p>
+                     <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                     <small class="video-stats">${item.views} vues <i class="fa fa-thumbs-up" aria-hidden="true"></i>${item.likes}  <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes}</small>
                   </div>
                </div>
                </article></div>
