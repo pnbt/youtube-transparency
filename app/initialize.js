@@ -5,7 +5,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
-   const lastDate = 'ytrecos-presidentielle-2017-04-08';
+   const lastDate = 'ytrecos-presidentielle-2017-04-12';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
