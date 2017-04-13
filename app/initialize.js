@@ -5,7 +5,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
-   const lastDate = 'ytrecos-presidentielle-2017-04-08';
+   const lastDate = 'ytrecos-presidentielle-2017-04-12';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -148,7 +148,7 @@ $(document).ready(function() {
          .forEach((item) => {
             const title = item.title.toLowerCase();
             if (title.indexOf('macron') > -1) {
-               cscores['Émmanuel Macron'] = (cscores['Émmanuel Macron'] || 0) + 1;
+               cscores['Emmanuel Macron'] = (cscores['Emmanuel Macron'] || 0) + 1;
             }
             if (title.indexOf('asselineau') > -1 || title.indexOf('asselinau') > -1) {
                cscores['François Asselineau'] = (cscores['François Asselineau'] || 0) + 1;
@@ -197,7 +197,6 @@ $(document).ready(function() {
       });
 
       for (const i in sortable) {
-         console.log(sortable[i]);
          $('#representation').append(`
          <div class="candidate-score">
             <span>${sortable[i][0]}
