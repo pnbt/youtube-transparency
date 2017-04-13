@@ -737,6 +737,25 @@ input[type=range] {
    .mult {
       width: 80px;
    }
+
+   .candidatIntro {
+      margin: 0;
+      padding: 5px;
+      font-size: 12px;
+
+      img {
+         width: 40px;
+         height: 40px;
+      }
+   }
+   .slide-4 {
+      padding: 10px;
+   }
+   .slide-4 h1 {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 10px;
+   }
 }
 
 [data-balloon]:before,
