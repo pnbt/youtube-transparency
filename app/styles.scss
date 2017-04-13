@@ -474,8 +474,12 @@ input[type=range] {
     height: 100px;
     display: inline-block;
 
-    a{
-      //  padding: 10px;    
+    &:hover {
+       background-color: $primary;
+       
+       a {
+          color: #fff;
+       }
     }
     img {
        margin:0 5px; 
