@@ -100,7 +100,7 @@ $(document).ready(function() {
          .forEach((item, index) => {
             const views = item.views > 0 ? `${item.views.toLocaleString(true)} vues` : '';
             const multiplicator = item.mult;
-            const mult = multiplicator ? `<div class="mult"><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
+            const mult = multiplicator ? `<div class="mult" title="A partir du candidat sélectioné, cette video a été suggérée par YouTube ${Math.round(item.mult * 10)/10} fois plus que la moyenne des autres vidéos suggérées."><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
                <div class="mult-text"> plus suggérée que la moyenne </div> </div>` : '';
 
             if (index > 19) return;

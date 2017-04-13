@@ -309,6 +309,7 @@ input[type=range] {
   border-left: solid 1px;
   border-color: #ddd;
   margin-right: -10px;
+  cursor: pointer;
 }
 .mult-x {
   margin-top: 40px;
@@ -408,6 +409,7 @@ input[type=range] {
     color: $blue-medium;
     font-weight: 700;
   }
+
   .video-stats {
     color: $gray-medium;
     font-size: 12px;
@@ -442,9 +444,11 @@ input[type=range] {
 //    }
 // }
 
-// .demarche .title {
-//    margin-top: 24px;
-// }
+.demarche .title {
+  font-size: 24px;
+  margin-top: 24px;
+  font-weight: bold;
+}
 
 // HELPERS -------- //
 
