@@ -49,9 +49,6 @@
                   <!--<a class="nav-item">
                      Presse
                   </a>-->
-                  <a class="nav-item" href="index.html">
-                     Accueil
-                  </a>
                   <a class="nav-item">
                      Notre démarche
                   </a>
@@ -64,51 +61,58 @@
    <section class="columns">
       <div class="container column is-8 is-offset-2 demarche">
 
-         <h1 class="title">Quel est le but de ce site? </h1>
+         Nous avons développé un programme qui détecte les vidéos les plus suggérées par l’algorithme de YouTube à partir d’une recherche donnée.
+
+         <h1 class="title">Quel est le but de ce site ? </h1>
             <p>
                Notre mission est d’informer les citoyens sur le fonctionnement des algorithmes influençant l’accès à l’information.
                YouTube est la première plateforme sur laquelle nous menons ce travail et nous développons des outils pour d'autres plateformes.
-
             </p>
 
-         <h1 class="title">Qu’entends-on par “vidéos suggérées” sur YouTube ?</h1>
+         <h1 class="title">Qu’entend-on par “vidéos suggérées” sur YouTube ?</h1>
             <p>
                Ce sont les vidéos qui apparaissent dans la liste de lecture automatique intitulée “À suivre”, à droite de l’écran quand on regarde une vidéo.
             </p>
 
-         <h1 class="title">Quelles sont les "videos les plus suggérées ?" </h1>
+         <h1 class="title">Comment avez-vous identifié les vidéos les plus suggérée par YouTube ? </h1>
             <p>
-               Nous utilisons un programme pour collecter les vidéos a partir du nom d'un candidat en plusieurs étapes:
+               Nous utilisons un programme pour collecter les vidéos a partir du nom d'un candidat en plusieurs étapes :
                <ul>
-                  <li>Il fait une recherche du nom du candidat sur YouTube.</li>
-                  <li>Il enregistre les 6 premières vidéos suggérées en résultat (ce qui est visible sur un ecran classique) et parcours chacune de ces vidéos.</li>
-                  <li>Pour chaque vidéo, il enregistre les 3 premières vidéos suggérées dans la colonne “À venir”.</li>
-                  <li>Il répète les clics sur les recommandations 6 fois.</li>
+                  <li>- A partir d’un compte neutre, il fait une recherche du nom du candidat sur YouTube.</li>
+                  <li>- Il enregistre les 6 premières vidéos suggérées en résultat (ce qui est visible sur un écran classique) et parcourt chacune de ces vidéos.</li>
+                  <li>- Pour chaque vidéo, il enregistre les 3 premières vidéos suggérées dans la colonne “À venir”.</li>
+                  <li>- Il répète les clics sur les recommandations 6 fois.</li>
                </ul>
-               Il collecte l'ensemble de ces vidéos et comptabilise le nombre de fois où chaque vidéo a été suggérée, ce qui nous permet de calculer quelles sont les vidéos qui ont été le plus suggérées par YouTube, a partir d'un candidat donné.
+               Il collecte l'ensemble de ces vidéos et comptabilise le nombre de fois où chaque vidéo a été suggérée, ce qui permet de calculer quelles sont les vidéos qui ont été le plus suggérées par YouTube, à partir d'un(e) candidat(e) donné(e).
             </p>
 
          <h1 class="title">Puis-je voir le programme que vous avez utilisé pour obtenir vos données ?</h1>
             <p>
-               Oui ! Le code que nous avons développé est "open source" et disponible <a href="https://github.com/pnbt/youtube-explore"> ici.</a>
+               Oui ! Le code que nous avons développé est "open source" et disponible <a href="https://github.com/pnbt/youtube-explore" target="_blank"> ici</a>.
                Chacun peut l'utiliser en faisant varier la profondeur de recherche, les sujets de recherche initiale, etc.
             </p>
 
-         <h2 class="title">Peut on simplement voir ou YouTube nous emmène ?</h2>
+         <h2 class="title">Peut-on simplement voir où YouTube nous emmène ?</h2>
             <p>
-               Oui ! Recherchez un candidats, puis cliquez sur la première recommendation 6 fois.
-               Notre programme fais cela un grand nombre de fois pour faire la moyenne des résultats.
+               Oui ! Recherchez un(e) candidat(e), puis cliquez sur la première suggestion de YouTube 6 fois de suite.
+               Notre programme fait cela un grand nombre de fois pour calculer la moyenne des résultats.
             </p>
 
          <h2 class="title">Pourquoi certaines vidéos ne sont plus visibles ?</h2>
             <p>
                Certaines videos sont enlevées soit par YouTube selon leurs
-               <a href="https://www.youtube.com/t/community_guidelines" target="_blank">termes</a>, soit par les YouTubers eux même.
+               <a href="https://www.youtube.com/t/community_guidelines" target="_blank">termes</a>, soit par les YouTubers eux-mêmes.
+            </p>
+
+         <h1 class="title">Les vidéos suggérées par YouTube dépendent-elles de mon profil ?</h1>
+            <p>
+               Une partie des suggestions sont personnalisées. Notre travail a été effectué à partir d’un compte neutre, sans aucun historique sur YouTube.
             </p>
 
          <h1 class="title">Qui est à l'origine d'AlgoTransparency ?</h1>
          <p>
-            AlgoTransparency est une initiative de Guillaume Chaslot, Adrien Montcoudiol, Soline Ledésert, Nicolas Wielonsky, Frédéric Bardolle et Mathieu Grac dans le cadre de l’association <a href="http://www.dataforgood.fr/" target="_blank"> Data For Good.</a> en collaboration avec <a href="http://www.bayesimpact.org/">Bayes Impact</a>
+            AlgoTransparency est une initiative de Guillaume Chaslot, Adrien Montcoudiol, Soline Ledésert, Nicolas Wielonsky, Frédéric
+            Bardolle et Mathieu Grac dans le cadre de l’association <a href="http://www.dataforgood.fr/" target="_blank"> Data For Good</a>. en collaboration avec <a href="http://www.bayesimpact.org/">Bayes Impact</a>.
          </p>
 
       </div>
