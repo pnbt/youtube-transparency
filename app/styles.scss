@@ -113,6 +113,13 @@ a {
 .nav-first {
   height: 50px;
 }
+.nav-second {
+   text-align: center;
+
+   > div {
+      margin: 0 auto;
+   }
+}
 
 .nav-right, .nav-left {
   .nav-item {
@@ -181,6 +188,7 @@ a {
 
 .panel-block {
   padding: 0;
+  flex-wrap: wrap;
 }
 
 .panel-event {
@@ -717,7 +725,14 @@ input[type=range] {
 // RESPONSIVE
 @media screen and (max-width: 768px){
    .nav-menu {
-      top: 120px;
+      top: 260px;
+   }
+   [data-balloon-length=large]:after {
+      width: auto;
+   }
+   .column, .columns {
+      padding: 0;
+      margin: 0;
    }
 }
 
