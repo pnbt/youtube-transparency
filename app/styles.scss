@@ -10,6 +10,7 @@ $blue-medium: #0678C9;
 $primary: $red-youtube;
 
 @import '../node_modules/bulma/bulma';
+@import '../node_modules/balloon-css/balloon.min';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -709,4 +710,9 @@ input[type=range] {
    .nav-menu {
       top: 120px;
    }
+}
+
+[data-balloon]:before,
+[data-balloon]:after {
+   bottom: calc(100% - 30px);
 }
