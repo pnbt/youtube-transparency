@@ -24,9 +24,9 @@ $(document).ready(function() {
             $('#candidatsIntro').append(
                `
                   <li class="candidatIntro">
-                     <img class="circular--square is-inline-block" src="${item.picture}" alt="" style="height: 70px; width: 70px;"/>
                      <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
-                        <h2 class="is-inline-block">${item.name}</h2>
+                        <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
+                        <h2 class="">${item.name}</h2>
                      </a>
                   </li> 
                `

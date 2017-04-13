@@ -302,32 +302,29 @@ input[type=range] {
 }
 
 .mult {
-  width: 100px;
+  cursor: pointer;
+  width: 120px;
+  padding: 0 10px;
   text-align: center;
   margin-left: 10px;
-  align-items: center;
-  margin-left: 15px;
-  border-left: solid 1px;
-  border-color: #ddd;
-  margin-right: -10px;
-  cursor: pointer;
+  border-left: 1px solid $border-color;
 }
+
 .mult-x {
   margin-top: 40px;
-  color: red;
+  color: $primary;
   font-size: 25px;
   align-items: center;
   margin-left: auto;
   margin-right:auto;
+  font-weight: 500;
 }
 .mult-text {
-  width: 100px;
   font-size: 12px;
-  color: #868686;
+  line-height: 16px;
+  color: $gray-medium;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 .video-header {
@@ -355,7 +352,7 @@ input[type=range] {
     font-size: 12px;
     line-height: 20px;
     height: auto;
-    padding: 5px 10px 5px 8px;
+    padding: 5px 20px 5px 8px;
     vertical-align: middle;
     border: none;
     border-radius: 0;
@@ -382,6 +379,8 @@ input[type=range] {
 
 .videos .box {
   padding: 15px 0;
+  margin-right: -15px;
+  margin-left:  -15px;
   border-bottom: 1px solid $border-color;
   &:first-child { padding-top: 0; }
   &:last-child { padding-bottom: 0; border-bottom: none;}
@@ -398,7 +397,7 @@ input[type=range] {
   }
 
   .video-position {
-    margin-right: 15px;
+    margin: 0 15px;
     font-size: 12px;
     line-height: 20px;
     color: $gray-medium;
@@ -493,13 +492,20 @@ input[type=range] {
 #sidebar {
    border: none;
 }
-.sidebar-right .at-style-responsive .at-share-btn {
-    margin: 15px 5px;
-}
+
+// .at-style-responsive .at-share-btn {
+//   margin: 15px 5px;
+// }
 
 .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover {
-   transform: none !important;
+  transform: none !important;
 }
+
+.at-style-responsive .at-share-btn {
+  margin: 0 5px 10px 0;
+  padding: 10px;
+}
+
 
 #intro {
    position: fixed;
@@ -510,28 +516,36 @@ input[type=range] {
    background-color: #F1F1F1;
 }
 .candidatIntro {
-   background-color: #fff;
-    margin: 10px;
-    text-align: left;
-    width: 280px;
-    height: 100px;
+  cursor: pointer;
+  display: inline-block;
+  @extend .box-wrapper;
+  padding: 10px;
+  margin: 5px;
+  text-align: left;
+  width: 320px;
+  transition: .2s ease background-color;
+  img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  h2 {
     display: inline-block;
+    font-weight: 500;
+    line-height: 24px;
+  }
 
-    &:hover {
-       background-color: $primary;
-       
-       a {
-          color: #fff;
-       }
-    }
-    img {
-       margin:0 5px; 
-    }
+  a { display: block; }
 
-    h2 {
-       line-height: 90px;
-       vertical-align: bottom
+  &:hover {
+    background-color: $primary;
+    a { 
+      color: white; 
+      text-decoration: none;
     }
+  }
 }
 
 .slides-container {
@@ -622,8 +636,8 @@ input[type=range] {
 
 .btn--highlighted {
   bottom: 10px;
-  right: calc(50% - 25px);
-  bottom: 10px;
+  right: 50%;
+  bottom: 100px;
   background-color: $primary;
   color: #fff;
   margin-right: -100px;
@@ -644,7 +658,7 @@ input[type=range] {
 
 .pagination {
   position: absolute;
-  bottom: 100px;
+  bottom: 60px;
   left: 50%;
   margin-left: -50px;
 }
@@ -672,38 +686,33 @@ input[type=range] {
 }
 
 .candidate-score {
-  margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  font-weight: normal;
+  margin-bottom: 3px;
 }
 
 .candidate-percentage {
-  font-weight: bold;
-  color: #DD2726;
+  font-weight: 700;
+  color: $primary;
 }
-
-
-// RESPONSIVE
-@media screen and (max-width: 768px){
-   .nav-menu {
-      top: 120px;
-   }
-}
-
 
 .greybar {
-  background-color: #ddd;
-  height: 5px;
+  background-color: darken($gray-pale,4);
+  height: 6px;
   width: 100%;
-  border-radius: 30px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  &:last-child {
+    margin-bottom: 5px;
+  }
 }
 
 .redbar {
-    background-color: #DD2726;
+    background-color: $primary;
     height: 100%;
-    border-radius: 100px;
 }
+
 
 // RESPONSIVE
 @media screen and (max-width: 768px){
