@@ -197,9 +197,17 @@ $(document).ready(function() {
       });
 
       for (const i in sortable) {
-         $('#representation').append(`<div class="candidate-score"><span>${sortable[i][0]}
-            </span> <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
-         </span></div><div class="greybar"><div class="redbar" style="width:${sortable[i][1]*100}%"></div>`);
+         console.log(sortable[i]);
+         $('#representation').append(`
+         <div class="candidate-score">
+            <span>${sortable[i][0]}
+            </span> 
+            <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
+            </span>
+         </div>
+         <div class="greybar">
+            <div class="redbar" style="width:${sortable[i][1]*100}%"></div>
+         </div>`);
       }
    }
 
