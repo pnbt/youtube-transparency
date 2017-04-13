@@ -8,7 +8,7 @@
     {"name": "Jean Lassalle", "picture": "http://algotransparency.org/images/lassalle.jpg", "tag": "Jean Lassalle"},
     {"name": "Marine Le Pen", "picture": "http://algotransparency.org/images/le-pen.jpg", "tag": "Marine Le Pen"},
     {"name": "Emmanuel Macron", "picture": "http://algotransparency.org/images/macron.jpg", "tag": "Emmanuel Macron"},
-    {"name": "Jean-Luc Mélenchon", "picture": "http://algotransparency.org/images/melenchon.jpg", "tag": "Jean Luc Melenchon"},
+    {"name": "Jean-Luc Mélenchon", "picture": "http://algotransparency.org/images/melenchon-crop.jpg", "tag": "Jean Luc Melenchon"},
     {"name": "Philippe Poutou", "picture": "http://algotransparency.org/images/poutou.jpg", "tag": "Philippe Poutou"}
     ]
 }
