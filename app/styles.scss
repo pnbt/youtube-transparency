@@ -491,13 +491,20 @@ input[type=range] {
 #sidebar {
    border: none;
 }
-.sidebar-right .at-style-responsive .at-share-btn {
-    margin: 15px 5px;
-}
+
+// .at-style-responsive .at-share-btn {
+//   margin: 15px 5px;
+// }
 
 .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover {
-   transform: none !important;
+  transform: none !important;
 }
+
+.at-style-responsive .at-share-btn {
+  margin: 0 5px 10px 0;
+  padding: 10px;
+}
+
 
 #intro {
    position: fixed;
@@ -524,17 +531,19 @@ input[type=range] {
   }
 
   h2 {
+    display: inline-block;
     font-weight: 500;
     line-height: 24px;
   }
 
-  a {
-    display: inline-block;
-  }
+  a { display: block; }
 
   &:hover {
     background-color: $primary;
-    a { color: white; }
+    a { 
+      color: white; 
+      text-decoration: none;
+    }
   }
 }
 
@@ -626,8 +635,8 @@ input[type=range] {
 
 .btn--highlighted {
   bottom: 10px;
-  right: calc(50% - 25px);
-  bottom: 10px;
+  right: 50%;
+  bottom: 100px;
   background-color: $primary;
   color: #fff;
   margin-right: -100px;
@@ -648,7 +657,7 @@ input[type=range] {
 
 .pagination {
   position: absolute;
-  bottom: 100px;
+  bottom: 60px;
   left: 50%;
   margin-left: -50px;
 }
