@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <title>AlgoTransparency - Does YouTube influence presidential elections?</title>
+   <link rel="icon" type="image/png" href="favicon.png" />
+   <meta property="og:url" content="http://algotransparency.org" />
+   <meta property="og:type" content="article" />
+   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
+   <meta property="og:image:type" content="image/png" />
+   <meta property="og:image:width" content="476" />
+   <meta property="og:image:height" content="250" />
+   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results."
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="/app.css">
+   <script src="/app.js"></script>
+   <script>
+      require('initialize');
+   </script>
+</head>
+
+<body>
+   <section class="hero is-small">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+         <header class="nav">
+            <div class="container">
+               <div class="nav-left">
+                  <a class="nav-item" href="/">
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+                  </a>
+                  <a class="nav-item is-hidden-mobile">
+                     <h1></h1>
+                  </a>
+               </div>
+               <span class="nav-toggle">
+                  <span></span>
+               <span></span>
+               <span></span>
+               </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item" href="/">
+                     Accueil
+                  </a>
+                  <a class="nav-item" href="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/AlgoTransparency%20-%20Communiqu%C3%A9%20de%20presse%2013%20avril%202017.pdf">
+                     Communiqué de Presse
+                  </a>
+                  <a class="nav-item">
+                     Notre démarche
+                  </a>
+                  <div class="addthis_inline_share_toolbox nav-item"></div>
+               </div>
+            </div>
+         </header>
+      </div>
+   </section>
+   <section class="columns">
+      <div class="container column is-8 is-offset-2 demarche">
+
+         We developed a program that identifies the videos YouTube’s recommendation algorithm most often recommends, based on a given search.
+
+         <h1 class="title">Aim of the project</h1>
+            <p>
+             We aim to inform citizens on the mechanisms behind the algorithms that determine and shape our access to information. YouTube is the first platform on which we’ve conducted the experiment. We are currently developing tools for other platforms.
+            </p>
+
+         <h1 class="title">What are “recommended videos” on YouTube?</h1>
+            <p>
+               Recommended videos appear in the “Up next” list on the right of the screen. (“When autoplay is enabled, a suggested video will automatically play next.”)
+            </p>
+
+         <h1 class="title">How did you identify YouTube’s most often recommended videos?</h1>
+            <p>
+              We used a multi-step program to analyze videos recommended by its algorithm in response to searches for the names of the different candidates.
+               <ul>
+                  <li>Step 1: Using an account with no viewing history, the program searches for a given candidate’s name on YouTube.</li>
+                  <li>Step 2:  We collect the top six results.</li>
+                  <li>Step 3: For each result, we follow the three first recommendations (videos in the “Up next” list).</li>
+                  <li>Step 4: For each recommendation, we get the top 3 recommendations. We repeat this 6 different times.</li>
+               </ul>
+               The program tabulates how many times each video is recommended, which is then used to determine which videos YouTube most often recommends for any given candidate.
+            </p>
+
+         <h1 class="title">Can I see the program you used to gather your data?</h1>
+            <p>
+               Yes! The code we developed is open source, and available <a href="https://github.com/pnbt/youtube-explore" target="_blank"> here</a>.
+               Anyone can use it, varying parameters such as the search depth, the subject of the initial query, etc.
+
+            </p>
+
+         <h2 class="title">Can I easily see where YouTube takes me?</h2>
+            <p>
+               Yes! Do a search for one of the candidates, then click on the first recommended video six times in a row. Our program does this many many times and computes the average of the results.
+            </p>
+
+         <h2 class="title">Why are certain videos no longer accessible?</h2>
+            <p>
+            Certain videos are removed, either by YouTube, according to their               <a href="https://www.youtube.com/t/community_guidelines" target="_blank">Community Guidelines</a>, or by YouTubers themselves.
+
+            </p>
+
+         <h1 class="title">Do recommended videos depend on my profile?</h1>
+            <p>
+               Part of the recommendations are personalized. We performed this research with an account that has no YouTube viewing history.
+            </p>
+
+         <h1 class="title">Who is behind AlgoTransparency?</h1>
+         <p>
+            AlgoTransparency is led by <a href="https://medium.com/@guillaumechaslot">Guillaume Chaslot</a>, <a href="https://twitter.com/adrienm">Adrien Montcoudiol</a>, <a href="https://twitter.com/SolineLedesert">Soline Ledésert</a>, <a href="https://twitter.com/nicolas_wsk">Nicolas Wielonsky</a>, <a href="https://twitter.com/seiteta">Frédéric
+            Bardolle</a> et <a href="https://twitter.com/mathieugrac">Mathieu Grac</a>, as part of the organization <a href="http://www.dataforgood.fr/" target="_blank"> Data For Good</a>.
+         </p>
+      </div>
+   </section>
+
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+</body>
