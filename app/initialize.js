@@ -28,7 +28,7 @@ $(document).ready(function() {
                         <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
                         <h2 class="">${item.name}</h2>
                      </a>
-                  </li> 
+                  </li>
                `
             );
          });
@@ -112,7 +112,7 @@ $(document).ready(function() {
             const views = item.views > 0 ? `${item.views.toLocaleString(true)} vues` : '';
             const multiplicator = item.mult;
             const mult = multiplicator ? `
-            <div class="mult" data-balloon-length="large" data-balloon="À partir du candidat sélectionné, cette vidéo a été suggérée par YouTube ${Math.round(item.mult * 10)/10} fois plus que la moyenne des autres vidéos suggérées."><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
+            <div class="mult" data-balloon-length="large" data-balloon="Cette vidéo a été suggérée par YouTube ${Math.round(item.mult * 10)/10} fois plus que la moyenne des vidéos suggérées à partir d'une recherche sur ${key}."><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
             <div class="mult-text"> plus suggérée que la moyenne </div> </div>` : '';
 
             if (index > 19) return;
@@ -201,7 +201,7 @@ $(document).ready(function() {
          $('#representation').append(`
          <div class="candidate-score">
             <span>${sortable[i][0]}
-            </span> 
+            </span>
             <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
             </span>
          </div>
@@ -225,9 +225,9 @@ $(document).ready(function() {
       $('#intro').show();
       currentIndex = 0;
       cycleSlides(currentIndex);
-      markDots(currentIndex + 1);            
+      markDots(currentIndex + 1);
       // $('.btn__next').html('Suivant');
-      $('.btn__next').show();      
+      $('.btn__next').show();
       // $('.btn__next').removeClass('hideIntro');
 
       localStorage.setItem('introDone', 'no');
