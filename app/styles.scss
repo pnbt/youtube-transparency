@@ -762,3 +762,13 @@ input[type=range] {
 [data-balloon]:after {
    bottom: calc(100% - 30px);
 }
+
+.nav-item.is-chose {
+   color: #333 !important;
+   font-weight: 700;
+}
+
+.nav-item.bullet {
+   padding: 0;
+   color: #999;
+}
