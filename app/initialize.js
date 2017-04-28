@@ -4,12 +4,14 @@ import './js/helpers';
 
 $(document).ready(function() {
    let jsonLocal = {};
-   let jsonThemeLocal = {};
-   const lastDate = 'ytrecos-presidentielle-2017-04-24';
+   const jsonThemeLocal = {};
+   const nameToTag = {};
+   const lastDate = 'ytrecos-presidentielle-2017-04-28';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
+            nameToTag[item.tag] = item.tag.split(' ').pop();
             $('#sidebar').append(
                `
             <a class="panel-event" id="panel-block-${item.tag
@@ -45,6 +47,9 @@ $(document).ready(function() {
       let count = 0;
       Object.keys(jsonLocal).forEach((item) => {
          count += jsonLocal[item].length;
+         if (jsonLocal.hasOwnProperty(item) && jsonLocal[item].length > 19) {
+            $(`#panel-block-${nameToTag[item]}`).css('display', 'inherit');
+         }
       });
       $('#nb_video').append(count);
       let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
@@ -71,8 +76,12 @@ $(document).ready(function() {
             jsonLocal = data;
             let count = 0;
             changeUrlParam('file', event.target.value);
+            $('.panel-event').css('display', 'none');
             Object.keys(jsonLocal).forEach((item) => {
                count += jsonLocal[item].length;
+               if (jsonLocal.hasOwnProperty(item) && jsonLocal[item].length > 19) {
+                  $(`#panel-block-${nameToTag[item]}`).css('display', 'inherit');
+               }
             });
             $('#nb_video').empty();
             $('#nb_video').append(count);
@@ -106,108 +115,111 @@ $(document).ready(function() {
       });
       $('#panel-block-' + key.split(' ').pop()).addClass('is-active');
       $('.videos').empty();
-      jsonLocal[key]
-         .filter((item) => item.likes !== -1)
-         .forEach((item, index) => {
-            const views = item.views > 0 ? `${item.views.toLocaleString(true)} vues` : '';
-            const multiplicator = item.mult;
-            const mult = multiplicator ? `
-            <div class="mult" data-balloon-length="large" data-balloon="Cette vidéo a été suggérée par YouTube ${Math.round(item.mult * 10)/10} fois plus que la moyenne des vidéos suggérées à partir d'une recherche sur ${key}."><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
-            <div class="mult-text"> plus suggérée que la moyenne </div> </div>` : '';
+      if (jsonLocal[key]) {
+         jsonLocal[key]
+            .filter((item) => item.likes !== -1)
+            .forEach((item, index) => {
+               const views = item.views > 0 ? `${item.views.toLocaleString(true)} vues` : '';
+               const multiplicator = item.mult;
+               const mult = multiplicator ? `
+               <div class="mult" data-balloon-length="large" data-balloon="Cette vidéo a été suggérée par YouTube ${Math.round(item.mult * 10)/10} fois plus que la moyenne des vidéos suggérées à partir d'une recherche sur ${key}."><div class="mult-x">${Math.round(item.mult * 10)/10}x </div>
+               <div class="mult-text"> plus suggérée que la moyenne </div> </div>` : '';
 
-            if (index > 19) return;
-            $('.videos').append(
-               `
-            <div class="box">
-            <article class="media">
-               <figure class="media-left level">
-                  <small class="video-position level-item">${index + 1}</small>
-                  <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
-                     <div class="is-inline-block level-item">
-                        <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+               if (index > 19) return;
+               $('.videos').append(
+                  `
+               <div class="box">
+               <article class="media">
+                  <figure class="media-left level">
+                     <small class="video-position level-item">${index + 1}</small>
+                     <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
+                        <div class="is-inline-block level-item">
+                           <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+                        </div>
+                     </a>
+                  </figure>
+                  <div class="media-content">
+                     <div class="content">
+                        <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                        <div><small class="video-stats">` + views + `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        ${item.likes.toLocaleString(true)}
+                        <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes.toLocaleString(true)}</small></div>
                      </div>
-                  </a>
-               </figure>
-               <div class="media-content">
-                  <div class="content">
-                     <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
-                     <div><small class="video-stats">` + views + `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                     ${item.likes.toLocaleString(true)}
-                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes.toLocaleString(true)}</small></div>
                   </div>
-               </div>
-               </article>` + mult +`</div>
-         `,
-            );
-         });
-
+                  </article>` + mult +`</div>
+            `,
+               );
+            });
+      }
 
       $('#representation').empty();
       const cscores = {};
-      jsonLocal[key]
-         .filter((item) => item.likes !== -1)
-         .forEach((item) => {
-            const title = item.title.toLowerCase();
-            if (title.indexOf('macron') > -1) {
-               cscores['Emmanuel Macron'] = (cscores['Emmanuel Macron'] || 0) + 1;
-            }
-            if (title.indexOf('asselineau') > -1 || title.indexOf('asselinau') > -1) {
-               cscores['François Asselineau'] = (cscores['François Asselineau'] || 0) + 1;
-            }
-            if (title.indexOf('lepen') > -1 || title.indexOf('le pen') > -1) {
-               cscores['Marine Le Pen'] = (cscores['Marine Le Pen'] || 0) + 1;
-            }
-            if (title.indexOf('fillon') > -1) {
-               cscores['François Fillon'] = (cscores['François Fillon'] || 0) + 1;
-            }
-            if (title.indexOf('melenchon') > -1 || title.indexOf('mélenchon') > -1) {
-               cscores['Jean-Luc Mélenchon'] = (cscores['Jean-Luc Mélenchon'] || 0) + 1;
-            }
-            if (title.indexOf('hamon') > -1) {
-               cscores['Benoît Hamon'] = (cscores['Benoît Hamon'] || 0) + 1;
-            }
-            if (title.indexOf('aignan') > -1) {
-               cscores['Nicolas Dupont-Aignan'] = (cscores['Nicolas Dupont-Aignan'] || 0) + 1;
-            }
-            if (title.indexOf('poutou') > -1) {
-               cscores['Philippe Poutou'] = (cscores['Philippe Poutou'] || 0) + 1;
-            }
-            if (title.indexOf('arthaud') > -1) {
-               cscores['Nathalie Arthaud'] = (cscores['Nathalie Arthaud'] || 0) + 1;
-            }
-            if (title.indexOf('lassale') > -1 || title.indexOf('lassalle') > -1) {
-               cscores['Jean Lassalle'] = (cscores['Jean Lassalle'] || 0) + 1;
-            }
-            if (title.indexOf('cheminade') > -1) {
-               cscores['Jacques Cheminade'] = (cscores['Jacques Cheminade'] || 0) + 1;
-            }
+      if (jsonLocal.hasOwnProperty(key)) {
+         jsonLocal[key]
+            .filter((item) => item.likes !== -1)
+            .forEach((item) => {
+               const title = item.title.toLowerCase();
+               if (title.indexOf('macron') > -1) {
+                  cscores['Emmanuel Macron'] = (cscores['Emmanuel Macron'] || 0) + 1;
+               }
+               if (title.indexOf('asselineau') > -1 || title.indexOf('asselinau') > -1) {
+                  cscores['François Asselineau'] = (cscores['François Asselineau'] || 0) + 1;
+               }
+               if (title.indexOf('lepen') > -1 || title.indexOf('le pen') > -1) {
+                  cscores['Marine Le Pen'] = (cscores['Marine Le Pen'] || 0) + 1;
+               }
+               if (title.indexOf('fillon') > -1) {
+                  cscores['François Fillon'] = (cscores['François Fillon'] || 0) + 1;
+               }
+               if (title.indexOf('melenchon') > -1 || title.indexOf('mélenchon') > -1) {
+                  cscores['Jean-Luc Mélenchon'] = (cscores['Jean-Luc Mélenchon'] || 0) + 1;
+               }
+               if (title.indexOf('hamon') > -1) {
+                  cscores['Benoît Hamon'] = (cscores['Benoît Hamon'] || 0) + 1;
+               }
+               if (title.indexOf('aignan') > -1) {
+                  cscores['Nicolas Dupont-Aignan'] = (cscores['Nicolas Dupont-Aignan'] || 0) + 1;
+               }
+               if (title.indexOf('poutou') > -1) {
+                  cscores['Philippe Poutou'] = (cscores['Philippe Poutou'] || 0) + 1;
+               }
+               if (title.indexOf('arthaud') > -1) {
+                  cscores['Nathalie Arthaud'] = (cscores['Nathalie Arthaud'] || 0) + 1;
+               }
+               if (title.indexOf('lassale') > -1 || title.indexOf('lassalle') > -1) {
+                  cscores['Jean Lassalle'] = (cscores['Jean Lassalle'] || 0) + 1;
+               }
+               if (title.indexOf('cheminade') > -1) {
+                  cscores['Jacques Cheminade'] = (cscores['Jacques Cheminade'] || 0) + 1;
+               }
+            });
+         const sumValues = Object.values(cscores).reduce((a, b) => a + b);
+
+         for (const key in cscores) {
+            cscores[key] = cscores[key] / sumValues;
+         }
+
+         const sortable = [];
+         for (const vehicle in cscores) {
+            sortable.push([vehicle, cscores[vehicle]]);
+         }
+
+         sortable.sort(function(a, b) {
+            return b[1] - a[1];
          });
-      const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
-      for (const key in cscores) {
-         cscores[key] = cscores[key] / sumValues;
-      }
-
-      const sortable = [];
-      for (const vehicle in cscores) {
-         sortable.push([vehicle, cscores[vehicle]]);
-      }
-
-      sortable.sort(function(a, b) {
-         return b[1] - a[1];
-      });
-
-      for (const i in sortable) {
-         $('#representation').append(`
-         <div class="candidate-score">
-            <span>${sortable[i][0]}
-            </span>
-            <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
-            </span>
-         </div>
-         <div class="greybar">
-            <div class="redbar" style="width:${sortable[i][1]*100}%"></div>
-         </div>`);
+         for (const i in sortable) {
+            $('#representation').append(`
+            <div class="candidate-score">
+               <span>${sortable[i][0]}
+               </span>
+               <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
+               </span>
+            </div>
+            <div class="greybar">
+               <div class="redbar" style="width:${sortable[i][1]*100}%"></div>
+            </div>`);
+         }
       }
    }
 

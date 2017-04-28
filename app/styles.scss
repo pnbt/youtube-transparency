@@ -192,7 +192,7 @@ a {
 }
 
 .panel-event {
-  display: inherit;
+  display: none;
   padding: 10px 10px 7px;
   border-bottom: 3px solid white;
 }
@@ -549,8 +549,8 @@ input[type=range] {
 
   &:hover {
     background-color: $primary;
-    a { 
-      color: white; 
+    a {
+      color: white;
       text-decoration: none;
     }
   }
