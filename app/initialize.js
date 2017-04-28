@@ -23,16 +23,18 @@ $(document).ready(function() {
             </a>
             `,
             );
-            $('#candidatsIntro').append(
-               `
-                  <li class="candidatIntro">
-                     <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
-                        <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
-                        <h2 class="">${item.name}</h2>
-                     </a>
-                  </li>
-               `
-            );
+            if (item.name === 'Emmanuel Macron' || item.name === 'Marine Le Pen') {
+               $('#candidatsIntro').append(
+                  `
+                     <li class="candidatIntro">
+                        <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
+                           <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
+                           <h2 class="">${item.name}</h2>
+                        </a>
+                     </li>
+                  `
+               );
+            }            
          });
       });
    });

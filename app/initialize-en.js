@@ -5,7 +5,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
-   const lastDate = 'ytrecos-presidentielle-2017-04-24';
+   const lastDate = 'ytrecos-presidentielle-2017-04-28';
    $.get('/data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -21,16 +21,18 @@ $(document).ready(function() {
             </a>
             `,
             );
-            $('#candidatsIntro').append(
-               `
-                  <li class="candidatIntro">
-                     <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
-                        <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
-                        <h2 class="">${item.name}</h2>
-                     </a>
-                  </li>
-               `
-            );
+            if (item.name === 'Emmanuel Macron' || item.name === 'Marine Le Pen') {
+               $('#candidatsIntro').append(
+                  `
+                     <li class="candidatIntro">
+                        <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
+                           <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
+                           <h2 class="">${item.name}</h2>
+                        </a>
+                     </li>
+                  `
+               );
+            }
          });
       });
    });
