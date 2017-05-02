@@ -6,7 +6,7 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const nameToTag = {};
-   const lastDate = 'ytrecos-presidentielle-2017-04-28';
+   const lastDate = 'ytrecos-presidentielle-2017-05-3';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -34,7 +34,7 @@ $(document).ready(function() {
                      </li>
                   `
                );
-            }            
+            }
          });
       });
    });
