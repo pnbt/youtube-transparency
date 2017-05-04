@@ -19,8 +19,17 @@ $(document).ready(function() {
                </span>
             </a>
             `
-        );
-          console.log($('#sidebar').html());
+            );
+            $('#candidatsIntro').append(
+                      `
+                        <li class="candidatIntro">
+                            <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
+                              <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
+                              <h2 class="">${item.name}</h2>
+                            </a>
+                        </li>
+                      `
+                );
          });
       });
    }).fail(function(err) {
@@ -197,12 +206,12 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
    if (localStorage.getItem('introDone') === 'yes') {
       $('#intro').hide();
    }
-  // $(document).on('click', '.hideIntro', function() {
-  //    if (currentIndex > slidesLength - 1) {
-  //       $('#intro').hide();
-  //       localStorage.setItem('introDone', 'yes');
-  //    }
-  // });
+  $(document).on('click', '.hideIntro', function() {
+     if (currentIndex > slidesLength - 1) {
+        $('#intro').hide();
+        localStorage.setItem('introDone', 'yes');
+     }
+  });
    $(document).on('click', '.showIntro', function() {
       $('#intro').show();
       currentIndex = 0;
