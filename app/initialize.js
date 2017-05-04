@@ -6,24 +6,25 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const nameToTag = {};
-   const lastDate = 'ytrecos-presidentielle-2017-05-3';
+   const lastDate = 'ytrecos-presidentielle-2017-05-03';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
             nameToTag[item.tag] = item.tag.split(' ').pop();
-            $('#sidebar').append(
-               `
-            <a class="panel-event" id="panel-block-${item.tag
-                  .split(' ')
-                  .pop()}" data-key="${item.tag}">
-               <span class="panel-img">
-                  <img class="circular--square" src="${item.picture}" alt=""/>
-               </span>
-            </a>
-            `,
-            );
             if (item.name === 'Emmanuel Macron' || item.name === 'Marine Le Pen') {
+            
+               $('#sidebar').append(
+                `
+              <a class="panel-event" id="panel-block-${item.tag
+                    .split(' ')
+                    .pop()}" data-key="${item.tag}">
+                <span class="panel-img">
+                    <img class="circular--square" src="${item.picture}" alt=""/>
+                </span>
+              </a>
+              `,
+              );
                $('#candidatsIntro').append(
                   `
                      <li class="candidatIntro">
