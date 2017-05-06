@@ -4,7 +4,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    let jsonThemeLocal = {};
-   const lastDate = 'ytrecos-electionuk-2017-05-03';
+   const lastDate = 'ytrecos-electionuk-2017-05-05';
    $.get('/data/themesuk.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -171,7 +171,7 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
           if (title.indexOf('sturgeon') > -1 || title.indexOf('sturgeon') > -1) {
              cscores['Nicola Sturgeon'] = (cscores['Nicola Sturgeon'] || 0) + 1;
           }
-       
+
        });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 

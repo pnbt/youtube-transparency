@@ -6,14 +6,14 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const nameToTag = {};
-   const lastDate = 'ytrecos-presidentielle-2017-05-03';
+   const lastDate = 'ytrecos-presidentielle-2017-05-05';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
             nameToTag[item.tag] = item.tag.split(' ').pop();
             if (item.name === 'Emmanuel Macron' || item.name === 'Marine Le Pen') {
-            
+
                $('#sidebar').append(
                 `
               <a class="panel-event" id="panel-block-${item.tag
