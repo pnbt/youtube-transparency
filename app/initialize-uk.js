@@ -67,7 +67,7 @@ $(document).ready(function() {
 
    $(document).on('change', '#video-select', function(event) {
       $.get(
-      '/data/ytrecos-presidentielle/' + event.target.value + '.json',
+      '/data/ytrecos-electionuk/' + event.target.value + '.json',
       (data) => {
          url = event.target.value;
          jsonLocal = data;
