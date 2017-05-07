@@ -1,0 +1,7 @@
+!/biin/sh
+
+git status
+git up
+git add *
+git commit -m "Update data"
+git push
