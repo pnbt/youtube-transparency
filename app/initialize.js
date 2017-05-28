@@ -6,36 +6,33 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const nameToTag = {};
-   const lastDate = 'ytrecos-presidentielle-2017-05-18';
+   const lastDate = 'ytrecos-presidentielle-2017-05-28';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
             nameToTag[item.tag] = item.tag.split(' ').pop();
-            if (item.name === 'Emmanuel Macron' || item.name === 'Marine Le Pen') {
-
-               $('#sidebar').append(
-                `
+            $('#sidebar').append(
+             `
               <a class="panel-event" id="panel-block-${item.tag
                     .split(' ')
-                    .pop()}" data-key="${item.tag}">
+                    .pop()}" data-key="${item.tag}" style="display: none;">
                 <span class="panel-img">
                     <img class="circular--square" src="${item.picture}" alt=""/>
                 </span>
               </a>
               `,
-              );
-               $('#candidatsIntro').append(
-                  `
-                     <li class="candidatIntro">
-                        <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
-                           <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
-                           <h2 class="">${item.name}</h2>
-                        </a>
-                     </li>
-                  `
-               );
-            }
+            );
+            $('#candidatsIntro').append(
+               `
+                  <li class="candidatIntro">
+                     <a href="?candidat=${item.tag}&file=${lastDate}" onClick="localStorage.setItem('introDone', 'yes');">
+                        <img class="circular--square is-inline-block" src="${item.picture}" alt="" />
+                        <h2 class="">${item.name}</h2>
+                     </a>
+                  </li>
+               `
+           );
          });
       });
    });
