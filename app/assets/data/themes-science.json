@@ -1,0 +1,14 @@
+{"presidentielle": [
+    {"name": "Emmanuel Macron", "picture": "http://algotransparency.org/images/macron.jpg", "tag": "Emmanuel Macron"},
+    {"name": "Marine Le Pen", "picture": "http://algotransparency.org/images/le-pen.jpg", "tag": "Marine Le Pen"},
+    {"name": "François Fillon", "picture": "http://algotransparency.org/images/fillon.jpg", "tag": "Francois Fillon"},
+    {"name": "Jean-Luc Mélenchon", "picture": "http://algotransparency.org/images/melenchon.jpg", "tag": "Jean Luc Melenchon"},
+    {"name": "Benoît Hamon", "picture": "http://algotransparency.org/images/hamon.jpg", "tag": "Benoit Hamon"},
+    {"name": "Nicolas Dupont-Aignan", "picture": "http://algotransparency.org/images/dupont-aignan.jpg", "tag": "Nicolas Dupont Aignan"},
+    {"name": "Jean Lassalle", "picture": "http://algotransparency.org/images/lassalle.jpg", "tag": "Jean Lassalle"},
+    {"name": "Philippe Poutou", "picture": "http://algotransparency.org/images/poutou.jpg", "tag": "Philippe Poutou"},
+    {"name": "François Asselineau", "picture": "http://algotransparency.org/images/asselineau.jpg", "tag": "Francois Asselineau"},
+    {"name": "Nathalie Arthaud", "picture": "http://algotransparency.org/images/arthaud.jpg", "tag": "Nathalie Arthaud"},
+    {"name": "Jacques Cheminade", "picture": "http://algotransparency.org/images/cheminade.jpg", "tag": "Jacques Cheminade"}
+    ]
+}
