@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <title>AlgoTransparency</title>
+   <link rel="icon" type="image/png" href="../favicon.png" />
+   <meta property="og:url" content="http://algotransparency.org" />
+   <meta property="og:type" content="article" />
+   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
+   <meta property="og:image:type" content="image/png" />
+   <meta property="og:image:width" content="476" />
+   <meta property="og:image:height" content="250" />
+   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+   <!--<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />-->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+   <link rel="stylesheet" href="../app.css">
+   <script src="../app.js"></script>
+   <script>
+      require('initialize-science');
+   </script>
+</head>
+
+<body>
+   <section class="hero is-small">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+         <header class="nav nav-first">
+            <div class="container">
+               <div class="nav-left">
+                  <a class="nav-item" href="index.html">
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+                  </a>
+               </div>
+               <span class="nav-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item showIntro">
+                     Watch intro
+                  </a>
+                  <!--<a class="nav-item">
+                     Presse
+                  </a>-->
+                  <a class="nav-item" href="presse.html">
+                     Press
+                  </a>
+                  <a class="nav-item" href="demarche.html">
+                     Our methodology
+                  </a>
+                  <div class="addthis_inline_share_toolbox nav-item"></div>
+               </div>
+            </div>
+         </header>
+         <nav class="nav nav-second">
+               <a class="nav-item" href="/index.html">
+                  French Election 2017  🇫🇷
+               </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
+               <a class="nav-item is-chose" href="uk.html">
+                  British Election 2017  🇬🇧
+               </a>
+               <a class="nav-item is-chose" href="science.html">
+                  Science
+               </a>
+         </nav>
+         <nav class="nav nav-second">
+            <div>
+               <div class="panel-block" id="sidebar"></div>
+            </div>
+         </nav>
+      </div>
+   </section>
+   <section class="section columns">
+      <div class="container column is-8 is-offset-2">
+         <div class="box-wrapper presentation mb1" id="presentation"></div>
+      </div>
+   </section>
+   <section class="section columns" style="padding-bottom:50px">
+      <div class="container column is-6 is-offset-2">
+            <header class="box-wrapper video-header">
+               <div class="box-title">Top 20 videos</div>
+               <span class="float-right">
+                  <span class="video-date" id="video__date"><span id="nb_video"></span> videos collected on</span>
+                  <span class="select is-small">
+                     <select id="video-select">
+                        <option value="ytrecos-science-2017-06-02">28 may 2017</option>
+                     </select>
+                  </span>
+               </span>
+            </header>
+            <div class="box-wrapper videos">
+            </div>
+      </div>
+      <div class="container column is-2">
+         <!--<section class="sidebar-right">
+            <strong class="is-block">Représentation des candidats</strong>
+               <small>dans les titres de vidéos mentionant un candidat</small>
+         </section>-->
+         <section class="box-wrapper sidebar-right box-wrapper mb1">
+            <div class="box-title mb2">Candidates mentioned in the titles of these videos:</div>
+            <div id="representation"></div>
+         </section>
+         <section class="sidebar-right box-wrapper mb1">
+            <div class="box-title mb2">Share AlgoTransparency</div>
+            <div class="addthis_inline_share_toolbox"></div>
+            <small>For improved recommendation algorithm transparency.</small>
+         </section>
+         <section class="box-wrapper mb1">
+            <div class="box-title mb2">Our project</div>
+            <p class="mb1">AlgoTransparency is designed to inform citizens on the algorithms shaping access to information. <a href="demarche.html">Find out more</a></p>
+            <div class="mb2">
+               <span class="small">Follow us on: <a href="http://twitter.com/helloalgo" target="blank">@HelloAlgo</a></span>
+               <!-- <div class="addthis_inline_follow_toolbox"></div> -->
+            </div>
+            <small>Developed as part of the organization <a href="http://www.dataforgood.fr/">Data for Good</a></small>
+         </section>
+      </div>
+      <section class="is-2 column"></section>
+   </section>
+   <section id="intro">
+      <div class="slides-container has-text-centered">
+         <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
+         <section class="pagination"> </section>
+         <section class="slide slide-1">
+           <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="/images/slide-1-uk.png" alt="">
+           <h1 class="mt4"> million English people</h1>
+           <h2 class="">watch YouTube videos each month</h2>
+         </section>
+          <section class="slide slide-2">
+             <h1 class="">YouTube’s recommendation algorithm</h1>
+             <h2 class="mb4">plays an important role in the videos we are shown</h2>
+            <img class="slide-image image-medium" style="max-width: 600px;margin: 0 auto;" src="/images/slide-2-uk.jpg" alt="">
+         </section>
+         <section class="slide slide-3">
+             <h1 class="">But what are the most recommended videos?</h1>
+             <h2 class="mb4">Today, it’s impossible to tell</h2>
+            <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
+         </section>
+          <section class="slide slide-4">
+             <h1 class="">We created a robot to find out :)</h1>
+             <h2 class="mb4">Using the names of the candidates in the UK general elections, our robot crawls all the top recommended videos and keeps track of the ones which are recommended most often.</h2>
+            <img class="slide-image image-large pt4" src="/images/slide-4-uk.gif" alt="">
+         </section>
+         <section class="slide slide-4">
+             <h1 class="mb4">What do you think are the most recommended videos for each candidate?</h1>
+             <ul id="candidatsIntro">
+             </ul>
+         </section>
+      </div>
+   </section>
+
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-97331997-1', 'auto');
+      ga('send', 'pageview');
+   </script>
+</body>
