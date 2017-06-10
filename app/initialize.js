@@ -6,7 +6,7 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const nameToTag = {};
-   const lastDate = 'ytrecos-presidentielle-2017-05-28';
+   const lastDate = 'ytrecos-presidentielle-2017-06-10';
    $.get('data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
@@ -52,8 +52,8 @@ $(document).ready(function() {
          }
       });
       $('#nb_video').append(count);
-      let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      let key = getUrlVar('candidat') || Object.keys(data)[random];
+      const random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+      const key = getUrlVar('candidat') || Object.keys(data)[random];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);

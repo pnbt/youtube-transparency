@@ -4,8 +4,8 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-science-2017-06-10';
-   $.get('/data/themesscience.json', function(data) {
+   const lastDate = 'ytrecos-worldleaders-2017-06-10';
+   $.get('/data/themes-worldleaders.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
@@ -41,7 +41,7 @@ $(document).ready(function() {
          if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       });
    }
-   $.get('/data/ytrecos-science/' + url + '.json', function(data) {
+   $.get('/data/ytrecos-worldleaders/' + url + '.json', function(data) {
     // console.log(data);
       jsonLocal = data;
       let count = 0;
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
    $(document).on('change', '#video-select', function(event) {
       $.get(
-      '/data/ytrecos-science/' + event.target.value + '.json',
+      '/data/ytrecos-worldleaders/' + event.target.value + '.json',
       (data) => {
          url = event.target.value;
          jsonLocal = data;

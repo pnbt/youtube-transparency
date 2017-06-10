@@ -1,12 +1,11 @@
-{"science": [
-    {"name": "Is the Earth Flat or Round?", "picture": "", "tag": "is the earth flat or round?"},
-    {"name": "Evolution vs Creationism", "picture": "", "tag": "evolution vs creationism"},
-    {"name": "Dinosaurs", "picture": "", "tag": "dinosaurs"},
-    {"name": "Global Warming", "picture": "", "tag": "global warming"},
-    {"name": "Vaccines Facts", "picture": "", "tag": "vaccines facts"},
-    {"name": "Enviromental Protection Agency", "picture": "", "tag": "enviromental protection agency"},
-    {"name": "Alien Life", "picture": "", "tag": "alien life"},
-    {"name": "Nasa", "picture": "", "tag": "nasa"},
-    {"name": "Exoplanets", "picture": "", "tag": "exoplanets"},
+{"worldleaders": [
+    {"name": "Donald Trump", "picture": "", "tag": "Donald Trump"},
+    {"name": "Xi Jinping", "picture": "", "tag": "Xi Jinping"},
+    {"name": "Shinzo Abe", "picture": "", "tag": "Shinzo Abe"},
+    {"name": "Angela Merkel", "picture": "", "tag": "Angela Merkel"},
+    {"name": "Theresa May", "picture": "", "tag": "Theresa May"},
+    {"name": "Emmanuel Macron", "picture": "", "tag": "Emmanuel Macron"},
+    {"name": "Vladimir Putin", "picture": "", "tag": "Vladimir Putin"},
+    {"name": "Pope Francis", "picture": "", "tag": "Pope Francis"}
  ]
 }
