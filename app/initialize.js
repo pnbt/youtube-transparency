@@ -53,7 +53,7 @@ $(document).ready(function() {
       });
       $('#nb_video').append(count);
       const random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      const key = getUrlVar('candidat') || Object.keys(data)[random];
+      const key = getUrlVar('candidat') || Object.keys(data)[1];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);

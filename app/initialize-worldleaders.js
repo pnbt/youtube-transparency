@@ -115,12 +115,12 @@ $(document).ready(function() {
          const multiplicator = item.mult;
          const mult = multiplicator
         ? `
-            <div class="mult" data-balloon-length="large" data-balloon="Based on the candidate search, YouTube recommended this video ${Math.round(item.mult * 10) / 10} more than the average of other recommended videos
+            <div class="mult" data-balloon-length="large" data-balloon="Based on the candidate search, YouTube recommended this video ${Math.round(item.mult * 10) / 10} more than the average of recommended videos that we scrapped
 on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
-            <div class="mult-text"> more recommended than on average </div> </div>`
+            <div class="mult-text"> more recommended than the average</div> </div>`
         : '';
 
-         if (index > 19) return;
+         if (index > 99) return;
          $('.videos').append(
         `
             <div class="box">
@@ -156,14 +156,38 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        .filter((item) => item.likes !== -1)
        .forEach((item) => {
           const title = item.title.toLowerCase();
-          if (title.indexOf('hoax') > -1) {
-             cscores.Hoax = (cscores.Hoax || 0) + 1;
+          if (title.indexOf('shinzo abe') > -1) {
+             cscores['Shinzo Abe'] = (cscores['Shinzo Abe'] || 0) + 1;
           }
-          if (title.indexOf('conspiracy') > -1 || title.indexOf('conspiracy') > -1) {
-             cscores['Conspiracy'] = (cscores['Conspiracy'] || 0) + 1;
+          if (title.indexOf('pope') > -1) {
+             cscores.Pope = (cscores.Pope || 0) + 1;
           }
-          if (title.indexOf('global warming') > -1 || title.indexOf('global warming') > -1) {
-             cscores['Global Warming'] = (cscores['Global Warming'] || 0) + 1;
+          if (title.indexOf('pope') > -1) {
+             cscores.Pope = (cscores.Pope || 0) + 1;
+          }
+          if (title.indexOf('merkel') > -1) {
+             cscores.Merkel = (cscores.Merkel || 0) + 1;
+          }
+          if (title.indexOf('jinping') > -1) {
+             cscores.Jinping = (cscores.Jinping || 0) + 1;
+          }
+          if (title.indexOf('putin') > -1) {
+             cscores.Putin = (cscores.Putin || 0) + 1;
+          }
+          if (title.indexOf('trump') > -1) {
+             cscores.Trump = (cscores.Trump || 0) + 1;
+          }
+          if (title.indexOf('clinton') > -1) {
+             cscores.Clinton = (cscores.Clinton || 0) + 1;
+          }
+          if (title.indexOf('macron') > -1) {
+             cscores.Macron = (cscores.Macron || 0) + 1;
+          }
+          if (title.indexOf('theresa may') > -1) {
+             cscores['Theresa May'] = (cscores['Theresa May'] || 0) + 1;
+          }
+          if (title.indexOf('obama') > -1) {
+             cscores.Obama = (cscores.Obama || 0) + 1;
           }
        });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
@@ -186,7 +210,7 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        <div class="candidate-score">
           <span>${sortable[i][0]}
           </span>
-          <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
+          <span class="candidate-percentage">
           </span>
        </div>
        <div class="greybar">

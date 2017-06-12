@@ -11,9 +11,7 @@ $(document).ready(function() {
             jsonThemeLocal[item.tag] = item;
             $('#sidebar').append(
           `
-            <a class="panel-event" id="panel-block-${item.tag
-            .split(' ')
-            .pop()}" data-key="${item.tag}">
+            <a class="panel-event" id="panel-block-${getCssTag(item.tag)}" data-key="${item.tag}">
                <span class="panel-img">
                   <img class="circular--square" src="${item.picture}" alt=""/>
                </span>
@@ -83,8 +81,11 @@ $(document).ready(function() {
     );
    });
 
+   function getCssTag(tag) {
+      return tag.split(' ').pop().replace('?', '');
+   }
+
    function appendPresentation(key) {
-      console.log(jsonThemeLocal);
       $('#presentation').empty();
       $('#presentation').append(
       `
@@ -106,7 +107,7 @@ $(document).ready(function() {
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
       });
-      $('#panel-block-' + key.split(' ').pop()).addClass('is-active');
+      $('#panel-block-' + getCssTag(key)).addClass('is-active');
       $('.videos').empty();
       jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
          const views = item.views > 0
@@ -115,12 +116,12 @@ $(document).ready(function() {
          const multiplicator = item.mult;
          const mult = multiplicator
         ? `
-            <div class="mult" data-balloon-length="large" data-balloon="Based on the candidate search, YouTube recommended this video ${Math.round(item.mult * 10) / 10} more than the average of other recommended videos
+            <div class="mult" data-balloon-length="large" data-balloon="Based on the candidate search, YouTube recommended this video ${Math.round(item.mult * 10) / 10} more than the average of recommended videos that we scrapped
 on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
-            <div class="mult-text"> more recommended than on average </div> </div>`
+            <div class="mult-text"> more recommended than the average</div> </div>`
         : '';
 
-         if (index > 19) return;
+         if (index > 99) return;
          $('.videos').append(
         `
             <div class="box">
@@ -156,6 +157,102 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        .filter((item) => item.likes !== -1)
        .forEach((item) => {
           const title = item.title.toLowerCase();
+          if (title.indexOf('exoplanet') > -1) {
+             cscores.Exoplanet = (cscores.Exoplanet || 0) + 1;
+          }
+          if (title.indexOf('secret') > -1) {
+             cscores.Secret = (cscores.Secret || 0) + 1;
+          }
+          if (title.indexOf('nasa') > -1) {
+             cscores.NASA = (cscores.NASA || 0) + 1;
+          }
+          if (title.indexOf('truth') > -1) {
+             cscores.Truth = (cscores.Truth || 0) + 1;
+          }
+          if (title.indexOf('ufo') > -1) {
+             cscores.UFO = (cscores.UFO || 0) + 1;
+          }
+          if (title.indexOf('alien') > -1) {
+             cscores.Alien = (cscores.Alien || 0) + 1;
+          }
+          if (title.indexOf('flat') > -1) {
+             cscores.Flat = (cscores.Flat || 0) + 1;
+          }
+          if (title.indexOf('round') > -1) {
+             cscores.Round = (cscores.Round || 0) + 1;
+          }
+          if (title.indexOf('dome') > -1) {
+             cscores.Dome = (cscores.Dome || 0) + 1;
+          }
+          if (title.indexOf('god') > -1) {
+             cscores.God = (cscores.God || 0) + 1;
+          }
+          if (title.indexOf('debunk') > -1) {
+             cscores.Debunk = (cscores.Debunk || 0) + 1;
+          }
+          if (title.indexOf('proof') > -1) {
+             cscores.Proof = (cscores.Proof || 0) + 1;
+          }
+          if (title.indexOf('degrasse tyson') > -1) {
+             cscores['Neil deGrasse Tyson'] = (cscores['Neil deGrasse Tyson'] || 0) + 1;
+          }
+          if (title.indexOf('maher') > -1) {
+             cscores.Maher = (cscores.Maher || 0) + 1;
+          }
+          if (title.indexOf('immune') > -1) {
+             cscores.Immune = (cscores.Immune || 0) + 1;
+          }
+          if (title.indexOf('mccarthy') > -1) {
+             cscores.McCarthy = (cscores.McCarthy || 0) + 1;
+          }
+          if (title.indexOf('kill') > -1) {
+             cscores.Kill = (cscores.Kill || 0) + 1;
+          }
+          if (title.indexOf('vaccine') > -1) {
+             cscores.Vaccine = (cscores.Vaccine || 0) + 1;
+          }
+          if (title.indexOf('autism') > -1) {
+             cscores.Autism = (cscores.Autism || 0) + 1;
+          }
+          if (title.indexOf('crazy') > -1) {
+             cscores.Crazy = (cscores.Crazy || 0) + 1;
+          }
+          if (title.indexOf('bullshit') > -1) {
+             cscores.Bullshit = (cscores.Bullshit || 0) + 1;
+          }
+          if (title.indexOf('debate') > -1) {
+             cscores.Debate = (cscores.Debate || 0) + 1;
+          }
+          if (title.indexOf('creation') > -1) {
+             cscores.Creation = (cscores.Creation || 0) + 1;
+          }
+          if (title.indexOf('evolution') > -1) {
+             cscores.Evolution = (cscores.Evolution || 0) + 1;
+          }
+          if (title.indexOf('expose') > -1) {
+             cscores.Expose = (cscores.Expose || 0) + 1;
+          }
+          if (title.indexOf('destroy') > -1) {
+             cscores.Destroy = (cscores.Destroy || 0) + 1;
+          }
+          if (title.indexOf('dinosaur') > -1) {
+             cscores.Dinosaur = (cscores.Dinosaur || 0) + 1;
+          }
+          if (title.indexOf('dinosaur') > -1) {
+             cscores.Dinosaur = (cscores.Dinosaur || 0) + 1;
+          }
+          if (title.indexOf('devos') > -1) {
+             cscores.DeVos = (cscores.DeVos || 0) + 1;
+          }
+          if (title.indexOf('clinton') > -1) {
+             cscores.Clinton = (cscores.Clinto || 0) + 1;
+          }
+          if (title.indexOf('obama') > -1) {
+             cscores.Obama = (cscores.Obama || 0) + 1;
+          }
+          if (title.indexOf('trump') > -1) {
+             cscores.Trump = (cscores.Trump || 0) + 1;
+          }
           if (title.indexOf('hoax') > -1) {
              cscores.Hoax = (cscores.Hoax || 0) + 1;
           }
@@ -186,7 +283,7 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        <div class="candidate-score">
           <span>${sortable[i][0]}
           </span>
-          <span class="candidate-percentage">${Math.round(sortable[i][1]*100)}%
+          <span class="candidate-percentage">
           </span>
        </div>
        <div class="greybar">
