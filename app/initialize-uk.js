@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import './js/helpers';
 
+
 $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const lastDate = 'ytrecos-electionuk-2017-05-28';
-   $.get('/data/themesuk.json', function(data) {
+   $.get('/data/themesde.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;

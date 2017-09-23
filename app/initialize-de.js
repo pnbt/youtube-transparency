@@ -5,8 +5,10 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const lastDate = 'ytrecos-election-de-2017-09-23';
-   $.get('/data/themes-de.json', function(data) {
+   $.get('data/themesde.json', function(data) {
       Object.keys(data).forEach((key) => {
+         console.log('DATA')
+         console.log(data)
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
             $('#sidebar').append(
@@ -156,22 +158,24 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        .filter((item) => item.likes !== -1)
        .forEach((item) => {
           const title = item.title.toLowerCase();
-          if (title.indexOf('corbyn') > -1) {
-             cscores['Jeremy Corbyn'] = (cscores['Jeremy Corbyn'] || 0) + 1;
+          if (title.indexOf('merkel') > -1) {
+             cscores['Angela Merkel'] = (cscores['Angela Merkel'] || 0) + 1;
           }
-          if (title.indexOf('farron') > -1 || title.indexOf('farron') > -1) {
-             cscores['Tim Farron'] = (cscores['Tim Farron'] || 0) + 1;
+          if (title.indexOf('Schulz') > -1 || title.indexOf('farron') > -1) {
+             cscores['Martin Schulz'] = (cscores['Martin Schulz'] || 0) + 1;
           }
-          if (title.indexOf('may') > -1 || title.indexOf('may') > -1) {
-             cscores['Theresa May'] = (cscores['Theresa May'] || 0) + 1;
+          if (title.indexOf('Wagenknecht') > -1) {
+             cscores['Sahra Wagenknecht'] = (cscores['Sahra Wagenknecht'] || 0) + 1;
           }
-          if (title.indexOf('nuttall') > -1) {
-             cscores['Paul Nuttall'] = (cscores['Paul Nuttall'] || 0) + 1;
+          if (title.indexOf('eckard') > -1 || title.indexOf('göring') > -1) {
+             cscores['Katrin Goring-Eckard'] = (cscores['Katrin Goring-Eckard'] || 0) + 1;
           }
-          if (title.indexOf('sturgeon') > -1 || title.indexOf('sturgeon') > -1) {
-             cscores['Nicola Sturgeon'] = (cscores['Nicola Sturgeon'] || 0) + 1;
+          if (title.indexOf('lindner') > -1) {
+             cscores['Christian Lindner'] = (cscores['Christian Lindner'] || 0) + 1;
           }
-
+          if (title.indexOf('weidel') > -1) {
+             cscores['Alice Weidel'] = (cscores['Alice Weidel'] || 0) + 1;
+          }
        });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
