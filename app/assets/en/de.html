@@ -3,20 +3,21 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
-   <title>AlgoTransparency</title>
+   <title>AlgoTransparency - Does YouTube influence presidential elections?</title>
    <link rel="icon" type="image/png" href="../favicon.png" />
-   <meta property="og:url" content="http://algotransparency.org/en/science.html" />
+   <meta property="og:url" content="http://algotransparency.org/en/de.html" />
    <meta property="og:type" content="article" />
    <meta property="og:title" content="YouTube: Most recommended videos" />
    <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/youtube.jpg" />
    <meta property="og:image:type" content="image/jpg" />
-   <meta property="og:description" content="AlgoTransparency studied the impact of the YouTube recommendation algorithm." />
+   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+   <!--<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
    <link rel="stylesheet" href="../app.css">
    <script src="../app.js"></script>
    <script>
-      require('initialize-science');
+      require('initialize-de');
    </script>
 </head>
 
@@ -57,15 +58,15 @@
             </div>
          </header>
          <nav class="nav nav-second">
-               <a class="nav-item" href="worldleaders.html">
+               <a class="nav-item is-chose" href="worldleaders.html">
                   World Leaders 🌍
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-               <a class="nav-item is-chose" href="science.html">
+               <a class="nav-item" href="science.html">
                   Science 🔭
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-               <a class="nav-item" href="uk.html">
+               <a class="nav-item is-chose" href="uk.html">
                   British Election 2017  🇬🇧
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
@@ -73,7 +74,7 @@
                   French Election 2017  🇫🇷
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-               <a class="nav-item" href="de.html">
+               <a class="nav-item is-chose" href="de.html">
                   German Election 2017 🇩🇪
                </a>
          </nav>
@@ -92,18 +93,15 @@
    <section class="section columns" style="padding-bottom:50px">
       <div class="container column is-6 is-offset-2">
             <header class="box-wrapper video-header">
-               <div class="box-title">Top 100 videos</div>
+               <div class="box-title">Top 20 videos</div>
                <span class="float-right">
                   <span class="video-date" id="video__date"><span id="nb_video"></span> videos collected on</span>
                   <span class="select is-small">
                      <select id="video-select">
-                        <option value="ytrecos-science-2017-06-22">22th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-20">20th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-19">19th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-10">10th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-09">9th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-07">7th of June 2017</option>
-                        <option value="ytrecos-science-2017-06-02">2nd of June 2017</option>
+                        <option value="ytrecos-election-de-2017-09-23">23th of September 2017</option>
+                        <option value="ytrecos-election-de-2017-09-21">21th of September 2017</option>
+                        <option value="ytrecos-election-de-2017-09-18">18th of September 2017</option>
+                        <option value="ytrecos-election-de-2017-09-17">17th of September 2017</option>
                      </select>
                   </span>
                </span>
@@ -117,7 +115,7 @@
                <small>dans les titres de vidéos mentionant un candidat</small>
          </section>-->
          <section class="box-wrapper sidebar-right box-wrapper mb1">
-            <div class="box-title mb2">Frequent terms mentioned in the titles of these videos:</div>
+            <div class="box-title mb2">Candidates mentioned in the titles of these videos:</div>
             <div id="representation"></div>
          </section>
          <section class="sidebar-right box-wrapper mb1">
@@ -143,7 +141,7 @@
          <section class="pagination"> </section>
          <section class="slide slide-1">
            <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="/images/slide-1-uk.png" alt="">
-           <h1 class="mt4"> more than one billion people</h1>
+           <h1 class="mt4"> million English people</h1>
            <h2 class="">watch YouTube videos each month</h2>
          </section>
           <section class="slide slide-2">
@@ -158,11 +156,11 @@
          </section>
           <section class="slide slide-4">
              <h1 class="">We created a robot to find out</h1>
-             <h2 class="mb4">Using search terms, our robot crawls all the top recommended videos and keeps track of the ones which are recommended most often.</h2>
+             <h2 class="mb4">Using the names of the candidates in the UK general elections, our robot crawls all the top recommended videos and keeps track of the ones which are recommended most often.</h2>
             <img class="slide-image image-large pt4" src="/images/slide-4-uk.gif" alt="">
          </section>
          <section class="slide slide-4">
-             <h1 class="mb4">What do you think are the most recommended videos for each search term?</h1>
+             <h1 class="mb4">What do you think are the most recommended videos for each candidate?</h1>
              <ul id="candidatsIntro">
              </ul>
          </section>
@@ -181,4 +179,3 @@
       ga('send', 'pageview');
    </script>
 </body>
-
