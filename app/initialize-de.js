@@ -5,7 +5,7 @@ $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const lastDate = 'ytrecos-election-de-2017-09-23';
-   $.get('data/themesde.json', function(data) {
+   $.get('/data/themesde.json', function(data) {
       Object.keys(data).forEach((key) => {
          console.log('DATA')
          console.log(data)
