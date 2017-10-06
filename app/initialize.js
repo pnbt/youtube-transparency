@@ -224,8 +224,8 @@ $(document).ready(function() {
    }
 
    // SLIDER
-   if (localStorage.getItem('introDone') === 'yes') {
-      $('#intro').hide();
+   if (localStorage.getItem('introDone') !== 'yes') {
+      $('#intro').show();
    }
    // $(document).on('click', '.hideIntro', function() {
    //    if (currentIndex > slidesLength - 1) {
