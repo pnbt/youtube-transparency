@@ -1,0 +1,10 @@
+{"shootings": [
+    {"name": "Las Vegas shooting", "picture": "https://s1.qwant.com/thumbr/0x0/a/d/25e93237769f53c2669b59d6b6dbff/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fwww.riccadesign.com%2Fimages%2F3487%2Fn%2Fman00283.jpg&q=0&b=1&p=0&a=1", "tag": "Las Vegas shooting"},
+    {"name": "Orlando shooting", "picture": "https://s2.qwant.com/thumbr/0x0/d/b/e2e969b993b7b2a52acaf748f3061e/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fmedia1.fdncms.com%2Forlando%2Fimager%2Fu%2Fbigsquare%2F2500283%2Forlando-3.jpg&q=0&b=1&p=0&a=1", "tag": " Orlando shooting"},
+    {"name": "San Bernardino shooting", "picture": "https://s1.qwant.com/thumbr/0x0/2/f/1651f37ef9d781f5d6518692ff4d3e/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fscallywagandvagabond.com%2Fwp-content%2Fuploads%2F2015%2F12%2FSan-Bernardino-suspect-shot-dead-11-150x150.jpg&q=0&b=1&p=0&a=1", "tag": " San Bernardino shooting"},
+    {"name": "Bataclan shooting", "picture": "https://s2.qwant.com/thumbr/0x0/5/4/ba32181dcf6d2e7d3a1675ea437a23/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fstatic.ticketmaster.fr%2Fassets%2Fctx%2Fticketnet-1%2Fstatic%2Fimages%2Fphotos-salles%2Fs_126_3.jpg&q=0&b=1&p=0&a=1", "tag": " Bataclan shooting"},
+    {"name": "Virginia Tech Shooting", "picture": "https://s2.qwant.com/thumbr/0x0/6/6/b08fd42fc85f0a18fcea34d2c935a4/b_1_q_0_p_0.jpg?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F1a%2FVirginia_Tech_massacre_candlelight_vigil_Burruss.jpg%2F1920px-Virginia_Tech_massacre_candlelight_vigil_Burruss.jpg&q=0&b=1&p=0&a=1", "tag": " Virginia Tech Shooting"},
+    {"name": "Aurora theater shooting", "picture": "https://s2.qwant.com/thumbr/0x0/c/f/3a2bac32e51ab91441029ca0510dac/b_1_q_0_p_0.jpg?u=http%3A%2F%2Flh3.ggpht.com%2F-9a50L1zMmHA%2FUBGLZhVvYkI%2FAAAAAAAA8cw%2F8Eesas_GFcs%2Fimage%2525255B4%2525255D.png%3Fimgmax%3D800&q=0&b=1&p=0&a=1", "tag": " Aurora theater shooting"},
+    {"name": "Sandy Hook shooting", "picture": "https://s2.qwant.com/thumbr/0x0/6/4/5b1a8a119c8e37c7ec0bf1ed7484a6/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fimg2.timeinc.net%2Fpeople%2Fi%2F2013%2Fnews%2F131021%2Fsandy-hook-2150.jpg&q=0&b=1&p=0&a=1", "tag": " Sandy Hook shooting"}
+    ]
+}

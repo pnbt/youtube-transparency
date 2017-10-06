@@ -3,9 +3,9 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
-   <title>AlgoTransparency - Does YouTube influence presidential elections?</title>
+   <title>AlgoTransparency - Does YouTube influence the perception of mass shootings?</title>
    <link rel="icon" type="image/png" href="../favicon.png" />
-   <meta property="og:url" content="http://algotransparency.org/en/uk.html" />
+   <meta property="og:url" content="http://algotransparency.org/en/shootings.html" />
    <meta property="og:type" content="article" />
    <meta property="og:title" content="YouTube: Most recommended videos" />
    <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/youtube.jpg" />
@@ -17,7 +17,7 @@
    <link rel="stylesheet" href="../app.css">
    <script src="../app.js"></script>
    <script>
-      require('initialize-uk');
+      require('initialize-shootings');
    </script>
 </head>
 
@@ -65,11 +65,11 @@
                <a class="nav-item" href="science.html">
                   Science 🔭
                </a>
-               <a class="nav-item" href="shootings.html">
+               <a class="nav-item is-chose" href="shootings.html">
                   Mass Shootings &#9632;
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-               <a class="nav-item is-chose" href="uk.html">
+               <a class="nav-item" href="uk.html">
                   British Election 2017  🇬🇧
                </a>
                <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
@@ -80,6 +80,7 @@
                <a class="nav-item" href="de.html">
                   German Election 2017 🇩🇪
                </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
          </nav>
          <nav class="nav nav-second">
             <div>
@@ -96,38 +97,12 @@
    <section class="section columns" style="padding-bottom:50px">
       <div class="container column is-6 is-offset-2">
             <header class="box-wrapper video-header">
-               <div class="box-title">Top 20 videos</div>
+               <div class="box-title">Top recommended videos</div>
                <span class="float-right">
                   <span class="video-date" id="video__date"><span id="nb_video"></span> videos collected on</span>
                   <span class="select is-small">
                      <select id="video-select">
-                        <option value="ytrecos-electionuk-2017-06-10">10th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-06-09">9th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-06-07">7th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-06-06">6th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-06-05">5th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-06-03">3th of June 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-29">29 mai 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-28">28th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-27">27th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-26">26th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-25">25th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-24">24th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-23">23th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-22">22th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-21">21th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-19">19th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-18">18th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-17">17th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-16">16th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-12">12th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-11">11th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-09">9th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-08">8th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-07">7th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-06">6th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-03">3th of May 2017</option>
-                        <option value="ytrecos-electionuk-2017-05-02">2th of May 2017</option>
+                        <option value="ytrecos-shootings-2017-10-06">6th of October 2017</option>
                      </select>
                   </span>
                </span>
@@ -141,7 +116,7 @@
                <small>dans les titres de vidéos mentionant un candidat</small>
          </section>-->
          <section class="box-wrapper sidebar-right box-wrapper mb1">
-            <div class="box-title mb2">Candidates mentioned in the titles of these videos:</div>
+            <div class="box-title mb2">Keywords mentioned in the titles of these videos:</div>
             <div id="representation"></div>
          </section>
          <section class="sidebar-right box-wrapper mb1">
@@ -166,8 +141,7 @@
          <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
          <section class="pagination"> </section>
          <section class="slide slide-1">
-           <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="/images/slide-1-uk.png" alt="">
-           <h1 class="mt4"> million English people</h1>
+           <h1 class="mt4"> 1 Billion People</h1>
            <h2 class="">watch YouTube videos each month</h2>
          </section>
           <section class="slide slide-2">
@@ -176,17 +150,19 @@
             <img class="slide-image image-medium" style="max-width: 600px;margin: 0 auto;" src="/images/slide-2-uk.jpg" alt="">
          </section>
          <section class="slide slide-3">
-             <h1 class="">But what are the most recommended videos?</h1>
+             <h1 class="">But what are the most recommended videos? Is YouTube unvolontarily
+               recommending missinformation and conspiracies?</h1>
              <h2 class="mb4">Today, it’s impossible to tell</h2>
             <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
          </section>
           <section class="slide slide-4">
-             <h1 class="">We created a robot to find out :)</h1>
-             <h2 class="mb4">Using the names of the candidates in the UK general elections, our robot crawls all the top recommended videos and keeps track of the ones which are recommended most often.</h2>
+             <h1 class="">We created a robot to find out</h1>
+             <h2 class="mb4">Using the names of recent mass shootings, our robot crawls all the top
+                  recommended videos and keeps track of the ones which are recommended most often.</h2>
             <img class="slide-image image-large pt4" src="/images/slide-4-uk.gif" alt="">
          </section>
          <section class="slide slide-4">
-             <h1 class="mb4">What do you think are the most recommended videos for each candidate?</h1>
+             <h1 class="mb4">What do you think are the most recommended videos for each mass shooting?</h1>
              <ul id="candidatsIntro">
              </ul>
          </section>
