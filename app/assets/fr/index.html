@@ -3,23 +3,22 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
-   <title>AlgoTransparency - Does YouTube influence presidential elections?</title>
+   <title>AlgoTransparency - YouTube influence t-il les élections présidentielles</title>
    <link rel="icon" type="image/png" href="../favicon.png" />
    <meta property="og:url" content="http://algotransparency.org" />
    <meta property="og:type" content="article" />
-   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
-   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
-   <meta property="og:image:type" content="image/png" />
-   <meta property="og:image:width" content="476" />
-   <meta property="og:image:height" content="250" />
-   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+   <meta property="og:title" content="YouTube: Most recommended videos" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/youtube.jpg" />
+   <meta property="og:image:type" content="image/jpg" />
+   <meta property="og:description" content="AlgoTransparency a étudié l'influence de l'algorithme de recommandations de YouTube pour chaque candidat à la présidentielle. Découvrez les résultats."
+   />
    <!--<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />-->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
    <link rel="stylesheet" href="../app.css">
    <script src="../app.js"></script>
    <script>
-        require('initialize-en');
+      require('initialize');
    </script>
 </head>
 
@@ -30,7 +29,7 @@
          <header class="nav nav-first">
             <div class="container">
                <div class="nav-left">
-                  <a class="nav-item" href="/index.html">
+                  <a class="nav-item" href="index.html">
                      <strong>AlgoTransparency</strong>
                      <!--<span>YouTube
                         <i class="fa fa-down"></i>
@@ -44,32 +43,42 @@
                </span>
                <div class="nav-right nav-menu">
                   <a class="nav-item showIntro">
-                     Watch intro
+                     Revoir l'intro
                   </a>
-                  <!--<a class="nav-item">
-                     Presse
-                  </a>-->
                   <a class="nav-item" href="presse.html">
-                     Press
+                     Presse
                   </a>
                   <a class="nav-item" href="demarche.html">
-                     Our methodology
-                  </a>
-                  <a class="nav-item" href="/index.html">
-                     French Election 2017  🇫🇷
-                  </a>
-                  <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-                  <a class="nav-item is-chose" href="uk.html">
-                     British Election 2017  🇬🇧
-                  </a>
-                  <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
-                  <a class="nav-item" href="de.html">
-                     German Election 2017 🇩🇪
+                     Notre démarche
                   </a>
                   <div class="addthis_inline_share_toolbox nav-item"></div>
                </div>
             </div>
          </header>
+         <nav class="nav nav-second">
+               <a class="nav-item" href="/en/worldleaders.html">
+                  World Leaders 🌍
+               </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
+               <a class="nav-item" href="/en/science.html">
+                  Science 🔭
+               </a>
+               <a class="nav-item is-chose" href="en/shootings.html">
+                  Mass Shootings &#9632;
+               </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
+               <a class="nav-item" href="/en/uk.html">
+                  British Election 2017  🇬🇧
+               </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
+               <a class="nav-item is-chose" href="/index.html">
+                  French Election 2017  🇫🇷
+               </a>
+               <span class="nav-item bullet is-hidden-mobile">&#8226;</span>
+               <a class="nav-item" href="en/de.html">
+                  German Election 2017 🇩🇪
+               </a>
+         </nav>
          <nav class="nav nav-second">
             <div>
                <div class="panel-block" id="sidebar"></div>
@@ -87,9 +96,16 @@
             <header class="box-wrapper video-header">
                <div class="box-title">Top 20 videos</div>
                <span class="float-right">
-                  <span class="video-date" id="video__date"><span id="nb_video"></span> videos collected on</span>
+                  <span class="video-date" id="video__date"><span id="nb_video"></span> vidéos collectées le</span>
                   <span class="select is-small">
                      <select id="video-select">
+                        <option value="ytrecos-presidentielle-2017-06-10">10 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-06-09">9 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-06-07">7 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-06-06">6 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-06-05">5 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-06-03">3 juin 2017</option>
+                        <option value="ytrecos-presidentielle-2017-05-29">29 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-28">28 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-27">27 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-26">26 mai 2017</option>
@@ -103,6 +119,7 @@
                         <option value="ytrecos-presidentielle-2017-05-16">16 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-12">12 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-11">11 mai 2017</option>
+                        <option value="ytrecos-presidentielle-2017-05-9">9 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-9">9 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-8">8 mai 2017</option>
                         <option value="ytrecos-presidentielle-2017-05-7">7 mai 2017</option>
@@ -118,30 +135,30 @@
                         <option value="ytrecos-presidentielle-2017-04-25">25 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-24">24 avril 2017</option>
                         <option value="ytrecos-presidentielle-2017-04-23">23 avril 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-22">22 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-21">21 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-20">20 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-19">19 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-18">18 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-17">17 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-16">16 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-15">15 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-14">14 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-13">13 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-12">12 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-11">11 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-09">9 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-08">8 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-07">7 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-06">6 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-05">5 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-03">3 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-04-01">1 april 2017</option>
-                        <option value="ytrecos-presidentielle-2017-03-31">31 march 2017</option>
-                        <option value="ytrecos-presidentielle-2017-03-30">30 march 2017</option>
-                        <option value="ytrecos-presidentielle-2017-03-29">29 march 2017</option>
-                        <option value="ytrecos-presidentielle-2017-03-28">28 march 2017</option>
-                        <option value="ytrecos-presidentielle-2017-03-27">27 march 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-22">22 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-21">21 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-20">20 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-19">19 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-18">18 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-17">17 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-16">16 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-15">15 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-14">14 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-13">13 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-12">12 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-11">11 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-09">9 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-08">8 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-07">7 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-06">6 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-05">5 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-03">3 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-04-01">1 avril 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-31">31 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-30">30 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-29">29 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-28">28 mars 2017</option>
+                        <option value="ytrecos-presidentielle-2017-03-27">27 mars 2017</option>
                      </select>
                   </span>
                </span>
@@ -155,22 +172,22 @@
                <small>dans les titres de vidéos mentionant un candidat</small>
          </section>-->
          <section class="box-wrapper sidebar-right box-wrapper mb1">
-            <div class="box-title mb2">Candidates mentioned in the titles of these videos:</div>
+            <div class="box-title mb2">Candidats mentionnés dans les titres de ces vidéos&nbsp;:</div>
             <div id="representation"></div>
          </section>
          <section class="sidebar-right box-wrapper mb1">
-            <div class="box-title mb2">Share AlgoTransparency</div>
+            <div class="box-title mb2">Partagez AlgoTransparency</div>
             <div class="addthis_inline_share_toolbox"></div>
-            <small>For improved recommendation algorithm transparency.</small>
+            <small>Pour plus de transparence sur les algorithmes de recommandation.</small>
          </section>
          <section class="box-wrapper mb1">
-            <div class="box-title mb2">Our project</div>
-            <p class="mb1">AlgoTransparency is designed to inform citizens on the algorithms shaping access to information. <a href="demarche.html">Find out more</a></p>
+            <div class="box-title mb2">Notre démarche</div>
+            <p class="mb1">AlgoTransparency est un projet qui informe les citoyens sur les algorithmes influencant l'accès à l'information. <a href="demarche.html">En savoir plus</a></p>
             <div class="mb2">
-               <span class="small">Follow us on: <a href="http://twitter.com/helloalgo" target="blank">@HelloAlgo</a></span>
+               <span class="small">Suivez-nous : <a href="http://twitter.com/helloalgo" target="blank">@HelloAlgo</a></span>
                <!-- <div class="addthis_inline_follow_toolbox"></div> -->
             </div>
-            <small>Developed as part of the organization <a href="http://www.dataforgood.fr/">Data for Good</a></small>
+            <small>Développé dans le cadre de l'association <a href="http://www.dataforgood.fr/">Data for Good</a></small>
          </section>
       </div>
       <section class="is-2 column"></section>
@@ -178,30 +195,30 @@
    <section id="intro">
       <div class="slides-container has-text-centered">
          <!-- <button class="btn btn__absolute btn__prev btn--muted">Retour</button> -->
-         <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
+         <button class="btn btn__absolute btn__next btn--highlighted">Suivant</button>
          <section class="pagination"> </section>
          <section class="slide slide-1">
-           <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="/images/slide-1.png" alt="">
-           <h1 class="mt4"> million French people</h1>
-           <h2 class="">watch YouTube videos each month</h2>
+           <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="images/slide-1.png" alt="">
+           <h1 class="mt4">millions de Francais</h1>
+           <h2 class="">regardent des vidéos Youtube tous les mois</h2>
          </section>
           <section class="slide slide-2">
-             <h1 class="">YouTube’s recommendation algorithm</h1>
-             <h2 class="mb4">plays an important role in the videos we are shown</h2>
-            <img class="slide-image image-medium" style="max-width: 600px;margin: 0 auto;" src="/images/slide-2.png" alt="">
+             <h1 class="">L'algorithme de recommandation de YouTube</h1>
+             <h2 class="mb4">joue un rôle important dans le choix des vidéos que nous regardons</h2>
+            <img class="slide-image image-medium" style="max-width: 600px;margin: 0 auto;" src="images/slide-2.png" alt="">
          </section>
          <section class="slide slide-3">
-             <h1 class="">But what are the most recommended videos?</h1>
-             <h2 class="mb4">Today, it’s impossible to tell</h2>
-            <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
+             <h1 class="">Mais quelles sont les vidéos les plus suggérées&nbsp;?</h1>
+             <h2 class="mb4">Aujourd'hui, il est impossible de le savoir à l'œil nu</h2>
+            <img class="slide-image image-large" src="images/slide-3.jpg" alt="">
          </section>
           <section class="slide slide-4">
-             <h1 class="">We created a robot to find out :)</h1>
-             <h2 class="mb4">Using the names of the candidates in the French presidential election, our robot crawls all the top recommended videos and keeps track of the ones which are recommended most often.</h2>
-            <img class="slide-image image-large pt4" src="/images/slide-4.gif" alt="">
+             <h1 class="">Nous avons créé un robot pour les révéler :)</h1>
+             <h2 class="mb4">À partir du nom des candidats, notre robot parcourt tous les liens de recommandation et comptabilise les vidéos les plus suggérées</h2>
+            <img class="slide-image image-large pt4" src="images/slide-4.gif" alt="">
          </section>
          <section class="slide slide-4">
-             <h1 class="mb4">What do you think are the most recommended videos for each candidate?</h1>
+             <h1 class="mb4">D'après vous,<br> quelles sont les vidéos les plus suggérées pour chaque candidat&nbsp;?</h1>
              <!--<div>Candidats</div>-->
              <ul id="candidatsIntro">
              </ul>
