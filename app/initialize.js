@@ -7,7 +7,7 @@ $(document).ready(function() {
    const jsonThemeLocal = {};
    const nameToTag = {};
    const lastDate = 'ytrecos-presidentielle-2017-06-10';
-   $.get('data/themes.json', function(data) {
+   $.get('/data/themes.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
@@ -42,7 +42,7 @@ $(document).ready(function() {
          if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       });
    }
-   $.get('data/ytrecos-presidentielle/' + url + '.json', function(data) {
+   $.get('/data/ytrecos-presidentielle/' + url + '.json', function(data) {
       jsonLocal = data;
       let count = 0;
       Object.keys(jsonLocal).forEach((item) => {
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
    $(document).on('change', '#video-select', function(event) {
       $.get(
-         'data/ytrecos-presidentielle/' + event.target.value + '.json',
+         '/data/ytrecos-presidentielle/' + event.target.value + '.json',
          (data) => {
             url = event.target.value;
             jsonLocal = data;
