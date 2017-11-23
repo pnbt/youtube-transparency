@@ -1,4 +1,4 @@
-!/biin/sh
+#!/bin/sh
 
 git status
 git up
