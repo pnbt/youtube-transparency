@@ -2,6 +2,12 @@ import $ from 'jquery';
 import './js/helpers';
 
 $(document).ready(function() {
+
+  $.get("../data/*", function(data) 
+  {
+      console.log(data);
+  });
+
    let jsonLocal = {};
    const jsonThemeLocal = {};
    const lastDate = 'ytrecos-science-2017-09-26';
