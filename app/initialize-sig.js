@@ -2,15 +2,10 @@ import $ from 'jquery';
 import './js/helpers';
 
 $(document).ready(function() {
-  $.get("../data/*", function(data) 
-  {
-      console.log(data);
-  });
-
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-science-2017-09-26';
-   $.get('/data/themesscience.json', function(data) {
+   const lastDate = 'ytrecos-sig-2017-11-26';
+   $.get('/data/themessig2.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
             jsonThemeLocal[item.tag] = item;
@@ -44,7 +39,7 @@ $(document).ready(function() {
          if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       });
    }
-   $.get('/data/ytrecos-science/' + url + '.json', function(data) {
+   $.get('/data/ytrecos-sig/' + url + '.json', function(data) {
     // console.log(data);
       jsonLocal = data;
       let count = 0;
@@ -70,7 +65,7 @@ $(document).ready(function() {
 
    $(document).on('change', '#video-select', function(event) {
       $.get(
-      '/data/ytrecos-science/' + event.target.value + '.json',
+      '/data/ytrecos-sig/' + event.target.value + '.json',
       (data) => {
          url = event.target.value;
          jsonLocal = data;
@@ -87,7 +82,7 @@ $(document).ready(function() {
    });
 
    function getCssTag(tag) {
-      return tag.split(' ').pop().replace('?', '');
+      return tag.split(' ').pop().replace('?', '').replace("'", '');
    }
 
    function appendPresentation(key) {
@@ -126,7 +121,8 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
             <div class="mult-text"> more recommended than the average</div> </div>`
         : '';
 
-         if (index > 99) return;
+         if (index > 1000) return;
+         if (item.title.toLowerCase().indexOf('douar') === -1) return;
          $('.videos').append(
         `
             <div class="box">
@@ -162,112 +158,82 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        .filter((item) => item.likes !== -1)
        .forEach((item) => {
           const title = item.title.toLowerCase();
-          if (title.indexOf('exoplanet') > -1) {
-             cscores.Exoplanet = (cscores.Exoplanet || 0) + 1;
+          if (title.indexOf('edouard') > -1 || title.indexOf('édouard') > -1) {
+            cscores['Édouard Philippe'] = (cscores['Édouard Philippe'] || 0) + 1;
+          }
+          if (title.indexOf('macron') > -1 || title.indexOf('macron') > -1) {
+            cscores['Émmanuel Macron'] = (cscores['Émmanuel Macron'] || 0) + 1;
+          }
+          if (title.indexOf('vaccination') > -1) {
+            cscores.Vaccination = (cscores.Vaccination || 0) + 1;
+          }
+          if (title.indexOf('universit') > -1) {
+            cscores['Université'] = (cscores['Université'] || 0) + 1;
+          }
+          if (title.indexOf('reforme') > -1 || title.indexOf('réforme') > -1) {
+            cscores['Réforme'] = (cscores['Réforme'] || 0) + 1;
+          }
+          if (title.indexOf('oligarchie') > -1) {
+            cscores.Oligarchie = (cscores.Oligarchie || 0) + 1;
+          }
+          if (title.indexOf('une fois la vie') > -1) {
+            cscores['Il était une fois la vie'] = (cscores['Il était une fois la vie'] || 0) + 1;
+          }
+          if (title.indexOf('islam') > -1) {
+            cscores.Islam = (cscores.Islam || 0) + 1;
+          }
+          if (title.indexOf('big pharma') > -1) {
+            cscores['Big pharma'] = (cscores['Big pharma'] || 0) + 1;
+          }
+          if (title.indexOf('attentat') > -1) {
+            cscores.Attentat = (cscores.Attentat || 0) + 1;
+          }
+          if (title.indexOf('attentat') > -1) {
+            cscores.Attentat = (cscores.Attentat || 0) + 1;
+          }
+          if (title.indexOf('valls') > -1) {
+            cscores['Manuel Valls'] = (cscores['Manuel Valls'] || 0) + 1;
+          }
+          if (title.indexOf('mosquée') > -1) {
+            cscores['Mosquée'] = (cscores['Mosquée'] || 0) + 1;
+          }
+          if (title.indexOf('église') > -1) {
+            cscores['Église'] = (cscores['Église'] || 0) + 1;
+          }
+          if (title.indexOf('mediapart') > -1 || title.indexOf('médiapart') > -1) {
+            cscores['Médiapart'] = (cscores['Médiapart'] || 0) + 1;
+          }
+          if (title.indexOf('ramadan') > -1) {
+            cscores['Tariq Ramadan'] = (cscores['Tariq Ramadan'] || 0) + 1;
+          }
+          if (title.indexOf('emeute') > -1 || title.indexOf('émeute') > -1) {
+            cscores['Émeutes'] = (cscores['Émeutes'] || 0) + 1;
+          }
+          if (title.indexOf('esclavage') > -1) {
+            cscores.Esclavage = (cscores.Esclavage || 0) + 1;
+          }
+          if (title.indexOf('francs-maçons') > -1) {
+            cscores['Francs-maçons'] = (cscores['Francs-maçons'] || 0) + 1;
+          }
+          if ((title.indexOf('melenchon') > -1) || (title.indexOf('mélenchon') > -1)) {
+            cscores['Mélenchon'] = (cscores['Mélenchon'] || 0) + 1;
+          }
+          if ((title.indexOf('lepen') > -1) || (title.indexOf('le pen') > -1)) {
+            cscores['Le Pen'] = (cscores['Le Pen'] || 0) + 1;
+          }
+          if ((title.indexOf('france insoumise') > -1)) {
+            cscores['France Insoumise'] = (cscores['France Insoumise'] || 0) + 1;
+          }
+          if ((title.indexOf('fn') > -1) || (title.indexOf('front national') > -1)) {
+            cscores['FN'] = (cscores['FN'] || 0) + 1;
           }
           if (title.indexOf('secret') > -1) {
              cscores.Secret = (cscores.Secret || 0) + 1;
           }
-          if (title.indexOf('nasa') > -1) {
-             cscores.NASA = (cscores.NASA || 0) + 1;
-          }
-          if (title.indexOf('truth') > -1) {
-             cscores.Truth = (cscores.Truth || 0) + 1;
-          }
-          if (title.indexOf('ufo') > -1) {
-             cscores.UFO = (cscores.UFO || 0) + 1;
-          }
-          if (title.indexOf('alien') > -1) {
-             cscores.Alien = (cscores.Alien || 0) + 1;
-          }
-          if (title.indexOf('flat') > -1) {
-             cscores.Flat = (cscores.Flat || 0) + 1;
-          }
-          if (title.indexOf('round') > -1) {
-             cscores.Round = (cscores.Round || 0) + 1;
-          }
-          if (title.indexOf('dome') > -1) {
-             cscores.Dome = (cscores.Dome || 0) + 1;
-          }
-          if (title.indexOf('god') > -1) {
-             cscores.God = (cscores.God || 0) + 1;
-          }
-          if (title.indexOf('debunk') > -1) {
-             cscores.Debunk = (cscores.Debunk || 0) + 1;
-          }
-          if (title.indexOf('proof') > -1) {
-             cscores.Proof = (cscores.Proof || 0) + 1;
-          }
-          if (title.indexOf('degrasse tyson') > -1) {
-             cscores['Neil deGrasse Tyson'] = (cscores['Neil deGrasse Tyson'] || 0) + 1;
-          }
-          if (title.indexOf('maher') > -1) {
-             cscores.Maher = (cscores.Maher || 0) + 1;
-          }
-          if (title.indexOf('immune') > -1) {
-             cscores.Immune = (cscores.Immune || 0) + 1;
-          }
-          if (title.indexOf('mccarthy') > -1) {
-             cscores.McCarthy = (cscores.McCarthy || 0) + 1;
-          }
-          if (title.indexOf('kill') > -1) {
-             cscores.Kill = (cscores.Kill || 0) + 1;
-          }
-          if (title.indexOf('vaccine') > -1) {
-             cscores.Vaccine = (cscores.Vaccine || 0) + 1;
-          }
-          if (title.indexOf('autism') > -1) {
-             cscores.Autism = (cscores.Autism || 0) + 1;
-          }
-          if (title.indexOf('crazy') > -1) {
-             cscores.Crazy = (cscores.Crazy || 0) + 1;
-          }
-          if (title.indexOf('bullshit') > -1) {
-             cscores.Bullshit = (cscores.Bullshit || 0) + 1;
-          }
-          if (title.indexOf('debate') > -1) {
-             cscores.Debate = (cscores.Debate || 0) + 1;
-          }
-          if (title.indexOf('creation') > -1) {
-             cscores.Creation = (cscores.Creation || 0) + 1;
-          }
-          if (title.indexOf('evolution') > -1) {
-             cscores.Evolution = (cscores.Evolution || 0) + 1;
-          }
-          if (title.indexOf('expose') > -1) {
-             cscores.Expose = (cscores.Expose || 0) + 1;
-          }
-          if (title.indexOf('destroy') > -1) {
-             cscores.Destroy = (cscores.Destroy || 0) + 1;
-          }
-          if (title.indexOf('dinosaur') > -1) {
-             cscores.Dinosaur = (cscores.Dinosaur || 0) + 1;
-          }
-          if (title.indexOf('dinosaur') > -1) {
-             cscores.Dinosaur = (cscores.Dinosaur || 0) + 1;
-          }
-          if (title.indexOf('devos') > -1) {
-             cscores.DeVos = (cscores.DeVos || 0) + 1;
-          }
-          if (title.indexOf('clinton') > -1) {
-             cscores.Clinton = (cscores.Clinto || 0) + 1;
-          }
-          if (title.indexOf('obama') > -1) {
-             cscores.Obama = (cscores.Obama || 0) + 1;
-          }
-          if (title.indexOf('trump') > -1) {
-             cscores.Trump = (cscores.Trump || 0) + 1;
-          }
-          if (title.indexOf('hoax') > -1) {
-             cscores.Hoax = (cscores.Hoax || 0) + 1;
-          }
-          if (title.indexOf('conspiracy') > -1 || title.indexOf('conspiracy') > -1) {
-             cscores['Conspiracy'] = (cscores['Conspiracy'] || 0) + 1;
-          }
-          if (title.indexOf('global warming') > -1 || title.indexOf('global warming') > -1) {
-             cscores['Global Warming'] = (cscores['Global Warming'] || 0) + 1;
-          }
-       });
+          if (title.indexOf('dieudonné') > -1 || title.indexOf('dieudonne') > -1) {
+            cscores['Dieudonné'] = (cscores['Dieudonné'] || 0) + 1;
+         }
+      });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
     for (const key in cscores) {
