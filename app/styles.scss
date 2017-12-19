@@ -6,6 +6,7 @@ $gray-dark:   #333;
 $border-color: #e8e8e8;
 $bg-yellow:   #FFED99;
 $blue-medium: #0678C9;
+$near-white: #FBFBFB;
 
 $primary: $red-youtube;
 
@@ -17,7 +18,7 @@ body {
   color: $gray-dark;
   font-size: 14px;
   line-height: 20px;
-  background-color: $gray-pale;
+  background-color: $near-white;
 }
 
 h1, .h1 {
@@ -522,7 +523,7 @@ input[type=range] {
    z-index: 10;
    width: 100%;
    height: 100%;
-   background-color: #F1F1F1;
+   background-color: #FBFBFB;
 }
 .candidatIntro {
   cursor: pointer;
