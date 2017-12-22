@@ -88,6 +88,18 @@ a {
 
 // HERO AND NAV  -------- //
 
+.nav-bar {
+  align-items: stretch;
+  display: flex;
+  min-height: 3.25rem;
+  width: 100%;
+  margin: 0 10px 0 10px;
+}
+
+.padded-top {
+  padding-top: 5px !important;
+}
+
 .hero {
   background-color: transparent;
   margin-bottom: 10px;
@@ -424,6 +436,7 @@ input[type=range] {
     display: inline-block;
     color: $blue-medium;
     font-weight: 700;
+    font-size: 16px;
   }
 
   .video-stats {
