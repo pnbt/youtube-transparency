@@ -95,7 +95,7 @@ $(document).ready(function() {
             <div class="column has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                   <h1 class="" id="presentation-title">YouTube’s most recommended videos</h1>
-                  <h2 class="">in the playlist on the right for the search "<a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
+                  <h2 class="">from "<a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
             </div>
          </div>
          `,
