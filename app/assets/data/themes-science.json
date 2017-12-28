@@ -5,7 +5,7 @@
     {"name": "Global Warming", "picture": "https://upload.wikimedia.org/wikipedia/commons/b/b8/World_map_showing_surface_temperature_trends_between_1950_and_2014.png", "tag": "global warming"},
     {"name": "Vaccines Facts", "picture": "http://discovermagazine.com/~/media/import/images/2/3/1/vaccine.jpg?mw=300", "tag": "vaccines facts"},
     {"name": "Enviromental Protection Agency", "picture": "https://www.epa.gov/", "tag": "enviromental protection agency"},
-    {"name": "Alien Life", "picture": "http://www.pngall.com/wp-content/uploads/2016/06/Alien-PNG.png", "tag": "alien life"},
+    {"name": "Alien Life", "picture": "/images/alien.jpg", "tag": "alien life"},
     {"name": "Nasa", "picture": "https://www.nasa.gov/sites/all/themes/custom/nasatwo/images/nasa-logo.svg", "tag": "nasa"},
     {"name": "Exoplanets", "picture": "http://drapak.ca/cpg/img/planets/Neptune.png", "tag": "exoplanets"},
  ]
