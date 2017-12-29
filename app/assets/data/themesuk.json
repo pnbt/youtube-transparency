@@ -1,6 +1,6 @@
 {"electionuk": [
     {"name": "Jeremy Corbyn", "picture": "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/p480x480/18740020_10155395291633872_5394095454968097685_n.jpg?oh=001676797d4fdb95877efd95136c1134&oe=5A55647A", "tag": "Jeremy Corbyn"},
-    {"name": "Tim Farron", "picture": "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/p480x480/18486026_1692386904111637_5145686897710300453_n.jpg?oh=121fddc269afcbb681616892c1f23db4&oe=5A3B38F7", "tag": "Tim Farron"},
+    {"name": "Tim Farron", "picture": "/images/tim_farron.jpg", "tag": "Tim Farron"},
     {"name": "Theresa May", "picture": "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/13659005_1360115344005235_9009869048454061020_n.jpg?oh=189ced72098d3fa9073b960de6915ecf&oe=5A4ED4F8", "tag": "Theresa May"},
     {"name": "Paul Nuttall", "picture": "https://az620379.vo.msecnd.net/images/Contracts/8977676f-cc04-481f-80a2-f503460889f6.png", "tag": "Paul Nuttall"},
     {"name": "Nicola Sturgeon", "picture": "https://pbs.twimg.com/profile_images/800447720305651720/sYpQtMYb.jpg", "tag": "Nicola Sturgeon"}
