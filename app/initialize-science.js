@@ -9,7 +9,7 @@ $(document).ready(function() {
 
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-science-2017-09-26';
+   const lastDate = 'ytrecos-science-2017-12-28';
    $.get('/data/themesscience.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
