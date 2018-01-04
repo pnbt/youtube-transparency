@@ -8,20 +8,21 @@
   <meta property="og:url" content="http://algotransparency.org" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
-  <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png"
-  />
+  <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="476" />
   <meta property="og:image:height" content="250" />
-  <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results."
-  />
+  <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../app.css">
-  <script src="../app.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../app.js"></script>
   <script>
     require('initialize-en');
   </script>
-</head>
+  </head>
 
 <body>
   <section class="hero is-small">
@@ -61,22 +62,49 @@
       </header>
     </div>
   </section>
-  <section class="columns">
+  <!-- <section class="columns">
     <div class="column">
-      <div class="container is-8 is-offset-2 general">
+      <div class="container is-8 is-offset-2 general"> -->
         <div class="title-block">
           <div class="top-title"> AlgoTransparency </div>
-          <div class="top-subtitle"> Empowering users to pick their Algorithms </div>
-        </div>
-        <div class="video-title"> Why do we need algo transparency?</div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/R9OHn5ZF4Uo" frameborder="0" gesture="media" allow="encrypted-media"
-          allowfullscreen></iframe>
-          <div>Video by <a href="https://www.youtube.com/channel/UC2C_jShtL725hvbm1arSV9w">CGP Grey</a></div>
-          <div class="video-title">           
-            AlgoTransparency is a NGO which empowers citizens to monitor the impact of algorithms on their lives.
+          <div class="top-subtitle">
+            Empowering Users to Choose their Algorithms
           </div>
-      </div>
-      <div class="container is-8 is-offset-2">
+          <div class="problem-statement">
+              <button data-toggle="modal" data-target="#cgpgreyModal" class="play-button"><i class="fa fa-play" aria-hidden="true"></i></button> What are algorithms and how do they learn? 
+              <span class="video-credits">(Video by <a href="https://www.youtube.com/channel/UC2C_jShtL725hvbm1arSV9w">CGP Grey</a>)</span>
+          </div>
+        </div>
+        <div class="general-section">
+            <div class="mission">
+              <div class="mission-title">Our mission</div>
+                AlgoTransparency is a NGO which empowers citizens to evaluate the impact of algorithms on their lives to choose.
+              <ul>
+               <li>we research how algorithms impact users (what could go wrong?)</li>
+               <li>we propose recommendations (how to make it better)</li>
+              </ul>
+            </div>
+        </div>
+        <div class="general-section dark-section">
+          <div class="mission">
+            <div class="mission-title">What could go wrong?</div>
+              Natural biases and taught biases
+              <ul>
+                <li>
+                  <strong>Natural biases: </strong> Some algorithms can encourage dystopian contents, as explained in this <a href="">TED Talk by Zynep</a>
+                  <button data-toggle="modal" data-target="#zynepModal" class="play-button"><i class="fa fa-play" aria-hidden="true"></i></button>
+                </li>
+                <li>
+                  <strong>Taught biases: </strong> Algorithms can be taught by abuser to promote their own content <a href="">TED Talk by Zynep</a>
+                  <button data-toggle="modal" data-target="#zynepModal" class="play-button"><i class="fa fa-play" aria-hidden="true"></i></button>
+                </li>
+              </ul>
+          </div>
+        </div>
+  
+
+        <!-- </div>
+      <div class="container is-8 is-offset-2"> -->
 
         <h1 class="general-title"></h1>
         <div class="algorithm-container">
@@ -85,12 +113,19 @@
             <div class="algorithm-stat"><strong>Global Impact:</strong></div>
             <div class="algorithm-description">
               <a href="https://www.youtube.com/yt/about/press/"> > 2 trillion hours of viewtime per year</a>
+            </div>            
+            <div class="algorithm-stat"><strong>Basics:</strong> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf"></a></div>
+            <div class="algorithm-description">              
+              The algorithm tries to make you stay online as long as possible by learning from other user's sessions
             </div>
-            <div class="algorithm-stat"><strong>Optimizing:</strong>
-            <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">primarily watch time</a></div>
-            
-            <div class="algorithm-stat"><strong>Basic Description:</strong> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">The algorithm tries to make you stay online as long as possible by learning from other user's sessions</a></div>
-            <div class="algorithm-stat"><strong>Detailed Technology:</strong> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">DeepLearning for recommendations</a></div>
+            <div class="algorithm-stat"><strong>Optimizing:</strong></div>
+            <div class="algorithm-description">                          
+              <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">Watch time (mainly)</a>
+            </div>  
+            <div class="algorithm-stat"><strong>Detailed Technology:</strong></div>
+            <div class="algorithm-description">                          
+              <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">DeepLearning for recommendations</a>
+            </div>
             <div class="algorithm-stat"><strong>Public Training Set:</strong> <a href="https://research.google.com/youtube8m/">7 million videos</a></div>
             <div class="algorithm-stat"><strong>How can algotransparency monitor it?</strong> By following recommendations and see where they lead </div>
             <div class="algorithm-stat"><strong>Themes we monitored: </strong>  </div>
@@ -102,7 +137,8 @@
             </div>
           </div>
         </div>
-        
+
+
         <h1 class="general-title">Who is behind AlgoTransparency?</h1>
         <p>
           AlgoTransparency is led by
@@ -115,8 +151,45 @@
           <a href="http://www.dataforgood.fr/" target="_blank"> Data For Good</a>.
         </p>
       </div>
-    </div>
-  </section>
+    <!-- </div>
+  </section> -->
 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <div class="modal fade" id="cgpgreyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <iframe id="cgpgreyVideo" width="560" height="315" src="" frameborder="0" gesture="media" allow="encrypted-media"
+          allowfullscreen></iframe>  
+    </div>
+  </div>
+
+<!--> BOOTSTRAP <-->
+<!-- Latest compiled and minified JavaScript -->
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#cgpgreyModal").on('shown.bs.modal', function(){
+          $("#cgpgreyVideo").attr('src', "https://www.youtube.com/embed/R9OHn5ZF4Uo?autoplay=1&rel=0");
+      });
+      $("#cgpgreyModal").on('hide.bs.modal', function(){
+          $("#cgpgreyVideo").attr('src', '');
+      });  
+  });
+  </script>
+
 </body>

@@ -13,6 +13,15 @@ $primary: $red-youtube;
 @import '../node_modules/bulma/bulma';
 @import '../node_modules/balloon-css/balloon.min';
 
+ul {
+  margin-top: 10px;  
+}
+
+li {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   color: $gray-dark;
@@ -102,7 +111,7 @@ a {
 
 .hero {
   background-color: transparent;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .section {
   background-color: transparent;
@@ -495,18 +504,95 @@ input[type=range] {
   flex-direction: column;
 }
 
-.top-title {
-  font-size: 34px;
+
+.title-block {
+  background-image: url("/images/aibutterfly-light.jpg");
+  
+  /* Set a specific height */
+  height: 450px;
+  padding-top: 50px;
+
+  color:black;
   font-weight: bold;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  text-align: center;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
 }
+
+.video-credits {
+  font-size: 15px;
+}
+
+.problem-statement {
+  font-weight: normal;
+  font-size: 17px;  
+  margin-top: 100px;
+  margin-bottom: 10px;
+  align-self: center;
+}
+
+.play-button {
+  border-radius: 100px;
+  background-color: white;
+  padding: 30px 30px 30px 36px;;
+  margin:10px;
+  border: none;
+}
+
+.general-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.dark-section {
+  background-color: rgb(144, 196, 142);
+  padding: 30px;
+}
+
+.top-title {
+  font-size: 44px;
+  font-weight: bold;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  align-self: center;
+}
+
+.mission {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-style: italic;
+}
+
+.mission-title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: bold;
+   max-width: 600px; 
+}  
+
+.mission-body {
+  max-width: 600px;
+  display: flex;
+  align-items: center;  
+}
+
 
 .video-title {
   font-size: 20px;
-  margin-top: 40px;
   font-weight: bold;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -521,6 +607,7 @@ input[type=range] {
   font-style: italic;
   margin-top: 10px;
   margin-bottom: 10px;
+  align-self: center;
 }
 
 .algorithm-container {
