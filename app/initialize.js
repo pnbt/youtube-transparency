@@ -98,7 +98,7 @@ $(document).ready(function() {
             <div class="column has-text-centered">
                   <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                   <h1 class="" id="presentation-title">Vidéos les plus suggérées par YouTube</h1>
-                  <h2 class="">à partir de "<a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a>"</h2>
+                  <h2 class="">à partir de <a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a></h2>
             </div>
          </div>
          `,

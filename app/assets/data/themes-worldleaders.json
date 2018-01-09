@@ -1,7 +1,7 @@
 {"worldleaders": [
     {"name": "Donald Trump", "picture": "/images/donald_trump.jpg", "tag": "Donald Trump"},
     {"name": "Xi Jinping", "picture": "/images/xi_jinping.jpg", "tag": "Xi Jinping"},
-    {"name": "Shinzo Abe", "picture": "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-1/c0.0.426.426/1013998_792600304115404_7604869493978186982_n.jpg?oh=f76276402c3277a0a7f67acf278fd502&oe=5A4809D3", "tag": "Shinzo Abe"},
+    {"name": "Shinzo Abe", "picture": "/images/abe_shinzo.jpg", "tag": "Shinzo Abe"},
     {"name": "Angela Merkel", "picture": "https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/p480x480/20294332_10154657281907050_5436380658500479850_n.jpg?oh=154ca9e9a8c08dec56a6e6e76ac94d97&oe=5A880738", "tag": "Angela Merkel"},
     {"name": "Theresa May", "picture": "/images/theresa_may.jpg", "tag": "Theresa May"},
     {"name": "Emmanuel Macron", "picture": "/images/emmanuel_macron.jpg", "tag": "Emmanuel Macron"},
