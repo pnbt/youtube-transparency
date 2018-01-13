@@ -100,7 +100,7 @@ a {
 .nav-bar {
   align-items: stretch;
   display: flex;
-  min-height: 3.25rem;
+  min-height: 50px;
   width: 100%;
   margin: 0 10px 0 10px;
 }
@@ -457,6 +457,7 @@ input[type=range] {
   }
 }
 
+
 // .video__header{
    // background-color: #fff;
    // padding: 20px;
@@ -504,17 +505,8 @@ input[type=range] {
   flex-direction: column;
 }
 
-
-.title-block {
+.butterfly {
   background-image: url("/images/aibutterfly-light.jpg");
-  
-  /* Set a specific height */
-  height: 450px;
-  padding-top: 50px;
-
-  color:black;
-  font-weight: bold;
-  /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -522,10 +514,28 @@ input[type=range] {
   opacity: 0.9;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+
+.title-block {  
+  /* Set a specific height */
+  height: 280px;
+  padding-top: 50px;
+
+  color:black;
+  font-weight: bold;
+  /* Create the parallax scrolling effect */
+  display: flex;
+  flex-direction: column;
 }
 
 .video-credits {
   font-size: 15px;
+}
+
+.modal-dialog {
+  margin-top: 15% !important;
 }
 
 .problem-statement {
@@ -539,9 +549,17 @@ input[type=range] {
 .play-button {
   border-radius: 100px;
   background-color: white;
-  padding: 30px 30px 30px 36px;;
+  padding: 30px 30px 25px 36px;
   margin:10px;
   border: none;
+}
+
+.video-summary {
+  font-size: 20px;
+}
+
+.dark-button {
+  background-color: #efefef;
 }
 
 .general-section {
