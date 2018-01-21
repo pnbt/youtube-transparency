@@ -566,7 +566,7 @@ input[type=range] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  padding: 20px;
 }
 
 .dark-section {
@@ -584,27 +584,20 @@ input[type=range] {
 
 .mission {
   font-size: 20px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-style: italic;
+  background-color: #e6fddd;
 }
 
 .mission-title {
-  margin-bottom: 20px;
   font-size: 30px;
   font-style: normal;
   font-weight: bold;
-   max-width: 600px; 
+  max-width: 600px; 
 }  
 
 .mission-body {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;  
+  font-size: 18px;
+  padding: 10px;
 }
 
 
