@@ -129,7 +129,7 @@ a {
 .nav, .hero .nav {
   border-bottom: 1px solid $border-color;
   box-shadow: none;
-  min-height: 0;
+  min-height: 50px;
 }
 
 .nav-first {
