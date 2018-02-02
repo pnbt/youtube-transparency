@@ -60,8 +60,8 @@ $(document).ready(function() {
          count += jsonLocal[item].length;
       });
       $('#nb_video').append(count);
-      let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      let key = getUrlVar('candidat') || Object.keys(data)[random];
+      // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+      let key = getUrlVar('candidat') || Object.keys(data)[0];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);
