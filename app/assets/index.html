@@ -18,6 +18,7 @@
    <script>
       require('initialize-science');
    </script>
+
 <script type="text/javascript">
       (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
       ;r.type="text/javascript";r.async=true
@@ -41,9 +42,10 @@
       e=(!e||e.length===0?"$default_instance":e).toLowerCase()
       ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
       ;e.amplitude=n})(window,document);
-    
+
       amplitude.getInstance().init("ac83dc709767bb0f32724a7edff4e715");
-    </script>
+      amplitude.getInstance().logEvent('Science Loaded');
+      </script>
 </head>
 
 <body>
