@@ -10,6 +10,7 @@
 *~
 *.sass-cache
 .idea/
+package-lock.json
 
 # OS or Editor folders
 .DS_Store
