@@ -1,0 +1,8 @@
+{"kids": [
+    {"name": "Learn letters", "picture": "/images/letters.png", "tag": "learn letters"},
+    {"name": "Learn numbers", "picture": "/images/numbers.png", "tag": "learn numbers"},
+    {"name": "Learn colors", "picture": "/images/colors.png", "tag": "learn colors"},
+    {"name": "Learn shapes", "picture": "/images/shapes.jpg", "tag": "learn shapes"},
+    {"name": "Learn animals", "picture": "/images/animals.jpg", "tag": "learn animals"}
+    ]
+}

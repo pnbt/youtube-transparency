@@ -1,0 +1,169 @@
+.butterfly {
+	background-image: url(images/aibutterfly-light.jpg);
+}
+
+
+body {
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+.top-title {
+    font-size: 48px;
+    font-weight: 700;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    align-self: center;
+}
+
+
+.top-subtitle {
+    font-size: 24px;
+    font-style: normal;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+.video-summary {
+    font-size: 30px;
+    font-style: normal;
+    max-width: 400px;
+    font-weight: 700;
+    margin-left: 30%;
+
+}
+
+.mission-title {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    margin-left: 30%;
+    border-bottom: 2px solid #000;
+
+}
+
+.mission-body {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 30%;
+    margin-top: 10px;
+    padding: 0px;
+    max-width: 600px;
+
+}
+
+
+	
+strong {
+    color: #363636;
+    font-weight: 400;
+    margin-left: -40px;
+	margin-top: 0px;
+}
+
+.mission {
+    font-size: 20px;
+    font-style: italic;
+    background-color: #f3ffdc;
+
+}
+
+
+.general-section {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.mission-button{
+	font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 30px;
+    vertical-align: baseline;
+    margin-left: auto;
+	margin-right: auto;
+	max-width: 90%;
+}
+
+button{
+    background-color: #f3ffdc;
+    color: #0a0a0a;
+    border: 2px solid #000;
+    font-size: 1em;
+    overflow: visible;
+  	cursor: pointer;
+  	padding: 10px;
+  	padding-left: 15px;
+  	padding-right: 15px;
+  	margin-left: 10px;
+  	margin-top: 20px;
+
+
+
+
+}
+
+
+.dark-button {
+}
+
+
+.play-button {
+    border-radius: 100px;
+    background-color: #fff;
+    padding: 35px 35px 35px 35px;
+    margin-left: 0px;
+    border: none;
+    background-image: url(images/boutonplay.png);	
+    float: left;
+}
+
+.video-credits {
+    font-size: 15px;
+}
+
+.atisledby{
+	margin-top: 30px;
+	margin-bottom: 15px;
+
+	    border-bottom: 1px solid #cccccc;
+	    border-top: 1px solid #cccccc;
+	
+}
+
+.atisledbycontent{
+	    font-size: 15px;
+    font-style: normal;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 350px;
+    text-align: center;
+    margin-left: auto;
+margin-right: auto;
+margin-bottom: 15px;
+margin-top: 15px;
+
+
+}
+
+.contact{
+	color: #000;
+margin-left: auto;
+margin-right: auto;
+width: 300px;
+    text-align: center;
+    margin-bottom: 15px;
+
+
+}
+
+div {
+   display: block; 
+}
