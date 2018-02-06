@@ -137,8 +137,9 @@ a {
 }
 
 .nav-second {
-   text-align: center;
-   height: 42px;
+  text-align: center;
+  min-height: 42px;
+  align-items: center;
 
    > div {
       margin: 0 auto;
