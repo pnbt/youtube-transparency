@@ -227,6 +227,21 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
           if (title.indexOf('ingroia') > -1) {
             cscores['Antonio Ingroia'] = (cscores['Antonio Ingroia'] || 0) + 1;
           }
+          // if (title.indexOf('di battista') > -1) {
+          //   cscores['Allessandro Di Battista'] = (cscores['Allessandro Di Battista'] || 0) + 1;
+          // }
+          // if (title.indexOf('travaglio') > -1) {
+          //   cscores['Marco Travaglio'] = (cscores['Marco Travaglio'] || 0) + 1;
+          // }
+          // if (title.indexOf('carelli') > -1) {
+          //   cscores['Emilio Carelli'] = (cscores['Emilio Carelli'] || 0) + 1;
+          // }
+          // if (title.indexOf('sgarbi') > -1) {
+          //   cscores['Vittorio Sgarbi'] = (cscores['Vittorio Sgarbi'] || 0) + 1;
+          // }
+          // if (title.indexOf("d'amico") > -1) {
+          //   cscores["Ilaria D'Amico"] = (cscores["Ilaria D'Amico"] || 0) + 1;
+          // }
         });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
