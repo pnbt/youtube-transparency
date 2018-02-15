@@ -1,5 +1,6 @@
 {"shootings": [
-    {"name": "Las Vegas shooting", "picture": "/images/las_vegas.jpg", "tag": "Las Vegas shooting"},
+    {"name": "Parkland shooting", "picture": "/images/parkland.jpg", "tag": "Parkland shooting"},
+    {"name": "Las Vegas shooting", "picture": "/images/las_vegas.jpg", "tag": " Las Vegas shooting"},
     {"name": "Orlando shooting", "picture": "https://s2.qwant.com/thumbr/0x0/d/b/e2e969b993b7b2a52acaf748f3061e/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fmedia1.fdncms.com%2Forlando%2Fimager%2Fu%2Fbigsquare%2F2500283%2Forlando-3.jpg&q=0&b=1&p=0&a=1", "tag": " Orlando shooting"},
     {"name": "San Bernardino shooting", "picture": "https://s1.qwant.com/thumbr/0x0/2/f/1651f37ef9d781f5d6518692ff4d3e/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fscallywagandvagabond.com%2Fwp-content%2Fuploads%2F2015%2F12%2FSan-Bernardino-suspect-shot-dead-11-150x150.jpg&q=0&b=1&p=0&a=1", "tag": " San Bernardino shooting"},
     {"name": "Bataclan shooting", "picture": "https://s2.qwant.com/thumbr/0x0/5/4/ba32181dcf6d2e7d3a1675ea437a23/b_1_q_0_p_0.jpg?u=http%3A%2F%2Fstatic.ticketmaster.fr%2Fassets%2Fctx%2Fticketnet-1%2Fstatic%2Fimages%2Fphotos-salles%2Fs_126_3.jpg&q=0&b=1&p=0&a=1", "tag": " Bataclan shooting"},

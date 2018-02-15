@@ -4,7 +4,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-shootings-2018-02-01';
+   const lastDate = 'ytrecos-shootings-2018-02-14';
    $.get('/data/themesshootings.json', function(data) {
       Object.keys(data).forEach((key) => {
          console.log('DATA')
@@ -51,8 +51,8 @@ $(document).ready(function() {
          count += jsonLocal[item].length;
       });
       $('#nb_video').append(count);
-      let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      let key = getUrlVar('candidat') || Object.keys(data)[random];
+      // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+      let key = getUrlVar('candidat') || Object.keys(data)[0];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);
@@ -199,13 +199,25 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
           if ((title.indexOf('hoax') > -1)) {
              cscores['Hoax'] = (cscores['Hoax'] || 0) + 1;
           }
-          if ((title.indexOf('isis') > -1) || (title.indexOf('isil') > -1)) {
+          if (((title.indexOf('isis') > -1) || (title.indexOf('isil') > -1)) && ((title.indexOf('crisis') < 0))) {
              cscores['ISIS'] = (cscores['ISIS'] || 0) + 1;
           }
           if ((title.indexOf('gun control') > -1)) {
              cscores['Gun Control'] = (cscores['Gun Control'] || 0) + 1;
           }
-      });
+          if ((title.indexOf('high school shooting') > -1)) {
+            cscores['High Shool Shooting'] = (cscores['High Shool Shooting'] || 0) + 1;
+          }
+          if ((title.indexOf('witness') > -1)) {
+            cscores['Witness'] = (cscores['Witness'] || 0) + 1;
+          }
+          if ((title.indexOf('strange') > -1) && (title.indexOf('stranger') < 0)) {
+            cscores['Strange'] = (cscores['Strange'] || 0) + 1;
+          }
+          if ((title.indexOf('bizarre') > -1)) {
+            cscores['Bizarre'] = (cscores['Bizarre'] || 0) + 1;
+          }
+     });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
     for (const key in cscores) {
