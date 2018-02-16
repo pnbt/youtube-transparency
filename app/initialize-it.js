@@ -17,7 +17,7 @@ $(document).ready(function() {
 
   let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-election-it-2018-02-11';
+   const lastDate = 'ytrecos-election-it-2018-02-15';
    $.get('/data/themesit.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {

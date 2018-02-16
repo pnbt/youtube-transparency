@@ -93,7 +93,7 @@ strong {
 }
 
 button{
-    background-color: #f3ffdc;
+    background-color: transparent;
     color: #0a0a0a;
     border: 2px solid #000;
     font-size: 1em;

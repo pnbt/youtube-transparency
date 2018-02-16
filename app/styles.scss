@@ -19,7 +19,6 @@ ul {
 
 li {
   margin-top: 10px;
-  font-size: 18px;
 }
 
 body {
@@ -320,6 +319,10 @@ input[type=range] {
     @extend .h3;
     margin-bottom: 10px;
   }
+}
+
+.inspiration {
+  font-size: 14px !important;
 }
 
 .searched-value {
