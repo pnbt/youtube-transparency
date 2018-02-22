@@ -17,7 +17,7 @@ $(document).ready(function() {
 
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-election-it-2018-02-15';
+   const lastDate = 'ytrecos-election-it-2018-02-21';
 
    $.get('/data/themesit.json', function(data) {
       Object.keys(data).forEach((key) => {
@@ -194,13 +194,14 @@ $(document).ready(function() {
 
   // Permet d'actualiser les vidéos correspond au theme "key".
    function appendVideo(key) {
+      changeUrlParam('candidat', key);
+
       if (key=== 'all') {
         appendSinkHoles();
         return;
       }
       $('.sink-videos').empty();
 
-      changeUrlParam('candidat', key);
       changeUrlParam('file', url);
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
