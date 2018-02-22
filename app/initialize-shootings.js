@@ -87,17 +87,18 @@ $(document).ready(function() {
 
    function appendPresentation(key) {
     $('#presentation').empty();
+    var extra_style = "";
     if (key === 'all') {
-      return;
+      extra_style = "display:none;";
     }
 
     $('#presentation').append(
     `
-       <div class="columns">
+       <div class="columns" style="${extra_style}">
           <div class="column has-text-centered">
                 <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
                 <h1 class="" id="presentation-title">YouTube’s most recommended videos</h1>
-                <h2 class="">from <a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key.trim()}</span></a></h2>
+                <h2 class="">from <a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a></h2>
           </div>
        </div>
        `
@@ -179,14 +180,13 @@ function appendSinkHoles() {
 
 // Permet d'actualiser les vidéos correspond au theme "key".
  function appendVideo(key) {
-    changeUrlParam('candidat', key);
-
+    changeUrlParam('file', url);
     if (key=== 'all') {
       appendSinkHoles();
       return;
     }
+    changeUrlParam('candidat', key);
     $('.sink-videos').empty();
-    changeUrlParam('file', url);
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
       });
@@ -233,7 +233,6 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
          `
       );
       });
-
     $('#representation').empty();
     const cscores = {};
     jsonLocal[key]

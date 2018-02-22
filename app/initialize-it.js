@@ -196,10 +196,11 @@ $(document).ready(function() {
    function appendVideo(key) {
       changeUrlParam('candidat', key);
 
-      if (key=== 'all') {
+      if (key === 'all') {
         appendSinkHoles();
         return;
       }
+
       $('.sink-videos').empty();
 
       changeUrlParam('file', url);
