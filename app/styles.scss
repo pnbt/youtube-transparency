@@ -179,6 +179,15 @@ a {
 
 // SECTIONS ------------ //
 
+.f-right {
+  right: 0;
+  position: absolute;
+}
+
+.sink-wrapper {
+  background-color: white;
+}
+
 .box-wrapper {
   border: 1px solid $border-color;
   padding: 15px;
@@ -610,12 +619,20 @@ input[type=range] {
   padding: 10px;
 }
 
-
 .video-title {
   font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.sinkhole {
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 50px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 .general-title {

@@ -86,24 +86,105 @@ $(document).ready(function() {
    });
 
    function appendPresentation(key) {
-      console.log(jsonThemeLocal);
-      $('#presentation').empty();
-      $('#presentation').append(
-      `
-         <div class="columns">
-            <div class="column has-text-centered">
-                  <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
-                  <h1 class="" id="presentation-title">YouTube’s most recommended videos</h1>
-                  <h2 class="">from <a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key}</span></a></h2>
-            </div>
-         </div>
-         `
-    );
-   }
+    $('#presentation').empty();
+    if (key === 'all') {
+      return;
+    }
 
-  // Permet d'actualiser les vidéos correspond au theme "key".
-   function appendVideo(key) {
-      changeUrlParam('candidat', key);
+    $('#presentation').append(
+    `
+       <div class="columns">
+          <div class="column has-text-centered">
+                <img class="circular--square is-block" src="${jsonThemeLocal[key].picture}" alt=""/>
+                <h1 class="" id="presentation-title">YouTube’s most recommended videos</h1>
+                <h2 class="">from <a class="searched-value" href="https://www.youtube.com/results?search_query=${key}" target="_blank"><span id="selected-key">${key.trim()}</span></a></h2>
+          </div>
+       </div>
+       `
+  );
+ }
+
+function appendSinkHoles() {
+  $('#sidebar').children().each(function() {
+    $(this).removeClass('is-active');
+  });
+  $('#panel-block-all').addClass('is-active');
+  $('.videos').empty()
+
+  // Compute the sinkholes
+  var counts = {}
+  var videos_info = {}
+  for (var key in jsonLocal) {
+    // check if the property/key is defined in the object itself, not in parent
+    if (jsonLocal.hasOwnProperty(key)) {
+        jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
+        counts[item.id] = (counts[item.id] || 0) + 1;
+        videos_info[item.id] = item
+      })
+    }
+  }
+  var sorted_counts = Object.keys(counts).map(function(key) {
+    return [key, counts[key]];
+  });
+
+  // Sort the array based on the second element
+  sorted_counts.sort(function(first, second) {
+      return second[1] - first[1];
+  });
+
+  $('.sink-videos').append(
+    `
+      <div class="sinkhole">Videos recommended from multiple searches: <div>
+    `
+  )
+
+  sorted_counts.forEach((elem) => {
+    var item = videos_info[elem[0]];
+    const views = item.views > 0 ? `${item.views.toLocaleString(true)} views` : '';
+    const multiplicator = elem[1];
+    const mult = multiplicator ? `
+          <div class="mult f-right" data-balloon-length="large" data-balloon="YouTube recommended this video after ${Math.round(multiplicator * 10) / 10} different searches"><div class="mult-text"> Number of searches yielding this video:</div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+          </div>`
+      : '';
+
+    if (item.views > 0 && multiplicator > 1) {
+        $('.sink-videos').append(
+      `
+          <div class="box">
+          <article class="media">
+              <figure class="media-left level">
+                <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
+                    <div class="is-inline-block level-item">
+                      <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+                    </div>
+                </a>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                    <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                    <div><small class="video-stats">` +
+        views +
+        `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    ${item.likes.toLocaleString(true)}
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes.toLocaleString(true)}</small></div>
+                </div>
+              </div>
+              </article>` +
+        mult +
+        `</div>
+        `
+    );}
+  });
+}
+
+// Permet d'actualiser les vidéos correspond au theme "key".
+ function appendVideo(key) {
+    if (key=== 'all') {
+      appendSinkHoles();
+      return;
+    }
+    $('.sink-videos').empty();
+    changeUrlParam('candidat', key);
       changeUrlParam('file', url);
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
