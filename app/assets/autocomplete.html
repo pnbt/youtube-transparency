@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AlgoTransparency - Does YouTube influence presidential elections?</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <meta property="og:url" content="http://algotransparency.org" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
+  <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="476" />
+  <meta property="og:image:height" content="250" />
+  <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="modifications.css">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+
+  <link href="fonts"="Roboto" rel="stylesheet">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="../app.js"></script>
+  <script>
+    require('initialize-en');
+  </script>
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-4.1.0-min.gz.js"
+  ;r.onload=function(){if(e.amplitude.runQueuedFunctions){
+  e.amplitude.runQueuedFunctions()}else{
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+  ;for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(c,l[p])}n.Revenue=c
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups","setSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+  ;e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("ac83dc709767bb0f32724a7edff4e715");
+</script>
+</head>
+
+<body>
+  <section class="nav nav-first">
+    <!-- Hero header: will stick at the top -->
+    <div class="hero-head">
+      <header class="nav">
+        <div class="nav-bar">
+          <div class="nav-left">
+            <a class="nav-item" href="/index.html">
+              AlgoTransparency
+              <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+            </a>
+            <a class="nav-item is-hidden-mobile">
+              <h1></h1>
+            </a>
+          </div>
+          <span class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <div class="nav-right nav-menu">
+            <a class="nav-item" href="index.html">
+              Home
+            </a>
+            <!-- <a class="nav-item" href="presse.html">
+              Press
+            </a> -->
+            <a class="nav-item">
+              About
+            </a>
+            <div class="addthis_inline_share_toolbox nav-item padded-top"></div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </section>
+  <!-- <section class="columns">
+    <div class="column">
+      <div class="container is-8 is-offset-2 general"> -->
+        <div class="title-block butterfly">
+          <div class="top-subtitle general">
+              <div>Autocomplete Transparency</div>
+          </div>
+        </div>
+        <div class="general-section">
+          <div class="video-summary">
+            <button data-toggle="modal" data-target="#cgpgreyModal" class="play-button dark-button"><i class="fa fa-play" aria-hidden="true">
+              </i></button>
+                  How Algorithms Shape Our Lives
+                <br>
+              <span class="video-credits">(8 minutes video by <a class="superblack" href="https://www.youtube.com/channel/UC2C_jShtL725hvbm1arSV9w">CGP Grey</a>)</span>
+            </div>
+        </div>
+
+        <div class="general-section mission">
+            <div class="mission-title">Problem</div>
+            <div class="mission-body">
+              Algorithms can improve the life of millions.
+              They also may have dangerous, unexpected consequences if their incentives are not careful aligned with those of users <br>
+            </div>
+          </div>
+
+        <div class="general-section">
+            <div class="mission-title">Our Mission</div>
+            <div class="mission-body">
+              Empower users to be in control of the information they recieve. 
+            </div>
+        </div>
+
+        <div class="general-section mission">
+            <div class="mission-title">Our Goals</div>
+            <div class="mission-body">
+              • Explain which decisions are taken by algorithms <br>
+              • Measure the benefits and harms of different algorithms<br>
+              • Implement algorithms and incentive mechanisms that provide more good in the world
+            </div>
+        </div>
+
+        <div class="general-section">
+            <div class="mission-title">Questions we want to answer</div>
+            <div class="mission-body">
+            <ul style="margin-left: 40px;">
+                <li><strong>• Which algorithms are aligned with your needs?</strong></li>
+                <li><strong>• Which algorithms can you influence?</strong></li>
+                <li><strong>• Which algorithms can be abused?</strong></li>
+              </ul>
+          </div>
+        </div>
+
+        <div class="general-section mission">
+            <div class="mission-title">Monitoring Election</div>
+            <div class="mission-body">
+                Algorithms already have a huge impact on our elections, through recommendation, search results, etc...
+                No algorithm can be "neutral", therefore we need to know which type of content they promote. 
+                <br><br>
+                On YouTube, we followed recommendations to see which videos where promoted the most by the recommendation algorithm:
+            </div>
+            <div class="mission-button">
+              <a href="https://algotransparency.org/en/it.html">
+                  <button class="superblack">Italian Election 2018</button>
+              </a>
+               <a href="https://algotransparency.org/en/uk.html">
+                <button class="superblack">British Election 2017</button>
+                </a>
+                <a href="https://algotransparency.org/en/index.html">
+                   <button class="superblack">French Election 2017</button>
+                </a>
+                <a href="https://algotransparency.org/en/de.html">
+                   <button class="superblack">German Election 2017</button>
+                </a>
+              </div>
+          </div>
+        </div>
+
+        <div class="general-section">
+            <div class="mission-title">Monitoring Impactful Topics</div>
+            <div class="mission-body">
+                Other topics we are currently monitoring include:
+                  </div>
+                <div class="mission-button">
+                    <a href="https://algotransparency.org/en/kids.html">
+                      <button class="superblack">Educational Videos for Children</button>
+                    </a>
+                    <a href="https://algotransparency.org/en/science.html">
+                       <button class="superblack">Science</button>
+                    </a>
+                   <a href="https://algotransparency.org/en/sshootings.html">
+                       <button class="superblack">Mass Shootings</button>
+                    </a>
+                    <a href="https://algotransparency.org/en/worldleaders.html">
+                      <button class="superblack">World Leaders</button>
+                    </a>
+                    </div>
+                </div>
+          </div>
+        </div>
+
+        <div class="general-section mission">
+            <div class="mission-title">The projects that inspire us:</div>
+            <div class="mission-body inspiration">
+              <ul style="margin-left: 40px;">
+                <li><strong><a href="https://en.wikipedia.org/wiki/Project_Zero">Google project zero</a></strong></li>
+                <li><strong><a href="https://transparencyreport.google.com/user-data/overview">Google transparency report</a></strong></li>
+                <li><strong><a href="https://humanetech.com">Center for Humane Technology</a></strong></li>
+                <li><strong><a href="http://datafordemocracy.org/">Data For Democracy</a></strong></li>
+                <li><strong><a href="http://www.dataforgood.fr/">Data For Good</a></strong></li>
+              </ul>
+          </div>
+        </div>
+        <div class="general-section">
+            <div class="mission-title">Our data was used in:</div>
+            <div class="mission-button">
+                <a class="journal" href="https://www.wsj.com/articles/how-youtube-drives-viewers-to-the-internets-darkest-corners-1518020478" ><img src="/images/wsj.png" width="120"/></a>
+                <a class="journal" href="https://www.theguardian.com/technology/2018/feb/02/how-youtubes-algorithm-distorts-truth"><img src="/images/theguardian.png" width="200"/></a>
+            </div>
+        </div>
+
+
+        <!-- <div class="general-section">
+          <div class="mission">
+            <div class="mission-title">What could go wrong?</div>
+            <div class="mission-body">
+              <ul>
+                <li style="display: flex; flex-direction: column;align-items: center;">
+                  <div><strong>- Natural biases: </strong> Algorithms can encourage dystopian contents</div>
+                  <div><a href="">TED Talk by Zynep</a><button data-toggle="modal" data-target="#zynepModal" class="play-button"><i class="fa fa-play" aria-hidden="true"></i></button></div>
+                </li>
+                <li>
+                  <strong>- Taught biases: </strong> Algorithms can be taught by abuser to promote their own content <a href="">TED Talk by Zynep</a>
+                  <button data-toggle="modal" data-target="#zynepModal" class="play-button"><i class="fa fa-play" aria-hidden="true"></i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+  
+
+      <!-- </div>
+      <div class="container is-8 is-offset-2"> -->
+
+        <!-- <h1 class="general-title"></h1>
+        <div class="algorithm-container">
+          <div class="algorithm">
+            <div class="algorithm-title">YouTube Recommendations</div>
+            <div class="algorithm-stat"><strong>Global Impact:</strong></div>
+            <div class="algorithm-description">
+              <a href="https://www.youtube.com/yt/about/press/"> > 2 trillion hours of viewtime per year</a>
+            </div>            
+            <div class="algorithm-stat"><strong>Basics:</strong> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf"></a></div>
+            <div class="algorithm-description">              
+              The algorithm tries to make you stay online as long as possible by learning from other user's sessions
+            </div>
+            <div class="algorithm-stat"><strong>Optimizing:</strong></div>
+            <div class="algorithm-description">                          
+              <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">Watch time (mainly)</a>
+            </div>  
+            <div class="algorithm-stat"><strong>Detailed Technology:</strong></div>
+            <div class="algorithm-description">                          
+              <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf">DeepLearning for recommendations</a>
+            </div>
+            <div class="algorithm-stat"><strong>Public Training Set:</strong> <a href="https://research.google.com/youtube8m/">7 million videos</a></div>
+            <div class="algorithm-stat"><strong>How can algotransparency monitor it?</strong> By following recommendations and see where they lead </div>
+            <div class="algorithm-stat"><strong>Themes we monitored: </strong>  </div>
+            <div class="algorithm-stat"><strong>Openess: </strong> Google is </div>
+            <div class="algorithm-stat"><strong>Developper:</strong>
+            </div>
+            <div class="algorithm-description">
+              <a href="https://www.youtube.com/yt/about/press/"> Google </a>
+            </div>
+          </div>
+        </div> -->
+
+        
+        <!--<h1 class="general-title">Who is behind AlgoTransparency?</h1>-->
+        <div class="atisledby">
+        <p class="atisledbycontent">
+          AlgoTransparency has recieved contributions from:
+          <a href="https://twitter.com/gchaslot">Guillaume Chaslot</a>,
+          <a href="https://twitter.com/SolineLedesert">Soline Ledésert</a>,
+          <a href="https://twitter.com/nicolas_wsk">Nicolas Wielonsky</a>,
+          <a href="https://twitter.com/seiteta">Frédéric Bardolle</a>,
+          <a href="https://twitter.com/adrienm">Adrien Montcoudiol</a> and
+          <a href="https://twitter.com/mathieugrac">Mathieu Grac</a>.
+        </p>
+        </div>
+
+        <div class="contact">
+          Contact: <a href="mailto:?to=hello@algotransparency.org">hello@algotransparency.org</a>
+      </div>
+    <!-- </div>
+  </section> -->
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <div class="modal fade" id="cgpgreyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+          <iframe id="cgpgreyVideo" width="600" height="337" src="" frameborder="0" gesture="media" allow="encrypted-media"
+          allowfullscreen></iframe> 
+    </div>
+  </div>
+
+<!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#cgpgreyModal").on('shown.bs.modal', function(){
+          $("#cgpgreyVideo").attr('src', "https://www.youtube.com/embed/R9OHn5ZF4Uo?autoplay=1&rel=0");
+      });
+      $("#cgpgreyModal").on('hide.bs.modal', function(){
+          $("#cgpgreyVideo").attr('src', '');
+      });  
+  });
+  </script>
+
+</body>
