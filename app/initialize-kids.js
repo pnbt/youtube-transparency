@@ -17,7 +17,7 @@ $(document).ready(function() {
 
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-kids-2018-03-07';
+   const lastDate = 'ytrecos-kids-2018-02-05';
    $.get('/data/themeskids.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
