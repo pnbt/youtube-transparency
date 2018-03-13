@@ -361,8 +361,8 @@ input[type=range] {
 
 .mult {
   cursor: pointer;
-  width: 120px;
-  padding: 0 10px;
+  min-width: 120px;
+  padding: 0 20px;
   text-align: center;
   margin-left: 10px;
   border-left: 1px solid $border-color;
@@ -722,6 +722,11 @@ input[type=range] {
    border: none;
 }
 
+.view_count {
+  font-size: 18px;
+  color: $primary;
+  margin: 15px;
+}
 // .at-style-responsive .at-share-btn {
 //   margin: 15px 5px;
 // }

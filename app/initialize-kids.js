@@ -100,7 +100,7 @@ $(document).ready(function() {
 
    function appendPresentation(key) {
     $('#presentation').empty();
-    if (key === 'all') {
+    if (key === 'all' || key== 'top') {
       return;
     }
 
@@ -123,6 +123,7 @@ function appendSinkHoles() {
   });
   $('#panel-block-all').addClass('is-active');
   $('.videos').empty()
+  $('.sink-videos').empty();
 
   // Compute the sinkholes
   var counts = {}
@@ -173,7 +174,7 @@ function appendSinkHoles() {
                 </a>
               </figure>
               <div class="media-content">
-                <div class="content">
+                <div class="content" style="width:80%">
                     <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
                     <div><small class="video-stats">` +
         views +
@@ -190,6 +191,98 @@ function appendSinkHoles() {
   });
 }
 
+function isNotBanned(index) {
+   return (['RgKAFK5djSk', 'kffacxfA7G4', 'pXRviuL6vMY', 'pXRviuL6vMY', '_Z5-P9v3F8w', 'ru0K8uYEZWw', 'QtXby3twMmI', 'Pw-0pbY9JeU', 'SYM-RJwSGQ8', 'CHVhwcOg6y8', 'LXUSaVw3Mvk', 'ESXgJ9-H-2U', 'ypPSrRYOAj4', 'V1bFr2SWP1I', 'SDTZ7iX4vTQ', 'oh2LWWORoiM', '4ZHwu0uut3k', 'LsoLEjrDogU', ''].indexOf(index) === -1)
+}
+
+function positiveDisplay(number) {
+  if (number === -1) {
+    return '';
+  }
+  return number.toLocaleString(true)
+}
+
+
+function appendTops() {
+  $('#sidebar').children().each(function() {
+    $(this).removeClass('is-active');
+  });
+  $('#panel-block-top').addClass('is-active');
+  $('.videos').empty()
+  $('.sink-videos').empty();
+  $('.nav-third').hide();
+
+  // Compute the sinkholes
+  var counts = {}
+  var videos_info = {}
+  for (var key in jsonLocal) {
+    // check if the property/key is defined in the object itself, not in parent
+    if (jsonLocal.hasOwnProperty(key)) {
+        jsonLocal[key].filter((item) => item.views !== -1).forEach((item, index) => {
+        counts[item.id] = item.views;
+        videos_info[item.id] = item
+      })
+    }
+  }
+  var sorted_counts = Object.keys(counts).map(function(key) {
+    return [key, counts[key]];
+  });
+
+  // Sort the array based on the second element
+  sorted_counts.sort(function(first, second) {
+      return second[1] - first[1];
+  });
+
+  $('.sink-videos').append(
+    `
+      <div class="sinkhole">100 of The Most Recommended Kids Videos<div class="view_count"><span id="total_views"></span> views - <span>🌎 🌎 🌎 🌎 🌎 🌎 🌎</span></div><div>
+    `
+  )
+  var total_views = 0;
+
+  sorted_counts.filter((item) => isNotBanned(item[0])).slice(0, 100).forEach((elem) => {
+    console.log(elem[0])
+    var item = videos_info[elem[0]];
+    const views = item.views > 0 ? `${item.views.toLocaleString(true)} views` : '';
+    const multiplicator = elem[1];
+    const mult = multiplicator ? `
+          <div class="mult f-right" data-balloon-length="large" data-balloon="This video has been viewed at least ${Number(multiplicator).toLocaleString()} times"><div class="mult-text"> Views:</div><div class="mult-x">${Number(multiplicator).toLocaleString()} </div>
+          </div>`
+      : '';
+
+    if (item.views > 0 && multiplicator > 1) {
+        total_views += item.views;
+        $('.sink-videos').append(
+      `
+          <div class="box">
+          <article class="media">
+              <figure class="media-left level">
+                <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
+                    <div class="is-inline-block level-item">
+                      <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+                    </div>
+                </a>
+              </figure>
+              <div class="media-content">
+                <div class="content" style="width:60%">
+                    <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                    <div><small class="video-stats">` +
+        views +
+        `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    ${positiveDisplay(item.likes)}
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${positiveDisplay(item.dislikes)}</small></div>
+                </div>
+              </div>
+              </article>` +
+        mult +
+        `</div>
+        `
+    );}
+  });
+  $('#total_views').text(positiveDisplay(total_views));
+}
+
+
 // Permet d'actualiser les vidéos correspond au theme "key".
  function appendVideo(key) {
     changeUrlParam('candidat', key);
@@ -198,6 +291,11 @@ function appendSinkHoles() {
       appendSinkHoles();
       return;
     }
+    if (key=='top') {
+      appendTops()
+      return;
+    }
+
     $('.sink-videos').empty();
     changeUrlParam('file', url);
       $('#sidebar').children().each(function() {
