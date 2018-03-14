@@ -408,9 +408,9 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
    }
 
   // SLIDER
-  if (localStorage.getItem('introDone') !== 'yes') {
+  if (localStorage.getItem('introDone') !== 'yes' && getUrlVar('candidat') === '') {
     $('#intro').show();
- }
+  }
   $(document).on('click', '.hideIntro', function() {
      if (currentIndex > slidesLength - 1) {
         $('#intro').hide();
