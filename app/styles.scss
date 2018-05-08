@@ -159,6 +159,7 @@ a {
 }
 
 .nav-right, .nav-left {
+  margin-right: 15px;
   .nav-item {
     line-height: 49px;
     height: 49px;
@@ -689,15 +690,11 @@ input[type=range] {
 .pt4 { padding-top: 40px; }
 
 .mb1 { margin-bottom: 10px; }
-.mb2 { margin-bottom: 20px; }
+.mb2 { margin-bottom: 15px; }
 .mb4 { margin-bottom: 40px; }
-
 
 .mt1 { margin-top: 10px; }
 .mt2 { margin-top: 20px; }
-
-.mb1 { margin-bottom: 10px; }
-.mb2 { margin-bottom: 20px; }
 
 .no-mgb {
    margin-bottom: 0 !important;
@@ -1009,6 +1006,15 @@ input[type=range] {
   margin: 60px 30px 120px 30px;
   text-align: center;
 }
+.twitter-btn {
+  margin: 10px 10px 0 10px;
+}
+.twitter-btn-2 {
+  margin-top: 20px;
+  margin-left: 60px;
+  display: block;
+}
+
 
 // RESPONSIVE
 @media screen and (max-width: 768px){
