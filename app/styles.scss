@@ -153,6 +153,9 @@ a {
   }
 }
 
+.news-band {
+  width: 100%
+}
 .superblack {
   color: black !important;
   font-weight: bold;
@@ -990,18 +993,24 @@ input[type=range] {
   align-items: center;
 }
 .newspaper-article {
-  margin-top: 60px;
-  padding-top: 20px;
+  padding-bottom: 40px;
+  margin-top: 40px;
   border-color: lightgrey;
-  border-top: solid 1px lightgrey;
+  border-bottom: solid 1px lightgrey;
 }
 .article-link {
   font-size: 22px;
   color: darkslategrey !important;
+  font-weight: bold;
+  line-height: 1.3em;
 }
 .article-linker {
   margin: 15px 20px 0 40px;
 }
+.article-linker2 {
+  margin-top: 30px !important;
+}
+
 .contact {
   margin: 60px 30px 120px 30px;
   text-align: center;
