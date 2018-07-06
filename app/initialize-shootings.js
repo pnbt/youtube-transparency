@@ -4,7 +4,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-shootings-2018-06-01';
+   const lastDate = 'ytrecos-shootings-2018-07-05';
    $.get('/data/themesshootings.json', function(data) {
       Object.keys(data).forEach((key) => {
          console.log('DATA')
