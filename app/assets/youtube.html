@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <title>AlgoTransparency</title>
+   <link rel="icon" type="image/png" href="favicon.png" />
+   <meta property="og:url" content="http://algotransparency.org/" />
+   <meta property="og:type" content="article" />
+   <meta property="og:title" content="YouTube: Most recommended videos" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/youtube.jpg" />
+   <meta property="og:image:type" content="image/jpg" />
+   <meta property="og:description" content="AlgoTransparency studied the impact of the YouTube recommendation algorithm." />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+   <link rel="stylesheet" href="/app.css">
+   <script src="/app.js"></script>
+   <script>
+      require('initialize-science');
+   </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+      (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+      ;r.type="text/javascript";r.async=true
+      ;r.src="https://cdn.amplitude.com/libs/amplitude-4.1.0-min.gz.js"
+      ;r.onload=function(){if(e.amplitude.runQueuedFunctions){
+      e.amplitude.runQueuedFunctions()}else{
+      console.log("[Amplitude] Error: could not load SDK")}}
+      ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+      ;function s(e,t){e.prototype[t]=function(){
+      this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+      var o=function(){this._q=[];return this}
+      ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+      ;for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[]
+      ;return this}
+      ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+      ;for(var p=0;p<l.length;p++){s(c,l[p])}n.Revenue=c
+      ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups","setSessionId"]
+      ;function v(e){function t(t){e[t]=function(){
+      e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+      for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+      e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+      ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+      ;e.amplitude=n})(window,document);
+
+      amplitude.getInstance().init("ac83dc709767bb0f32724a7edff4e715");
+      amplitude.getInstance().logEvent('Index Loaded');
+      </script>
+      <style>
+  html{
+        background-color: black !important;
+  }
+  .tiles {
+    position: absolute;
+    top: 50px;
+    height: 800px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    left:0; right:0
+  }
+  .tile {
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    display:block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: transform 4s;
+  }
+  .loading {
+      position: fixed;
+      width: 500px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px; /* Negative half of height. */
+      margin-left: -250px; /* Negative half of width. */
+  }
+        </style>
+<script>
+$( document ).ready(function() {
+            $('.tile')
+              // tile mouse actions
+              .on('mouseover', function(){
+                $(this).children('.photo').css({'transform': 'scale('+ $(this).attr('data-scale') +')'});
+              })
+              .on('mouseout', function(){
+                $(this).children('.photo').css({'transform': 'scale(1)'});
+              })
+              .on('mousemove', function(e){
+                $(this).children('.photo').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
+              })
+              // tiles set up
+              .each(function(){
+                $(this)
+                  // add a photo container
+                  .append('<div class="photo"></div>')
+                  // set up a background image for each tile based on data-image attribute
+                  .children('.photo').css({'background-image': 'url('+ $(this).attr('data-image') +')'});
+              })})
+</script>
+</head>
+
+<body style="background-color: black !important;">
+   <section class="hero is-small">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+         <header class="nav nav-first">
+            <div class="nav-bar">
+               <div class="nav-left">
+                  <a class="nav-item" href="index.html">
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+                  </a>
+               </div>
+               <span class="nav-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item showIntro">
+                     Watch intro
+                  </a>
+                  <!--<a class="nav-item">
+                     Presse
+                  </a>-->
+                  <!-- <a class="nav-item" href="/en/presse.html">
+                     Press
+                  </a> -->
+                  <a class="nav-item" href="/en/demarche.html">
+                     About
+                  </a>
+                  <a class="nav-item" href="/en/press.html">
+                        Media Coverage
+                      </a>
+                  <div class="twitter-btn"><a href="https://twitter.com/helloalgo?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow @helloalgo</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+               </div>
+            </div>
+         </header>
+      </div>
+   </section>
+   <img class="loading" src="images/loading.gif">
+   <div class="tiles">
+         <div class="tile" data-scale="8" data-image="images/youtube-map.jpg"></div>
+   </div>
+         <!-- <div id="Container">
+            <img id="myimage" onclick="resizeImg(this)" src="images/youtube-map.jpg" width="600px" height="600px" alt="Map" style="margin-left: auto;margin-right: auto;display: block;">
+      </div> -->
+   <!-- <div id="myresult" class="img-zoom-result"></div>
+   <div class="img-zoom-container">
+      <div class="half-map">
+      </div>
+   </div> -->
+<!-- <script>
+   function imageZoom(imgID, resultID) {
+      var img, lens, result, cx, cy;
+      img = document.getElementById(imgID);
+      result = document.getElementById(resultID);
+      /*create lens:*/
+      lens = document.createElement("DIV");
+      lens.setAttribute("class", "img-zoom-lens");
+      /*insert lens:*/
+      img.parentElement.insertBefore(lens, img);
+      /*calculate the ratio between result DIV and lens:*/
+      cx = result.offsetWidth / lens.offsetWidth;
+      cy = result.offsetHeight / lens.offsetHeight;
+      /*set background properties for the result DIV*/
+      result.style.backgroundImage = "url('" + img.src + "')";
+      result.style.backgroundSize = (document.width * cx) + "px " + (document.width * cy) + "px";
+      /*execute a function when someone moves the cursor over the image, or the lens:*/
+      lens.addEventListener("mousemove", moveLens);
+      img.addEventListener("mousemove", moveLens);
+      /*and also for touch screens:*/
+      lens.addEventListener("touchmove", moveLens);
+      img.addEventListener("touchmove", moveLens);
+      function moveLens(e) {
+        var pos, x, y;
+        /*prevent any other actions that may occur when moving over the image*/
+        e.preventDefault();
+        /*get the cursor's x and y positions:*/
+        pos = getCursorPos(e);
+        /*calculate the position of the lens:*/
+        x = pos.x - (lens.offsetWidth / 2);
+        y = pos.y - (lens.offsetHeight / 2);
+        /*prevent the lens from being positioned outside the image:*/
+        if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
+        if (x < 0) {x = 0;}
+        if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
+        if (y < 0) {y = 0;}
+        /*set the position of the lens:*/
+        lens.style.left = x + "px";
+        lens.style.top = y + "px";
+        /*display what the lens "sees":*/
+        result.style.backgroundPosition = "-" + ((x*1.16) * cx) + "px -" + ((y*1.16) * cy) + "px";
+        console.log(lens.offsetWidth);
+        console.log(lens.offsetHeight);
+      }
+      function getCursorPos(e) {
+        var a, x = 0, y = 0;
+        e = e || window.event;
+        /*get the x and y positions of the image:*/
+        a = img.getBoundingClientRect();
+        /*calculate the cursor's x and y coordinates, relative to the image:*/
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+        /*consider any page scrolling:*/
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        return {x : x, y : y};
+      }
+    } 
+
+    imageZoom("myimage", "myresult"); 
+</script> -->
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+      <!-- <script>
+            // var zoomed=0;
+            // $(document).ready(function () { 
+            //       $('#myimage').click(function () {
+            //             console.log($('#myimage').height())
+            //             if (zoomed) {
+            //                   $('#myimage').width($('#myimage').width()/1.8)
+            //                   $('#myimage').height($('#myimage').height()/1.8)
+
+            //             } else {
+            //                   console.log('zooming....')
+            //                   $('#myimage').width($('#myimage').width()*1.8)
+            //                   $('#myimage').height($('#myimage').height()*1.8)
+            //             }
+            //             zoomed = 1-zoomed;
+            //       })
+            // });
+      </script> -->
+
+
+
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-97331997-1', 'auto');
+      ga('send', 'pageview');
+   </script>
+</body>
+
