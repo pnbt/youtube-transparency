@@ -93,6 +93,29 @@ small, .small  {
   }
 }
 
+.highres {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.highres a {
+  color: white;
+  font-weight: bold;
+}
+
+.minimap {
+  margin-top: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+  max-height: 70%;
+}
+
 strong {
   color: $gray-dark;
 }
