@@ -1,0 +1,11 @@
+{"sweden": [
+    {"name": "Stefan Löfven", "picture": "/images/lofven.jpg", "tag": "Stefan Lofven"},
+    {"name": "Jimmie Åkesson", "picture": "/images/akesson.png", "tag": "Jimmie Akesson"},
+    {"name": "Annie Lööf", "picture": "/images/loof.png", "tag": "Annie Loof"},
+    {"name": "Jonas Sjöstedt", "picture": "/images/sjostedt.jpg", "tag": "Jonas Sjostedt"},
+    {"name": "Gustav Fridolin", "picture": "/images/fridolin.jpg", "tag": "Gustav Fridolin"},
+    {"name": "Isabella Lövin", "picture": "/images/lovin.jpg", "tag": "Isabella Lovin"},
+    {"name": "Ebba Busch Thor", "picture": "/images/thor.jpg", "tag": "Ebba Busch Thor"},
+    {"name": "Ulf Kristersson", "picture": "/images/kristersson.png", "tag": "Ulf Kristersson"}
+]
+}
