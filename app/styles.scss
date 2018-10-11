@@ -237,6 +237,12 @@ a {
 
 // SECTIONS ------------ //
 
+.right {
+  right: 0;
+  margin-left: auto !important;
+}
+
+
 .f-right {
   right: 0;
   position: absolute;
@@ -417,13 +423,73 @@ input[type=range] {
    display: flex;
 }
 
+.info-title-in {
+  padding-top: 40px;
+}
+
+.redbold {
+  color: #DD2726;
+  font-weight: bold;
+}
+
+.straight-box {
+  border-radius: 0px !important;
+  display:inline-block;
+}
+
+.small-date {
+  display: inline-block;
+}
+
+.info-title {
+  font-size: 45px;
+  line-height: 1.3em;
+  color: white;
+  font-weight: bold;
+  max-height: 1000px;
+  -moz-transition: max-height 1s;
+  -webkit-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+  overflow: hidden;
+}
+
+.search-space {
+  background-color: #262626 !important;
+  color: white;
+  padding-left: 15%;
+  padding-right: 15%;
+  max-height: 500px;
+}
+
+.noradius {
+  border-radius: 0 !important;
+}
+
+.search-btn {
+  padding: 5px 15px !important;
+  font-size: 18px!important;
+  line-height: 1.4 !important;
+  border-radius: 0 !important;
+  margin-top: 24px;
+  background-color: #DD2726;
+}
+
+.search-group {
+  padding-top:30px;
+  max-width: 600px;
+  padding-bottom: 80px;
+}
+
 .mult {
   cursor: pointer;
-  min-width: 120px;
+  width: 180px;
   padding: 0 20px;
   text-align: center;
   margin-left: 10px;
   border-left: 1px solid $border-color;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .mult-x {
