@@ -136,14 +136,6 @@ function appendSinkHoles() {
   $('.video-header').hide()
   $('.videos').hide()
 
-  $('.sink-videos').append(
-    `
-      <div class="sinkhole">Videos recommended from the most channels on <span class="redbold">` + 
-        $('#date').val()
-      + `</span><div>
-    `
-  )
-
   var keyword = $("#srch-term").val()
   console.log(keyword)
 
@@ -182,9 +174,24 @@ function appendSinkHoles() {
     return [item.id, 0];
   })
 
+  var extra_text = ''
+  if (keyword !== '') {
+    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title';
+  }
+
+  $('.sink-videos').append(
+    `
+      <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>most recommended videos on &nbsp;<span class="redbold">` + 
+        $('#date').val() + '</span>' + extra_text
+      + `<div>
+    `
+  )
+
+
+
   console.log(filtered_vids)
 
-  filtered_vids.slice(1,100).forEach((elem) => {
+  filtered_vids.slice(0,100).forEach((elem) => {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${item.views.toLocaleString(true)} views` : '';
