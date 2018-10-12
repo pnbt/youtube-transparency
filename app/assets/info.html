@@ -249,7 +249,7 @@
                         <h1 class="">But what are the most recommended videos?</h1>
                         <h2 class="mb4">Today, it’s impossible to tell</h2>
                         <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
-                        <h2 class="mb4">Some people claim they are being sensored. Is that true?</h2>
+                        <!-- <h2 class="mb4">Some people claim they are being sensored. Is that true?</h2> -->
                   </section>
                   <section class="slide slide-4">
                         <h1 class="">To find out, we created a robot</h1>
@@ -277,13 +277,16 @@
                   var date_input=$('input[name="date"]'); //our date input has the name "date"
                   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                   var options={
-                  format: 'mm/dd/yyyy',
-                  container: container,
-                  todayHighlight: true,
-                  startDate: '10-09-2018',
-                  autoclose: true,
+                        format: 'mm/dd/yyyy',
+                        container: container,
+                        todayHighlight: true,
+                        startDate: '10-09-2018',
+                        autoclose: true,
                   };
-                  date_input.datepicker(options);
+                  date_input.datepicker(options).on('changeDate',function(event){
+                        console.log('select')
+                        setTimeout(appendSinkHoles(),1000);
+                  });
             });
       </script>
 

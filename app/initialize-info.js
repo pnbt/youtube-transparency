@@ -13,7 +13,7 @@ $(document).ready(function() {
   $('#srch-term').on('input',function(e){
     appendSinkHoles();
   });
-    
+
   $.get("../data/*", function(data) {
       console.log('Initialize');
   });
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
    var d= $('#date').val()
    var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-   const lastDate = 'info-' + filedate;
+   const lastDate = 'us-info-' + filedate;
    console.log(lastDate)
 
    let url = getUrlVar('file') || lastDate;
@@ -57,26 +57,37 @@ $(document).ready(function() {
       $('.nav-right').toggleClass('is-active');
    });
 
-   $(document).on('change', '#video-select', function(event) {
-      $.get(
-      '/data/ytrecos-science/' + event.target.value + '.json',
-      (data) => {
-         url = event.target.value;
-         jsonLocal = data;
-         let count = 0;
-         changeUrlParam('file', event.target.value);
-         Object.keys(jsonLocal).forEach((item) => {
-            count += jsonLocal[item].length;
-         });
-         $('#nb_video').empty();
-         $('#nb_video').append(count);
-         appendVideo($('#selected-key').text());
-      }
-    );
-    $(document).on('change', '#date', function(event) {
-      changeTheDate();
-    })
-   });
+  //  $(document).on('change', '#video-select', function(event) {
+  //     $.get(
+  //     '/data/ytrecos-science/' + event.target.value + '.json',
+  //     (data) => {
+  //        url = event.target.value;
+  //        jsonLocal = data;
+  //        let count = 0;
+  //        changeUrlParam('file', event.target.value);
+  //        Object.keys(jsonLocal).forEach((item) => {
+  //           count += jsonLocal[item].length;
+  //        });
+  //        $('#nb_video').empty();
+  //        $('#nb_video').append(count);
+  //        appendVideo($('#selected-key').text());
+  //     }
+  //   );
+    var date_input=$('input[name="date"]'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options={
+          format: 'mm/dd/yyyy',
+          container: container,
+          todayHighlight: true,
+          startDate: '10-09-2018',
+          autoclose: true,
+    };
+    date_input.datepicker(options).on('changeDate',function(event){
+      console.log('select')
+      setTimeout(appendSinkHoles,1000);
+    });
+  
+  //  });
 
    function getCssTag(tag) {
       return tag.split(' ').pop().replace('?', '');
@@ -105,7 +116,7 @@ function changeTheDate() {
  d= $('#date').val()
  filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
 
- const lastDate = 'info-' + filedate;
+ const lastDate = 'us-info-' + filedate;
  let url = getUrlVar('file') || lastDate;
  if (getUrlVar('file')) {
     $('#video-select').children().each(function() {
