@@ -273,7 +273,195 @@
             ga('create', 'UA-97331997-1', 'auto');
             ga('send', 'pageview');
 
+function getUrlVar(key) {
+   const result = new RegExp(key + '=([^&]*)', 'i').exec(window.location.search);
+   return (result && unescape(result[1])) || '';
+}
+
+
+function changeUrlParam(param, value) {
+   const currentURL = window.location.href + '&';
+   const change = new RegExp('(' + param + ')=(.*)&', 'g');
+   const newURL = currentURL.replace(change, '$1=' + value + '&');
+
+   if (getURLParameter(param) !== null) {
+      try {
+         window.history.replaceState('', '', newURL.slice(0, -1));
+      } catch (err) {
+         console.err(err);
+      }
+   } else {
+      const currURL = window.location.href;
+      if (currURL.indexOf('?') !== -1) {
+         window.history.replaceState(
+        '',
+        '',
+        currentURL.slice(0, -1) + '&' + param + '=' + value
+      );
+      } else {
+         window.history.replaceState(
+        '',
+        '',
+        currentURL.slice(0, -1) + '?' + param + '=' + value
+      );
+      }
+   }
+}
+
+function getURLParameter(name) {
+   return (
+    decodeURIComponent(
+      (new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(
+        location.search
+      ) || [, ''])[1]
+        .replace(/\+/g, '%20')
+    ) || null
+   );
+}
+
+let jsonLocal = {};
+const jsonThemeLocal = {};
+
+
+function updateDate(){
+      var d= $('#date').val()
+      var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
+      const lastDate = 'us-info-' + filedate;
+      console.log('Date =')
+      console.log(lastDate)
+
+      let url = lastDate; //  getUrlVar('file') || 
+      if (getUrlVar('file')) {
+      $('#video-select').children().each(function() {
+            if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
+      });
+      }
+      $.get('/data/info/' + url + '.json', function(data) {
+            console.log('GOT DATA from file ' + url);
+            jsonLocal = data;
+            let count = 0;
+            Object.keys(jsonLocal).forEach((item) => {
+                  count += jsonLocal[item].length;
+            });
+            console.log(count)
+            $('#nb_video').append(count);
+
+            // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+            let key = 'info_channels';
+            changeUrlParam('candidat', key);
+            changeUrlParam('file', url);
+            appendSinkHoles();
+      });
+}
+
+
+function appendSinkHoles() {
+  $('#panel-block-all').addClass('is-active');
+  $('.sink-videos').empty()
+  $('#presentation').hide()
+  $('.video-header').hide()
+  $('.videos').hide()
+
+  var keyword = $("#srch-term").val()
+  console.log(keyword)
+
+  if (keyword !== '') {
+    $('.info-title').css('max-height', '0px')
+  }
+
+  $('.video-header').show()
+  $('.videos').show()
+
+  // Compute the sinkholes
+  var counts = {}
+  var videos_info = {}
+  for (var key in jsonLocal) {
+    console.log(key)
+    // check if the property/key is defined in the object itself, not in parent
+    if (jsonLocal.hasOwnProperty(key)) {
+        jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
+        counts[item.id] = (counts[item.id] || 0) + 1;
+        videos_info[item.id] = item
+      })
+    }
+  }
+  var sorted_counts = Object.keys(counts).map(function(key) {
+    return [key, counts[key]];
+  });
+
+  // Sort the array based on the second element
+  sorted_counts.sort(function(first, second) {
+      return second[1] - first[1];
+  });
+
+  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1).map(function(item) {
+    return [item.id, 0];
+  })
+
+  var extra_text = ''
+  if (keyword !== '') {
+    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title';
+  }
+
+  $('.sink-videos').append(
+    `
+      <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>most recommended videos on &nbsp;<span class="redbold">` + 
+        $('#date').val() + '</span>' + extra_text
+      + `<div>
+    `
+  )
+  console.log('Number of stuff')
+  console.log(filtered_vids)
+  filtered_vids.slice(0,100).forEach((elem) => {
+    console.log('Elem')
+    var item = videos_info[elem[0]];
+    const views = item.views > 0 ? `${item.views.toLocaleString(true)} views` : '';
+    const multiplicator = item['nb_recommendations'];
+    const mult = multiplicator ? `
+          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video after ${Math.round(multiplicator * 10) / 10} different searches"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+          </div>`
+      : '';
+
+    if (item.views > 0 && multiplicator > 0) {
+        $('.sink-videos').append(
+      `
+          <div class="box">
+          <article class="media">
+              <figure class="media-left level">
+                <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
+                    <div class="is-inline-block level-item">
+                      <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+                    </div>
+                </a>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                    <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                    <div><small class="video-stats">` +
+        views +
+        `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    ${item.likes.toLocaleString(true)}
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${item.dislikes.toLocaleString(true)}</small></div>
+                </div>
+              </div>
+              </article>` +
+        mult +
+        `</div>
+        `
+    );}
+  });
+}
+
             $(document).ready(function() {
+                  $('#srch-term').on('input',function(e){
+                        appendSinkHoles();
+                  });
+
+                  $.get("../data/*", function(data) {
+                        console.log('Initialize');
+                  });
+
+                  updateDate()
                   var date_input=$('input[name="date"]'); //our date input has the name "date"
                   var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                   var options={
@@ -285,9 +473,8 @@
                   };
                   date_input.datepicker(options).on('changeDate',function(event){
                         console.log('select')
-                        setTimeout(appendSinkHoles(),1000);
+                        updateDate()
                   });
             });
       </script>
-
 </body>

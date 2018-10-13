@@ -10,52 +10,46 @@ if(typeof(String.prototype.trim) === "undefined")
 }
 
 $(document).ready(function() {
-  $('#srch-term').on('input',function(e){
-    appendSinkHoles();
-  });
 
-  $.get("../data/*", function(data) {
-      console.log('Initialize');
-  });
 
-   let jsonLocal = {};
-   const jsonThemeLocal = {};
+  //  let jsonLocal = {};
+  //  const jsonThemeLocal = {};
 
-   var d= $('#date').val()
-   var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-   const lastDate = 'us-info-' + filedate;
-   console.log(lastDate)
+  //  var d= $('#date').val()
+  //  var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
+  //  const lastDate = 'us-info-' + filedate;
+  //  console.log(lastDate)
 
-   let url = getUrlVar('file') || lastDate;
-   if (getUrlVar('file')) {
-      $('#video-select').children().each(function() {
-         if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-      });
-   }
-   $.get('/data/info/' + url + '.json', function(data) {
-      console.log('GOT DATA');
-      jsonLocal = data;
-      let count = 0;
-      Object.keys(jsonLocal).forEach((item) => {
-         count += jsonLocal[item].length;
-      });
-      console.log(count)
-      $('#nb_video').append(count);
-      // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      let key = 'info_channels';
-      appendVideo(key);
-      appendPresentation(key);
-      changeUrlParam('file', url);
-   });
+  //  let url = getUrlVar('file') || lastDate;
+  //  if (getUrlVar('file')) {
+  //     $('#video-select').children().each(function() {
+  //        if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
+  //     });
+  //  }
+  //  $.get('/data/info/' + url + '.json', function(data) {
+  //     console.log('GOT DATA');
+  //     jsonLocal = data;
+  //     let count = 0;
+  //     Object.keys(jsonLocal).forEach((item) => {
+  //        count += jsonLocal[item].length;
+  //     });
+  //     console.log(count)
+  //     $('#nb_video').append(count);
+  //     // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+  //     let key = 'info_channels';
+  //     appendVideo(key);
+  //     appendPresentation(key);
+  //     changeUrlParam('file', url);
+  //  });
 
-   $(document).on('click', '.panel-event', function() {
-      const key = $(this).data('key');
-      appendPresentation(key);
-      appendVideo(key);
-   });
-   $('.nav-toggle').click(function() {
-      $('.nav-right').toggleClass('is-active');
-   });
+  //  $(document).on('click', '.panel-event', function() {
+  //     const key = $(this).data('key');
+  //     appendPresentation(key);
+  //     appendVideo(key);
+  //  });
+  //  $('.nav-toggle').click(function() {
+  //     $('.nav-right').toggleClass('is-active');
+  //  });
 
   //  $(document).on('change', '#video-select', function(event) {
   //     $.get(
@@ -73,19 +67,19 @@ $(document).ready(function() {
   //        appendVideo($('#selected-key').text());
   //     }
   //   );
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options={
-          format: 'mm/dd/yyyy',
-          container: container,
-          todayHighlight: true,
-          startDate: '10-09-2018',
-          autoclose: true,
-    };
-    date_input.datepicker(options).on('changeDate',function(event){
-      console.log('select')
-      setTimeout(appendSinkHoles,1000);
-    });
+    // var date_input=$('input[name="date"]'); //our date input has the name "date"
+    // var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    // var options={
+    //       format: 'mm/dd/yyyy',
+    //       container: container,
+    //       todayHighlight: true,
+    //       startDate: '10-09-2018',
+    //       autoclose: true,
+    // };
+    // date_input.datepicker(options).on('changeDate',function(event){
+    //   console.log('select')
+    //   setTimeout(appendSinkHoles,1000);
+    // });
   
   //  });
 
