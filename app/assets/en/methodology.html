@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <title>AlgoTransparency</title>
+   <link rel="icon" type="image/png" href="../favicon.png" />
+   <meta property="og:url" content="http://algotransparency.org" />
+   <meta property="og:type" content="article" />
+   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
+   <meta property="og:image:type" content="image/png" />
+   <meta property="og:image:width" content="476" />
+   <meta property="og:image:height" content="250" />
+   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="../app.css">
+   <script src="../app.js"></script>
+   <script>
+      require('initialize-en');
+   </script>
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-4.1.0-min.gz.js"
+  ;r.onload=function(){if(e.amplitude.runQueuedFunctions){
+  e.amplitude.runQueuedFunctions()}else{
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+  ;for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(c,l[p])}n.Revenue=c
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups","setSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+  ;e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("ac83dc709767bb0f32724a7edff4e715");
+  amplitude.getInstance().logEvent('Demarche Loaded');
+</script>
+</head>
+
+<body>
+   <section class="hero is-small">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+         <header class="nav">
+            <div class="nav-bar">
+               <div class="nav-left">
+                  <a class="nav-item" href="/index.html">
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+                  </a>
+                  <a class="nav-item is-hidden-mobile">
+                     <h1></h1>
+                  </a>
+               </div>
+               <span class="nav-toggle">
+                  <span></span>
+               <span></span>
+               <span></span>
+               </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item" href="index.html">
+                     Home
+                  </a>
+                  <!-- <a class="nav-item" href="presse.html">
+                     Press
+                  </a> -->
+                  <a class="nav-item" href="/en/press.html">
+                    Media Coverage
+                  </a>
+                        <a class="nav-item">
+                     About
+                  </a>
+                  <div class="addthis_inline_share_toolbox nav-item padded-top"></div>
+               </div>
+            </div>
+         </header>
+      </div>
+   </section>
+   <section class="columns">
+      <div class="container column is-8 is-offset-2 demarche">
+
+          We observe daily what YouTube is recommending
+          <p>
+            <br>
+            Contact: <a href="mailto:hello@algotransparency.org">hello@algotransparency.org</a>
+          </p>
+
+         <h1 class="title">Aim of the project</h1>
+            <p>
+              Determine which information the YouTube algorithm is showing the most to people. Since this algorithms is responsible for more than 700,000,000 hours of watch time every day. This algorithm is not fully understood, even by the people who build it.
+            </p>
+
+         <h1 class="title">What are “recommended videos” on YouTube?</h1>
+            <p>
+               Recommended videos appear in the “Up next” list on the right of the screen. (“When autoplay is enabled, a suggested video will automatically play next.”)
+            </p>
+
+         <h1 class="title">How did you identify YouTube’s most often recommended videos?</h1>
+            <p>
+              We used a multi-step program to analyze videos recommended by its algorithm every day
+               <ul>
+                  <li>Step 1: We start from a list of 1000+ US channels (these channels are listed below) </li>
+                  <li>Step 2: We gather all recommended videos from the last video uploaded by these channels</li>
+                  <li>Step 3: We compute which channel was recommended the most from those videos </li>
+                  <li>Step 4: We repeat step 2 and 3 until we have gathered recommendations from 2000 channels</li>
+                  <li>Step 5: For each video that was observed, we count from how many channels it was recommended</li>
+               </ul>
+               The program tabulates how many times each video is recommended, which is then used to determine which videos YouTube most often recommends for any given candidate.
+            </p>
+
+         <h1 class="title">Can I see the program you used to gather your data?</h1>
+            <p>
+               Yes! The code we developed is open source, and available <a href="https://github.com/pnbt/youtube-explore" target="_blank"> here</a>.
+               Anyone can use it, varying parameters such as the search depth, the subject of the initial query, etc.
+            </p>
+
+         <h2 class="title">Can I easily see where YouTube takes me?</h2>
+            <p>
+               Yes! Do a search for one of the candidates, then click on the first recommended video six times in a row. Our program does this many many times and computes the average of the results.
+            </p>
+
+         <h2 class="title">Why are certain videos no longer accessible?</h2>
+            <p>
+            Certain videos are removed, either by YouTube, according to their               <a href="https://www.youtube.com/t/community_guidelines" target="_blank">Community Guidelines</a>, or by YouTubers themselves.
+
+            </p>
+
+         <h1 class="title">Do recommended videos depend on my profile?</h1>
+            <p>
+               Part of the recommendations are personalized. We performed this research with an account that has no YouTube viewing history.
+            </p>
+
+         <h1 class="title">Who is behind AlgoTransparency?</h1>
+         <p>
+            AlgoTransparency is led by <a href="https://medium.com/@guillaumechaslot">Guillaume Chaslot</a>, <a href="https://twitter.com/adrienm">Adrien Montcoudiol</a>, <a href="https://twitter.com/SolineLedesert">Soline Ledésert</a>, <a href="https://twitter.com/nicolas_wsk">Nicolas Wielonsky</a>, <a href="https://twitter.com/seiteta">Frédéric
+            Bardolle</a> et <a href="https://twitter.com/mathieugrac">Mathieu Grac</a>.
+         </p>
+      </div>
+   </section>
+
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+</body>
