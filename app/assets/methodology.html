@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width">
+   <title>AlgoTransparency</title>
+   <link rel="icon" type="image/png" href="../favicon.png" />
+   <meta property="og:url" content="http://algotransparency.org" />
+   <meta property="og:type" content="article" />
+   <meta property="og:title" content="YouTube: Candidates favored by the algorithm" />
+   <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/facebook%402x.png" />
+   <meta property="og:image:type" content="image/png" />
+   <meta property="og:image:width" content="476" />
+   <meta property="og:image:height" content="250" />
+   <meta property="og:description" content="AlgoTransparency studied the influence of the YouTube recommendation algorithm for each presidential candidate. Discover the results." />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="../app.css">
+   <script src="../app.js"></script>
+   <script>
+      require('initialize-en');
+   </script>
+<script type="text/javascript">
+  (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+  ;r.type="text/javascript";r.async=true
+  ;r.src="https://cdn.amplitude.com/libs/amplitude-4.1.0-min.gz.js"
+  ;r.onload=function(){if(e.amplitude.runQueuedFunctions){
+  e.amplitude.runQueuedFunctions()}else{
+  console.log("[Amplitude] Error: could not load SDK")}}
+  ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+  ;function s(e,t){e.prototype[t]=function(){
+  this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+  var o=function(){this._q=[];return this}
+  ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+  ;for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[]
+  ;return this}
+  ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+  ;for(var p=0;p<l.length;p++){s(c,l[p])}n.Revenue=c
+  ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups","setSessionId"]
+  ;function v(e){function t(t){e[t]=function(){
+  e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+  for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+  e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+  ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+  ;e.amplitude=n})(window,document);
+
+  amplitude.getInstance().init("ac83dc709767bb0f32724a7edff4e715");
+  amplitude.getInstance().logEvent('Demarche Loaded');
+</script>
+</head>
+
+<body>
+   <section class="hero is-small">
+      <!-- Hero header: will stick at the top -->
+      <div class="hero-head">
+         <header class="nav">
+            <div class="nav-bar">
+               <div class="nav-left">
+                  <a class="nav-item" href="/index.html">
+                     <strong>AlgoTransparency</strong>
+                     <!--<span>YouTube
+                        <i class="fa fa-down"></i>
+                     </span>-->
+                  </a>
+                  <a class="nav-item is-hidden-mobile">
+                     <h1></h1>
+                  </a>
+               </div>
+               <span class="nav-toggle">
+                  <span></span>
+               <span></span>
+               <span></span>
+               </span>
+               <div class="nav-right nav-menu">
+                  <a class="nav-item" href="index.html">
+                     Home
+                  </a>
+                  <!-- <a class="nav-item" href="presse.html">
+                     Press
+                  </a> -->
+                  <a class="nav-item" href="/en/press.html">
+                    Media Coverage
+                  </a>
+                        <a class="nav-item">
+                     About
+                  </a>
+                  <div class="addthis_inline_share_toolbox nav-item padded-top"></div>
+               </div>
+            </div>
+         </header>
+      </div>
+   </section>
+   <section class="columns">
+      <div class="container column is-8 is-offset-2 demarche">
+
+         <h1 class="title">Aim of the project</h1>
+            <p>
+              We want to see which information the YouTube algorithm is showing to people. This algorithms is responsible for more than 700,000,000 hours of watch time every day, and it is not fully understood, even by the people who build it.
+            </p>
+
+         <h1 class="title">What are “recommended videos” on YouTube?</h1>
+            <p>
+               Recommended videos appear in the “Up next” list on the right of the screen. (“When autoplay is enabled, a suggested video will automatically play next.”)
+            </p>
+
+         <h1 class="title">How did you identify YouTube’s most often recommended videos?</h1>
+            <p>
+              We used a multi-step program to analyze videos recommended by its algorithm every day
+               <ul>
+                  <li>Step 1: We start from a list of 1000+ US channels (these channels are listed below) </li>
+                  <li>Step 2: We gather all recommended videos from the last video uploaded by these channels</li>
+                  <li>Step 3: We compute which channel was recommended the most from those videos </li>
+                  <li>Step 4: We repeat step 2 and 3 until we have gathered recommendations from 2000 channels</li>
+                  <li>Step 5: For each video that was observed, we count and display from how many channels it was recommended</li>
+               </ul>
+            </p>
+         <h1 class="title">List of channels we use as starting points</h1>
+         <!-- <p> If you think a english YouTube channel that that has many followers should be in this list, please tweet @helloalgo saying why it is important for the civic debate and we'll add it! </p> -->
+        <p>
+          <strong>
+          BuzzFeedVideo<br>
+          CollegeHumor<br>
+          TEDx Talks<br>
+          BRIGHT SIDE<br>
+          TheRichest<br>
+          Brave Wilderness<br>
+          TED<br>
+          As/Is<br>
+          VICE<br>
+          National Geographic<br>
+          BuzzFeedBlue<br>
+          Tasty<br>
+          AsapSCIENCE<br>
+          CrashCourse<br>
+          Epic Meal Time<br>
+          TED-Ed<br>
+          Howcast<br>
+          Gordon Ramsay<br>
+          Comedy Central<br>
+          LastWeekTonight<br>
+          MatthewSantoro<br>
+          Planet Dolan<br>
+          Mo Vlogs<br>
+          Alltime10s<br>
+          DemolitionRanch<br>
+          Matt Stonie<br>
+          FitnessBlender<br>
+          Cut<br>
+          SciShow<br>
+          Furious Pete<br>
+          Barcroft TV<br>
+          Facts Verse<br>
+          The Late Show with Stephen Colbert<br>
+          Vox<br>
+          The Young Turks<br>
+          #Mind Warehouse<br>
+          ABC News<br>
+          CNN<br>
+          Top5Central<br>
+          The School of Life<br>
+          MostAmazingTop10<br>
+          All Def Digital<br>
+          Tested<br>
+          Mr. Nightmare<br>
+          hickok45<br>
+          BuzzFeedViolet<br>
+          The Daily Show with Trevor Noah<br>
+          Inside Edition<br>
+          vlogbrothers<br>
+          BE AMAZED<br>
+          VICE News<br>
+          Grace Helbig<br>
+          CinnamonToastKen<br>
+          FRED<br>
+          SoulPancake<br>
+          Top 10s<br>
+          Animal Planet<br>
+          Top 5 Best<br>
+          RT<br>
+          Olympic<br>
+          BBC News<br>
+          Top5s<br>
+          brusspup<br>
+          Ladylike<br>
+          Rich Ferguson<br>
+          MyHarto<br>
+          Top15s<br>
+          list25<br>
+          Top 5s Finest<br>
+          The Infographics Show<br>
+          Dr. Phil<br>
+          Kitchen Nightmares<br>
+          PsycheTruth<br>
+          Munchies<br>
+          Big Think<br>
+          Life Noggin<br>
+          Prince Ea<br>
+          Al Jazeera English<br>
+          Space Videos<br>
+          Dark5<br>
+          Univision Noticias<br>
+          NASA<br>
+          HISTORY<br>
+          Late Night with Seth Meyers<br>
+          Peter McKinnon<br>
+          Passion4Profession<br>
+          INSIDER<br>
+          RealLifeLore<br>
+          AmusementForce<br>
+          Anonymous Official<br>
+          Beyond Science<br>
+          StevenCrowder<br>
+          Lucas the Spider<br>
+          Ridddle<br>
+          Strange Mysteries<br>
+          Talltanic<br>
+          Nexus<br>
+          communitychannel<br>
+          Trend Central<br>
+          AntsCanada<br>
+          NowThis World<br>
+          EvanEraTV<br>
+          Iraqveteran8888<br>
+          Chills<br>
+          YO ELLIOTT - STRENGTH CAMP<br>
+          Tech Insider<br>
+          Super Planet Dolan<br>
+          Bon Appétit<br>
+          secureteam10<br>
+          Charisma on Command<br>
+          Alltime Conspiracies<br>
+          Nat Geo WILD<br>
+          FUNKER530 - Veteran Community & Combat Footage<br>
+          Cody'sLab<br>
+          AlternateHistoryHub<br>
+          RT en Español<br>
+          Extra Credits<br>
+          PragerU<br>
+          BuzzFeed Celeb<br>
+          Origins Explained<br>
+          Real Stories<br>
+          Top 5 Unknowns<br>
+          Today I Found Out<br>
+          ModernWhiz.com<br>
+          Russell Brand<br>
+          Real Time with Bill Maher<br>
+          The New York Times<br>
+          HiHo Kids<br>
+          Epic Wildlife<br>
+          TotallySketch<br>
+          Fox News<br>
+          Paul Joseph Watson<br>
+          Mark Dice<br>
+          Top 10 Archive<br>
+          Wendover Productions<br>
+          Alux.com<br>
+          Smithsonian Channel<br>
+          Jordan B Peterson<br>
+          MindChop<br>
+          HBO<br>
+          Llama Arts<br>
+          InformOverload<br>
+          The Action Lab<br>
+          The White House<br>
+          The Onion<br>
+          Motherboard<br>
+          Simple History<br>
+          VICELAND<br>
+          Amazing Atheist<br>
+          SciShow Space<br>
+          Chris Ramsay<br>
+          TopTenz<br>
+          Monthly Winners<br>
+          Jubilee<br>
+          TheHUB<br>
+          Edwin Sarkissian<br>
+          Bloomberg<br>
+          Geography Now<br>
+          MSNBC<br>
+          Physics Girl<br>
+          Inside the Magic<br>
+          Rebel Media<br>
+          Hybrid Librarian<br>
+          Corpse Husband<br>
+          Jason A<br>
+          Journeyman Pictures<br>
+          The Doctors<br>
+          World 5 List<br>
+          Wall Street Journal<br>
+          FastFoodToyReviews<br>
+          Natural Ways<br>
+          Associated Press<br>
+          Did You Know ?<br>
+          Full Frontal with Samantha Bee<br>
+          SNARLED<br>
+          Comedy Central UK<br>
+          Primer Impacto<br>
+          Business Insider<br>
+          Pero Like<br>
+          THNKR<br>
+          Sargon of Akkad<br>
+          Scoop<br>
+          Terrifive<br>
+          MILO<br>
+          TheAdviseShowTV<br>
+          Sky News<br>
+          BuzzFeed News<br>
+          Asian Boss<br>
+          VICE Sports<br>
+          CBS News<br>
+          Talks at Google<br>
+          Forgotten Weapons<br>
+          Elliott Hulse<br>
+          NBC News<br>
+          The Rubin Report<br>
+          Military Arms Channel<br>
+          ViralBe<br>
+          engineerguy<br>
+          Bobby Duke Arts<br>
+          Valuetainment<br>
+          PBS NewsHour<br>
+          The Daily Wire<br>
+          CBC News<br>
+          Scott Manley<br>
+          7-Second Riddles<br>
+          Interesting Facts<br>
+          American Eye<br>
+          Top Lists<br>
+          MindYourDecisions<br>
+          Noticias Telemundo<br>
+          KiniTV<br>
+          OnePotChefShow<br>
+          Elite Facts<br>
+          Techmoan<br>
+          sootch00<br>
+          Amazing Facts<br>
+          The Next News Network<br>
+          USA TODAY<br>
+          Rekt Feminist Videos<br>
+          Grillonautas2<br>
+          Lost LeBlanc<br>
+          Thansis1997<br>
+          KnowledgeHub<br>
+          SpaceRip<br>
+          Kenya CitizenTV<br>
+          OverSimplified<br>
+          TheGamerFromMars<br>
+          DOCUMENTARY TUBE<br>
+          PBS<br>
+          LifesBiggestQuestions<br>
+          Life Well Lived<br>
+          Lindybeige<br>
+          MAD LAB<br>
+          Stanford Graduate School of Business<br>
+          The Daily Conversation<br>
+          Todd's Kitchen<br>
+          Half as Interesting<br>
+          Comic Relief<br>
+          thirdphaseofmoon<br>
+          How To Make Everything<br>
+          Captain Joe<br>
+          Nuke's Top 5<br>
+          Reigarw Comparisons<br>
+          Second Thought<br>
+          RT America<br>
+          Alpha Facts<br>
+          QuickyBaby<br>
+          World of Tanks North America<br>
+          Secular Talk<br>
+          Grant Cardone<br>
+          Lauren Southern<br>
+          Excélsior TV<br>
+          Forbes<br>
+          The Guardian<br>
+          FTD Facts<br>
+          FRANCE 24 English<br>
+          KTN News Kenya<br>
+          ApexTV<br>
+          VideoFromSpace<br>
+          Mr.Puzzle<br>
+          SMART IS THE NEW SEXY<br>
+          Only Human<br>
+          History Buffs<br>
+          nollygrio<br>
+          Easy Languages<br>
+          Barcroft Animals<br>
+          Sid Roth's It's Supernatural!<br>
+          Langfocus<br>
+          UFOTV® The Disclosure Network<br>
+          The Economist<br>
+          Slapped Ham<br>
+          AJ+<br>
+          euronews (in English)<br>
+          Cheap Lazy Vegan<br>
+          FactFaction<br>
+          David Pakman Show<br>
+          VisualPolitik EN<br>
+          avantgardevegan<br>
+          TFB TV<br>
+          The View<br>
+          WonderWhy<br>
+          David Icke<br>
+          RT Documentary<br>
+          THE BRICK SHOW<br>
+          Bright Sun Films<br>
+          HuffPost<br>
+          Russia Insight<br>
+          Channels Television<br>
+          Nicole Arbour<br>
+          Dr Shaym<br>
+          CGTN<br>
+          Naked Science<br>
+          Bright Insight<br>
+          Curious Droid<br>
+          London Real<br>
+          The Royal Institution<br>
+          Perfect Life<br>
+          CBS This Morning<br>
+          TIME<br>
+          CNNMoney<br>
+          BrickVault<br>
+          Wolters World<br>
+          Ruptly<br>
+          TWANGnBANG<br>
+          Monster Bug Wars - Official Channel<br>
+          Democracy Now!<br>
+          TUBERIDES<br>
+          Timeline - World History Documentaries<br>
+          K24TV<br>
+          BRICO SYMPA<br>
+          EG Mines<br>
+          Lutch Green<br>
+          The Telegraph<br>
+          University of California Television (UCTV)<br>
+          Gung Ho Vids<br>
+          BPEarthWatch<br>
+          The Jimmy Dore Show<br>
+          TechCrunch<br>
+          TheScariestMovieEver<br>
+          Washington Post<br>
+          DAHBOO77<br>
+          No Bullshit<br>
+          Black Pigeon Speaks<br>
+          Historia Civilis<br>
+          Military History Visualized<br>
+          NASA Jet Propulsion Laboratory<br>
+          watchjojo<br>
+          THAT IS IMPOSSIBLE<br>
+          Criminally Listed<br>
+          SHOWTIME<br>
+          Channel 4 News<br>
+          Unexplained Mysteries<br>
+          Arzamas<br>
+          Suspicious0bservers<br>
+          DailyTop10s<br>
+          SGTreport<br>
+          Military Update<br>
+          MostAmazingTop7<br>
+          ReasonTV<br>
+          GoldSilver (w/ Mike Maloney)<br>
+          DW English<br>
+          Astro Awani<br>
+          SomeBlackGuy<br>
+          Truthstream Media<br>
+          Feature History<br>
+          DataDash<br>
+          Invicta<br>
+          BazBattles<br>
+          The Majority Report w/ Sam Seder<br>
+          Beyond the Brick<br>
+          50 Shades<br>
+          Computing Forever<br>
+          Igor Kryan<br>
+          ViralDark7<br>
+          Mystery History<br>
+          just2good<br>
+          Company Man<br>
+          Lisa Haven<br>
+          SABC Digital News<br>
+          FOOD INSIDER<br>
+          Donut Operator<br>
+          NTV Kenya<br>
+          Deburke321<br>
+          UFOmania - The truth is out there<br>
+          CNBC<br>
+          Edgy Veg<br>
+          Rappler<br>
+          Wacky Universe<br>
+          THE MAGNUM<br>
+          Stereokroma<br>
+          CH2<br>
+          Your Black World<br>
+          StrangerThanFiction<br>
+          Maker's Muse<br>
+          European Space Agency, ESA<br>
+          Shadiversity<br>
+          Dan Lok<br>
+          mediarakyat<br>
+          Make Anything<br>
+          Lewis Howes<br>
+          geobeats<br>
+          Factnomenal<br>
+          Vintage Space<br>
+          VSB defense<br>
+          ScienceNET<br>
+          VISUAL<br>
+          FUSION<br>
+          The Star Online<br>
+          iSorrowproductions<br>
+          Drew Durnil<br>
+          dutchsinse<br>
+          Conner Sullivan<br>
+          Isaac Arthur<br>
+          TPMvids<br>
+          James Allsup<br>
+          ZoneA<br>
+          corbettreport<br>
+          Sandboxten<br>
+          TheFlightChannel<br>
+          Eskify<br>
+          FunnyPicsOnly<br>
+          TheThinkingAtheist<br>
+          DW Documentary<br>
+          The Thinkery<br>
+          United Nations<br>
+          Leak Project<br>
+          Fox Business<br>
+          FOX 10 Phoenix<br>
+          Nurture<br>
+          Styxhexenhammer666<br>
+          Dating Beyond Borders<br>
+          Mentour Pilot<br>
+          Felix 10s<br>
+          ABC News (Australia)<br>
+          Paul Begley<br>
+          4 Ever Green<br>
+          Top 5s Supreme<br>
+          New China TV<br>
+          CaspianReport<br>
+          Epic History TV<br>
+          Real Bizarre<br>
+          RCLifeOn<br>
+          Weird World<br>
+          AFP news agency<br>
+          Binkov's Battlegrounds<br>
+          WatchZozo<br>
+          Josh Talks<br>
+          Kings and Generals<br>
+          DontTrustTheRabbit<br>
+          Acts17Apologetics<br>
+          Epicurious<br>
+          Ryan Scribner<br>
+          WoodwardTV<br>
+          Defense Updates<br>
+          BBC Newsnight<br>
+          End Times Productions<br>
+          A Call For An Uprising<br>
+          Israeli News Live<br>
+          Unveiled<br>
+          Global News<br>
+          Travellight<br>
+          Jeff Quitney<br>
+          Amplex<br>
+          World Economic Forum<br>
+          Wanted Adventure<br>
+          Larry King<br>
+          Easy German<br>
+          Gaia<br>
+          michaelmgf<br>
+          Pablito's Way<br>
+          Kara and Nate<br>
+          The Atheist Experience<br>
+          3D Printing Nerd<br>
+          Pecos Hank<br>
+          Suibhne<br>
+          Mythology & Fiction Explained<br>
+          Daily Fun Facts<br>
+          Spy Kitten TV<br>
+          Blade HQ<br>
+          C-SPAN<br>
+          ObsoleteOddity<br>
+          FaceLikeTheSun<br>
+          Talon Sei<br>
+          TRR56<br>
+          CBS Evening News<br>
+          Weelicious<br>
+          Serial Killers Documentaries<br>
+          Alex The Rambler!<br>
+          EmperorTigerstar<br>
+          Tommy Robinson<br>
+          HD Documentaries<br>
+          Doug Polk Crypto<br>
+          Chris Dunn<br>
+          US Military News<br>
+          The Observatory<br>
+          Steve Cioccolanti & Discover Ministries<br>
+          Deep Astronomy<br>
+          Unreported World<br>
+          Disclosed TruthTV<br>
+          Largest Dams<br>
+          DorsetGhost Mysteries<br>
+          NASA Video<br>
+          SECTION 51 2.0<br>
+          reallygraceful<br>
+          The Ring of Fire<br>
+          Vintage Files<br>
+          Financial Times<br>
+          TRT World<br>
+          Infowars Interviews<br>
+          Lionel Nation<br>
+          The Dollar Vigilante<br>
+          Unknown5<br>
+          Joe Scott<br>
+          Youtupe Mania<br>
+          VOA News<br>
+          The Humanist Report<br>
+          Anthony Brian Logan<br>
+          LRN2DIY<br>
+          PressTV<br>
+          breakingtheset<br>
+          X22Report<br>
+          Bite-sized Philosophy<br>
+          60 Minutes<br>
+          Matt Risinger<br>
+          AronRa<br>
+          UFO Seekers<br>
+          Fleccas Talks<br>
+          Fraser Cain<br>
+          John Lovell<br>
+          Tim Pool<br>
+          Lyn Leahz<br>
+          Anonymous Global<br>
+          Right Wing<br>
+          eNCA<br>
+          Nostalgia Nerd<br>
+          chambersm741<br>
+          FlightChops<br>
+          RT Deutsch<br>
+          ABC Action News<br>
+          YourMomsHousePodcast<br>
+          Ron Gibson<br>
+          Jon Snow - The Viral Network<br>
+          Brien Foerster<br>
+          Military Defense<br>
+          Learn Liberty<br>
+          Daily News<br>
+          Wild Things<br>
+          CBC<br>
+          TYT Politics<br>
+          Anton Petrov<br>
+          UAMN TV<br>
+          ODD Reality<br>
+          Pravus Gaming<br>
+          First Documentary<br>
+          Godrules<br>
+          CGTN Africa<br>
+          Superbook<br>
+          Samuel and Audrey - Travel and Food Videos<br>
+          Amicus Humani Generis<br>
+          Blast World Mysteries<br>
+          Strange Things<br>
+          2 Minute Facts<br>
+          Masaman<br>
+          TWiT Netcast Network<br>
+          lavapix<br>
+          PhilosophyInsights<br>
+          TruthNeverTold<br>
+          Elon Musk Viral Videos<br>
+          Greg Hunter<br>
+          The Film Archives<br>
+          Sargon of Akkad Livestreams<br>
+          American Museum of Natural History<br>
+          Golden State Times<br>
+          Silas Nacita<br>
+          ZEG TV HIDDEN FROM THE PUBLIC<br>
+          This Might Get<br>
+          Guardian News<br>
+          Defunctland<br>
+          Crypto Bobby<br>
+          David Wilcock | Divine Cosmos (OFFICIAL)<br>
+          EWTN<br>
+          Mustard<br>
+          Brilliant News<br>
+          MyJoyOnline TV<br>
+          The Atlantic<br>
+          TVA - Atheist Channel<br>
+          Mary's Test Kitchen // Vegan Cooking<br>
+          The Exploring Series<br>
+          The Big Picture RT<br>
+          CNBC International<br>
+          Pics Tube<br>
+          SJWCentral<br>
+          Allthemed Docs<br>
+          TheTopMan 2.0<br>
+          The Watchman<br>
+          RonPaulLibertyReport<br>
+          Gary Lite<br>
+          Destroying the Illusion<br>
+          Jerry Skinner<br>
+          Texas Plinking<br>
+          FRONTLINE PBS | Official<br>
+          CBS Los Angeles<br>
+          Warthog Defense<br>
+          The Still Report<br>
+          Name Explain<br>
+          Technology Connections<br>
+          William Mount<br>
+          Free Documentary<br>
+          Trump Dayz<br>
+          LifeHunters<br>
+          DFBGuide<br>
+          Ancient Secret Discoveries<br>
+          Coin Mastery<br>
+          Mina Rome<br>
+          TruthRevolutionNet<br>
+          Dinesh D'Souza<br>
+          Brandon Tatum<br>
+          Documentary<br>
+          Barbara4u2c<br>
+          Theology, Philosophy and Science<br>
+          iqsquared<br>
+          SermonIndex.net<br>
+          Quartz<br>
+          nemesis maturity<br>
+          MetaBallStudios<br>
+          Voltaire<br>
+          Crypto Coin News<br>
+          OpenMind<br>
+          Wonderful Life<br>
+          RodsburghNewsLive<br>
+          Senator Bernie Sanders<br>
+          Everyday Astronaut<br>
+          Destination Tips<br>
+          Ollie Bye<br>
+          Fact Reality<br>
+          My Africa<br>
+          The Official Hagmann Report<br>
+          Owen Benjamin<br>
+          Pawn Stars<br>
+          TravelTV<br>
+          Ancient Astronaut Archive<br>
+          GLOBAL News<br>
+          The Tank Museum<br>
+          The Fifth Estate<br>
+          TheBlaze<br>
+          H. A. Goodman<br>
+          ABC15 Arizona<br>
+          Fine Trends<br>
+          History Of Wars<br>
+          ashtonbirdie<br>
+          Advise Show Media<br>
+          SHARK<br>
+          Crypt0<br>
+          ThunderboltsProject<br>
+          The Obama White House<br>
+          KREOSAN English<br>
+          Millennial Millie<br>
+          WIKIPOLITICS<br>
+          Michi Yamamoto<br>
+          Dvr Night<br>
+          ARIRANG NEWS<br>
+          ICT Academy<br>
+          The Kennedy Center<br>
+          AoC Network<br>
+          Top-5 Top-10<br>
+          Cosmology Today™<br>
+          TheFallenState<br>
+          US Defense News<br>
+          Alessio Rastani<br>
+          StormChasingVideo<br>
+          Kenya News Alert TV<br>
+          THE TOP 10<br>
+          Avi Yemini<br>
+          aplanetruth.info<br>
+          John Bosco<br>
+          X-List<br>
+          IntelligenceSquared Debates<br>
+          Apologia Studios<br>
+          E News Kenya<br>
+          ITV News<br>
+          FactoFusion<br>
+          Rationality Rules<br>
+          World Unearthed<br>
+          CGTN America<br>
+          Independent Man<br>
+          KGP TV<br>
+          WIRED UK<br>
+          Isabella Gonzalez<br>
+          Behold Israel/ Amir Tsarfati<br>
+          Top Fives<br>
+          Rare Fact<br>
+          Make Build Modify<br>
+          Stratfor<br>
+          wwwMOXNEWScom<br>
+          Think About It<br>
+          marbleKids<br>
+          Ancient Architects<br>
+          New York Daily News<br>
+          Girl Ship TV<br>
+          Allec Joshua Ibay<br>
+          Inessa S<br>
+          Daily Media<br>
+          Matt Dillahunty<br>
+          Qronos16<br>
+          Now You See TV<br>
+          CTV News<br>
+          J.D. Farag<br>
+          SBS Dateline<br>
+          UK Parliament<br>
+          The Great Work<br>
+          CBN - The Christian Broadcasting Network<br>
+          The Kev Baker Show<br>
+          VIDSTORM<br>
+          Heli<br>
+          RobinHoodUKIP<br>
+          Crypto Love<br>
+          Bloomberg TV Markets and Finance<br>
+          TeleSUR English<br>
+          Switch & Lever<br>
+          RangerUpVideo<br>
+          JustInformed Talk<br>
+          CBN News<br>
+          Zohar StarGate TV<br>
+          Daily Mail<br>
+          TheChartGuys<br>
+          BBC Click<br>
+          BabbleTop<br>
+          Brittany Pettibone<br>
+          Vee<br>
+          Qantas<br>
+          Zohar StarGate Ancient Discoveries<br>
+          scrawny2brawny<br>
+          CRTV<br>
+          Essential Truth<br>
+          Jesse Lee Peterson<br>
+          HooverInstitution<br>
+          Astrum<br>
+          The Iconoclast<br>
+          The Armchair Historian<br>
+          NJ.com<br>
+          The Modern Investor<br>
+          Celebrate Truth<br>
+          The Life Guide<br>
+          History With Hilbert<br>
+          Potential History<br>
+          Brooklyn Nine-Nine<br>
+          Denver7 – The Denver Channel<br>
+          History TV Channel<br>
+          MandRproductions<br>
+          X22Report Spotlight<br>
+          Jonathan Miller<br>
+          COAST TO COAST AM OFFICIAL<br>
+          BBC Stories<br>
+          Crypto Crow<br>
+          TheQuartering<br>
+          The Crypto Lark<br>
+          EARTH PLANET<br>
+          DocSpot<br>
+          Newsmax TV<br>
+          Jonathan Cahn - Hope of the World<br>
+          RT UK<br>
+          Nuance Bro<br>
+          Dose of Dissonance<br>
+          CNNBuzzfeed<br>
+          Prophecy Update Videos<br>
+          Screen Hoopla<br>
+          #SeekingTheTruth<br>
+          Social Justice Fails<br>
+          The_Chieftain<br>
+          Newsy<br>
+          DIRECTV<br>
+          Reflect<br>
+          NowThis News<br>
+          ABitOfBritt<br>
+          Dr Alan Brown<br>
+          newearth<br>
+          Koinonia House<br>
+          PeriscopeFilm<br>
+          Michael McIntee<br>
+          SHYDUX MEDIA<br>
+          Renegade Inc.<br>
+          Act Now 2017<br>
+          Council on Foreign Relations<br>
+          TVC News Nigeria<br>
+          The AntiCoIntelPro Show<br>
+          Shaking My Head Productions<br>
+          Syndicon<br>
+          prayingmedic<br>
+          MLive<br>
+          INFO WARS NEWS<br>
+          John Michael Godier<br>
+          Tone Vays<br>
+          Question Everything<br>
+          Dose of Truth<br>
+          Lifey Missions<br>
+          Vidello Productions<br>
+          Agatan Foundation<br>
+          FADE TO BLACK Radio<br>
+          SphereBeing Alliance<br>
+          TechCashHouse<br>
+          Catholic Online<br>
+          Martian Archaeology<br>
+          Offhand Disney<br>
+          World Crypto Network<br>
+          KPIX CBS SF Bay Area<br>
+          Dj's Aviation<br>
+          Practical Wisdom<br>
+          truthrabbit<br>
+          Astrobum<br>
+          Jason Goodman<br>
+          American Intelligence Media<br>
+          World Alternative Media<br>
+          markksargent<br>
+          Curious Elephant<br>
+          Asia Society<br>
+          You Are Free TV<br>
+          Kinky Data<br>
+          Media Buzz<br>
+          Cooking with Shotgun Red<br>
+          OOWK MEDIA<br>
+          A Rood Awakening!<br>
+          Lugermonger<br>
+          chunkymark<br>
+          pablo2by4GotBanned<br>
+          Titan Top List<br>
+          Bloomberg Politics<br>
+          Kabaddi24x7<br>
+          Prophecy Watchers<br>
+          DarkJournalist<br>
+          ibx2cat<br>
+          Mashable Daily<br>
+          Trump Fan Network<br>
+          Luke Stephens<br>
+          Love and London<br>
+          Hayley Alexis<br>
+          LogosMedia<br>
+          Face The Nation<br>
+          .School For Prophets.<br>
+          cfapps7865<br>
+          Rimmy - Downunder Gaming<br>
+          REAL SPIRIT DYNAMICS<br>
+          COMPACTTV<br>
+          Brookings Institution<br>
+          Spark<br>
+          Epimetheus<br>
+          Center for Strategic & International Studies<br>
+          ARIKEN777<br>
+          Big Island Video News<br>
+          Fox News Insider<br>
+          FOX 5 Atlanta<br>
+          BBC News Africa<br>
+          Ratchet Behavior<br>
+          Taureor<br>
+          MRCTV<br>
+          Truth Seeker<br>
+          World According To Briggs<br>
+          Patriotic Populist<br>
+          The TTV Channel<br>
+          PressTV Documentaries<br>
+          Prophecy in the News<br>
+          CaNANDian<br>
+          The Spiffing Brit<br>
+          Earthfiles<br>
+          Documentaries HD<br>
+          The Oregonian<br>
+          DAMON T. BERRY WRITER<br>
+          space and astronomy<br>
+          Sarah Westall<br>
+          H.I.S Survival<br>
+          The Common Sense Conservative<br>
+          enrigue8<br>
+          Prusa 3D by Josef Prusa<br>
+          YAFTV<br>
+          Defence Tube<br>
+          The Rational National<br>
+          EndtimeInc<br>
+          Michael Trimm<br>
+          Multimedia LIVE<br>
+          Provident Real Estate<br>
+          Covert Cabal<br>
+          The School of Self<br>
+          Light of Life Productions<br>
+          Worship and Word<br>
+          SpaceShot76<br>
+          Alpha & Omega Ministries<br>
+          Vintage Today<br>
+          RoadtoRoota<br>
+          XtremeRealityCheck<br>
+          LBC<br>
+          Skeptic<br>
+          Eternally profound<br>
+          KTNV Channel 13 Las Vegas<br>
+          Liberty University<br>
+          Facts Box<br>
+          KCRA News<br>
+          PeterSweden<br>
+          DeceptionBytes<br>
+          sreetips<br>
+          Sinatra_Says<br>
+          Ahava Jerusalem<br>
+          Kikuyu Diaspora Television USA<br>
+          TheAnarchast<br>
+          Out of Place Discoveries TV<br>
+          This Information<br>
+          Headlines With A Voice<br>
+          VerseByVerseBT<br>
+          Red Pill Factory /// Make Britain Great Again<br>
+          The Screeny<br>
+          The Heritage Foundation<br>
+          Popular Science<br>
+          Mitchollow<br>
+          Very Fake News<br>
+          Crush The Street<br>
+          TheRealJimmyRoberts1<br>
+          MegalithomaniaUK<br>
+          CityNews Toronto<br>
+          Cambridge House International Inc.<br>
+          Nick Johnson<br>
+          Vesti News<br>
+          <br>
+          The Globe and Mail<br>
+          Dr. Steve Turley<br>
+          Mr Casual<br>
+          ADVENTURES with Christian<br>
+          Conservative Citizen<br>
+          ExpovistaTV<br>
+          Live Action<br>
+          Rodney Howard-Browne<br>
+          Hillsdale College<br>
+          iNooro TV<br>
+          USGS<br>
+          Monsieur Z<br>
+          vlad9vt<br>
+          Manufacturing Intellect: Documentaries<br>
+          Conservative Resurgence<br>
+          Real Life with Jack Hibbs<br>
+          Disappeared News<br>
+          I Am Incorrigible<br>
+          gerberho1<br>
+          Down The Rabbithole<br>
+          Full Gospel Holy Temple<br>
+          BibleOrTraditions<br>
+          Around The World<br>
+          The Fortress<br>
+          Politics and Prose<br>
+          The Dallas Morning News<br>
+          NALF<br>
+          ManOfAllCreation<br>
+          X Pilot<br>
+          Tips For Travellers<br>
+          sirens999sirens<br>
+          23 ABC News | KERO<br>
+          SJW CRINGE MACHINE<br>
+          Parable of the Vineyard<br>
+          Wisdom Land<br>
+          FOX 5 DC<br>
+          Mother Jones<br>
+          John Ward<br>
+          Documentary Lab<br>
+          Mr. Beat<br>
+          Jerry Eldred<br>
+          Funny Stuff<br>
+          tvochannel<br>
+          FOLLOW THE MONEY<br>
+          Timothy Castleberry<br>
+          doctordude<br>
+          Kitco NEWS<br>
+          Watching the Hawks RT<br>
+          Mark F<br>
+          Busted Locals<br>
+          RedPill Shark<br>
+          Princess Carlie<br>
+          Free High-Quality Documentaries<br>
+          Politics UK<br>
+          Kameme Tv<br>
+          The REAL TNTV News !<br>
+          DailyWorldwideNews<br>
+          All Things Human<br>
+          Hidden in America<br>
+          Ron's been here<br>
+          FOBOS PLANET<br>
+          Skinnys Cool Videos<br>
+          Comedy University<br>
+          SilverDoctors<br>
+          Sir Growalott<br>
+          Atheist vs Theist Debates<br>
+          5 News<br>
+          Kanjarboy19<br>
+          NeoUnrealist<br>
+          MrMarxismo<br>
+          Leo Deki<br>
+          LISTaddiction<br>
+          INDIAN DEFENCE NEWS TODAY<br>
+          documentaryondemand<br>
+          Earth Station Alpha<br>
+          Richard Aguilar<br>
+          Domination Station<br>
+          CNBC Life<br>
+          Duerst The Wuerst<br>
+          zvallid<br>
+          Airliner World & More<br>
+          UKIP MEPs<br>
+          Vanderbilt University<br>
+          Armaita777<br>
+          BGS IBMOR<br>
+          KHOU 11<br>
+          Pastor Jerone Tv<br>
+          Mind Temple<br>
+          Tr3Vel0cita<br>
+          Jeremiah Films<br>
+          TheArchangel911<br>
+          TJ Singh टी.जे. सिंह<br>
+          Think Club<br>
+          fakeengineer<br>
+          Stroppy Me<br>
+          CultureClash<br>
+          Matthew North<br>
+          Cringe Only<br>
+          LSUDVM<br>
+          The Daily Caller<br>
+          The Independent<br>
+          Glenn Beck<br>
+          Rad Man<br>
+          syracuse.com<br>
+          Mercury News<br>
+          Bull Brand<br>
+          Cogent Canine<br>
+          Connie Oelbaum<br>
+          PocketKnifeStudios<br>
+          Still Incorrigible<br>
+          News2Share<br>
+          Фобос / Phobos. Катаклизмы и катастрофы природы.<br>
+          Judy Robus<br>
+          Yoshidraco S.A.<br>
+          Blue Lives Matter<br>
+          KING 5<br>
+          PIX11 News<br>
+          Haaretz.com<br>
+          Ввысь, в космос!<br>
+          Behind the News<br>
+          Viking River Cruises<br>
+          P0LICEstateWATCH<br>
+          Masterchef Fan<br>
+          seattletimesdotcom<br>
+          Dinco422<br>
+          Leo Stratton<br>
+          Orange County Register<br>
+          Sean Giordano<br>
+          Dr Watson<br>
+          Patriotic Millionaires<br>
+          Isaac Rai<br>
+          FOX 9 News | KMSP-TV Minneapolis-St. Paul<br>
+          Daniel Skupien<br>
+          Yoryevrah<br>
+          KARE 11<br>
+          Brian London<br>
+          taldari<br>
+          The Sacramento Bee<br>
+          MinorChannel<br>
+          Scotty Ardent<br>
+          videoScribble<br>
+          cocksandballs123<br>
+          A1Cvenom<br>
+          HC Fischer-Leskov<br>
+          PeaceNikUK<br>
+          dlwke2<br>
+          Gayfurry77777<br>
+          James Thomas<br>
+          Grant Crowell<br>
+          fupackers<br>
+          US military Technology<br>
+          aDDmoreJuice<br>
+          Sam Harris<br>
+          Universe TV<br>
+          Unsolved Mysteries<br>
+          Life Magazine Daily<br>
+          WORLD BROADCAST<br>
+          CBS New York<br>
+          50 Stars<br>
+          News For You<br>
+          CBS Miami<br>
+          UPDATE NEWSLETTER EVERY DAY<br>
+          World Top 10<br>
+          Raila Odinga vs Uhuru Kenyatta News<br>
+          LATEST CONSPIRACY THEORIES NEWS<br>
+          HOT NEWS TODAY 365<br>
+          But It<br>
+          Ancient History Documentaries<br>
+          Intense 5<br>
+          Top List<br>
+          MrWolf<br>
+          CBS Philly<br>
+          Watch Box<br>
+          World Trending<br>
+          MARS ANOMALIES and BEYOND<br>
+          Official W5<br>
+          Mobeus TV<br>
+          The Liberty Hound<br>
+          Shocking Story TODAY<br>
+          Conservative Network<br>
+          SECRET NEWS<br>
+          TRUTHBOMBS<br>
+          The Joint Forces Channel<br>
+          Wildlife<br>
+          U.S. Military Defense<br>
+          The Secrets of Nature<br>
+          How the Universe Works<br>
+          CasonVids<br>
+          CBSN<br>
+          Jimmy Kimmel Live<br>
+          Saturday Night Live<br>
+          PowerfulJRE<br>
+          PewDiePie<br>
+          Logan Paul Vlogs<br>
+          Good Mythical Morning<br>
+          Philip DeFranco<br>
+          Clevver News<br>
+          Senator Bernie Sanders<br>
+          Willie D Live<br>
+          Cuckoo for Kaku<br>
+          True American Heroes<br>
+          NEWS Channel<br>
+          Latest News 360<br>
+          To Tell The Truth<br>
+          U.S. Military Technology<br>
+          Latest World News Updates<br>
+          ScienceToday<br>
+          BREAKING NEWS TODAY<br>
+          Ray  William Johnson<br>
+          ELITE POLITICS<br>
+          Clash of Ideas<br>
+          TheArea51Rider<br>
+          List OMG<br>
+          The Tonight Show Starring Jimmy Fallon<br>
+          TheEllenShow<br>
+          The Late Late Show with James Corden<br>
+          </strong>
+         </p>
+         <p>
+          <br>
+            See an important information channel that is missing from this list? Contact <a href="mailto:hello@algotransparency.org">hello@algotransparency.org</a>
+          <br><br><br>
+        </p>
+
+    </section>
+
+
+
+   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
+</body>
