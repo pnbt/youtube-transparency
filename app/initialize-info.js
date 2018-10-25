@@ -110,6 +110,9 @@ function changeTheDate() {
  d= $('#date').val()
  filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
 
+  console.log('URL Found =')
+  console.log(getUrlVar('file'))
+
  const lastDate = 'us-info-' + filedate;
  let url = getUrlVar('file') || lastDate;
  if (getUrlVar('file')) {
