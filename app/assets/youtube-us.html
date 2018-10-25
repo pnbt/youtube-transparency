@@ -151,7 +151,7 @@
                                                 <div class="col-xs-4">
                                                       <div class='input-group date' id='datetimepicker1'>
                                                             <label class="control-label" for="date">DATE</label>
-                                                            <input class="form-control noradius" id="date" name="date" value="10/21/2018" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
+                                                            <input class="form-control noradius" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
 
                                                             <!-- <label for="date-picker">DATE</label>
                                                             <input type='text' class="form-control" id="date-picker"/>
@@ -323,6 +323,11 @@ const jsonThemeLocal = {};
 
 
 function updateDate(){
+      if (getUrlVar('file')) {
+            var french_format = getUrlVar('file').split('us-info-')
+            $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
+      }
+
       var d= $('#date').val()
       var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
       const lastDate = 'us-info-' + filedate;
@@ -330,11 +335,6 @@ function updateDate(){
       console.log(lastDate)
 
       let url = lastDate; //  getUrlVar('file') || 
-      if (getUrlVar('file')) {
-      $('#video-select').children().each(function() {
-            if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-      });
-      }
       $.get('/data/info/' + url + '.json', function(data) {
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
