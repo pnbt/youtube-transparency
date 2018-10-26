@@ -152,7 +152,7 @@
                                                 <div class="col-xs-4">
                                                       <div class='input-group date' id='datetimepicker1'>
                                                             <label class="control-label" for="date">DATE</label>
-                                                            <input class="form-control noradius" id="date" name="date" value="10/21/2018" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
+                                                            <input class="form-control noradius" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
 
                                                             <!-- <label for="date-picker">DATE</label>
                                                             <input type='text' class="form-control" id="date-picker"/>
@@ -324,19 +324,42 @@ const jsonThemeLocal = {};
 
 
 function updateDate(){
+      if ($('#date').val() == '') {
+            if (getUrlVar('date') && getUrlVar('date') != '') {
+                  var french_format = getUrlVar('date')
+                  $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
+            } else {
+                  console.log(' New date ')
+                  var today = new Date();
+                  today.setDate(today.getDate() - 1);
+                  var dd = today.getDate();
+                  var mm = today.getMonth()+1; //January is 0!
+                  var yyyy = today.getFullYear();
+                  if(dd<10) {
+                        dd = '0'+dd
+                  } 
+                  if(mm<10) {
+                  mm = '0'+mm
+                  }
+                  today = mm + '/' + dd + '/' + yyyy;
+                  $('#date').val(today)
+            }
+      }
+
+
       var d= $('#date').val()
       var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-      const lastDate = 'us-info-' + filedate;
+      const lastDate = filedate;
       console.log('Date =')
       console.log(lastDate)
 
       let url = lastDate; //  getUrlVar('file') || 
-      if (getUrlVar('file')) {
-      $('#video-select').children().each(function() {
-            if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-      });
-      }
-      $.get('/data/info/' + url + '.json', function(data) {
+      // if (getUrlVar('file')) {
+      // $('#video-select').children().each(function() {
+      //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
+      // });
+      // }
+      $.get('/data/info/us-info-' + url + '.json', function(data) {
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
             let count = 0;
@@ -348,8 +371,7 @@ function updateDate(){
 
             // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
             let key = 'info_channels';
-            changeUrlParam('candidat', key);
-            changeUrlParam('file', url);
+            changeUrlParam('date', url);
             appendSinkHoles();
       });
 }

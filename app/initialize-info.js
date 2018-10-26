@@ -106,37 +106,6 @@ $(document).ready(function() {
   );
  }
 
-function changeTheDate() {
- d= $('#date').val()
- filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-
-  console.log('URL Found =')
-  console.log(getUrlVar('file'))
-
- const lastDate = 'us-info-' + filedate;
- let url = getUrlVar('file') || lastDate;
- if (getUrlVar('file')) {
-    $('#video-select').children().each(function() {
-       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-    });
- }
- $.get('/data/info/' + url + '.json', function(data) {
-    console.log('GOT DATA');
-    jsonLocal = data;
-    let count = 0;
-    Object.keys(jsonLocal).forEach((item) => {
-       count += jsonLocal[item].length;
-    });
-    console.log(count)
-    $('#nb_video').append(count);
-    // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-    let key = 'info_channels';
-    appendVideo(key);
-    appendPresentation(key);
-    changeUrlParam('file', url);
- });
-}
-
 function appendSinkHoles() {
   $('#panel-block-all').addClass('is-active');
   $('.sink-videos').empty()
