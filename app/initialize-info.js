@@ -211,7 +211,6 @@ function appendSinkHoles() {
 
 // Permet d'actualiser les vidéos correspond au theme "key".
 function appendVideo(key) {
-    changeUrlParam('candidat', key);
     appendSinkHoles();
 }
 
