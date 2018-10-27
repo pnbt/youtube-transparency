@@ -7,12 +7,13 @@
       <link rel="icon" type="image/png" href="favicon.png" />
       <meta property="og:url" content="http://algotransparency.org/" />
       <meta property="og:type" content="article" />
-      <meta property="og:title" content="YouTube: Most recommended videos" />
+      <meta property="og:title" content="YouTube recommended videos" />
       <meta property="og:image" content="https://github.com/nicolas-wsk/youtube-transparency/raw/master/app/assets/images/youtube.jpg"
       />
       <meta property="og:image:type" content="image/jpg" />
       <meta property="og:description" content="AlgoTransparency studied the impact of the YouTube recommendation algorithm." />
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
@@ -245,7 +246,7 @@
                         <h2 class="">That's <span class="redbold">700, 000, 000</span> human hours, every single day.</h2>
                   </section>
                   <section class="slide slide-3">
-                        <h1 class="">But what are the most recommended videos?</h1>
+                        <h1 class="">But what did YouTube recommend?</h1>
                         <h2 class="mb4">Today, it’s impossible to tell</h2>
                         <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
                         <!-- <h2 class="mb4">Some people claim they are being sensored. Is that true?</h2> -->
@@ -254,7 +255,7 @@
                         <h1 class="">To find out, we created a robot</h1>
                         <h2 class="mb4">Every day, it starts from 1000 channels, follows recommendations, and save videos</h2>
                         <img class="slide-image image-large pt4" src="/images/slide-4-uk.gif" alt="">
-                        <h2 class="mb4">What videos were the most recommended?</h2>
+                        <h2 class="mb4">What videos were recommended by the algorithm?</h2>
                   </section>
             </div>
       </section>
@@ -322,7 +323,7 @@ let jsonLocal = {};
 const jsonThemeLocal = {};
 
 
-function updateDate() {
+function updateDate(){
       if ($('#date').val() == '') {
             if (getUrlVar('date') && getUrlVar('date') != '') {
                   var french_format = getUrlVar('date')
@@ -330,6 +331,7 @@ function updateDate() {
             } else {
                   console.log(' New date ')
                   var today = new Date();
+                  today.setDate(today.getDate() - 1);
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
                   var yyyy = today.getFullYear();
@@ -344,13 +346,19 @@ function updateDate() {
             }
       }
 
+
       var d= $('#date').val()
       var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
+      const lastDate = filedate;
       console.log('Date =')
-      console.log('/data/info/us-info-' + filedate + '.json')
+      console.log(lastDate)
 
       let url = lastDate; //  getUrlVar('file') || 
-
+      // if (getUrlVar('file')) {
+      // $('#video-select').children().each(function() {
+      //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
+      // });
+      // }
       $.get('/data/info/us-info-' + url + '.json', function(data) {
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
@@ -363,7 +371,7 @@ function updateDate() {
 
             // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
             let key = 'info_channels';
-            changeUrlParam('date', filedate);
+            changeUrlParam('date', url);
             appendSinkHoles();
       });
 }
@@ -441,6 +449,8 @@ function appendSinkHoles() {
   $('.videos').hide()
 
   var keyword = $("#srch-term").val()
+  changeUrlParam('keyword', keyword);
+
   console.log(keyword)
 
   if (keyword !== '') {
@@ -483,7 +493,7 @@ function appendSinkHoles() {
 
   $('.sink-videos').append(
     `
-      <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>most recommended videos on &nbsp;<span class="redbold">` + 
+      <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` + 
         $('#date').val() + '</span>' + extra_text
       + `<div>
     `
@@ -531,7 +541,14 @@ function appendSinkHoles() {
   });
 }
 
+
+
             $(document).ready(function() {
+                  if (getUrlVar('keyword')) {
+                        $('#srch-term').val(getUrlVar('keyword'))
+                        $('#intro').hide();
+                  }
+
                   $('#srch-term').on('input',function(e){
                         appendSinkHoles();
                   });

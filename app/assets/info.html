@@ -546,6 +546,7 @@ function appendSinkHoles() {
             $(document).ready(function() {
                   if (getUrlVar('keyword')) {
                         $('#srch-term').val(getUrlVar('keyword'))
+                        $('#intro').hide();
                   }
 
                   $('#srch-term').on('input',function(e){
