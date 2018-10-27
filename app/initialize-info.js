@@ -11,7 +11,6 @@ if(typeof(String.prototype.trim) === "undefined")
 
 $(document).ready(function() {
 
-
   //  let jsonLocal = {};
   //  const jsonThemeLocal = {};
 

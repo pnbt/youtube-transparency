@@ -540,13 +540,17 @@ function appendSinkHoles() {
     );}
   });
 }
+function hideIntro(){
+      $('#intro').hide();
 
-
+}
 
             $(document).ready(function() {
                   if (getUrlVar('keyword')) {
                         $('#srch-term').val(getUrlVar('keyword'))
                         $('#intro').hide();
+                        updateDate();
+                        setTimeout(hideIntro, 100)
                   }
 
                   $('#srch-term').on('input',function(e){
