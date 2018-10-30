@@ -495,13 +495,21 @@ function appendSinkHoles() {
     extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title';
   }
 
-  $('.sink-videos').append(
+  if (filtered_vids.length == 0) {
+      $('.sink-videos').append(
     `
-      <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` + 
-        $('#date').val() + '</span>' + extra_text
-      + `<div>
+      <div class="sinkhole">No data available for that date<div>
     `
-  )
+      )
+  } else {
+      $('.sink-videos').append(
+      `
+            <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` + 
+            $('#date').val() + '</span>' + extra_text
+            + `<div>
+      `
+      )
+  }
   console.log('Number of stuff')
   console.log(filtered_vids)
   filtered_vids.slice(0,100).forEach((elem) => {
