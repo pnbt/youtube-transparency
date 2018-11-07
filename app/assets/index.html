@@ -445,6 +445,11 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
+function print_item(id){
+      console.log('https://www.youtube.com/watch?v=' + id)
+}
+
+
 function appendSinkHoles() {
   $('#panel-block-all').addClass('is-active');
   $('.sink-videos').empty()
@@ -540,7 +545,7 @@ function appendSinkHoles() {
                     <div class="channel-title">${item.channel}</div>
                     <div><small class="video-stats">` +
         views +
-        `<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
                 </div>
