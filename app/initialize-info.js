@@ -173,7 +173,7 @@ function appendSinkHoles() {
     const views = item.views > 0 ? `${item.views.toLocaleString(true)} views` : '';
     const multiplicator = item['nb_recommendations'];
     const mult = multiplicator ? `
-          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video after ${Math.round(multiplicator * 10) / 10} different searches"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
           </div>`
       : '';
 

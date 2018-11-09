@@ -4,7 +4,7 @@ import './js/helpers';
 $(document).ready(function() {
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-shootings-2018-08-01';
+   const lastDate = 'ytrecos-shootings-2018-11-01';
    $.get('/data/themesshootings.json', function(data) {
       Object.keys(data).forEach((key) => {
          console.log('DATA')
@@ -14,7 +14,7 @@ $(document).ready(function() {
             $('#sidebar').append(
           `
             <a class="panel-event" id="panel-block-${$.trim(item.tag)
-            .split(' ')[0]
+            .split(' ')[1]
             }" data-key="${item.tag}">
                <span class="panel-img">
                   <img class="circular--square" src="${item.picture}" alt=""/>
@@ -190,7 +190,7 @@ function appendSinkHoles() {
       $('#sidebar').children().each(function() {
          $(this).removeClass('is-active');
       });
-      $('#panel-block-' + $.trim(key).split(' ')[0]).addClass('is-active');
+      $('#panel-block-' + $.trim(key).split(' ')[1]).addClass('is-active');
       $('.videos').empty();
       jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
          const views = item.views > 0
