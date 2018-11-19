@@ -239,31 +239,13 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
     const cscores = {};
     jsonLocal[key]
        .forEach((item) => {
-          const title = item.title;
-          if (title.indexOf('Löfven') > -1) {
-             cscores['Löfven'] = (cscores['Löfven'] || 0) + 1;
+          const title = item.title.toLowerCase();
+          if (title.indexOf('bolsonaro') > -1) {
+             cscores['Bolsonaro'] = (cscores['Bolsonaro'] || 0) + 1;
           }
-          if (title.indexOf('Åkesson') > -1) {
-             cscores['Åkesson'] = (cscores['Åkesson'] || 0) + 1;
+          if (title.indexOf('haddad') > -1) {
+             cscores['Haddad'] = (cscores['Haddad'] || 0) + 1;
           }
-          if (title.indexOf('Lööf') > -1) {
-            cscores['Lööf'] = (cscores['Lööf'] || 0) + 1;
-         }
-         if (title.indexOf('Sjöstedt') > -1) {
-            cscores['Sjöstedt'] = (cscores['Sjöstedt'] || 0) + 1;
-         }
-         if (title.indexOf('Fridolin') > -1) {
-            cscores['Fridolin'] = (cscores['Fridolin'] || 0) + 1;
-         }
-         if (title.indexOf('Lövin') > -1) {
-            cscores['Lövin'] = (cscores['Lövin'] || 0) + 1;
-         }
-         if (title.indexOf('Thor') > -1) {
-            cscores['Lövin'] = (cscores['Lövin'] || 0) + 1;
-         }
-         if (title.indexOf('Kristersson') > -1) {
-            cscores['Kristersson'] = (cscores['Kristersson'] || 0) + 1;
-         }
     });
     const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
