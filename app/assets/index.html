@@ -329,6 +329,9 @@ function updateDate(){
                   if (today.getDate() == 29 && today.getMonth()+1 ==10 && today.getFullYear() == 2018) {
                         today.setDate(today.getDate() - 1);
                   }
+                  if (today.getDate() == 11 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
+                        today.setDate(today.getDate() + 1);
+                  }
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
                   var yyyy = today.getFullYear();
@@ -497,7 +500,7 @@ function appendSinkHoles() {
   if (filtered_vids.length == 0) {
       $('.sink-videos').append(
     `
-      <div class="sinkhole">No data available for that date. Please select a different one.<div>
+      <div class="sinkhole">No data available for that date and keywords. Please select a different date or keywords.<div>
     `
       )
   } else {
