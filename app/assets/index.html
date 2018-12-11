@@ -326,11 +326,8 @@ function updateDate(){
                   console.log(' New date ')
                   var today = new Date();
                   today.setDate(today.getDate() - 1);
-                  if (today.getDate() == 29 && today.getMonth()+1 ==10 && today.getFullYear() == 2018) {
-                        today.setDate(today.getDate() - 1);
-                  }
                   if (today.getDate() == 11 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
-                        today.setDate(today.getDate() + 1);
+                        today.setDate(today.getDate());
                   }
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
