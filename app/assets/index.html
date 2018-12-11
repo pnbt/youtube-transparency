@@ -326,8 +326,8 @@ function updateDate(){
                   console.log(' New date ')
                   var today = new Date();
                   today.setDate(today.getDate() - 1);
-                  if (today.getDate() == 11 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
-                        today.setDate(today.getDate());
+                  if (today.getDate() == 10 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
+                        today = new Date();
                   }
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
@@ -555,7 +555,6 @@ function hideIntro(){
       $('#intro').hide();
 
 }
-
             $(document).ready(function() {
                   if (getUrlVar('keyword')) {
                         $('#srch-term').val(getUrlVar('keyword'))
