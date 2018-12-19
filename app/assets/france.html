@@ -36,7 +36,7 @@
       <link rel="stylesheet" href="/app.css">
       <script src="/app.js"></script>
       <script>
-            require('initialize-info');
+            require('initialize-france');
       </script>
 
       <script type="text/javascript">
@@ -357,7 +357,7 @@ function updateDate(){
       //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       // });
       // }
-      $.get('/data/info/us-info-' + url + '.json', function(data) {
+      $.get('/data/france/france-' + url + '.json', function(data) {
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
             let count = 0;
@@ -578,7 +578,7 @@ function hideIntro(){
                         format: 'mm/dd/yyyy',
                         container: container,
                         todayHighlight: true,
-                        startDate: '10-06-2018',
+                        startDate: '12-10-2018',
                         autoclose: true,
                   };
                   date_input.datepicker(options).on('changeDate',function(event){
