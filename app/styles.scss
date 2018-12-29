@@ -184,6 +184,16 @@ a {
   box-shadow: none;
 }
 
+.chart {
+  height: 200px;
+}
+
+.bar {
+  width: 20px;
+  height: 50px;
+  background-color: darkblue;
+}
+
 .nav-first {
   height: 50px;
   display: block;
@@ -502,7 +512,7 @@ input[type=range] {
 }
 
 .mult-x {
-  margin-top: 40px;
+  margin-top: 10px;
   color: $primary;
   font-size: 25px;
   align-items: center;
@@ -510,6 +520,17 @@ input[type=range] {
   margin-right:auto;
   font-weight: 500;
 }
+
+.mult-yy {
+  margin-top: 10px;
+  color: $primary;
+  font-size: 25px;
+  align-items: center;
+  margin-left: auto;
+  margin-right:auto;
+  font-weight: 500;
+}
+
 .mult-text {
   font-size: 12px;
   line-height: 16px;

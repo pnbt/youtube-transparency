@@ -358,7 +358,7 @@ function updateDate(){
       // }
 
       console.log('TRYING TO GET DATA from file evolution');
-      $.get('/data/info/us-info-31-10-2018.json', function(data) {
+      $.get('/data/info/evolution.json', function(data) {
             console.log('GOT DATA from file evolution');
             jsonLocal = data;
             let count = 0;
@@ -453,8 +453,9 @@ function appendSinkHoles() {
   $('.videos').hide()
 
   var keyword = $("#srch-term").val()
-  changeUrlParam('keyword', keyword);
-
+  if (keyword != '') {
+      changeUrlParam('keyword', keyword);
+  }
   console.log(keyword)
 
   if (keyword !== '') {
@@ -501,14 +502,6 @@ function appendSinkHoles() {
       <div class="sinkhole">No data available for that date and keywords. Please select a different date or keywords.<div>
     `
       )
-  } else {
-      $('.sink-videos').append(
-      `
-            <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` + 
-            $('#date').val() + '</span>' + extra_text
-            + `<div>
-      `
-      )
   }
   console.log('Number of stuff')
   console.log(filtered_vids)
@@ -516,9 +509,11 @@ function appendSinkHoles() {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
-    const multiplicator = item['nb_recommendations'];
+    const multiplicator = item['recommended_from_chans'].length;
+    const obs_recos = item['observed_recos']
     const mult = multiplicator ? `
-          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${multiplicator} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-yy">${Math.round(multiplicator * 10) / 10} </div>
+          <div class="right" data-balloon-length="large" data-balloon="The algorithm recommended this video at least ${number_format(obs_recos)} times, and probably much more"><div class="mult-text"> Recommendations: </div><div class="mult-yy">${number_format(obs_recos)} </div>
           </div>`
       : '';
 
@@ -548,8 +543,30 @@ function appendSinkHoles() {
               </article>` +
         mult +
         `</div>
-        `
-    );}
+        `);
+
+      // Compute max channels
+      let max_chans = 0;
+      for (var i=0;i<item.chan_history.length;i++) {
+            if (item.chan_history[i] > max_chans){
+                  max_chans = item.chan_history[i]
+            }
+      }
+
+      for (var i=0;i<item.chan_history.length;i++) {
+            var days_ago = item.chan_history.length - i
+            var barHeight= Math.round(100 * item.chan_history[i]/max_chans)
+            console.log(barHeight)
+            $('.sink-videos').append(
+            `
+                  <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:10px;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video was recommended from ${item.chan_history[i]} channels"></div>
+            `)
+      }
+
+      $('.sink-videos').append(
+            `<div style="margin-bottom:60px;"></div>`
+      )
+      }
   });
 }
 function hideIntro(){
