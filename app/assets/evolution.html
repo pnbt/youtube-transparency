@@ -129,35 +129,9 @@
                               <div class="container column is-8 is-offset-2">
                                     <div class="info-title">
                                           <div class="info-title-in col-xs-12">
-                                                Daily YouTube Recommendations
+                                                Top Videos History<br><br>
                                           </div>
-                                          <div class="info-title-sub col-xs-12"> From more than <a href="methodology.html" class="bold-link">1000 channels</a></div>
-                                          </div>
-                                          <div class="search-group">
-                                                <div class="col-xs-6">
-                                                      <div class="input-group">
-                                                            <div>
-                                                                  <label for="srch-term">FILTER TITLES</label>
-                                                                  <input type="text" class="form-control straight-box" placeholder='Try "Trump" or "Kavanaugh"' name="srch-term" id="srch-term">
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                                <div class="col-xs-4">
-                                                      <div class='input-group date' id='datetimepicker1'>
-                                                            <label class="control-label" for="date">DATE</label>
-                                                            <input class="form-control noradius" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
-
-                                                            <!-- <label for="date-picker">DATE</label>
-                                                            <input type='text' class="form-control" id="date-picker"/>
-                                                            <div class="input-group-addon">
-                                                                  <span class="glyphicon glyphicon-calendar"></span>
-                                                            </div> -->
-                                                      </div>
-                                                </div>
-                                                <div class="col-xs-2">
-                                                      <button class="btn search-btn btn-danger" name="submit" type="submit">Filter</button>
-                                                </div>
-                                                </div>
+                                    </div>
                               </div>
                   </div>
             </div>
@@ -451,17 +425,6 @@ function appendSinkHoles() {
   $('#presentation').hide()
   $('.video-header').hide()
   $('.videos').hide()
-
-  var keyword = $("#srch-term").val()
-  if (keyword != '') {
-      changeUrlParam('keyword', keyword);
-  }
-  console.log(keyword)
-
-  if (keyword !== '') {
-    $('.info-title').css('max-height', '0px')
-  }
-
   $('.video-header').show()
   $('.videos').show()
 
@@ -487,14 +450,9 @@ function appendSinkHoles() {
       return second[1] - first[1];
   });
 
-  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1).map(function(item) {
+  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
     return [item.id, 0];
   })
-
-  var extra_text = ''
-  if (keyword !== '') {
-    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title';
-  }
 
   if (filtered_vids.length == 0) {
       $('.sink-videos').append(
@@ -505,15 +463,27 @@ function appendSinkHoles() {
   }
   console.log('Number of stuff')
   console.log(filtered_vids)
-  filtered_vids.slice(0,100).forEach((elem) => {
+
+  // Computing the global max channels for all items   
+  let max_chans = 0;
+  filtered_vids.forEach((elem) => {
+    var item = videos_info[elem[0]];
+      for (var i=0;i<item.chan_history.length;i++) {
+            if (item.chan_history[i] > max_chans) {
+                  max_chans = item.chan_history[i]
+            }
+      }
+  })
+
+  filtered_vids.slice(0,20).forEach((elem) => {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
     const multiplicator = item['recommended_from_chans'].length;
     const obs_recos = item['observed_recos']
     const mult = multiplicator ? `
-          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${multiplicator} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-yy">${Math.round(multiplicator * 10) / 10} </div>
-          <div class="right" data-balloon-length="large" data-balloon="The algorithm recommended this video at least ${number_format(obs_recos)} times, and probably much more"><div class="mult-text"> Recommendations: </div><div class="mult-yy">${number_format(obs_recos)} </div>
+          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${multiplicator} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-yy"><strong>${Math.round(multiplicator * 10) / 10} </strong></div>
+          <div class="right" data-balloon-length="large" data-balloon="The algorithm recommended this video at least ${number_format(obs_recos)} times, and probably much more"><div class="mult-text"> Recommendations: </div><div class="mult-yy"><strong>${number_format(obs_recos)}</strong</div>
           </div>`
       : '';
 
@@ -540,47 +510,47 @@ function appendSinkHoles() {
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
                 </div>
               </div>
-              </article>` +
-        mult +
-        `</div>
+              </article>
+            </div>
         `);
-
-      // Compute max channels
-      let max_chans = 0;
-      for (var i=0;i<item.chan_history.length;i++) {
-            if (item.chan_history[i] > max_chans){
-                  max_chans = item.chan_history[i]
-            }
-      }
 
       for (var i=0;i<item.chan_history.length;i++) {
             var days_ago = item.chan_history.length - i
-            var barHeight= Math.round(100 * item.chan_history[i]/max_chans)
-            console.log(barHeight)
+            var barHeight= Math.round(150 * item.chan_history[i]/max_chans)
             $('.sink-videos').append(
             `
                   <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:10px;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video was recommended from ${item.chan_history[i]} channels"></div>
             `)
       }
+      $('.sink-videos').append(
+      `
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;"> Number of channels that recommended this videos in the last 60 days  </div>
+      `)
 
       $('.sink-videos').append(
-            `<div style="margin-bottom:60px;"></div>`
-      )
+      `
+            <span style="margin-top:10px;font-weight:bold;">Recommended from the channels: </span>
+      `)
+
+      for (var i=0;i<item.recommended_from_chans.length;i++) {
+            $('.sink-videos').append(
+      `
+            <span><a href="https://www.youtube.com/results?search_query=${item.recommended_from_chans[i]}">${item.recommended_from_chans[i]}</a>,</span>
+      `)
       }
-  });
-}
+
+      $('.sink-videos').append(
+      `
+            <div style="margin-bottom:100px;font-weight:bold;"></div><hr>
+      `)
+
+  }})
+};
 function hideIntro(){
       $('#intro').hide();
 
 }
             $(document).ready(function() {
-                  if (getUrlVar('keyword')) {
-                        $('#srch-term').val(getUrlVar('keyword'))
-                        $('#intro').hide();
-                        updateDate();
-                        setTimeout(hideIntro, 100)
-                  }
-
                   $('#srch-term').on('input',function(e){
                         appendSinkHoles();
                   });
