@@ -475,7 +475,7 @@ function appendSinkHoles() {
       }
   })
 
-  filtered_vids.slice(0,20).forEach((elem) => {
+  filtered_vids.slice(0,50).forEach((elem) => {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
@@ -486,10 +486,27 @@ function appendSinkHoles() {
           <div class="right" data-balloon-length="large" data-balloon="The algorithm recommended this video at least ${number_format(obs_recos)} times, and probably much more"><div class="mult-text"> Recommendations: </div><div class="mult-yy"><strong>${number_format(obs_recos)}</strong</div>
           </div>`
       : '';
+      var max_local_chans=0;
+      var days_ago=0;
+      for (var i=0;i<item.chan_history.length;i++) {
+            if (item.chan_history[i] > max_local_chans) {
+                  max_local_chans = item.chan_history[i]
+                  days_ago = item.chan_history.length - i
+            }
+      }
 
     if (item.views > 0 && multiplicator > 0) {
         $('.sink-videos').append(
       `
+          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
+            <span style="color:#DD2726;font-size:25px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video ${days_ago} days ago
+          </div>
+          <div style="font-weight:bold; margin-left:20px; margin-top: 10px;">
+            <span style="color:#DD2726;font-size:15px;font-weight:bold">${item['recommended_from_chans'].length}</span> different channels had recommendations to this video in total
+          </div>
+          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
+            <span style="color:rgb(31, 177, 11);font-size:25px;font-weight:bold">${number_format(obs_recos)}</span> recommendations to this video were observed
+          </div>
           <div class="box">
           <article class="media">
               <figure class="media-left level">
