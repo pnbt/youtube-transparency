@@ -192,6 +192,7 @@
             <!-- </div> -->
             <section class="is-2 column"></section>
       </section>
+      <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
       <section id="intro">
             <div class="slides-container has-text-centered">
                   <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
@@ -230,6 +231,7 @@
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
 
       <script>
+
             (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                   (i[r].q = i[r].q || []).push(arguments)
@@ -239,6 +241,8 @@
 
             ga('create', 'UA-97331997-1', 'auto');
             ga('send', 'pageview');
+
+var results_shown = 0;
 
 function getUrlVar(key) {
    const result = new RegExp(key + '=([^&]*)', 'i').exec(window.location.search);
@@ -288,7 +292,6 @@ function getURLParameter(name) {
 
 let jsonLocal = {};
 const jsonThemeLocal = {};
-
 
 function updateDate(){
       // if ($('#date').val() == '') {
@@ -418,16 +421,31 @@ function print_item(id){
       console.log('https://www.youtube.com/watch?v=' + id)
 }
 
+function approximateViews(list, idx) {
+      var previous_val=0;
+      var previous_idx=-1;
+      var next_val=0;
+      var next_idx=-1;
+      for (var i=0; i < list.length; i++){
+            if (i<idx && list[i]>0) {
+                  previous_val=list[i]
+                  console.log(' P V '+ previous_val)
+                  previous_idx=i
+            }
+            if (i>idx && list[i]>0) {
+                  next_val=list[i]
+                  next_idx=i
+                  break;
+            }
+      }(i)
+      if (previous_idx === -1 || next_idx === -1) {
+            return 0
+      }
+      return Math.round(previous_val) + Math.round(((idx-previous_idx)*(next_val-previous_val)/(next_idx-previous_idx)))
+}
 
-function appendSinkHoles() {
-  $('#panel-block-all').addClass('is-active');
-  $('.sink-videos').empty()
-  $('#presentation').hide()
-  $('.video-header').hide()
-  $('.videos').hide()
-  $('.video-header').show()
-  $('.videos').show()
 
+function addSinkHoles(init, end) {
   // Compute the sinkholes
   var counts = {}
   var videos_info = {}
@@ -475,7 +493,7 @@ function appendSinkHoles() {
       }
   })
 
-  filtered_vids.slice(0,50).forEach((elem) => {
+  filtered_vids.slice(init, end).forEach((elem) => {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
@@ -533,10 +551,25 @@ function appendSinkHoles() {
       for (var i=0;i<item.view_history.length;i++) {
             var days_ago = item.view_history.length - i
             var barHeight= Math.round(150 * item.view_history[i]/item.views)
-            $('.sink-videos').append(
-            `
-                  <div style="height:${barHeight}px; margin:-1px; color: #7ed868;background-color: #7ed868;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had ${item.view_history[i]>0 ? number_format(item.view_history[i]): 'unknown'} views">${item.view_history[i]>0 ?'':'?'}</div>
-            `)
+
+            if (item.view_history[i] >0) {
+                  $('.sink-videos').append(
+                  `
+                        <div style="height:${barHeight}px; margin:-1px; color: #7ed868;background-color: #7ed868;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had ${number_format(item.view_history[i])} views">${item.view_history[i]>0 ?'':'?'}</div>
+                  `)
+            } else {
+                  var approx_views = approximateViews(item.view_history, i)
+                  barHeight = Math.round(150 * approx_views/item.views)
+                  if (barHeight>150) {
+                        console.log(approx_views)
+                        console.log(item.views)
+                  } else {
+                  $('.sink-videos').append(
+                  `
+                        <div style="height:${barHeight}px; margin:-1px; color: #dcf5d6;background-color: #dcf5d6;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had around ${approx_views>0 ? approx_views: 'unknown '} views (interpollated number)"></div>
+                  `)
+                  }
+            }
       }
       $('.sink-videos').append(
       `
@@ -574,7 +607,29 @@ function appendSinkHoles() {
       `)
 
   }})
+}
+
+function appendSinkHoles() {
+  $('#panel-block-all').addClass('is-active');
+  $('.sink-videos').empty()
+  $('#presentation').hide()
+  $('.video-header').hide()
+  $('.videos').hide()
+  $('.video-header').show()
+  $('.videos').show()
+
+  results_shown = 10
+  addSinkHoles(0, results_shown);
 };
+
+window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        results_shown = results_shown + 10
+        addSinkHoles(results_shown-10, results_shown);
+        console.log('SCROLL DETECTED' + results_shown)
+    }
+};
+
 function hideIntro(){
       $('#intro').hide();
 
