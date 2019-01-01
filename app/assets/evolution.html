@@ -479,7 +479,7 @@ function appendSinkHoles() {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
-    const multiplicator = item['recommended_from_chans'].length;
+    const multiplicator = item['nb_chans_rec'];
     const obs_recos = item['observed_recos']
     const mult = multiplicator ? `
           <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${multiplicator} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-yy"><strong>${Math.round(multiplicator * 10) / 10} </strong></div>
@@ -502,7 +502,7 @@ function appendSinkHoles() {
             <span style="color:#DD2726;font-size:25px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video ${days_ago} days ago
           </div>
           <div style="font-weight:bold; margin-left:20px; margin-top: 10px;">
-            <span style="color:#DD2726;font-size:15px;font-weight:bold">${item['recommended_from_chans'].length}</span> different channels had recommendations to this video in total
+            <span style="color:#DD2726;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
           </div>
           <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
             <span style="color:rgb(31, 177, 11);font-size:25px;font-weight:bold">${number_format(obs_recos)}</span> recommendations to this video were observed
@@ -530,29 +530,41 @@ function appendSinkHoles() {
               </article>
             </div>
         `);
+      for (var i=0;i<item.view_history.length;i++) {
+            var days_ago = item.view_history.length - i
+            var barHeight= Math.round(150 * item.view_history[i]/item.views)
+            $('.sink-videos').append(
+            `
+                  <div style="height:${barHeight}px; margin:-1px; color: #7ed868;background-color: #7ed868;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had ${item.view_history[i]>0 ? number_format(item.view_history[i]): 'unknown'} views">${item.view_history[i]>0 ?'':'?'}</div>
+            `)
+      }
+      $('.sink-videos').append(
+      `
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Cummulative number of views in the last 60 days </div>
+      `)
 
       for (var i=0;i<item.chan_history.length;i++) {
             var days_ago = item.chan_history.length - i
             var barHeight= Math.round(150 * item.chan_history[i]/max_chans)
             $('.sink-videos').append(
             `
-                  <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:10px;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video was recommended from ${item.chan_history[i]} channels"></div>
+                  <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video was recommended from ${item.chan_history[i]} channels"></div>
             `)
       }
       $('.sink-videos').append(
       `
-            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;"> Number of channels that recommended this videos in the last 60 days  </div>
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;"> Number of channels that recommended this videos in the last 60 days </div>
       `)
 
       $('.sink-videos').append(
       `
-            <span style="margin-top:10px;font-weight:bold;">Recommended from the channels: </span>
+            <span style="margin-top:10px;font-weight:bold;">Channels with more than 1 million subscribers from which this video was recommended: </span>
       `)
 
-      for (var i=0;i<item.recommended_from_chans.length;i++) {
+      for (var i=0;i<item.top_chans_rec.length;i++) {
             $('.sink-videos').append(
       `
-            <span><a href="https://www.youtube.com/results?search_query=${item.recommended_from_chans[i]}">${item.recommended_from_chans[i]}</a>,</span>
+            <span><a href="https://www.youtube.com/results?search_query=${item.top_chans_rec[i]}">${item.top_chans_rec[i]}</a>,</span>
       `)
       }
 
