@@ -492,8 +492,9 @@ function addSinkHoles(init, end) {
             }
       }
   })
+  const max_recos = 1000000
 
-  filtered_vids.slice(init, end).forEach((elem) => {
+  filtered_vids.slice(init, end).forEach((elem, index) => {
     console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
@@ -516,15 +517,7 @@ function addSinkHoles(init, end) {
     if (item.views > 0 && multiplicator > 0) {
         $('.sink-videos').append(
       `
-          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
-            <span style="color:#DD2726;font-size:25px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video ${days_ago} days ago
-          </div>
-          <div style="font-weight:bold; margin-left:20px; margin-top: 10px;">
-            <span style="color:#DD2726;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
-          </div>
-          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
-            <span style="color:rgb(31, 177, 11);font-size:25px;font-weight:bold">${number_format(obs_recos)}</span> recommendations to this video were observed
-          </div>
+          <div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1})</div>
           <div class="box">
           <article class="media">
               <figure class="media-left level">
@@ -547,10 +540,20 @@ function addSinkHoles(init, end) {
               </div>
               </article>
             </div>
+          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
+            <span style="color:#ff6b9a;font-size:25px;font-weight:bold">${number_format(obs_recos)}</span> recommendations to this video were observed
+          </div>
+            <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
+            <span style="color:darkblue;font-size:25px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video ${days_ago} days ago
+          </div>
+          <div style="font-weight:bold; margin-left:20px; margin-top: 10px;">
+            <span style="color:darkblue;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
+          </div>
         `);
+      max_views = 1000000
       for (var i=0;i<item.view_history.length;i++) {
             var days_ago = item.view_history.length - i
-            var barHeight= Math.round(150 * item.view_history[i]/item.views)
+            var barHeight= Math.round(150 * item.view_history[i]/max_views)
 
             if (item.view_history[i] >0) {
                   $('.sink-videos').append(
@@ -559,22 +562,31 @@ function addSinkHoles(init, end) {
                   `)
             } else {
                   var approx_views = approximateViews(item.view_history, i)
-                  barHeight = Math.round(150 * approx_views/item.views)
-                  if (barHeight>150) {
-                        console.log(approx_views)
-                        console.log(item.views)
-                  } else {
+                  barHeight = Math.round(150 * approx_views/max_views)
                   $('.sink-videos').append(
                   `
-                        <div style="height:${barHeight}px; margin:-1px; color: #dcf5d6;background-color: #dcf5d6;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had around ${approx_views>0 ? approx_views: 'unknown '} views (interpollated number)"></div>
+                        <div style="height:${barHeight}px; margin:-1px; color: #dcf5d6;background-color: #dcf5d6;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video had around ${approx_views>0 ? number_format(approx_views): 'unknown '} views (interpollated number)"></div>
                   `)
-                  }
             }
       }
       $('.sink-videos').append(
       `
             <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Cummulative number of views in the last 60 days </div>
       `)
+
+      for (var i=0;i<item.reco_history.length;i++) {
+            var days_ago = item.reco_history.length - i
+            var barHeight= Math.round(150 * item.reco_history[i]/max_recos)
+            $('.sink-videos').append(
+            `
+                  <div style="height:${barHeight}px; margin:-1px; background-color: #ff6b9a;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="${days_ago} days ago this video was recommended at least ${number_format(item.reco_history[i])} times"></div>
+            `)
+      }
+      $('.sink-videos').append(
+      `
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;"> Observed recommendations to this videos in the last 60 days </div>
+      `)
+
 
       for (var i=0;i<item.chan_history.length;i++) {
             var days_ago = item.chan_history.length - i
@@ -589,6 +601,7 @@ function addSinkHoles(init, end) {
             <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;"> Number of channels that recommended this videos in the last 60 days </div>
       `)
 
+
       $('.sink-videos').append(
       `
             <span style="margin-top:10px;font-weight:bold;">Channels with more than 1 million subscribers from which this video was recommended: </span>
@@ -600,6 +613,8 @@ function addSinkHoles(init, end) {
             <span><a href="https://www.youtube.com/results?search_query=${item.top_chans_rec[i]}">${item.top_chans_rec[i]}</a>,</span>
       `)
       }
+
+
 
       $('.sink-videos').append(
       `
