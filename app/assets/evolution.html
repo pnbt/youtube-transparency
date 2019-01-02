@@ -515,7 +515,18 @@ function addSinkHoles(init, end) {
       }
 
     if (item.views > 0 && multiplicator > 0) {
-        $('.sink-videos').append(
+      var like_comment = ''
+      if (item.likes > 10 && item.dislikes >10) {
+            var ratio = item.likes / (item.likes + item.dislikes)
+            var ratio_v = Math.floor((1-ratio)*100)
+            var warnings = ''
+            for (var i=0; i < Math.floor((1-ratio) * 10); i++) {
+                  warnings += `⚠️`
+            }
+            like_comment = `<div style="color:#DD2726;font-weight:bold;margin-top:15px;"> ${ratio_v} % dislikes ${warnings} </div>`
+      }    
+
+      $('.sink-videos').append(
       `
           <div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1})</div>
           <div class="box">
@@ -531,11 +542,11 @@ function addSinkHoles(init, end) {
                 <div class="content">
                     <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
                     <div class="channel-title">${item.channel}</div>
-                    <div><small class="video-stats">` +
-        views +
+                    <div><small class="video-stats" style="color:#7ed868;font-weight:bold;">` +
+                        views +
               `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
+                    <span style="color:#DD2726"><i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</span>${like_comment}</small></div>
                 </div>
               </div>
               </article>
