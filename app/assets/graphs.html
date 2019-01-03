@@ -129,106 +129,16 @@
                               <div class="container column is-8 is-offset-2">
                                     <div class="info-title">
                                           <div class="info-title-in col-xs-12">
-                                                Top Videos History<br><br>
+                                                Plotting <br><br>
                                           </div>
                                     </div>
                               </div>
                   </div>
             </div>
       </section>
-      <section class="section columns">
-            <div class="container column is-8 is-offset-2">
-                  <div class="sink-wrapper sink-videos">
-                  </div>
-                  <div class="box-wrapper presentation mb1" id="presentation"></div>
-            </div>
-      </section>
-      <section class="section columns" style="padding-bottom:50px">
-            <div class="container column is-6 is-offset-2">
-                  <!-- <header class="box-wrapper video-header">
-                        <div class="box-title">Top 100 videos</div>
-                        <span class="float-right">
-                              <span class="video-date" id="video__date">
-                                    <span id="nb_video"></span> videos collected on</span>
-                              <span class="select is-small">
-                                    <select id="video-select">
-                                          <option value="ytrecos-science-2018-08-01">1st of August 2018</option>
-                                    </select>
-                              </span>
-                        </span>
-                  </header> -->
-                  <!-- <div class="box-wrapper videos">
-                  </div> -->
-            </div>
-            <!-- <div class="container column is-2">
-                  <!--<section class="sidebar-right">
-            <strong class="is-block">Représentation des candidats</strong>
-               <small>dans les titres de vidéos mentionant un candidat</small>
-         </section>-->
-                  <!-- <section class="box-wrapper sidebar-right box-wrapper mb1">
-                        <div class="box-title mb2">Frequent terms mentioned in the titles of these videos:</div>
-                        <div id="representation"></div>
-                  </section> -->
-                  <!-- <section class="box-wrapper mb1">
-                        <div class="box-title mb2">Our project</div>
-                        <p class="mb1">AlgoTransparency is designed to inform citizens on the algorithms shaping access to information.
-                              <a href="/en/demarche.html">Find out more</a>
-                        </p>
-                        <div class="mb2">
-                              <span class="small">
-                                    <div class="twitter-btn-2">
-                                          <a href="https://twitter.com/helloalgo?ref_src=twsrc%5Etfw" class="twitter-follow-button"
-                                                data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow @helloalgo</a>
-                                          <script async src="https://platform.twitter.com/widgets.js"
-                                                charset="utf-8"></script>
-                                    </div>
-                              </span>
-                              <!-- <div class="addthis_inline_follow_toolbox"></div> -->
-                        <!-- </div>
-                        <small>Developed with help from
-                              <a href="http://www.dataforgood.fr/">Data for Good</a>
-                        </small> -->
-                  <!-- </section> -->
-            <!-- </div> -->
-            <section class="is-2 column"></section>
-            <div id="container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
-      </section>
-      <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
-      <section id="intro">
-            <div class="slides-container has-text-centered">
-                  <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
-                  <section class="pagination"> </section>
-                  <section class="slide slide-1">
-                        <h1 class="mt4">On YouTube, there are</h1>
-                        <h1 class="mt4"></h1>
-                        <h1 class="mt4"></h1>
-                        <img class="slide-image image-small mb2" style="max-width: 500px;margin: 0 auto;" src="/images/youtube-stats.png" alt="">
-                  </section>
-                  <section class="slide slide-2">
-                        <h1>YouTube’s recommendation algorithm</h1>
-                        <h1>generates more than <span class="redbold">70%</span> of views</h1>
-                        <h1> &nbsp; </h1>
-                        <h1> &nbsp; </h1>
-                        <h1> &nbsp; </h1>
-                        <h1> &nbsp; </h1>
-                        <h1> &nbsp; </h1>
-                        <h2 class="">That's <span class="redbold">700, 000, 000</span> human hours, every single day.</h2>
-                  </section>
-                  <section class="slide slide-3">
-                        <h1 class="">But what did YouTube recommend?</h1>
-                        <h2 class="mb4">Today, it’s impossible to tell</h2>
-                        <img class="slide-image image-large" src="/images/slide-3.jpg" alt="">
-                        <!-- <h2 class="mb4">Some people claim they are being sensored. Is that true?</h2> -->
-                  </section>
-                  <section class="slide slide-4">
-                        <h1 class="">To find out, we created a robot</h1>
-                        <h2 class="mb4">Every day, it starts from 1000 channels, follows recommendations, and save videos</h2>
-                        <img class="slide-image image-large pt4" src="/images/slide-4-uk.gif" alt="">
-                        <h2 class="mb4">What videos were recommended by the algorithm?</h2>
-                  </section>
-            </div>
-      </section>
 
+      <div id="container" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>
+      <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
 
       <script>
@@ -294,64 +204,6 @@ function getURLParameter(name) {
 let jsonLocal = {};
 const jsonThemeLocal = {};
 
-function updateDate(){
-      // if ($('#date').val() == '') {
-      //       if (getUrlVar('date') && getUrlVar('date') != '') {
-      //             var french_format = getUrlVar('date')
-      //             $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
-      //       } else {
-      //             console.log(' New date ')
-      //             var today = new Date();
-      //             today.setDate(today.getDate() - 1);
-      //             if (today.getDate() == 10 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
-      //                   today = new Date();
-      //             }
-      //             var dd = today.getDate();
-      //             var mm = today.getMonth()+1; //January is 0!
-      //             var yyyy = today.getFullYear();
-
-      //             if(dd<10) {
-      //                   dd = '0'+dd
-      //             } 
-      //             if(mm<10) {
-      //             mm = '0'+mm
-      //             }
-      //             today = mm + '/' + dd + '/' + yyyy;
-      //             $('#date').val(today)
-      //       }
-      // }
-
-
-      // var d= $('#date').val()
-      // var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-      // const lastDate = filedate;
-      // console.log('Date =')
-      // console.log(lastDate)
-
-      // let url = lastDate; //  getUrlVar('file') || 
-      // if (getUrlVar('file')) {
-      // $('#video-select').children().each(function() {
-      //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-      // });
-      // }
-
-      console.log('TRYING TO GET DATA from file evolution');
-      $.get('/data/info/evolution.json', function(data) {
-            console.log('GOT DATA from file evolution');
-            jsonLocal = data;
-            let count = 0;
-            Object.keys(jsonLocal).forEach((item) => {
-                  count += jsonLocal[item].length;
-            });
-            console.log(count)
-            $('#nb_video').append(count);
-
-            // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-            let key = 'info_channels';
-            // changeUrlParam('date', url);
-            appendSinkHoles();
-      });
-}
 
 function number_format(number, decimals, dec_point, thousands_sep) {
     // http://kevin.vanzonneveld.net
@@ -422,119 +274,136 @@ function print_item(id){
       console.log('https://www.youtube.com/watch?v=' + id)
 }
 
+// function init_charts(graph_data){
+      
+// Highcharts.chart('container', {
+
+// chart: {
+// type: 'bubble',
+// plotBorderWidth: 1,
+// zoomType: 'xy'
+// },
+
+// legend: {
+// enabled: false
+// },
+
+// title: {
+// text: 'Views, recommendations, volume for given keywords'
+// },
+
+// xAxis: {
+// gridLineWidth: 1,
+// title: {
+//       text: 'Million Views'
+// },
+// labels: {
+//       format: '{value}'
+// },
+// },
+
+// yAxis: {
+// startOnTick: false,
+// endOnTick: false,
+// title: {
+//       text: 'Million Recommendations'
+// },
+// labels: {
+//       format: '{value}'
+// },
+// maxPadding: 0.2,
+// },
+
+// tooltip: {
+// useHTML: true,
+// headerFormat: '<table>',
+// pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+//       '<tr><th>Observed Million Views:</th><td>{point.x}</td></tr>' +
+//       '<tr><th>Observed Million Recommendations:</th><td>{point.y}</td></tr>' +
+//       '<tr><th>Number of videos:</th><td>{point.z}</td></tr>',
+// footerFormat: '</table>',
+// followPointer: true
+// },
+
+// plotOptions: {
+// series: {
+//       dataLabels: {
+//             enabled: true,
+//             format: '{point.name}'
+//       }
+// }
+// },
+
+// series: [{
+// data: graph_data
+// }]
+// });
+// }
+
+
+function init_bar(data) {
+console.log(data['keywords'])
+console.log(data['recos_to_views'])
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Recommendations per views for different keywords'
+    },
+    xAxis: {
+        categories: data['keywords'],
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Legend',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: ''
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Recommendations per View',
+        data: data['recos_to_views']
+    }]
+});
+}
+// data['recos_per_view']
 
 $(document).ready(function() {
-      Highcharts.chart('container', {
-
-      chart: {
-      type: 'bubble',
-      plotBorderWidth: 1,
-      zoomType: 'xy'
-      },
-
-      legend: {
-      enabled: false
-      },
-
-      title: {
-      text: 'Sugar and fat intake per country'
-      },
-
-      subtitle: {
-      text: 'Source: <a href="http://www.euromonitor.com/">Euromonitor</a> and <a href="https://data.oecd.org/">OECD</a>'
-      },
-
-      xAxis: {
-      gridLineWidth: 1,
-      title: {
-            text: 'Daily fat intake'
-      },
-      labels: {
-            format: '{value} gr'
-      },
-      plotLines: [{
-            color: 'black',
-            dashStyle: 'dot',
-            width: 2,
-            value: 65,
-            label: {
-                  rotation: 0,
-                  y: 15,
-                  style: {
-                  fontStyle: 'italic'
-                  },
-                  text: 'Safe fat intake 65g/day'
-            },
-            zIndex: 3
-      }]
-      },
-
-      yAxis: {
-      startOnTick: false,
-      endOnTick: false,
-      title: {
-            text: 'Daily sugar intake'
-      },
-      labels: {
-            format: '{value} gr'
-      },
-      maxPadding: 0.2,
-      plotLines: [{
-            color: 'black',
-            dashStyle: 'dot',
-            width: 2,
-            value: 50,
-            label: {
-                  align: 'right',
-                  style: {
-                  fontStyle: 'italic'
-                  },
-                  text: 'Safe sugar intake 50g/day',
-                  x: -10
-            },
-            zIndex: 3
-      }]
-      },
-
-      tooltip: {
-      useHTML: true,
-      headerFormat: '<table>',
-      pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-            '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
-            '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
-            '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
-      footerFormat: '</table>',
-      followPointer: true
-      },
-
-      plotOptions: {
-      series: {
-            dataLabels: {
-                  enabled: true,
-                  format: '{point.name}'
-            }
-      }
-      },
-
-      series: [{
-      data: [
-            { x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium' },
-            { x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany' },
-            { x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland' },
-            { x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands' },
-            { x: 80.3, y: 86.1, z: 11.8, name: 'SE', country: 'Sweden' },
-            { x: 78.4, y: 70.1, z: 16.6, name: 'ES', country: 'Spain' },
-            { x: 74.2, y: 68.5, z: 14.5, name: 'FR', country: 'France' },
-            { x: 73.5, y: 83.1, z: 10, name: 'NO', country: 'Norway' },
-            { x: 71, y: 93.2, z: 24.7, name: 'UK', country: 'United Kingdom' },
-            { x: 69.2, y: 57.6, z: 10.4, name: 'IT', country: 'Italy' },
-            { x: 68.6, y: 20, z: 16, name: 'RU', country: 'Russia' },
-            { x: 65.5, y: 126.4, z: 35.3, name: 'US', country: 'United States' },
-            { x: 65.4, y: 50.8, z: 28.5, name: 'HU', country: 'Hungary' },
-            { x: 63.4, y: 51.8, z: 15.4, name: 'PT', country: 'Portugal' },
-            { x: 64, y: 82.9, z: 31.3, name: 'NZ', country: 'New Zealand' }
-      ]
-      }]
+      $.get('/data/info/graphs.json', function(data) {
+            console.log(data)
+            init_bar(data)
       });
 })
 
@@ -753,6 +622,7 @@ function addSinkHoles(init, end) {
 }
 
 function appendSinkHoles() {
+  return;
   $('#panel-block-all').addClass('is-active');
   $('.sink-videos').empty()
   $('#presentation').hide()
@@ -775,7 +645,6 @@ window.onscroll = function(ev) {
 
 function hideIntro(){
       $('#intro').hide();
-
 }
             $(document).ready(function() {
                   $('#srch-term').on('input',function(e){
