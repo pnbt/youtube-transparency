@@ -136,8 +136,8 @@
                   </div>
             </div>
       </section>
-
-      <div id="container" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>
+      <div id="containers">
+      </div>
       <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
 
@@ -274,78 +274,76 @@ function print_item(id){
       console.log('https://www.youtube.com/watch?v=' + id)
 }
 
-// function init_charts(graph_data){
+function plot_bubble_chart(container_id, graph_data){
       
-// Highcharts.chart('container', {
+Highcharts.chart(container_id, {
 
-// chart: {
-// type: 'bubble',
-// plotBorderWidth: 1,
-// zoomType: 'xy'
-// },
+chart: {
+type: 'bubble',
+plotBorderWidth: 1,
+zoomType: 'xy'
+},
 
-// legend: {
-// enabled: false
-// },
+legend: {
+enabled: false
+},
 
-// title: {
-// text: 'Views, recommendations, volume for given keywords'
-// },
+title: {
+text: 'Views, recommendations, volume for given keywords'
+},
 
-// xAxis: {
-// gridLineWidth: 1,
-// title: {
-//       text: 'Million Views'
-// },
-// labels: {
-//       format: '{value}'
-// },
-// },
+xAxis: {
+gridLineWidth: 1,
+title: {
+      text: 'Million Views'
+},
+labels: {
+      format: '{value}'
+},
+},
 
-// yAxis: {
-// startOnTick: false,
-// endOnTick: false,
-// title: {
-//       text: 'Million Recommendations'
-// },
-// labels: {
-//       format: '{value}'
-// },
-// maxPadding: 0.2,
-// },
+yAxis: {
+startOnTick: false,
+endOnTick: false,
+title: {
+      text: 'Million Recommendations'
+},
+labels: {
+      format: '{value}'
+},
+maxPadding: 0.2,
+},
 
-// tooltip: {
-// useHTML: true,
-// headerFormat: '<table>',
-// pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-//       '<tr><th>Observed Million Views:</th><td>{point.x}</td></tr>' +
-//       '<tr><th>Observed Million Recommendations:</th><td>{point.y}</td></tr>' +
-//       '<tr><th>Number of videos:</th><td>{point.z}</td></tr>',
-// footerFormat: '</table>',
-// followPointer: true
-// },
+tooltip: {
+useHTML: true,
+headerFormat: '<table>',
+pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+      '<tr><th>Observed Million Views:</th><td>{point.x}</td></tr>' +
+      '<tr><th>Observed Million Recommendations:</th><td>{point.y}</td></tr>' +
+      '<tr><th>Number of videos:</th><td>{point.z}</td></tr>',
+footerFormat: '</table>',
+followPointer: true
+},
 
-// plotOptions: {
-// series: {
-//       dataLabels: {
-//             enabled: true,
-//             format: '{point.name}'
-//       }
-// }
-// },
+plotOptions: {
+series: {
+      dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+      }
+}
+},
 
-// series: [{
-// data: graph_data
-// }]
-// });
-// }
+series: [{
+data: graph_data
+}]
+});
+}
 
 
-function init_bar(data) {
-console.log(data['keywords'])
-console.log(data['recos_to_views'])
+function create_bar_chart(container_id, legend, values) {
 
-Highcharts.chart('container', {
+Highcharts.chart(container_id, {
     chart: {
         type: 'bar'
     },
@@ -353,7 +351,7 @@ Highcharts.chart('container', {
         text: 'Recommendations per views for different keywords'
     },
     xAxis: {
-        categories: data['keywords'],
+        categories: legend,
         title: {
             text: null
         }
@@ -394,7 +392,7 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Recommendations per View',
-        data: data['recos_to_views']
+        data: values
     }]
 });
 }
@@ -402,8 +400,8 @@ Highcharts.chart('container', {
 
 $(document).ready(function() {
       $.get('/data/info/graphs.json', function(data) {
-            console.log(data)
-            init_bar(data)
+            $('#containers').append(`<div id="conta" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
+            create_bar_chart('conta', data['keywords'], data['recos_to_views'])
       });
 })
 
