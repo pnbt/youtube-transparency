@@ -129,7 +129,7 @@
                               <div class="container column is-8 is-offset-2">
                                     <div class="info-title">
                                           <div class="info-title-in col-xs-12">
-                                                Plotting <br><br>
+                                                Graphs to understand YouTube <br><br>
                                           </div>
                                     </div>
                               </div>
@@ -138,7 +138,6 @@
       </section>
       <div id="containers">
       </div>
-      <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58ea64fc4724e90a"></script>
 
       <script>
@@ -274,8 +273,10 @@ function print_item(id){
       console.log('https://www.youtube.com/watch?v=' + id)
 }
 
-function plot_bubble_chart(container_id, graph_data){
-      
+function create_bubble_chart(container_id, graph_data){
+
+$('#containers').append(`<div id="${container_id}" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
+
 Highcharts.chart(container_id, {
 
 chart: {
@@ -341,14 +342,16 @@ data: graph_data
 }
 
 
-function create_bar_chart(container_id, legend, values) {
+function create_bar_chart(container_id, name, title, legend, values) {
+
+$('#containers').append(`<div id="${container_id}" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
 
 Highcharts.chart(container_id, {
     chart: {
         type: 'bar'
     },
     title: {
-        text: 'Recommendations per views for different keywords'
+        text: title
     },
     xAxis: {
         categories: legend,
@@ -391,7 +394,7 @@ Highcharts.chart(container_id, {
         enabled: false
     },
     series: [{
-        name: 'Recommendations per View',
+        name: name,
         data: values
     }]
 });
@@ -400,8 +403,8 @@ Highcharts.chart(container_id, {
 
 $(document).ready(function() {
       $.get('/data/info/graphs.json', function(data) {
-            $('#containers').append(`<div id="conta" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
-            create_bar_chart('conta', data['keywords'], data['recos_to_views'])
+            create_bar_chart('conta', data['keywords'], data['recos_to_occs'])
+            create_bar_chart('conta1', data['keywords'], data['recos_to_views'])
       });
 })
 
