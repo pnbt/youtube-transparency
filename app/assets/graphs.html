@@ -273,7 +273,7 @@ function print_item(id){
       console.log('https://www.youtube.com/watch?v=' + id)
 }
 
-function create_bubble_chart(container_id, graph_data){
+function create_bubble_chart(container_id, title, subtitle, graph_data){
 
 $('#containers').append(`<div id="${container_id}" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
 
@@ -290,7 +290,7 @@ enabled: false
 },
 
 title: {
-text: 'Views, recommendations, volume for given keywords'
+text: title
 },
 
 xAxis: {
@@ -342,7 +342,7 @@ data: graph_data
 }
 
 
-function create_bar_chart(container_id, name, title, legend, values) {
+function create_bar_chart(container_id, title, subtitle, legend, values) {
 
 $('#containers').append(`<div id="${container_id}" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
 
@@ -353,6 +353,10 @@ Highcharts.chart(container_id, {
     title: {
         text: title
     },
+    subtitle: {
+        text: subtitle
+    },
+
     xAxis: {
         categories: legend,
         title: {
@@ -394,7 +398,7 @@ Highcharts.chart(container_id, {
         enabled: false
     },
     series: [{
-        name: name,
+        name: title,
         data: values
     }]
 });
@@ -403,8 +407,8 @@ Highcharts.chart(container_id, {
 
 $(document).ready(function() {
       $.get('/data/info/graphs.json', function(data) {
-            create_bar_chart('conta', data['keywords'], data['recos_to_occs'])
-            create_bar_chart('conta1', data['keywords'], data['recos_to_views'])
+            create_bar_chart('conta', 'Recommendations per video', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of these videos', data['keywords'], data['recos_to_occs']);
+            create_bar_chart('conta1', 'Recommendations per view', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of views of these videos', data['keywords'], data['recos_to_views']);
       });
 })
 
