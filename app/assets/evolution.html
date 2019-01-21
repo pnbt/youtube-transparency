@@ -192,7 +192,7 @@
             <!-- </div> -->
             <section class="is-2 column"></section>
       </section>
-      <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
+      <!-- <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button> -->
       <section id="intro">
             <div class="slides-container has-text-centered">
                   <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
@@ -429,7 +429,6 @@ function approximateViews(list, idx) {
       for (var i=0; i < list.length; i++){
             if (i<idx && list[i]>0) {
                   previous_val=list[i]
-                  console.log(' P V '+ previous_val)
                   previous_idx=i
             }
             if (i>idx && list[i]>0) {
@@ -444,13 +443,17 @@ function approximateViews(list, idx) {
       return Math.round(previous_val) + Math.round(((idx-previous_idx)*(next_val-previous_val)/(next_idx-previous_idx)))
 }
 
+function isFilteredOutVideo(vid, specific_video) {
+      return specific_video && vid.indexOf(specific_video) == -1
+}
 
 function addSinkHoles(init, end) {
   // Compute the sinkholes
   var counts = {}
   var videos_info = {}
   for (var key in jsonLocal) {
-    console.log(key)
+
+    console.log('Specific video = ' + specific_video)
     // check if the property/key is defined in the object itself, not in parent
     if (jsonLocal.hasOwnProperty(key)) {
         jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
@@ -468,9 +471,15 @@ function addSinkHoles(init, end) {
       return second[1] - first[1];
   });
 
-  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
+  var specific_video = getUrlVar('v')
+
+  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video)).map(function(item) {
     return [item.id, 0];
   })
+
+//   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
+//     return [item.id, 0];
+//   })
 
   if (filtered_vids.length == 0) {
       $('.sink-videos').append(
@@ -495,7 +504,6 @@ function addSinkHoles(init, end) {
   const max_recos = 1000000
 
   filtered_vids.slice(init, end).forEach((elem, index) => {
-    console.log('Elem')
     var item = videos_info[elem[0]];
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
     const multiplicator = item['nb_chans_rec'];
@@ -525,10 +533,11 @@ function addSinkHoles(init, end) {
             }
             like_comment = `<div style="color:#DD2726;font-weight:bold;margin-top:15px;"> ${ratio_v} % dislikes ${warnings} </div>`
       }    
+      var order_number = specific_video ? '' : `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1})</div>`
 
       $('.sink-videos').append(
       `
-          <div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1})</div>
+          ${order_number}
           <div class="box">
           <article class="media">
               <figure class="media-left level">
@@ -561,7 +570,7 @@ function addSinkHoles(init, end) {
             <span style="color:darkblue;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
           </div>
         `);
-      max_views = 1000000
+      max_views = 3000000
       for (var i=0;i<item.view_history.length;i++) {
             var days_ago = item.view_history.length - i
             var barHeight= Math.round(150 * item.view_history[i]/max_views)
