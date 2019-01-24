@@ -320,7 +320,6 @@ function updateDate(){
       //       }
       // }
 
-
       // var d= $('#date').val()
       // var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
       // const lastDate = filedate;
@@ -334,8 +333,14 @@ function updateDate(){
       // });
       // }
 
-      console.log('TRYING TO GET DATA from file evolution');
-      $.get('/data/info/evolution.json', function(data) {
+      var js_file = getUrlVar('file')
+
+      if (!js_file) {
+            js_file = 'evo-MGTOW-stats'
+      }
+
+      console.log('TRYING TO GET DATA from file "' + js_file + '"');
+      $.get('/data/info/' + js_file + '.json', function(data) {
             console.log('GOT DATA from file evolution');
             jsonLocal = data;
             let count = 0;

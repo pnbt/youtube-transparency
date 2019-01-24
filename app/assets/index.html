@@ -485,13 +485,15 @@ function appendSinkHoles() {
       return second[1] - first[1];
   });
 
-  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1).map(function(item) {
+  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => 
+      (item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1) ||
+      (item.channel.toLowerCase().indexOf(keyword.toLowerCase()) > -1)).map(function(item) {
     return [item.id, 0];
   })
 
   var extra_text = ''
   if (keyword !== '') {
-    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title';
+    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title or channel';
   }
 
   if (filtered_vids.length == 0) {
