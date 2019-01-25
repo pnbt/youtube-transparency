@@ -504,16 +504,16 @@ function addSinkHoles(init, end) {
   console.log(filtered_vids)
 
   // Computing the global max channels for all items   
-  let max_chans = 0;
-  filtered_vids.forEach((elem) => {
-    var item = videos_info[elem[0]];
-      for (var i=0;i<item.chan_history.length;i++) {
-            if (item.chan_history[i] > max_chans) {
-                  max_chans = item.chan_history[i]
-            }
-      }
-  })
-  const max_recos = 1000000
+//   let max_chans = 0;
+//   filtered_vids.forEach((elem) => {
+//     var item = videos_info[elem[0]];
+//       for (var i=0;i<item.chan_history.length;i++) {
+//             if (item.chan_history[i] > max_chans) {
+//                   max_chans = item.chan_history[i]
+//             }
+//       }
+//   })
+//   const max_recos = 1000000
 
   filtered_vids.slice(init, end).forEach((elem, index) => {
     var item = videos_info[elem[0]];
@@ -582,10 +582,18 @@ function addSinkHoles(init, end) {
             <span style="color:darkblue;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
           </div>
         `);
-      max_views = 3000000
+
+      var max_views = 0
+      for (var i=0;i<item.view_history.length;i++) {
+            if (item.view_history[i] - max_views > 0) {
+                  max_views = item.view_history[i]
+            }
+      }
+
+      var view_size = 100
       for (var i=0;i<item.view_history.length;i++) {
             var video_date = dates[i]
-            var barHeight= Math.round(150 * item.view_history[i]/max_views)
+            var barHeight= Math.round(view_size * item.view_history[i]/max_views)
 
             if (item.view_history[i] >0) {
                   $('.sink-videos').append(
@@ -594,7 +602,7 @@ function addSinkHoles(init, end) {
                   `)
             } else {
                   var approx_views = approximateViews(item.view_history, i)
-                  barHeight = Math.round(150 * approx_views/max_views)
+                  barHeight = Math.round(view_size * approx_views/max_views)
                   $('.sink-videos').append(
                   `
                         <div style="height:${barHeight}px; margin:-1px; color: #dcf5d6;background-color: #dcf5d6;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${approx_views>0 ? number_format(approx_views): 'unknown '} views (interpollated number) on ${video_date}"></div>
@@ -603,12 +611,50 @@ function addSinkHoles(init, end) {
       }
       $('.sink-videos').append(
       `
-            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Cummulative number of views history </div>
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Number of views </div>
       `)
+
+      var view_size = 50
+      for (var i=0;i<item.like_history.length;i++) {
+            var video_date = dates[i]
+            if (item.like_history[i] > 0) {
+                  var likes = Math.round(item.like_history[i])
+                  var dislikes = Math.round(item.dislike_history[i])
+                  var ratio_likes = likes / (likes + dislikes)
+                  console.log(ratio_likes + ' likes ' + item.like_history[i] + ' dislikes '+ item.dislike_history[i])
+                  var barHeight= Math.round(view_size * ratio_likes)
+                  $('.sink-videos').append(
+                  `
+                        <div style="height:${barHeight}px; margin:-1px; color: #00ccff;background-color: #00ccff;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="This video had ${ratio_likes}% likes on ${video_date}">${item.like_history[i]>0 ?'':'?'}</div>
+                  `)
+            } else {
+                  var approx_likes = approximateViews(item.like_history, i)
+                  var approx_dislikes = approximateViews(item.dislike_history, i)
+                  var ratio_likes = approx_likes/(approx_likes + approx_dislikes)
+                  var barHeight= Math.round(view_size * ratio_likes)
+                  $('.sink-videos').append(
+                  `
+                        <div style="height:${barHeight}px; margin:-1px; color: #ccf5ff;background-color: #ccf5ff;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${ratio_likes ? ratio_likes : 'unknown '}% likes (interpollated number) on ${video_date}"></div>
+                  `)
+
+            }
+      }
+
+      $('.sink-videos').append(
+      `
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Percentage of likes </div>
+      `)
+
+      var max_recos = 0
+      for (var i=0;i<item.reco_history.length;i++) {
+            if (item.reco_history[i] - max_recos > 0) {
+                  max_recos = item.reco_history[i]
+            }
+      }
 
       for (var i=0;i<item.reco_history.length;i++) {
             var video_date = dates[i]
-            var barHeight= Math.round(150 * item.reco_history[i]/max_recos)
+            var barHeight= Math.round(view_size * item.reco_history[i]/max_recos)
             $('.sink-videos').append(
             `
                   <div style="height:${barHeight}px; margin:-1px; background-color: #ff6b9a;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended at least ${number_format(item.reco_history[i])} times on ${video_date}"></div>
@@ -616,12 +662,19 @@ function addSinkHoles(init, end) {
       }
       $('.sink-videos').append(
       `
-            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;"> Observed recommendations to this videos on ${video_date}</div>
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;">Observed recommendations to this videos</div>
       `)
+
+      var max_chans = 0
+      for (var i=0;i<item.chan_history.length;i++) {
+            if (item.chan_history[i] - max_chans > 0) {
+                  max_chans = item.chan_history[i]
+            }
+      }
 
       for (var i=0;i<item.chan_history.length;i++) {
             var video_date = dates[i]
-            var barHeight= Math.round(150 * item.chan_history[i]/max_chans)
+            var barHeight= Math.round(view_size * item.chan_history[i]/max_chans)
             $('.sink-videos').append(
             `
                   <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:1.5%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended from at least ${item.chan_history[i]} channels on ${video_date}"></div>
@@ -631,22 +684,16 @@ function addSinkHoles(init, end) {
       `
             <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;"> Number of channels that recommended this videos </div>
       `)
-
-
       $('.sink-videos').append(
       `
-            <span style="margin-top:10px;font-weight:bold;">Channels with more than 1 million subscribers from which this video was recommended: </span>
+            <span style="margin-top:10px;font-weight:bold;">Channels with more than 100k subscribers from which this video was recommended: </span>
       `)
-
       for (var i=0;i<item.top_chans_rec.length;i++) {
             $('.sink-videos').append(
       `
             <span><a href="https://www.youtube.com/results?search_query=${item.top_chans_rec[i]}">${item.top_chans_rec[i]}</a>,</span>
       `)
       }
-
-
-
       $('.sink-videos').append(
       `
             <div style="margin-bottom:100px;font-weight:bold;"></div><hr>
@@ -672,7 +719,6 @@ window.onscroll = function(ev) {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
         results_shown = results_shown + 10
         addSinkHoles(results_shown-10, results_shown);
-        console.log('SCROLL DETECTED' + results_shown)
     }
 };
 
