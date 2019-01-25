@@ -192,7 +192,7 @@
             <!-- </div> -->
             <section class="is-2 column"></section>
       </section>
-      <!-- <button class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button> -->
+      <button id="more" class="btn search-btn btn-danger" style="margin-left: auto;margin-right: auto;display: block;margin-bottom: 30px;" name="submit" type="submit">Display more...</button>
       <section id="intro">
             <div class="slides-container has-text-centered">
                   <button class="btn btn__absolute btn__next btn--highlighted">Next</button>
@@ -724,7 +724,6 @@ window.onscroll = function(ev) {
 
 function hideIntro(){
       $('#intro').hide();
-
 }
             $(document).ready(function() {
                   $('#srch-term').on('input',function(e){
