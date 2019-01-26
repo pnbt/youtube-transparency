@@ -452,6 +452,10 @@ function isFilteredOutVideo(vid, specific_video) {
       return specific_video && vid.indexOf(specific_video) == -1
 }
 
+function channelIsNotClickbait(chan) {
+      return ['', ].indexOf(chan) === -1
+}
+
 function addSinkHoles(init, end) {
   // Compute the sinkholes
   var counts = {}
@@ -485,7 +489,13 @@ function addSinkHoles(init, end) {
 
   var specific_video = getUrlVar('v')
 
-  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video)).map(function(item) {
+  var filtered_data = jsonLocal[key]
+
+//   if (getUrlVar('removeclickbait') === 1) {
+//       filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
+//   }
+
+  var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video)).map(function(item) {
     return [item.id, 0];
   })
 
@@ -725,29 +735,30 @@ window.onscroll = function(ev) {
 function hideIntro(){
       $('#intro').hide();
 }
-            $(document).ready(function() {
-                  $('#srch-term').on('input',function(e){
-                        appendSinkHoles();
-                  });
 
-                  $.get("../data/*", function(data) {
-                        console.log('Initialize');
-                  });
+$(document).ready(function() {
+      $('#srch-term').on('input',function(e){
+            appendSinkHoles();
+      });
 
-                  updateDate()
-                  var date_input=$('input[name="date"]'); //our date input has the name "date"
-                  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                  var options={
-                        format: 'mm/dd/yyyy',
-                        container: container,
-                        todayHighlight: true,
-                        startDate: '10-06-2018',
-                        autoclose: true,
-                  };
-                  date_input.datepicker(options).on('changeDate',function(event){
-                        console.log('select')
-                        updateDate()
-                  });
-            });
+      $.get("../data/*", function(data) {
+            console.log('Initialize');
+      });
+
+      updateDate()
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            startDate: '10-06-2018',
+            autoclose: true,
+      };
+      date_input.datepicker(options).on('changeDate',function(event){
+            console.log('select')
+            updateDate()
+      });
+});
       </script>
 </body>
