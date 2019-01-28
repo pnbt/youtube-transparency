@@ -554,8 +554,11 @@ function addSinkHoles(init, end) {
                   warnings += `⚠️`
             }
             like_comment = `<div style="color:#DD2726;font-weight:bold;margin-top:15px;"> ${ratio_v} % dislikes ${warnings} </div>`
-      }    
-      var order_number = specific_video ? '' : `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1})</div>`
+      }
+
+      var vlw = item.views - approximateViews(item.view_history.length-8)
+      var last_week_views = getUrlVar('file').indexOf('week') === -1 ? '' : `${number_format(vlw)} views this week`
+      var order_number = specific_video ? '' : `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1}) ${last_week_views}</div>`
 
       $('.sink-videos').append(
       `
