@@ -452,8 +452,10 @@ function isFilteredOutVideo(vid, specific_video) {
       return specific_video && vid.indexOf(specific_video) == -1
 }
 
+var click_bait_chans = ["Lama Faché", "PaZ Tv 2", "DAM - Documentaires Auto / Moto", "BusinessattitudeTV", "AndykunTOP", "ChrisDetek", "C'd'oufS !", "Univers du Top", "Les Meilleurs Tops", "Abd El-Hakim Abu Issa 'Abd El-Haqq", "Alphadelta06", "Morgan VS", "VIDEOHOLIC", "Eureka", "The Armchair Historian", "Fans de Stars" , "GoPro World", "Busted Locals", "Pour le plaisir", "BEST OF CULTES", "Life Funny", "ROIBOLOSS", "Garry's School", "Automoto", "SYMPA", "MagieExpliquée", "Univers du Top", "vfr800fiem",  "MAGELLAN TV fr", "WatchMojo Français", "Dream List"]
+
 function channelIsNotClickbait(chan) {
-      return ['', ].indexOf(chan) === -1
+      return click_bait_chans.indexOf(chan) === -1
 }
 
 function addSinkHoles(init, end) {
@@ -491,9 +493,11 @@ function addSinkHoles(init, end) {
 
   var filtered_data = jsonLocal[key]
 
-//   if (getUrlVar('removeclickbait') === 1) {
-//       filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
-//   }
+  console.log(getUrlVar('cleaner'))
+  if (getUrlVar('cleaner') === '1') {
+      console.log('Cleaner activé')
+      filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
+  }
 
   var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video)).map(function(item) {
     return [item.id, 0];
@@ -507,6 +511,13 @@ function addSinkHoles(init, end) {
       $('.sink-videos').append(
     `
       <div class="sinkhole">No data available for that date and keywords. Please select a different date or keywords.<div>
+    `
+      )
+  }
+  if (getUrlVar('cleaner') === '1') {
+      $('.sink-videos').append(
+    `
+      <div style="margin:40px;font-style:italic;">The following channels have been removed because they mostly not do infos: <strong>${click_bait_chans.join(', ')}</strong><div>
     `
       )
   }
@@ -560,6 +571,7 @@ function addSinkHoles(init, end) {
       if (v7da < 10){
             v7da = approximateViews(item.view_history, item.view_history.length-8)
       }
+
       var vlw = item.views - v7da
       var test = getUrlVar('file').indexOf('week') === -1 // getUrlVar('file').indexOf('week') === -1
       var last_week_views = test ? '' : `${number_format(vlw)} views this week`
