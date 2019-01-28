@@ -544,21 +544,28 @@ function addSinkHoles(init, end) {
             }
       }
 
-    if (item.views > 0 && multiplicator > 0) {
-      var like_comment = ''
-      if (item.likes > 10 && item.dislikes >10) {
-            var ratio = item.likes / (item.likes + item.dislikes)
-            var ratio_v = Math.floor((1-ratio)*100)
-            var warnings = ''
-            for (var i=0; i < Math.floor((1-ratio) * 10); i++) {
-                  warnings += `⚠️`
+      if (item.views > 0 && multiplicator > 0) {
+            var like_comment = ''
+            if (item.likes > 10 && item.dislikes >10) {
+                  var ratio = item.likes / (item.likes + item.dislikes)
+                  var ratio_v = Math.floor((1-ratio)*100)
+                  var warnings = ''
+                  for (var i=0; i < Math.floor((1-ratio) * 10); i++) {
+                        warnings += `⚠️`
+                  }
+                  like_comment = `<div style="color:#DD2726;font-weight:bold;margin-top:15px;"> ${ratio_v} % dislikes ${warnings} </div>`
             }
-            like_comment = `<div style="color:#DD2726;font-weight:bold;margin-top:15px;"> ${ratio_v} % dislikes ${warnings} </div>`
-      }
 
-      var vlw = item.views - approximateViews(item.view_history.length-8)
-      var last_week_views = getUrlVar('file').indexOf('week') === -1 ? '' : `${number_format(vlw)} views this week`
-      var order_number = specific_video ? '' : `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${index + results_shown-10 +1}) ${last_week_views}</div>`
+      var v7da = item.view_history[item.view_history.length-8]
+      if (v7da < 10){
+            v7da = approximateViews(item.view_history, item.view_history.length-8)
+      }
+      var vlw = item.views - v7da
+      var test = getUrlVar('file').indexOf('week') === -1 // getUrlVar('file').indexOf('week') === -1
+      var last_week_views = test ? '' : `${number_format(vlw)} views this week`
+      console.log(last_week_views)
+
+      var order_number =  `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${last_week_views}</div>`
 
       $('.sink-videos').append(
       `
@@ -634,7 +641,6 @@ function addSinkHoles(init, end) {
                   var likes = Math.round(item.like_history[i])
                   var dislikes = Math.round(item.dislike_history[i])
                   var ratio_likes = likes / (likes + dislikes)
-                  console.log(ratio_likes + ' likes ' + item.like_history[i] + ' dislikes '+ item.dislike_history[i])
                   var barHeight= Math.round(view_size * ratio_likes)
                   $('.sink-videos').append(
                   `
