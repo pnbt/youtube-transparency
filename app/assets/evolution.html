@@ -635,14 +635,14 @@ function addSinkHoles(init, end) {
             if (item.view_history[i] >0) {
                   $('.sink-videos').append(
                   `
-                        <div style="height:${barHeight}px;margin:-1px -1.5px; color: #7ed868;background-color: #7ed868;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had ${number_format(item.view_history[i])} views on ${video_date}">${item.view_history[i]>0 ?'':'?'}</div>
+                        <div style="height:${barHeight}px;margin:-1px -1.4px; color: #7ed868;background-color: #7ed868;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had ${number_format(item.view_history[i])} views on ${video_date}">${item.view_history[i]>0 ?'':'?'}</div>
                   `)
             } else {
                   var approx_views = approximateViews(item.view_history, i)
                   barHeight = Math.round(view_size * approx_views/max_views)
                   $('.sink-videos').append(
                   `
-                        <div style="height:${barHeight}px;margin:-1px -1.5px; color: #dcf5d6;background-color: #dcf5d6;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${approx_views>0 ? number_format(approx_views): 'unknown '} views (interpollated number) on ${video_date}"></div>
+                        <div style="height:${barHeight}px;margin:-1px -1.4px; color: #dcf5d6;background-color: #dcf5d6;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${approx_views>0 ? number_format(approx_views): 'unknown '} views (interpollated number) on ${video_date}"></div>
                   `)
             }
       }
@@ -661,7 +661,7 @@ function addSinkHoles(init, end) {
                   var barHeight= Math.round(view_size * ratio_likes)
                   $('.sink-videos').append(
                   `
-                        <div style="height:${barHeight}px; margin:-1px; color: #00ccff;background-color: #00ccff;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had ${ratio_likes}% likes on ${video_date}">${item.like_history[i]>0 ?'':'?'}</div>
+                        <div style="height:${barHeight}px; margin:-1px -1.4px; color: #00ccff;background-color: #00ccff;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had ${ratio_likes}% likes on ${video_date}">${item.like_history[i]>0 ?'':'?'}</div>
                   `)
             } else {
                   var approx_likes = approximateViews(item.like_history, i)
@@ -670,7 +670,7 @@ function addSinkHoles(init, end) {
                   var barHeight= Math.round(view_size * ratio_likes)
                   $('.sink-videos').append(
                   `
-                        <div style="height:${barHeight}px; margin:-1px; color: #ccf5ff;background-color: #ccf5ff;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${ratio_likes ? ratio_likes : 'unknown '}% likes (interpollated number) on ${video_date}"></div>
+                        <div style="height:${barHeight}px; margin:-1px -1.4px; color: #ccf5ff;background-color: #ccf5ff;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video had around ${ratio_likes ? ratio_likes : 'unknown '}% likes (interpollated number) on ${video_date}"></div>
                   `)
 
             }
@@ -678,7 +678,7 @@ function addSinkHoles(init, end) {
 
       $('.sink-videos').append(
       `
-            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #7ed868;"> Percentage of likes </div>
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #00ccff;"> Percentage of likes </div>
       `)
 
       var max_recos = 0
@@ -693,12 +693,12 @@ function addSinkHoles(init, end) {
             var barHeight= Math.round(view_size * item.reco_history[i]/max_recos)
             $('.sink-videos').append(
             `
-                  <div style="height:${barHeight}px; margin:-1px; background-color: #ff6b9a;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended at least ${number_format(item.reco_history[i])} times on ${video_date}"></div>
+                  <div style="height:${barHeight}px; margin:-1px -1.4px; background-color: #ff6b9a;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended at least ${number_format(item.reco_history[i])} times on ${video_date}"></div>
             `)
       }
       $('.sink-videos').append(
       `
-            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: darkblue;">Observed recommendations to this videos</div>
+            <div style="margin-top:0px;margin-bottom:15px; margin-left:10px;font-weight: bold; font-style:italic;text-align:center;border-top-style: solid;border-width: 1px;margin-top: -5px;border-color: #ff6b9a;">Observed recommendations to this videos</div>
       `)
 
       var max_chans = 0
@@ -713,7 +713,7 @@ function addSinkHoles(init, end) {
             var barHeight= Math.round(view_size * item.chan_history[i]/max_chans)
             $('.sink-videos').append(
             `
-                  <div style="height:${barHeight}px; margin:-1px; background-color: darkblue;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended from at least ${item.chan_history[i]} channels on ${video_date}"></div>
+                  <div style="height:${barHeight}px; margin:-1px -1.4px; background-color: darkblue;width:${bar_percent}%;display:inline-block" data-balloon-length="large" data-balloon="This video was recommended from at least ${item.chan_history[i]} channels on ${video_date}"></div>
             `)
       }
       $('.sink-videos').append(
