@@ -2,6 +2,14 @@
 	background-image: url(images/aibutterfly-light.jpg);
 }
 
+.select-btn {
+    padding: 5px 15px !important;
+    font-size: 18px!important;
+    line-height: 1.4 !important;
+    border-radius: 0 !important;
+    margin-top: 24px;
+    background-color: lightgrey;
+}
 
 body {
 font-family: 'Open Sans', sans-serif;
@@ -20,6 +28,9 @@ font-family: 'Roboto', sans-serif;
     align-self: center;
 }
 
+.last-section {
+    margin-bottom: 40px;
+}
 
 .top-subtitle {
     font-size: 24px;

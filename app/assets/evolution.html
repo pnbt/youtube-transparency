@@ -26,6 +26,7 @@
 
       <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
       <link rel="stylesheet" href="//formden.com/static/cdn/bootstrap-iso.css" />
+      <link rel="stylesheet" href="modifications.css" />
 
       <!-- Bootstrap Date-Picker Plugin -->
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -129,10 +130,49 @@
                               <div class="container column is-8 is-offset-2">
                                     <div class="info-title">
                                           <div class="info-title-in col-xs-12">
-                                                Videos History<br><br>
+                                                Videos History
+                                                <div class="info-title-sub col-xs-12"> From more than <a href="methodology.html" class="bold-link">1000 channels</a>. See methodology <a href="methodology.html" class="bold-link">here</a>.</div>
                                           </div>
-                                    </div>
+                                          </div>
+                                          <div class="search-group">
+                                                <div class="col-xs-6">
+                                                      <div class="input-group">
+                                                            <div>
+                                                                  <label for="srch-term">FILTER TITLES / CHANNELS</label>
+                                                                  <input type="text" class="form-control straight-box" placeholder='Try "Trump" or "Kavanaugh"' name="srch-term" id="srch-term">
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                                <div class="col-xs-4">
+                                                      <div class='input-group date' id='datetimepicker1'>
+                                                            <label class="control-label" for="date">DATE</label>
+                                                            <input class="form-control noradius" id="date" name="date" placeholder="MM/DD/YYY" type="text" data-date-end-date="0d"/>
+
+                                                            <!-- <label for="date-picker">DATE</label>
+                                                            <input type='text' class="form-control" id="date-picker"/>
+                                                            <div class="input-group-addon">
+                                                                  <span class="glyphicon glyphicon-calendar"></span>
+                                                            </div> -->
+                                                      </div>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                      <button class="btn search-btn btn-danger" name="submit" type="submit">Filter</button>
+                                                </div>
+
+                                                <div class="col-xs-12 last-section">
+                                                      <button class="btn search-btn timeperiod" name="timeperiod_day" id="timeperiod_day" type="submit">1 day</button>
+                                                      <button class="btn select-btn timeperiod" name="timeperiod_3days" id="timeperiod_3days" type="submit">3 days</button>
+                                                      <button class="btn select-btn timeperiod" name="timeperiod_week" id="timeperiod_week" type="submit">1 week</button>
+                                                      <button class="btn select-btn timeperiod" name="timeperiod_month" id="timeperiod_month" type="submit">1 month</button>
+                                                      <span style="margin-left:20px;"></span>
+                                                      <!-- Empty Button -->
+                                                      <!-- <button class="btn btn-ok" name="france-btn" type="submit" style="opacity:0;">1 month</button> -->
+                                                      <button class="btn search-btn region" name="region_us" id="region_us-info" type="submit">USA</button>
+                                                      <button class="btn select-btn region" name="region_france" id="region_france-info" type="submit">France</button>
+                                                </div>
+                                          </div>
                               </div>
+                        </div>
                   </div>
             </div>
       </section>
@@ -249,6 +289,32 @@ function getUrlVar(key) {
    return (result && unescape(result[1])) || '';
 }
 
+function getUrlVarOrDefault(key, def) {
+   const result = new RegExp(key + '=([^&]*)', 'i').exec(window.location.search);
+   return (result && unescape(result[1])) || def;
+}
+
+function updateButtons(elem_id) {
+      var domain = elem_id.split('_')[0]
+      var value = elem_id.split('_')[1]
+      changeUrlParam(domain, value)
+      $('.' + domain).removeClass('search-btn');
+      $('.' + domain).addClass('select-btn');
+      $('#' + elem_id).addClass('search-btn');
+}
+
+function toggle_elem(elem_id) {
+      updateButtons(elem_id)
+      updateDate()
+}
+
+$('#timeperiod_day').on("click", function(){ toggle_elem('timeperiod_day'); });
+$('#timeperiod_3days').on("click", function(){ toggle_elem('timeperiod_3days'); });
+$('#timeperiod_week').on("click", function(){ toggle_elem('timeperiod_week'); });
+$('#timeperiod_month').on("click", function(){ toggle_elem('timeperiod_month'); });
+
+$('#region_us').on("click", function(){ toggle_elem('region_us'); });
+$('#region_france').on("click", function(){ toggle_elem('region_france'); });
 
 function changeUrlParam(param, value) {
    const currentURL = window.location.href + '&';
@@ -333,15 +399,17 @@ function updateDate(){
       // });
       // }
 
-      var js_file = getUrlVar('file')
+      var region = getUrlVar('region', 'us-info')
+      var timeperiod = getUrlVar('timeperiod', 'day')
 
+      var js_file = 'evo-' + region + '-' + timeperiod
       if (!js_file) {
             js_file = 'evo-MGTOW-stats'
       }
 
       console.log('TRYING TO GET DATA from file "' + js_file + '"');
       $.get('/data/info/' + js_file + '.json', function(data) {
-            console.log('GOT DATA from file evolution');
+            console.log('GOT DATA from file ' + js_file);
             jsonLocal = data;
             let count = 0;
             Object.keys(jsonLocal).forEach((item) => {
@@ -770,6 +838,9 @@ $(document).ready(function() {
       $.get("../data/*", function(data) {
             console.log('Initialize');
       });
+
+      updateButtons('region' + '_' + getUrlVarOrDefault('region', 'us-info'))
+      updateButtons('timeperiod' + '_' + getUrlVarOrDefault('timeperiod', '3days'))
 
       updateDate()
       var date_input=$('input[name="date"]'); //our date input has the name "date"
