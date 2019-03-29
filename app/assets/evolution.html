@@ -167,8 +167,11 @@
                                                       <span style="margin-left:20px;"></span>
                                                       <!-- Empty Button -->
                                                       <!-- <button class="btn btn-ok" name="france-btn" type="submit" style="opacity:0;">1 month</button> -->
-                                                      <button class="btn search-btn region" name="region_us" id="region_us-info" type="submit">USA</button>
-                                                      <button class="btn select-btn region" name="region_france" id="region_france-info" type="submit">France</button>
+                                                      <button class="btn search-btn region" id="region_us-info" type="submit">USA</button>
+                                                      <button class="btn search-btn region" id="region_france-info" type="submit">FRANCE</button>
+
+                                                      <button class="btn select-btn sort" id="sort_r" type="submit">Sort by Channels Recommending It</button>
+                                                      <button class="btn select-btn sort" id="sort_v" type="submit">Sort by View Increase</button>
                                                 </div>
                                           </div>
                               </div>
@@ -313,8 +316,12 @@ $('#timeperiod_3days').on("click", function(){ toggle_elem('timeperiod_3days'); 
 $('#timeperiod_week').on("click", function(){ toggle_elem('timeperiod_week'); });
 $('#timeperiod_month').on("click", function(){ toggle_elem('timeperiod_month'); });
 
-$('#region_us').on("click", function(){ toggle_elem('region_us'); });
-$('#region_france').on("click", function(){ toggle_elem('region_france'); });
+$('#region_us-info').on("click", function(){ toggle_elem('region_us-info'); });
+$('#region_france-info').on("click", function(){ toggle_elem('region_france-info'); });
+
+$('#sort_v').on("click", function(){ toggle_elem('sort_v'); });
+$('#sort_r').on("click", function(){ toggle_elem('sort_r'); });
+
 
 function changeUrlParam(param, value) {
    const currentURL = window.location.href + '&';
@@ -399,13 +406,11 @@ function updateDate(){
       // });
       // }
 
-      var region = getUrlVar('region', 'us-info')
-      var timeperiod = getUrlVar('timeperiod', 'day')
+      var region = getUrlVarOrDefault('region', 'us-info')
+      var timeperiod = getUrlVarOrDefault('timeperiod', 'day')
+      var sorting = getUrlVarOrDefault('sort', 'r')
 
-      var js_file = 'evo-' + region + '-' + timeperiod
-      if (!js_file) {
-            js_file = 'evo-MGTOW-stats'
-      }
+      var js_file = 'evo-' + region + '-' + timeperiod + '-' + sorting
 
       console.log('TRYING TO GET DATA from file "' + js_file + '"');
       $.get('/data/info/' + js_file + '.json', function(data) {
@@ -841,6 +846,7 @@ $(document).ready(function() {
 
       updateButtons('region' + '_' + getUrlVarOrDefault('region', 'us-info'))
       updateButtons('timeperiod' + '_' + getUrlVarOrDefault('timeperiod', '3days'))
+      updateButtons('sort' + '_' + getUrlVarOrDefault('sort', 'r'))
 
       updateDate()
       var date_input=$('input[name="date"]'); //our date input has the name "date"
