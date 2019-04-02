@@ -646,10 +646,10 @@ function addSinkHoles(init, end) {
     return [item.id, 0];
   })
 
-  var sum_view_inc = 0;
-  filtered_vids.forEach((elem, index) => {
-      sum_view_inc += videos_info[elem[0]]['view_inc']
-  })
+//   var sum_view_inc = 0;
+//   filtered_vids.forEach((elem, index) => {
+//       sum_view_inc += videos_info[elem[0]]['view_inc']
+//   })
 
 //   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
 //     return [item.id, 0];
@@ -670,11 +670,13 @@ function addSinkHoles(init, end) {
       )
   }
 
-  $('.sink-videos').append(
-      `
-            <div class="sinkhole" id="sumviews">At least <span class="redbold">${number_format(sum_view_inc)}</span> views during the period<div>
-      `
-      )
+//   if (getUrlVar('sort') === 'v') {
+//         $('.sink-videos').append(
+//       `
+//             <div class="sinkhole" id="sumviews">At least <span class="redbold">${number_format(sum_view_inc)}</span> views during the period<div>
+//       `
+//       )
+//   }
 
   console.log('Number of stuff')
   console.log(filtered_vids)
