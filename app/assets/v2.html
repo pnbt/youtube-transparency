@@ -332,6 +332,32 @@ $('#sort_r').on("click", function(){ toggle_elem('sort_r'); });
 
 
 function changeUrlParam(param, value) {
+   var defaults = {'timeperiod': 'day', 'region' : 'us-info', 'sort': 'r'}
+   for (i in defaults) {
+      defaults[i] = getUrlVar(i)
+   }
+
+   defaults[param] = value
+
+   var newURL = window.location.href.split('?')[0] + '?'
+   for (key in defaults) {
+      if (defaults[key] !== '') {
+            newURL = newURL + '&' + key + '='+ defaults[key]
+      }
+   }
+
+   try {
+      window.history.replaceState('', '', newURL);
+   } catch (err) {
+      console.err(err);
+   }
+}
+
+
+
+function OldchangeUrlParam(param, value) {
+   console.log(' BEFORE CHANGE: ' + window.location   )
+
    const currentURL = window.location.href + '&';
    const change = new RegExp('(' + param + ')=(.*)&', 'g');
    const newURL = currentURL.replace(change, '$1=' + value + '&');
@@ -358,6 +384,8 @@ function changeUrlParam(param, value) {
       );
       }
    }
+   console.log(' AFTER CHANGE: ' + window.location.search)
+
 }
 
 function getURLParameter(name) {
@@ -423,7 +451,7 @@ function updateDailyDate() {
       }
 
       $.get('/data/'+ base + datepicked + '.json', function(data) {
-            console.log('GOT DATA from file ' + datepicked);
+            console.log('GOT DATA from file '+ base + datepicked);
             jsonLocal = data;
             let count = 0;
             Object.keys(jsonLocal).forEach((item) => {
@@ -618,6 +646,11 @@ function addSinkHoles(init, end) {
     return [item.id, 0];
   })
 
+  var sum_view_inc = 0;
+  filtered_vids.forEach((elem, index) => {
+      sum_view_inc += videos_info[elem[0]]['view_inc']
+  })
+
 //   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
 //     return [item.id, 0];
 //   })
@@ -636,6 +669,13 @@ function addSinkHoles(init, end) {
     `
       )
   }
+
+  $('.sink-videos').append(
+      `
+            <div class="sinkhole" id="sumviews">At least <span class="redbold">${number_format(sum_view_inc)}</span> views during the period<div>
+      `
+      )
+
   console.log('Number of stuff')
   console.log(filtered_vids)
 
@@ -945,6 +985,8 @@ function appendDailySinkHoles() {
       `
       )
   }
+
+
   console.log('Number of stuff')
   console.log(filtered_vids)
   filtered_vids.slice(0,100).forEach((elem) => {
