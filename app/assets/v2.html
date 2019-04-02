@@ -139,7 +139,7 @@
                                                       <div class="input-group">
                                                             <div>
                                                                   <label for="srch-term">FILTER TITLES / CHANNELS</label>
-                                                                  <input type="text" class="form-control straight-box" placeholder='Try "Trump" or "Kavanaugh"' name="srch-term" id="srch-term">
+                                                                  <input type="text" class="form-control straight-box" placeholder='Enter a keyword' name="srch-term" id="srch-term">
                                                             </div>
                                                       </div>
                                                 </div>
@@ -158,7 +158,7 @@
                                                 <div class="col-xs-2">
                                                       <button class="btn search-btn btn-danger" name="submit" type="submit">Filter</button>
                                                 </div>
-
+                                                
                                                 <div class="col-xs-12 last-section">
                                                       <button class="btn search-btn timeperiod" name="timeperiod_day" id="timeperiod_day" type="submit">1 day</button>
                                                       <button class="btn select-btn timeperiod" name="timeperiod_3days" id="timeperiod_3days" type="submit">3 days</button>
@@ -301,12 +301,20 @@ function updateButtons(elem_id) {
       var domain = elem_id.split('_')[0]
       var value = elem_id.split('_')[1]
       changeUrlParam(domain, value)
+      console.log('new param '  + domain + value)
+
       $('.' + domain).removeClass('search-btn');
       $('.' + domain).addClass('select-btn');
       $('#' + elem_id).addClass('search-btn');
 }
 
 function toggle_elem(elem_id) {
+      if (elem_id === 'timeperiod_day') {
+            $('#sort_v').hide()
+            toggle_elem('sort_r')
+      } else (
+            $('#sort_v').show()
+      )
       updateButtons(elem_id)
       updateDate()
 }
@@ -366,45 +374,75 @@ function getURLParameter(name) {
 let jsonLocal = {};
 const jsonThemeLocal = {};
 
-function updateDate(){
-      // if ($('#date').val() == '') {
-      //       if (getUrlVar('date') && getUrlVar('date') != '') {
-      //             var french_format = getUrlVar('date')
-      //             $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
-      //       } else {
-      //             console.log(' New date ')
-      //             var today = new Date();
-      //             today.setDate(today.getDate() - 1);
-      //             if (today.getDate() == 10 && today.getMonth()+1 ==12 && today.getFullYear() == 2018) {
-      //                   today = new Date();
-      //             }
-      //             var dd = today.getDate();
-      //             var mm = today.getMonth()+1; //January is 0!
-      //             var yyyy = today.getFullYear();
 
-      //             if(dd<10) {
-      //                   dd = '0'+dd
-      //             } 
-      //             if(mm<10) {
-      //             mm = '0'+mm
-      //             }
-      //             today = mm + '/' + dd + '/' + yyyy;
-      //             $('#date').val(today)
-      //       }
-      // }
+function updateDailyDate() {
+      if ($('#date').val() == '') {
+            if (getUrlVar('date') && getUrlVar('date') != '') {
+                  var french_format = getUrlVar('date')
+                  $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
+            } else {
+                  console.log(' New date ')
+                  var today = new Date();
+                  today.setDate(today.getDate() - 1);
+                  if (today.getDate() == 26 && today.getMonth()+1 == 2 && today.getFullYear() == 2019) {
+                        today.setDate(today.getDate() - 1);
+                  }
+                  var dd = today.getDate();
+                  var mm = today.getMonth()+1; //January is 0!
+                  var yyyy = today.getFullYear();
 
-      // var d= $('#date').val()
-      // var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-      // const lastDate = filedate;
-      // console.log('Date =')
-      // console.log(lastDate)
+                  if(dd<10) {
+                        dd = '0'+dd
+                  } 
+                  if(mm<10) {
+                  mm = '0'+mm
+                  }
+                  today = mm + '/' + dd + '/' + yyyy;
+                  $('#date').val(today)
+            }
+      }
 
-      // let url = lastDate; //  getUrlVar('file') || 
+
+      var d= $('#date').val()
+      var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
+      const lastDate = filedate;
+      console.log('Date =')
+      console.log(lastDate)
+
+      let datepicked = lastDate; //  getUrlVar('file') || 
       // if (getUrlVar('file')) {
       // $('#video-select').children().each(function() {
       //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       // });
       // }
+
+      var base = 'info/us-info-'
+      var region = getUrlVarOrDefault('region', 'us-info') 
+      if (region == 'france-info') {
+            base = 'france/france-'
+      }
+
+      $.get('/data/'+ base + datepicked + '.json', function(data) {
+            console.log('GOT DATA from file ' + datepicked);
+            jsonLocal = data;
+            let count = 0;
+            Object.keys(jsonLocal).forEach((item) => {
+                  count += jsonLocal[item].length;
+            });
+            console.log(count)
+            $('#nb_video').append(count);
+
+            // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+            let key = 'info_channels';
+            changeUrlParam('date', datepicked);
+            appendSinkHoles();
+      });
+}
+
+function updateDate(){
+      if (getUrlVarOrDefault('timeperiod', 'day') === 'day') {
+            return updateDailyDate()
+      }
 
       var region = getUrlVarOrDefault('region', 'us-info')
       var timeperiod = getUrlVarOrDefault('timeperiod', 'day')
@@ -572,7 +610,11 @@ function addSinkHoles(init, end) {
       filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
   }
 
-  var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video)).map(function(item) {
+  specific_keyword = getUrlVarOrDefault('keyword', '')
+  var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video) &&
+      // filter by title 
+      (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1)
+      ).map(function(item) {
     return [item.id, 0];
   })
 
@@ -614,6 +656,7 @@ function addSinkHoles(init, end) {
     const views = item.views > 0 ? `${number_format(item.views)} views` : '';
     const multiplicator = item['nb_chans_rec'];
     const obs_recos = item['observed_recos']
+    const view_increase = item['view_inc']
     const mult = multiplicator ? `
           <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${multiplicator} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-yy"><strong>${Math.round(multiplicator * 10) / 10} </strong></div>
           <div class="right" data-balloon-length="large" data-balloon="The algorithm recommended this video at least ${number_format(obs_recos)} times, and probably much more"><div class="mult-text"> Recommendations: </div><div class="mult-yy"><strong>${number_format(obs_recos)}</strong</div>
@@ -678,13 +721,16 @@ function addSinkHoles(init, end) {
               </article>
             </div>
           <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
+            <span style="color:#DD2726;font-size:25px;font-weight:bold">${number_format(view_increase)}</span> minimum view increase was observed <span class="viewinc"></span>
+          </div>
+          <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
             <span style="color:#ff6b9a;font-size:25px;font-weight:bold">${number_format(obs_recos)}</span> recommendations to this video were observed
           </div>
             <div style="font-weight:bold; margin-left:20px;margin-top:15px;">
-            <span style="color:darkblue;font-size:25px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video on ${max_chans_date}
+            <span style="color:darkblue;font-size:20px;font-weight:bold">${max_local_chans}</span> different channels had recommendations to this video on ${max_chans_date}
           </div>
           <div style="font-weight:bold; margin-left:20px; margin-top: 10px;">
-            <span style="color:darkblue;font-size:15px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
+            <span style="color:darkblue;font-size:20px;font-weight:bold">${item['nb_chans_rec']}</span> different channels had recommendations to this video in total
           </div>
         `);
 
@@ -812,6 +858,10 @@ function addSinkHoles(init, end) {
 }
 
 function appendSinkHoles() {
+  if (getUrlVarOrDefault('timeperiod','day') === 'day') {
+      return appendDailySinkHoles()
+  }
+
   $('#panel-block-all').addClass('is-active');
   $('.sink-videos').empty()
   $('#presentation').hide()
@@ -820,9 +870,124 @@ function appendSinkHoles() {
   $('.video-header').show()
   $('.videos').show()
 
+  var keyword = $("#srch-term").val()
+  changeUrlParam('keyword', keyword);
+
   results_shown = 10
   addSinkHoles(0, results_shown);
 };
+
+
+function appendDailySinkHoles() {
+  $('#panel-block-all').addClass('is-active');
+  $('.sink-videos').empty()
+  $('#presentation').hide()
+  $('.video-header').hide()
+  $('.videos').hide()
+
+  var keyword = $("#srch-term").val()
+  changeUrlParam('keyword', keyword);
+
+  console.log('keyword is: ' + keyword)
+
+  if (keyword !== '') {
+    $('.info-title').css('max-height', '0px')
+  }
+
+  $('.video-header').show()
+  $('.videos').show()
+
+  // Compute the sinkholes
+  var counts = {}
+  var videos_info = {}
+  for (var key in jsonLocal) {
+    console.log(key)
+    // check if the property/key is defined in the object itself, not in parent
+    if (jsonLocal.hasOwnProperty(key)) {
+        jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
+        counts[item.id] = (counts[item.id] || 0) + 1;
+        videos_info[item.id] = item
+      })
+    }
+  }
+  var sorted_counts = Object.keys(counts).map(function(key) {
+    return [key, counts[key]];
+  });
+
+  // Sort the array based on the second element
+  sorted_counts.sort(function(first, second) {
+      return second[1] - first[1];
+  });
+
+  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => 
+      (item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1) ||
+      (item.channel.toLowerCase().indexOf(keyword.toLowerCase()) > -1)).map(function(item) {
+    return [item.id, 0];
+  })
+
+  var extra_text = ''
+  if (keyword !== '') {
+    extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title or channel';
+  }
+
+  if (filtered_vids.length == 0) {
+      $('.sink-videos').append(
+    `
+      <div class="sinkhole">No data available for that date and keywords. Please select a different date or keywords.<div>
+    `
+      )
+  } else {
+      $('.sink-videos').append(
+      `
+            <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` + 
+            $('#date').val() + '</span>' + extra_text
+            + `<div>
+      `
+      )
+  }
+  console.log('Number of stuff')
+  console.log(filtered_vids)
+  filtered_vids.slice(0,100).forEach((elem) => {
+    console.log('Elem')
+    var item = videos_info[elem[0]];
+    const views = item.views > 0 ? `${number_format(item.views)} views` : '';
+    const multiplicator = item['nb_recommendations'];
+    const mult = multiplicator ? `
+          <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+          </div>`
+      : '';
+
+    if (item.views > 0 && multiplicator > 0) {
+        $('.sink-videos').append(
+      `
+          <div class="box">
+          <article class="media">
+              <figure class="media-left level">
+                <a href="https://www.youtube.com/watch?v=${item.id}" target="_blank">
+                    <div class="is-inline-block level-item">
+                      <img class="image" width="170px" src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg">
+                    </div>
+                </a>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                    <a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                    <div class="channel-title">${item.channel}</div>
+                    <div><small class="video-stats">` +
+        views +
+        `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
+                    ${number_format(item.likes)}
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
+                </div>
+              </div>
+              </article>` +
+        mult +
+        `</div>
+        `
+    );}
+  });
+}
+
 
 window.onscroll = function(ev) {
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
@@ -847,8 +1012,8 @@ $(document).ready(function() {
       updateButtons('region' + '_' + getUrlVarOrDefault('region', 'us-info'))
       updateButtons('timeperiod' + '_' + getUrlVarOrDefault('timeperiod', '3days'))
       updateButtons('sort' + '_' + getUrlVarOrDefault('sort', 'r'))
-
       updateDate()
+
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
@@ -860,6 +1025,8 @@ $(document).ready(function() {
       };
       date_input.datepicker(options).on('changeDate',function(event){
             console.log('select')
+            changeUrlParam('timeperiod', 'day')
+            toggle_elem('timeperiod_day')
             updateDate()
       });
 });
