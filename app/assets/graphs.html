@@ -386,9 +386,9 @@ Highcharts.chart(container_id, {
     legend: {
         layout: 'vertical',
         align: 'right',
-        verticalAlign: 'top',
+        verticalAlign: 'bottom',
         x: -40,
-        y: 80,
+        y: -80,
         floating: true,
         borderWidth: 1,
         backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
@@ -407,8 +407,8 @@ Highcharts.chart(container_id, {
 
 $(document).ready(function() {
       $.get('/data/info/graphs.json', function(data) {
-            create_bar_chart('conta', 'Recommendations per video', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of these videos', data['keywords_occs'], data['recos_to_occs']);
-            create_bar_chart('conta1', 'Recommendations per view on video', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of views of these videos', data['keywords_views'], data['recos_to_views']);
+            create_bar_chart('conta', 'Recommendations per video, relative to the average', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of these videos, relative to the average for all keywords', data['keywords_occs'], data['recos_to_occs']);
+            create_bar_chart('conta1', 'Recommendations per view on video, relative to the average', 'Total number of recommendations to videos that have a given keyword in their title, divided by the total number of views of these videos, relative to the average for all keywords', data['keywords_views'], data['recos_to_views']);
       });
 })
 
