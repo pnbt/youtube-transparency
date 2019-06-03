@@ -736,6 +736,8 @@ function addSinkHoles(init, end) {
 
       var order_number =  `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${last_week_views}</div>`
 
+      const pDate = item.pDate ? ' published on ' + item.pDate : ''
+
       $('.sink-videos').append(
       `
           ${order_number}
@@ -756,7 +758,7 @@ function addSinkHoles(init, end) {
                         views +
               `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
-                    <span style="color:#DD2726"><i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</span>${like_comment}</small></div>
+                    <span style="color:#DD2726"><i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</span>${like_comment}${pDate}</small></div>
                 </div>
               </div>
               </article>

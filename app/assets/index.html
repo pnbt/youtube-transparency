@@ -525,6 +525,8 @@ function appendSinkHoles() {
           </div>`
       : '';
 
+    const pDate = item.pDate ? ' published on ' + item.pDate : ''
+
     if (item.views > 0 && multiplicator > 0) {
         $('.sink-videos').append(
       `
@@ -545,7 +547,7 @@ function appendSinkHoles() {
         views +
         `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
                 </div>
               </div>
               </article>` +
