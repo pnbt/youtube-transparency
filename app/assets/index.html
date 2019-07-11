@@ -326,7 +326,7 @@ function updateDate(){
             } else {
                   console.log(' New date ')
                   var today = new Date();
-                  today.setDate(today.getDate());
+                  today.setDate(today.getDate()-1);
                   console.log('Today is '+  today.getDay())
                   if (today.getDay() == 7 && today.getMonth()+ 1 == 4 && today.getFullYear() == 2019) {
                         today.setDate(today.getDate() - 1);
