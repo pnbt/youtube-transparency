@@ -625,6 +625,10 @@
                   return click_bait_chans.indexOf(chan) === -1
             }
 
+            function displayVideos() {
+                  return getUrlVarOrDefault('sort', 'r') !== 'c'
+            }
+
             function addSinkHoles(init, end) {
                   // Compute the sinkholes
                   var counts = {}
@@ -660,24 +664,33 @@
 
                   var filtered_data = jsonLocal[key]
 
-                  console.log(getUrlVar('cleaner'))
-                  if (getUrlVar('cleaner') === '1') {
-                        console.log('Cleaner activé')
-                        filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
-                  }
-
                   specific_keyword = getUrlVarOrDefault('keyword', '')
-                  var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video) &&
-                        // filter by title 
-                        (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1)
-                  ).map(function (item) {
-                        return [item.id, 0];
-                  })
 
-                  var sum_view_inc = 0;
-                  filtered_vids.forEach((elem, index) => {
-                        sum_view_inc += videos_info[elem[0]]['view_inc']
-                  })
+                  if (displayVideos()) {
+                        console.log(getUrlVar('cleaner'))
+                        if (getUrlVar('cleaner') === '1') {
+                              console.log('Cleaner activé')
+                              filtered_data = jsonLocal[key].filter((item) => channelIsNotClickbait(item.channel))
+                        }
+
+                        var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video) &&
+                              // filter by title 
+                              (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1)
+                        ).map(function (item) {
+                              return [item.id, 0];
+                        })
+
+                        var sum_view_inc = 0;
+                        filtered_vids.forEach((elem, index) => {
+                              sum_view_inc += videos_info[elem[0]]['view_inc']
+                        })
+                  } else {
+                        var filtered_vids = filtered_data.filter((item) =>
+                              // filter by title 
+                              (item.title.toLowerCase().indexOf(specific_keyword) > -1)).map(function (item) {
+                              return [item, 0];
+                        })
+                  }
 
                   //   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
                   //     return [item.id, 0];
@@ -724,10 +737,14 @@
                   console.log('Total videos: ')
                   console.log(filtered_vids.length)
                   const my_elems = filtered_vids.slice(init, end)
-                  for (var index = 0; index < my_elems.length; index ++){
+                  console.log(my_elems[0])
+                  for (let index = 0; index < my_elems.length; ++index){
                         var elem = my_elems[index]
-                        var item = videos_info[elem[0]];
-                        console.log(item.title)
+
+                        // var item = videos_info[elem[0]];
+                        var item = displayVideos() ? videos_info[elem[0]] : elem[0]
+                        const ranking = init + index + 1
+                        console.log(item['view_inc'])
                         if (!item.hasOwnProperty('chan_history')) {
                               const view_increase = item['view_inc']
                               $('.sink-videos').append(
@@ -736,7 +753,7 @@
                               <article class="media">
                                     <div class="media-content">
                                     <div class="content">
-                                          <a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${item.title}</a> view increase: ${view_increase}
+                                          <a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${ranking}) ${item.title}</a> with view increase during this period of: ${number_format(view_increase)}
                                     </div>
                                     </div>
                               </article>
