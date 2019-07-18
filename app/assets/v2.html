@@ -187,12 +187,9 @@
                                           <button class="btn search-btn region" id="region_france-info"
                                                 type="submit">FRANCE</button>
 
-                                          <button class="btn select-btn sort" id="sort_r" type="submit">Videos by
-                                                Channels Recommending It</button>
-                                          <button class="btn select-btn sort" id="sort_v" type="submit">Videos by View
-                                                Increase</button>
-                                          <button class="btn select-btn sort" id="sort_c" type="submit">Channels by View
-                                                Increase</button>
+                                          <button class="btn select-btn sort" id="sort_r" type="submit">Videos / Recommendations</button>
+                                          <button class="btn select-btn sort" id="sort_v" type="submit">Videos / Views</button>
+                                          <button class="btn select-btn sort" id="sort_c" type="submit">Channels / Views</button>
                                     </div>
                               </div>
                         </div>
@@ -738,26 +735,28 @@
                   console.log(filtered_vids.length)
                   const my_elems = filtered_vids.slice(init, end)
                   console.log(my_elems[0])
+
+                  const max_view_inc = filtered_vids[0][0]['view_inc']
+
                   for (let index = 0; index < my_elems.length; ++index){
                         var elem = my_elems[index]
 
                         // var item = videos_info[elem[0]];
                         var item = displayVideos() ? videos_info[elem[0]] : elem[0]
-                        const ranking = init + index + 1
+                        // const ranking = init + index + 1
                         console.log(item['view_inc'])
                         if (!item.hasOwnProperty('chan_history')) {
                               const view_increase = item['view_inc']
+                              const bar_width = view_increase * 400 / max_view_inc
                               $('.sink-videos').append(
                               `
-                              <div class="box">
                               <article class="media">
                                     <div class="media-content">
                                     <div class="content">
-                                          <a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${ranking}) ${item.title}</a> with view increase during this period of: ${number_format(view_increase)}
+                                          <div style="background-color: #0678C9; width:${bar_width}px; height:15px;display:inline-block;margin-right:10px;"> </div><a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${item.title}</a><div style="display: inline-block; width:125px;text-align:right;color:#0678C9;font-weight: bold"></div>
                                     </div>
                                     </div>
                               </article>
-                              </div>
                               `)
                         } else {
                         const views = item.views > 0 ? `${number_format(item.views)} views` : '';
