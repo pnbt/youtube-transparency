@@ -802,7 +802,7 @@
 
                               var order_number = `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${last_week_views}</div>`
 
-                              const pDate = item.pDate ? ' published on ' + item.pDate : ''
+                              const pDate = item.pdate ? ' published on ' + item.pdate.slice(0,10) : ''
 
                               $('.sink-videos').append(
                                     `
@@ -1064,6 +1064,7 @@
                         var item = videos_info[elem[0]];
                         const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                         const multiplicator = item['nb_recommendations'];
+                        const pDate = item.pdate ? ' published on ' + item.pdate.slice(0,10) : ''
                         const mult = multiplicator ? `
           <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
           </div>`
@@ -1089,7 +1090,7 @@
                                     views +
                                     `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</small></div>
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
                 </div>
               </div>
               </article>` +
