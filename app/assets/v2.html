@@ -721,9 +721,13 @@
                   //   })
                   //   const max_recos = 1000000
 
-                  filtered_vids.slice(init, end).forEach((elem, index) => {
+                  console.log('Total videos: ')
+                  console.log(filtered_vids.length)
+                  const my_elems = filtered_vids.slice(init, end)
+                  for (var index = 0; index < my_elems.length; index ++){
+                        var elem = my_elems[index]
                         var item = videos_info[elem[0]];
-
+                        console.log(item.title)
                         if (!item.hasOwnProperty('chan_history')) {
                               const view_increase = item['view_inc']
                               $('.sink-videos').append(
@@ -739,7 +743,7 @@
                               </div>
                               `)
                         } else {
-                              const views = item.views > 0 ? `${number_format(item.views)} views` : '';
+                        const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                         const multiplicator = item['nb_chans_rec'];
                         const obs_recos = item['observed_recos']
                         const view_increase = item['view_inc']
@@ -944,7 +948,7 @@
                               `
             <div style="margin-bottom:100px;font-weight:bold;"></div><hr>
       `)}
-                  })
+                  }
             }
 
             function appendSinkHoles() {
