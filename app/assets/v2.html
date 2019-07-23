@@ -142,13 +142,23 @@
                                     </div>
                               </div>
                               <div class="search-group">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                           <div class="input-group">
-                                                <div>
-                                                      <label for="srch-term">FILTER TITLES / CHANNELS</label>
+                                                <div style="display:inline-block">
+                                                      <label for="srch-term">FILTER TITLES</label>
                                                       <input type="text" class="form-control straight-box"
                                                             placeholder='Enter a keyword' name="srch-term"
                                                             id="srch-term">
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                          <div class="input-group">
+                                                <div style="display:inline-block">
+                                                      <label for="srch-channel">FILTER CHANNELS</label>
+                                                      <input type="text" class="form-control straight-box"
+                                                            placeholder='Enter a keyword' name="srch-channel"
+                                                            id="srch-channel">
                                                 </div>
                                           </div>
                                     </div>
@@ -165,11 +175,6 @@
                                                             </div> -->
                                           </div>
                                     </div>
-                                    <div class="col-xs-2">
-                                          <button class="btn search-btn btn-danger" name="submit"
-                                                type="submit">Filter</button>
-                                    </div>
-
                                     <div class="col-xs-12 last-section">
                                           <button class="btn search-btn timeperiod" name="timeperiod_day"
                                                 id="timeperiod_day" type="submit">1 day</button>
@@ -378,8 +383,6 @@
                         console.err(err);
                   }
             }
-
-
 
             function OldchangeUrlParam(param, value) {
                   console.log(' BEFORE CHANGE: ' + window.location)
@@ -662,6 +665,9 @@
                   var filtered_data = jsonLocal[key]
 
                   specific_keyword = getUrlVarOrDefault('keyword', '')
+                  specific_channels = getUrlVarOrDefault('channel', '').split(',').map(item => item.toLowerCase())
+                  console.log('channels')
+                  console.log(specific_channels)
 
                   if (displayVideos()) {
                         console.log(getUrlVar('cleaner'))
@@ -672,7 +678,10 @@
 
                         var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video) &&
                               // filter by title 
-                              (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1)
+                              (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1) &&
+                              // filter by channel 
+                              ((specific_channels[0] === '') || specific_channels.indexOf(item.channel.toLowerCase()) > -1)
+
                         ).map(function (item) {
                               return [item.id, 0];
                         })
@@ -744,7 +753,6 @@
                         // var item = videos_info[elem[0]];
                         var item = displayVideos() ? videos_info[elem[0]] : elem[0]
                         // const ranking = init + index + 1
-                        console.log(item['view_inc'])
                         if (!item.hasOwnProperty('chan_history')) {
                               const view_increase = item['view_inc']
                               const bar_width = view_increase * 400 / max_view_inc
@@ -798,7 +806,6 @@
                               var vlw = item.views - v7da
                               var test = getUrlVar('file').indexOf('week') === -1 // getUrlVar('file').indexOf('week') === -1
                               var last_week_views = test ? '' : `${number_format(vlw)} views this week`
-                              console.log(last_week_views)
 
                               var order_number = `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${last_week_views}</div>`
 
@@ -982,6 +989,8 @@
 
                   var keyword = $("#srch-term").val()
                   changeUrlParam('keyword', keyword);
+                  var keyword = $("#srch-channel").val()
+                  changeUrlParam('channel', keyword);
 
                   results_shown = 10
                   addSinkHoles(0, results_shown);
@@ -1116,6 +1125,9 @@
 
             $(document).ready(function () {
                   $('#srch-term').on('input', function (e) {
+                        appendSinkHoles();
+                  });
+                  $('#srch-channel').on('input', function (e) {
                         appendSinkHoles();
                   });
 
