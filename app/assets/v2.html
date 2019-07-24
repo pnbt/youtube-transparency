@@ -678,10 +678,9 @@
 
                         var filtered_vids = filtered_data.filter((item) => item.likes !== -1 && !isFilteredOutVideo(item.id, specific_video) &&
                               // filter by title 
-                              (item.title.toLowerCase().indexOf(specific_keyword) > -1 || item.channel.toLowerCase().indexOf(specific_keyword) > -1) &&
+                              (item.title.toLowerCase().indexOf(specific_keyword) > -1) &&
                               // filter by channel 
                               ((specific_channels[0] === '') || specific_channels.indexOf(item.channel.toLowerCase()) > -1)
-
                         ).map(function (item) {
                               return [item.id, 0];
                         })
@@ -692,8 +691,8 @@
                         })
                   } else {
                         var filtered_vids = filtered_data.filter((item) =>
-                              // filter by title 
-                              (item.title.toLowerCase().indexOf(specific_keyword) > -1)).map(function (item) {
+                              (item.title.toLowerCase().indexOf(specific_keyword) > -1) &&
+                              ((specific_channels[0] === '') ||specific_channels.indexOf(item.title.toLowerCase()) > -1)).map(function (item) {
                               return [item, 0];
                         })
                   }
@@ -989,8 +988,8 @@
 
                   var keyword = $("#srch-term").val()
                   changeUrlParam('keyword', keyword);
-                  var keyword = $("#srch-channel").val()
-                  changeUrlParam('channel', keyword);
+                  var channel = $("#srch-channel").val()
+                  changeUrlParam('channel', channel);
 
                   results_shown = 10
                   addSinkHoles(0, results_shown);
@@ -1006,6 +1005,8 @@
 
                   var keyword = $("#srch-term").val()
                   changeUrlParam('keyword', keyword);
+                  var channel = $("#srch-channel").val()
+                  changeUrlParam('channel', channel);
 
                   console.log('keyword is: ' + keyword)
 
@@ -1037,10 +1038,19 @@
                   sorted_counts.sort(function (first, second) {
                         return second[1] - first[1];
                   });
+                  var specific_keyword = getUrlVarOrDefault('keyword', '')
+                  var specific_channels = getUrlVarOrDefault('channel', '').split(',').map(item => item.toLowerCase())
+
+                  console.log('chans')
+                  console.log(specific_channels)
+
 
                   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) =>
-                        (item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1) ||
-                        (item.channel.toLowerCase().indexOf(keyword.toLowerCase()) > -1)).map(function (item) {
+                        // filter by keyword 
+                        (item.title.toLowerCase().indexOf(specific_keyword) > -1) &&
+                        // filter by channel 
+                        ((specific_channels[0] === '') || specific_channels.indexOf(item.channel.toLowerCase()) > -1))
+                        .map(function (item) {
                               return [item.id, 0];
                         })
 
@@ -1125,10 +1135,19 @@
 
             $(document).ready(function () {
                   $('#srch-term').on('input', function (e) {
-                        appendSinkHoles();
+                        if (getUrlVarOrDefault('timeperiod', 'day') === 'day') {
+                              appendDailySinkHoles()
+                        } else {
+                              appendSinkHoles();
+                        }
                   });
                   $('#srch-channel').on('input', function (e) {
-                        appendSinkHoles();
+                        console.log('change ' + getUrlVarOrDefault('timeperiod', 'day'))
+                        if (getUrlVarOrDefault('timeperiod', 'day') === 'day') {
+                              appendDailySinkHoles()
+                        } else {
+                              appendSinkHoles();
+                        }
                   });
 
                   $.get("../data/*", function (data) {
