@@ -724,6 +724,19 @@
                         )
                   }
 
+                  var region = getUrlVarOrDefault('region', 'us-info')
+                  var timeperiod = getUrlVarOrDefault('timeperiod', 'day')
+                  var sorting = getUrlVarOrDefault('sort', 'r')
+
+                  var file_name = 'evo-' + region + '-' + timeperiod + '-' + sorting + '.xlsx'
+
+                  $('.sink-videos').append(
+                             `<div> <a href="data/info/${file_name}" download> export as csv</a><div>`
+                        )
+                  }
+                  
+
+
                   console.log('Number of stuff')
                   console.log(filtered_vids)
 
