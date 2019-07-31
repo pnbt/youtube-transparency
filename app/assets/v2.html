@@ -107,7 +107,7 @@
                               <div class="nav-right nav-menu">
                                     <a class="nav-item" href="/en/science.html">
                                           Themes
-                                    </a>
+                                    </a>  
                                     <a class="nav-item" href="/verbs.html">
                                           Top 25 Verbs
                                     </a>
@@ -192,9 +192,12 @@
                                           <button class="btn search-btn region" id="region_france-info"
                                                 type="submit">FRANCE</button>
 
-                                          <button class="btn select-btn sort" id="sort_r" type="submit">Videos / Recommendations</button>
-                                          <button class="btn select-btn sort" id="sort_v" type="submit">Videos / Views</button>
-                                          <button class="btn select-btn sort" id="sort_c" type="submit">Channels / Views</button>
+                                          <button class="btn select-btn sort" id="sort_r" type="submit">Videos /
+                                                Recommendations</button>
+                                          <button class="btn select-btn sort" id="sort_v" type="submit">Videos /
+                                                Views</button>
+                                          <button class="btn select-btn sort" id="sort_c" type="submit">Channels /
+                                                Views</button>
                                     </div>
                               </div>
                         </div>
@@ -363,7 +366,7 @@
 
 
             function changeUrlParam(param, value) {
-                  var defaults = { 'timeperiod': 'day', 'region': 'us-info', 'sort': 'r' }
+                  var defaults = { 'timeperiod': 'day', 'region': 'us-info', 'sort': 'r', 'keyword': ''}
                   for (i in defaults) {
                         defaults[i] = getUrlVar(i)
                   }
@@ -664,10 +667,9 @@
 
                   var filtered_data = jsonLocal[key]
 
-                  specific_keyword = getUrlVarOrDefault('keyword', '')
-                  specific_channels = getUrlVarOrDefault('channel', '').split(',').map(item => item.toLowerCase())
-                  console.log('channels')
-                  console.log(specific_channels)
+                  var specific_keyword = getUrlVarOrDefault('keyword', '')
+                  console.log('kw now is ' + specific_keyword)
+                  var specific_channels = getUrlVarOrDefault('channel', '').split(',').map(item => item.toLowerCase())
 
                   if (displayVideos()) {
                         console.log(getUrlVar('cleaner'))
@@ -692,9 +694,9 @@
                   } else {
                         var filtered_vids = filtered_data.filter((item) =>
                               (item.title.toLowerCase().indexOf(specific_keyword) > -1) &&
-                              ((specific_channels[0] === '') ||specific_channels.indexOf(item.title.toLowerCase()) > -1)).map(function (item) {
-                              return [item, 0];
-                        })
+                              ((specific_channels[0] === '') || specific_channels.indexOf(item.title.toLowerCase()) > -1)).map(function (item) {
+                                    return [item, 0];
+                              })
                   }
 
                   //   var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).map(function(item) {
@@ -708,6 +710,7 @@
     `
                         )
                   }
+
                   if (getUrlVar('cleaner') === '1') {
                         $('.sink-videos').append(
                               `
@@ -730,45 +733,44 @@
 
                   var file_name = 'evo-' + region + '-' + timeperiod + '-' + sorting + '.xlsx'
 
-                  $('.sink-videos').append(
-                             `<div> <a href="data/info/${file_name}" download> export as csv</a><div>`
-                        )
-                  }
-                  
-
-
-                  console.log('Number of stuff')
-                  console.log(filtered_vids)
-
-                  // Computing the global max channels for all items   
-                  //   let max_chans = 0;
-                  //   filtered_vids.forEach((elem) => {
-                  //     var item = videos_info[elem[0]];
-                  //       for (var i=0;i<item.chan_history.length;i++) {
-                  //             if (item.chan_history[i] > max_chans) {
-                  //                   max_chans = item.chan_history[i]
-                  //             }
-                  //       }
-                  //   })
-                  //   const max_recos = 1000000
-
-                  console.log('Total videos: ')
-                  console.log(filtered_vids.length)
-                  const my_elems = filtered_vids.slice(init, end)
-                  console.log(my_elems[0])
-
-                  const max_view_inc = filtered_vids[0][0]['view_inc']
-
-                  for (let index = 0; index < my_elems.length; ++index){
-                        var elem = my_elems[index]
-
-                        // var item = videos_info[elem[0]];
-                        var item = displayVideos() ? videos_info[elem[0]] : elem[0]
-                        // const ranking = init + index + 1
-                        if (!item.hasOwnProperty('chan_history')) {
-                              const view_increase = item['view_inc']
-                              const bar_width = view_increase * 400 / max_view_inc
+                  if (sorting !== 'c' && init === 0) {
                               $('.sink-videos').append(
+                                    `<div class="btn btn-small btn-info" style="padding:5px 10x;"><a href="data/info/${file_name}" download> export as exel</a><div>`
+                              )
+                  }
+
+            console.log('Number of stuff')
+            console.log(filtered_vids)
+
+            // Computing the global max channels for all items   
+            //   let max_chans = 0;
+            //   filtered_vids.forEach((elem) => {
+            //     var item = videos_info[elem[0]];
+            //       for (var i=0;i<item.chan_history.length;i++) {
+            //             if (item.chan_history[i] > max_chans) {
+            //                   max_chans = item.chan_history[i]
+            //             }
+            //       }
+            //   })
+            //   const max_recos = 1000000
+
+            console.log('Total videos: ')
+            console.log(filtered_vids.length)
+            const my_elems = filtered_vids.slice(init, end)
+            console.log(my_elems[0])
+
+            const max_view_inc = filtered_vids[0][0]['view_inc']
+
+            for (let index = 0; index < my_elems.length; ++index) {
+                  var elem = my_elems[index]
+
+                  // var item = videos_info[elem[0]];
+                  var item = displayVideos() ? videos_info[elem[0]] : elem[0]
+                  // const ranking = init + index + 1
+                  if (!item.hasOwnProperty('chan_history')) {
+                        const view_increase = item['view_inc']
+                        const bar_width = view_increase * 400 / max_view_inc
+                        $('.sink-videos').append(
                               `
                               <article class="media">
                                     <div class="media-content">
@@ -778,7 +780,7 @@
                                     </div>
                               </article>
                               `)
-                        } else {
+                  } else {
                         const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                         const multiplicator = item['nb_chans_rec'];
                         const obs_recos = item['observed_recos']
@@ -791,12 +793,12 @@
                         var max_local_chans = 0;
                         var days_ago = 0;
 
-                              for (var i = 0; i < item.chan_history.length; i++) {
-                                    if (item.chan_history[i] > max_local_chans) {
-                                          max_local_chans = item.chan_history[i]
-                                          max_chans_date = dates[i]
-                                    }
+                        for (var i = 0; i < item.chan_history.length; i++) {
+                              if (item.chan_history[i] > max_local_chans) {
+                                    max_local_chans = item.chan_history[i]
+                                    max_chans_date = dates[i]
                               }
+                        }
 
                         if (item.views > 0 && multiplicator > 0) {
                               var like_comment = ''
@@ -821,7 +823,8 @@
 
                               var order_number = `<div style="font-size: 25px;font-weight: bold;color:#DD2726;margin-left:20px;margin-top:15px;">${last_week_views}</div>`
 
-                              const pDate = item.pdate ? ' published on ' + item.pdate.slice(0,10) : ''
+                              const pDate = item.pdate ? ' published on ' + item.pdate.slice(0, 10) : ''
+                              const comments = item.comments ? ' ' + number_format(item.comments) + ' comments' : ''
 
                               $('.sink-videos').append(
                                     `
@@ -843,7 +846,7 @@
                                     views +
                                     `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                         ${number_format(item.likes)}
-                        <span style="color:#DD2726"><i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</span>${like_comment}${pDate}</small></div>
+                        <span style="color:#DD2726"><i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}</span>${like_comment}${pDate}${comments}</small></div>
                   </div>
                   </div>
                   </article>
@@ -977,14 +980,15 @@
                   <span><a href="https://www.youtube.com/results?search_query=${item.top_chans_rec[i]}">${item.top_chans_rec[i]}</a>,</span>
             `)
                               }
-                        }
 
-                        $('.sink-videos').append(
-                              `
+                              $('.sink-videos').append(
+                                    `
             <div style="margin-bottom:100px;font-weight:bold;"></div><hr>
-      `)}
+      `)
+                        }
                   }
             }
+      }
 
             function appendSinkHoles() {
                   if (getUrlVarOrDefault('timeperiod', 'day') === 'day') {
@@ -1001,6 +1005,8 @@
 
                   var keyword = $("#srch-term").val()
                   changeUrlParam('keyword', keyword);
+
+                  console.log('keyword is ' + keyword)
                   var channel = $("#srch-channel").val()
                   changeUrlParam('channel', channel);
 
@@ -1096,7 +1102,8 @@
                         var item = videos_info[elem[0]];
                         const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                         const multiplicator = item['nb_recommendations'];
-                        const pDate = item.pdate ? ' published on ' + item.pdate.slice(0,10) : ''
+                        const pDate = item.pdate ? ' published on ' + item.pdate.slice(0, 10) : ''
+                        const comments = item.comments ? ' ' + number_format(item.comments) + ' comments' : ''
                         const mult = multiplicator ? `
           <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
           </div>`
@@ -1122,7 +1129,7 @@
                                     views +
                                     `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}${comments}</small></div>
                 </div>
               </div>
               </article>` +
