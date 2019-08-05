@@ -341,12 +341,12 @@
 
             function toggle_elem(elem_id) {
                   if (elem_id === 'timeperiod_day') {
-                        $('#sort_v').hide()
-                        $('#sort_c').hide()
+                        $('#sort_v').css('display', 'none')
+                        $('#sort_c').css('display', 'none')
                         toggle_elem('sort_r')
                   } else {
-                        $('#sort_v').show()
-                        $('#sort_c').show()
+                        $('#sort_v').css('display', 'inline-block')
+                        $('#sort_c').css('display', 'inline-block')
                   }
                   updateButtons(elem_id)
                   updateDate()
