@@ -664,7 +664,6 @@
                   });
 
                   var specific_video = getUrlVar('v')
-
                   var filtered_data = jsonLocal[key]
 
                   var specific_keyword = getUrlVarOrDefault('keyword', '')
@@ -770,12 +769,22 @@
                   if (!item.hasOwnProperty('chan_history')) {
                         const view_increase = item['view_inc']
                         const bar_width = view_increase * 400 / max_view_inc
+
+                        var timeperiod = getUrlVarOrDefault('timeperiod', '3days')
+                        var period_text = ' during the last 3 days'
+                        if (timeperiod === 'week') {
+                              period_text = ' during the last week'
+                        } else if (timeperiod === 'month') {
+                              period_text = ' during the last month'
+                        }
+
                         $('.sink-videos').append(
                               `
                               <article class="media">
                                     <div class="media-content">
                                     <div class="content">
-                                          <div style="background-color: #0678C9; width:${bar_width}px; height:15px;display:inline-block;margin-right:10px;"> </div><a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${item.title}</a><div style="display: inline-block; width:125px;text-align:right;color:#0678C9;font-weight: bold"></div>
+                                          <div style="background-color: #0678C9; width:${bar_width}px; height:15px;display:inline-block;margin-right:10px;"> </div><a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${item.title}</a>
+                                          <br><div style="margin:15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(view_increase)}</div><div style="display: inline-block;"> &nbsp; views ${period_text}</div></div>
                                     </div>
                                     </div>
                               </article>
