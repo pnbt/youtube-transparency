@@ -340,14 +340,6 @@
             }
 
             function toggle_elem(elem_id) {
-                  if (elem_id === 'timeperiod_day') {
-                        $('#sort_v').css('display', 'none')
-                        $('#sort_c').css('display', 'none')
-                        toggle_elem('sort_r')
-                  } else {
-                        $('#sort_v').css('display', 'inline-block')
-                        $('#sort_c').css('display', 'inline-block')
-                  }
                   updateButtons(elem_id)
                   updateDate()
             }
@@ -384,6 +376,18 @@
                         window.history.replaceState('', '', newURL);
                   } catch (err) {
                         console.err(err);
+                  }
+
+                  if (defaults['timeperiod'] === 'day' && defaults['sort'] != 'r') {
+                        changeUrlParam('sort', 'r')
+                  }
+
+                  if (getURLParameter('timeperiod') == 'day') {
+                        $('#sort_v').css('opacity', '0')
+                        $('#sort_c').css('opacity', '0')
+                  } else {
+                        $('#sort_v').css('opacity', '1')
+                        $('#sort_c').css('opacity', '1')
                   }
             }
 
