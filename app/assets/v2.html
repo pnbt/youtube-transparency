@@ -722,7 +722,7 @@
                         )
                   }
 
-                  if (getUrlVar('sort') === 'v') {
+                  if (getUrlVar('sort') === 'v' && init === 0) {
                         $('.sink-videos').append(
                               `
             <div class="sinkhole" id="sumviews">At least <span class="redbold">${number_format(sum_view_inc)}</span> views during the period<div>
@@ -770,7 +770,32 @@
                   // var item = videos_info[elem[0]];
                   var item = displayVideos() ? videos_info[elem[0]] : elem[0]
                   // const ranking = init + index + 1
-                  if (!item.hasOwnProperty('chan_history')) {
+                  if (!item.hasOwnProperty('chan_history') && item.hasOwnProperty('nb_chans_rec')) {
+                        const view_increase = item['view_inc']
+                        const bar_width = view_increase * 400 / max_view_inc
+
+                        var timeperiod = getUrlVarOrDefault('timeperiod', '3days')
+                        var period_text = ' during the last 3 days'
+                        if (timeperiod === 'week') {
+                              period_text = ' during the last week'
+                        } else if (timeperiod === 'month') {
+                              period_text = ' during the last month'
+                        }
+
+                        $('.sink-videos').append(
+                              `
+                              <article class="media">
+                                    <div class="media-content">
+                                    <div class="content">
+                                          <div style="background-color: #0678C9; width:${bar_width}px; height:15px;display:inline-block;margin-right:10px;"> </div><a class="video-title" href="https://www.youtube.com/watch?v=${item.id}" target="_blank">${item.title}</a>
+                                          <br><div style="margin:15px 0 0 15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(view_increase)}</div><div style="display: inline-block;"> &nbsp; views ${period_text}</div></div>
+                                          <br><div style="margin:0 15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(item.views)}</div><div style="display: inline-block;"> &nbsp; views in total</div></div>
+                                          <br><div style="margin:0 15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(item['nb_chans_rec'])}</div><div style="display: inline-block;"> &nbsp; channels recommended it ${period_text}</div></div>
+                                    </div>
+                                    </div>
+                              </article>
+                              `)
+                  } else if (getURLParameter('sort') === 'c') {
                         const view_increase = item['view_inc']
                         const bar_width = view_increase * 400 / max_view_inc
 
@@ -788,7 +813,7 @@
                                     <div class="media-content">
                                     <div class="content">
                                           <div style="background-color: #0678C9; width:${bar_width}px; height:15px;display:inline-block;margin-right:10px;"> </div><a class="video-title" href="https://www.youtube.com/results?search_query=${item.title}&sp=EgIQAg%253D%253D" target="_blank">${item.title}</a>
-                                          <br><div style="margin:15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(view_increase)}</div><div style="display: inline-block;"> &nbsp; views ${period_text}</div></div>
+                                          <br><div style="margin:15px 0 0 15px;"><div style="display:inline-block;color:red;font-weight: bold"> ${number_format(view_increase)}</div><div style="display: inline-block;"> &nbsp; views ${period_text}</div></div>
                                     </div>
                                     </div>
                               </article>
