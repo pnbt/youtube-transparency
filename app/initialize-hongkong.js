@@ -58,7 +58,7 @@ $(document).ready(function() {
       });
       $('#nb_video').append(count);
       // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
-      const key = getUrlVar('candidat') || Object.keys(data)[6];
+      const key = getUrlVar('candidat') || Object.keys(data)[0];
       appendVideo(key);
       appendPresentation(key);
       changeUrlParam('file', url);
@@ -260,7 +260,10 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
           if (title.indexOf('cgtn') > -1) {
              cscores.CGTN = (cscores.CGTN || 0) + 1;
           }
-       });
+          if (title.indexOf('police') > -1) {
+            cscores.police = (cscores.police || 0) + 1;
+          }
+      });
       const sumValues = Object.values(cscores).reduce((a, b) => a + b);
 
       for (const key in cscores) {
