@@ -251,13 +251,14 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
        .filter((item) => item.likes !== -1)
        .forEach((item) => {
           const title = item.title.toLowerCase();
+          const chan = item.channel.toLowerCase();
           if (title.indexOf('hong kong') > -1 || title.indexOf('hongkong') > -1) {
              cscores['Hong Kong'] = (cscores['Hong Kong'] || 0) + 1;
           }
-          if (title.indexOf('cctv') > -1) {
+          if (title.indexOf('cctv') > -1 || chan.indexOf('cctv') > -1) {
              cscores.CCTV = (cscores.CCTV || 0) + 1;
           }
-          if (title.indexOf('cgtn') > -1) {
+          if (title.indexOf('cgtn') > -1 || chan.indexOf('cgtn') > -1) {
              cscores.CGTN = (cscores.CGTN || 0) + 1;
           }
           if (title.indexOf('police') > -1) {
