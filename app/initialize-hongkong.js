@@ -14,7 +14,7 @@ $(document).ready(function() {
 
    let jsonLocal = {};
    const jsonThemeLocal = {};
-   const lastDate = 'ytrecos-hongkong-2019-08-25';
+   const lastDate = 'ytrecos-hongkong-2019-08-27';
    $.get('/data/themeshongkong.json', function(data) {
       Object.keys(data).forEach((key) => {
          data[key].forEach((item) => {
