@@ -215,7 +215,7 @@ on ${key}."><div class="mult-x">${Math.round(item.mult * 10) / 10}x </div>
             <div class="mult-text"> more recommended than the average</div> </div>`
         : '';
 
-       if (index > 99) return;
+       if (index > 499) return;
        $('.videos').append(
         `
             <div class="box">
