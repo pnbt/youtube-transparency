@@ -323,48 +323,8 @@ const jsonThemeLocal = {};
 
 
 function updateDate(){
-      if ($('#date').val() == '') {
-            if (getUrlVar('date') && getUrlVar('date') != '') {
-                  var french_format = getUrlVar('date')
-                  $('#date').val(french_format[3]+french_format[4]+'/'+ french_format[0] + french_format[1] + '/20'+french_format[8]+french_format[9])
-            } else {
-                  console.log(' New date ')
-                  var today = new Date();
-                  today.setDate(today.getDate()-1);
-                  console.log('Today is '+  today.getDay())
-                  if (today.getDay() == 7 && today.getMonth()+ 1 == 4 && today.getFullYear() == 2019) {
-                        today.setDate(today.getDate() - 1);
-                  }
-                  var dd = today.getDate();
-                  var mm = today.getMonth()+1; //January is 0!
-                  var yyyy = today.getFullYear();
-
-                  if(dd<10) {
-                        dd = '0'+dd
-                  } 
-                  if(mm<10) {
-                  mm = '0'+mm
-                  }
-                  today = mm + '/' + dd + '/' + yyyy;
-                  $('#date').val(today)
-            }
-      }
-
-
-      // var d= $('#date').val()
-      // var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-      // const lastDate = filedate;
-      // console.log('Date =')
-      // console.log(lastDate)
-
-      //  let url = lastDate; //  getUrlVar('file') || 
-      // if (getUrlVar('file')) {
-      // $('#video-select').children().each(function() {
-      //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
-      // });
-      // }
       $.get('/data/info/lg-09-12-2019.json', function(data) {
-            console.log('GOT DATA from file lg-09-12-2019.json');
+            console.log('GOT DATA from file ');
             jsonLocal = data;
             let count = 0;
             Object.keys(jsonLocal).forEach((item) => {
