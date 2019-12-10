@@ -351,20 +351,20 @@ function updateDate(){
       }
 
 
-      var d= $('#date').val()
-      var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
-      const lastDate = filedate;
-      console.log('Date =')
-      console.log(lastDate)
+      // var d= $('#date').val()
+      // var filedate = d[3]+d[4]+'-'+d[0]+d[1]+'-'+d[6]+d[7]+d[8]+d[9]
+      // const lastDate = filedate;
+      // console.log('Date =')
+      // console.log(lastDate)
 
-      let url = lastDate; //  getUrlVar('file') || 
+      //  let url = lastDate; //  getUrlVar('file') || 
       // if (getUrlVar('file')) {
       // $('#video-select').children().each(function() {
       //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
       // });
       // }
       $.get('/data/info/lg-09-12-2019.json', function(data) {
-            console.log('GOT DATA from file ' + url);
+            console.log('GOT DATA from file lg-09-12-2019.json');
             jsonLocal = data;
             let count = 0;
             Object.keys(jsonLocal).forEach((item) => {
