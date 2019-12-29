@@ -482,7 +482,7 @@
                   var base = 'info/us-info-'
                   var region = getUrlVarOrDefault('region', 'us-info')
                   if (region == 'france-info') {
-                        base = 'france/france-'
+                        base = 'info/france-'
                   }
 
                   $.get('/data/' + base + datepicked + '.json', function (data) {
