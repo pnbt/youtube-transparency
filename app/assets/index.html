@@ -334,6 +334,10 @@ function updateDate(){
                   if (today.getDay() == 7 && today.getMonth()+ 1 == 4 && today.getFullYear() == 2019) {
                         today.setDate(today.getDate() - 1);
                   }
+
+                  // TODO REMOVE FIXED DATE
+                  today = new Date("June 10, 2020 01:15:00")
+
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
                   var yyyy = today.getFullYear();
