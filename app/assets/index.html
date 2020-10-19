@@ -329,14 +329,13 @@ function updateDate(){
             } else {
                   console.log(' New date ')
                   var today = new Date();
-                  today.setDate(today.getDate()-1);
+
+                  // Here we can put -1 if we want.
+                  today.setDate(today.getDate());
                   console.log('Today is '+  today.getDay())
-                  if (today.getDay() == 7 && today.getMonth()+ 1 == 4 && today.getFullYear() == 2019) {
+                  if (today.getDay() == 7 && today.getMonth() + 1 == 4 && today.getFullYear() == 2019) {
                         today.setDate(today.getDate() - 1);
                   }
-
-                  // TODO REMOVE FIXED DATE
-                  today = new Date("June 10, 2020 01:15:00")
 
                   var dd = today.getDate();
                   var mm = today.getMonth()+1; //January is 0!
