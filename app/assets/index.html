@@ -318,8 +318,8 @@ function getURLParameter(name) {
 }
 
 let jsonLocal = {};
+let videoData = {};
 const jsonThemeLocal = {};
-
 
 function updateDate(){
       if ($('#date').val() == '') {
@@ -370,9 +370,10 @@ function updateDate(){
             jsonLocal = data;
             let count = 0;
             console.log('Computing Number of videos ')
-            let key = 'info_channels';
-            count = jsonLocal[key].length;
+            let videoKey = 'info_channels';
+            count = jsonLocal[videoKey].length;
             console.log('Number of videos ' + count)
+            videoData = jsonLocal[videoKey]
             $('#nb_video').append(count);
             changeUrlParam('date', url);
             appendSinkHoles();
@@ -471,16 +472,11 @@ function appendSinkHoles() {
   // Compute the sinkholes
   var counts = {}
   var videos_info = {}
-  for (var key in jsonLocal) {
-    console.log(key)
     // check if the property/key is defined in the object itself, not in parent
-    if (jsonLocal.hasOwnProperty(key)) {
-        jsonLocal[key].filter((item) => item.likes !== -1).forEach((item, index) => {
-        counts[item.id] = (counts[item.id] || 0) + 1;
-        videos_info[item.id] = item
-      })
-    }
-  }
+  videoData.filter((item) => item.likes !== -1).forEach((item, index) => {
+    counts[item.id] = (counts[item.id] || 0) + 1;
+    videos_info[item.id] = item
+  })
   var sorted_counts = Object.keys(counts).map(function(key) {
     return [key, counts[key]];
   });
@@ -490,7 +486,7 @@ function appendSinkHoles() {
       return second[1] - first[1];
   });
 
-  var filtered_vids = jsonLocal[key].filter((item) => item.likes !== -1).filter((item) => 
+  var filtered_vids = videoData.filter((item) => item.likes !== -1).filter((item) => 
       ((item.title || '').toLowerCase().indexOf(keyword.toLowerCase()) > -1) ||
       (item.channel.toLowerCase().indexOf(keyword.toLowerCase()) > -1)).map(function(item) {
     return [item.id, 0];
