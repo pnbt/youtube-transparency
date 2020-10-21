@@ -369,14 +369,11 @@ function updateDate(){
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
             let count = 0;
-            Object.keys(jsonLocal).forEach((item) => {
-                  count += jsonLocal[item].length;
-            });
-            console.log(count)
-            $('#nb_video').append(count);
-
-            // let random = Math.floor(Math.random() * Object.keys(jsonLocal).length);
+            console.log('Computing Number of videos ')
             let key = 'info_channels';
+            count = jsonLocal[key].length;
+            console.log('Number of videos ' + count)
+            $('#nb_video').append(count);
             changeUrlParam('date', url);
             appendSinkHoles();
       });
