@@ -334,7 +334,7 @@
             console.log(values);
             
                   $('#channelstats').html = ''
-                  $('#channelstats').append(`<div id="${container_id}" style="height: 800px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
+                  $('#channelstats').append(`<div id="${container_id}" style="height: 800px; min-width: 310px; max-width: 1400px; margin: 0 auto"></div>`)
 
                   Highcharts.chart(container_id, {
                         chart: {
@@ -374,15 +374,6 @@
                               }
                         },
                         legend: {
-                              layout: 'vertical',
-                              align: 'right',
-                              verticalAlign: 'bottom',
-                              x: -40,
-                              y: -80,
-                              floating: true,
-                              borderWidth: 1,
-                              backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                              shadow: true
                         },
                         credits: {
                               enabled: false
