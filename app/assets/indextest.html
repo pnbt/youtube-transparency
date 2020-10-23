@@ -326,6 +326,9 @@
             );
         }
         function create_bar_chart(container_id, title, subtitle, legend, values) {
+            console.log(legend);
+            console.log(values);
+            
                   $('#channelstats').html = ''
                   $('#channelstats').append(`<div id="${container_id}" style="height: 600px; min-width: 310px; max-width: 900px; margin: 0 auto"></div>`)
 
@@ -430,6 +433,7 @@
             console.log(lastDate)
 
             $.get('/data/info/us-info-' + filedate + '-chans.json', function(data) {
+                console.log('We call create bar chart');
                 create_bar_chart('conta', 'Recommendations per video', 'Number of recommendations divided by the number of vdeos', data['names'], data['percent_recos']);
             });
 
