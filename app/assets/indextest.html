@@ -438,7 +438,7 @@
 
             $.get('/data/info/us-info-' + filedate + '-chans.json', function(data) {
                 console.log('We call create bar chart 1.0');
-                create_bar_chart('conta', 'Recommendations per video', 'Number of recommendations divided by the number of vdeos', data['names'], data['percent_recos']);
+                create_bar_chart('conta', 'Percentage of recommendations for each channel', 'Number of recommendations for a channel divided by the total number of recommendations', data['names'], data['percent_recos']);
             });
 
             let url = lastDate; //  getUrlVar('file') ||
