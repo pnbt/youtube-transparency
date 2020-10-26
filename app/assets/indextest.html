@@ -337,7 +337,7 @@
             console.log(legend);
             console.log(values);
 
-            $('#channelstats').html = ''
+            $('#channelstats').html('')
             $('#channelstats').append(`<div id="${container_id}" style="height: 800px; min-width: 310px; max-width: 1400px; margin: 0 auto"></div>`)
 
             Highcharts.chart(container_id, {
@@ -455,13 +455,13 @@
                 changeUrlParam('date', url);
                 appendSinkHoles();
             }).fail(function () {
-                alert("No data found.");
-                $('#channelstats-title').html =
+                alert("No data found for this date and search parameters");
+                $('#channelstats-title').html(
                     `
-                    <div class="sinkhole">No data available for that date and search parameters.<div>
-                    `
-                $('.sink-videos').html = ''
-                $('#videostats-title').html = ''
+                    <div class="sinkhole">No data available for this date and search parameters.<div>
+                    `)
+                $('.sink-videos').html('');
+                $('#videostats-title').html('');
             });
         }
 
