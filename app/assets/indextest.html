@@ -393,9 +393,9 @@
         let videoData = {};
         let channelData = {};
         const jsonThemeLocal = {};
+        var today_us = ''
 
         function updateDate() {
-            var today_us = ''
             if ($('#date').val() == '') {
                 if (getUrlVar('date') && getUrlVar('date') != '') {
                     var french_format = getUrlVar('date')
@@ -418,9 +418,11 @@
                     if (dd < 10) {
                         dd = '0' + dd
                     }
+
                     if (mm < 10) {
                         mm = '0' + mm
                     }
+
                     today_us = mm + '/' + dd + '/' + yyyy;
                     $('#date').val(today_us)
                 }
@@ -455,7 +457,7 @@
                 $('#nb_video').append(count);
                 changeUrlParam('date', url);
                 appendSinkHoles();
-            }).fail(function (today_us) {
+            }).fail(function () {
                 $('#channelstats-title').html(
                     `
                     <div class="sinkhole">No data available for <span color=red>` + today_us + `</span>. Please select a different date.<div>
