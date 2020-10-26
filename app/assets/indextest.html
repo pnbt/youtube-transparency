@@ -570,10 +570,13 @@
                 extra_text = '&nbsp;including<span class="redbold">&nbsp;"' + keyword + '"</span>&nbsp;in its title or channel';
             }
 
-            if (filtered_vids.length == 0) {
+            console.log('Filtered videos:')
+            console.log(filtered_vids)
+
+            if ((filtered_vids === None) || (filtered_vids.length === 0)) {
                 $('.sink-videos').append(
                     `
-      <div class="sinkhole">No data available for that date and keywords. Please select a different date or keywords.<div>
+      <div class="sinkhole">No data available for that date and search parameters.<div>
     `
                 )
             } else {
