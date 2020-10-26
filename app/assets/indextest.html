@@ -179,7 +179,11 @@
     </section>
     <section class="section columns">
         <div class="container column is-8 is-offset-2">
+            <div id="channelstats-title">
+            </div>
             <div id="channelstats">
+            </div>
+            <div id="videostats-title">
             </div>
             <div class="sink-wrapper sink-videos">
             </div>
@@ -332,58 +336,58 @@
         function create_bar_chart(container_id, title, subtitle, legend, values) {
             console.log(legend);
             console.log(values);
-            
-                  $('#channelstats').html = ''
-                  $('#channelstats').append(`<div id="${container_id}" style="height: 800px; min-width: 310px; max-width: 1400px; margin: 0 auto"></div>`)
 
-                  Highcharts.chart(container_id, {
-                        chart: {
-                              type: 'bar'
-                        },
-                        title: {
-                              text: title
-                        },
-                        subtitle: {
-                              text: subtitle
-                        },
+            $('#channelstats').html = ''
+            $('#channelstats').append(`<div id="${container_id}" style="height: 800px; min-width: 310px; max-width: 1400px; margin: 0 auto"></div>`)
 
-                        xAxis: {
-                              categories: legend,
-                              title: {
-                                    text: null
-                              }
-                        },
-                        yAxis: {
-                              min: 0,
-                              title: {
-                                    text: 'Legend',
-                                    align: 'high'
-                              },
-                              labels: {
-                                    overflow: 'justify'
-                              }
-                        },
-                        tooltip: {
-                              valueSuffix: ''
-                        },
-                        plotOptions: {
-                              bar: {
-                                    dataLabels: {
-                                          enabled: true
-                                    }
-                              }
-                        },
-                        legend: {
-                        },
-                        credits: {
-                              enabled: false
-                        },
-                        series: [{
-                              name: title,
-                              data: values
-                        }]
-                  });
-            }
+            Highcharts.chart(container_id, {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: title
+                },
+                subtitle: {
+                    text: subtitle
+                },
+
+                xAxis: {
+                    categories: legend,
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Legend',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ''
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: title,
+                    data: values
+                }]
+            });
+        }
 
         let jsonLocal = {};
         let videoData = {};
@@ -421,13 +425,13 @@
                 }
             }
 
-            var d = $('#date').val()
-            var filedate = d[3] + d[4] + '-' + d[0] + d[1] + '-' + d[6] + d[7] + d[8] + d[9]
+            var d = $('#date').val();
+            var filedate = d[3] + d[4] + '-' + d[0] + d[1] + '-' + d[6] + d[7] + d[8] + d[9];
             const lastDate = filedate;
-            console.log('Date =')
-            console.log(lastDate)
+            console.log('Date =');
+            console.log(lastDate);
 
-            $.get('/data/info/us-info-' + filedate + '-chans.json', function(data) {
+            $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
                 console.log('We call create bar chart 1.0');
                 create_bar_chart('conta', 'Percentage of recommendations for each channel', 'Number of recommendations for a channel divided by the total number of recommendations', data['names'], data['percent_recos']);
             });
@@ -450,6 +454,14 @@
                 $('#nb_video').append(count);
                 changeUrlParam('date', url);
                 appendSinkHoles();
+            }).fail(function () {
+                alert("No data found.");
+                $('#channelstats-title').html =
+                    `
+                    <div class="sinkhole">No data available for that date and search parameters.<div>
+                    `
+                $('.sink-videos').html = ''
+                $('#videostats-title').html = ''
             });
         }
 
@@ -522,7 +534,6 @@
             console.log('https://www.youtube.com/watch?v=' + id)
         }
 
-
         function appendSinkHoles() {
             $('#panel-block-all').addClass('is-active');
             $('.sink-videos').empty()
@@ -576,16 +587,16 @@
             if ((filtered_vids === null) || (filtered_vids.length === 0)) {
                 $('.sink-videos').append(
                     `
-      <div class="sinkhole">No data available for that date and search parameters.<div>
-    `
+                        <div class="sinkhole">No data available for that date and search parameters.<div>
+                    `
                 )
             } else {
                 $('.sink-videos').append(
                     `
-            <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` +
+                    <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` +
                     $('#date').val() + '</span>' + extra_text
                     + `<div>
-      `
+                    `
                 )
             }
             console.log('Number of stuff')
@@ -635,7 +646,6 @@
         }
         function hideIntro() {
             $('#intro').hide();
-
         }
 
         $(document).ready(function () {
