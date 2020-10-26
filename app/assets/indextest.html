@@ -455,7 +455,7 @@
                 $('#nb_video').append(count);
                 changeUrlParam('date', url);
                 appendSinkHoles();
-            }).fail(function () {
+            }).fail(function (today_us) {
                 $('#channelstats-title').html(
                     `
                     <div class="sinkhole">No data available for <span color=red>` + today_us + `</span>. Please select a different date.<div>
