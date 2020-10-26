@@ -639,10 +639,12 @@
         }
         $(document).ready(function () {
             if (getUrlVar('keyword')) {
-                $('#srch-term').val(getUrlVar('keyword'))
+                $('#srch-term').val(getUrlVar('keyword'));
                 $('#intro').hide();
+                console.log('update date document ready')
                 updateDate();
-                setTimeout(hideIntro, 100)
+                console.log('update date document ready done')
+                setTimeout(hideIntro, 100);
             }
 
             $('#srch-term').on('input', function (e) {
@@ -650,7 +652,7 @@
             });
 
             $.get("../data/*", function (data) {
-                console.log('Initialize');
+                console.log('Initialize done');
             });
 
             updateDate()
