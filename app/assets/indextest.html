@@ -395,6 +395,7 @@
         const jsonThemeLocal = {};
 
         function updateDate() {
+            var today_us = ''
             if ($('#date').val() == '') {
                 if (getUrlVar('date') && getUrlVar('date') != '') {
                     var french_format = getUrlVar('date')
@@ -420,8 +421,8 @@
                     if (mm < 10) {
                         mm = '0' + mm
                     }
-                    today = mm + '/' + dd + '/' + yyyy;
-                    $('#date').val(today)
+                    today_us = mm + '/' + dd + '/' + yyyy;
+                    $('#date').val(today_us)
                 }
             }
 
@@ -457,11 +458,12 @@
             }).fail(function () {
                 $('#channelstats-title').html(
                     `
-                    <div class="sinkhole">No data available for this date and search parameters.<div>
+                    <div class="sinkhole">No data available for <span color=red>` + today_us + `</span>. Please select a different date.<div>
                     `)
                 $('.sink-videos').html('');
                 $('#videostats-title').html('');
                 $('#presentation').css('opacity', 0);
+                $('.sink-videos').css('padding-bottom','800px');
             });
         }
 
@@ -584,16 +586,17 @@
             console.log('Filtered videos:')
             console.log(filtered_vids)
 
+
             if ((filtered_vids === null) || (filtered_vids.length === 0)) {
-                $('.sink-videos').append(
+                $('#channelstats-title').html(
                     `
                         <div class="sinkhole">No data available for that date and search parameters.<div>
                     `
                 )
             } else {
-                $('.sink-videos').append(
+                $('#channelstats-title').html(
                     `
-                    <div class="sinkhole"><span class="redbold">` + filtered_vids.length + ` &nbsp;</span>recommended videos by YouTube on&nbsp;<span class="redbold">` +
+                    <div class="sinkhole"><span class="redbold">&nbsp;</span>Videos recommanded by YouTube on&nbsp;<span class="redbold">` +
                     $('#date').val() + '</span>' + extra_text
                     + `<div>
                     `
