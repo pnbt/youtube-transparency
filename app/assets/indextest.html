@@ -455,13 +455,13 @@
                 changeUrlParam('date', url);
                 appendSinkHoles();
             }).fail(function () {
-                alert("No data found for this date and search parameters");
                 $('#channelstats-title').html(
                     `
                     <div class="sinkhole">No data available for this date and search parameters.<div>
                     `)
                 $('.sink-videos').html('');
                 $('#videostats-title').html('');
+                $('#presentation').css('opacity:0');
             });
         }
 
