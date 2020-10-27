@@ -589,7 +589,6 @@
             console.log('Filtered videos:')
             console.log(filtered_vids)
 
-
             if ((filtered_vids === null) || (filtered_vids.length === 0)) {
                 $('#channelstats-title').html(
                     `
@@ -599,9 +598,9 @@
             } else {
                 $('#channelstats-title').html(
                     `
-                    <div class="sinkhole"><span class="redbold">&nbsp;</span>Videos recommanded by YouTube on&nbsp;<span class="redbold">` +
-                    $('#date').val() + '</span>' + extra_text
-                    + `<div>
+                        <div class="sinkhole"><span class="redbold">&nbsp;</span>Most Recommended Channels from a list of <a href='about.html'>800 top information channels</a> &nbsp;<span class="redbold">` +
+                        $('#date').val() + '</span>' + extra_text
+                        + `<div>
                     `
                 )
             }
