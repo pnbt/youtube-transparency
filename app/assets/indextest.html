@@ -293,7 +293,6 @@
             return (result && unescape(result[1])) || '';
         }
 
-
         function changeUrlParam(param, value) {
             const currentURL = window.location.href + '&';
             const change = new RegExp('(' + param + ')=(.*)&', 'g');
@@ -393,7 +392,7 @@
         let videoData = {};
         let channelData = {};
         const jsonThemeLocal = {};
-        var today_us = ''
+        var today_us = '';
 
         function updateDate() {
             if ($('#date').val() == '') {
@@ -436,7 +435,7 @@
 
             $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
                 console.log('We call create bar chart 1.0');
-                create_bar_chart('conta', 'Percentage of recommendations for each channel', 'Number of recommendations for a channel divided by the total number of recommendations', data['names'], data['percent_recos']);
+                create_bar_chart('conta', 'Percentage of recommendations for each channel', '', data['names'], data['percent_recos']);
             });
 
             let url = lastDate; //  getUrlVar('file') ||
@@ -452,16 +451,18 @@
                 console.log('Computing Number of videos ')
                 let videoKey = 'info_channels';
                 count = jsonLocal[videoKey].length;
-                console.log('Number of videos ' + count)
-                videoData = jsonLocal[videoKey]
+                console.log('Number of videos ' + count);
+                videoData = jsonLocal[videoKey];
                 $('#nb_video').append(count);
                 changeUrlParam('date', url);
                 appendSinkHoles();
             }).fail(function () {
+
+                var the_date = getURLParameter(date);
                 $('#channelstats-title').html(
                     `
-                    <div class="sinkhole">No data available for <span color=red>` + today_us + `</span>. Please select a different date.<div>
-                    `)
+                    <div class="sinkhole">No data available for <span color=red>` + the_date + `</span>. Please select a different date.<div>
+                `)
                 $('.sink-videos').html('');
                 $('#videostats-title').html('');
                 $('#presentation').css('opacity', 0);
