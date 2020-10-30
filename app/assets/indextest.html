@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="search-group">
-                        <div class="col-xs-6">
+                        <!-- <div class="col-xs-6">
                             <div class="input-group">
                                 <div>
                                     <label for="srch-term">FILTER TITLES / CHANNELS</label>
@@ -155,7 +155,7 @@
                                         name="srch-term" id="srch-term">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xs-4">
                             <div class='input-group date' id='datetimepicker1'>
                                 <label class="control-label" for="date">DATE</label>
@@ -170,6 +170,12 @@
                             </div>
                         </div>
                         <div class="col-xs-2">
+                            <button class="btn search-btn btn-danger" name="submit" type="submit">YouTube</button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn search-btn btn-danger btn-fb" onclick="gotoFacebook">Facebook</button>
+                        </div>
+                        <div class="col-xs-2">
                             <button class="btn search-btn btn-danger" name="submit" type="submit">Filter</button>
                         </div>
                     </div>
@@ -180,8 +186,7 @@
     <section class="section columns">
         <div class="container column is-8 is-offset-2">
             <div id="facebook">
-                <iframe style="width:100%; height:1200px" src="https://apps.crowdtangle.com/eventrecapsfb/boards/uspolitics2020"></iframe>
-            </div>
+             </div>
             <div id="youtube">
                 <div id="channelstats-title">
                 </div>
@@ -396,8 +401,19 @@
         let jsonLocal = {};
         let videoData = {};
         let channelData = {};
+        let platform = 'youtube'
         const jsonThemeLocal = {};
         var today_us = '';
+
+        function gotoFacebook() {
+            platform = 'facebook'
+            updateDate()
+        }
+
+        function gotoYouTube() {
+            platform = 'youtube'
+            updateDate()
+        }
 
         function updateDate() {
             if ($('#date').val() == '') {
@@ -551,10 +567,20 @@
             $('.video-header').hide()
             $('.videos').hide()
 
-            var keyword = $("#srch-term").val()
-            changeUrlParam('keyword', keyword);
+            // var keyword = $("#srch-term").val()
+            // changeUrlParam('keyword', keyword);
 
-            console.log(keyword)
+            // console.log(keyword)
+
+            $('#facebook').hide()
+            $('#youtube').hide()
+
+            if (platform === "facebook") {
+                $('#facebook').show()                
+            }
+            if (platform === "youtube") {
+                $('#youtube').show()                
+            }
 
             if (keyword !== '') {
                 $('.info-title').css('max-height', '0px')
