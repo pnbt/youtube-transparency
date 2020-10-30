@@ -598,14 +598,18 @@
             } else {
                 $('#channelstats-title').html(
                     `
-                        <div class="sinkhole">Most Recommended Channels &nbsp;<span class="redbold"> on ` +
-                        $('#date').val() + '</span>' + extra_text
+                        <div style="font-size:15px;">
+                            YouTube’s recommendation algorithm determines what people watch for more than 70% of the views. That's 700 million hours - or 1,000 human lifetimes - every single day.<br><br>
+                            We monitor 800+ informational channels, including news channels, vlogers, and commentators from across the political spectrum. 
+                        </div>
+                        <div class="sinkhole"> Channels recommended the most&nbsp;<span class="redbold"> ` +
+                            $('#date').val() + '</span>' + extra_text
                         + `<div>
                     `
                 )
                 $('#videostats-title').html(
                     `
-                        <div class="sinkhole"> Most Recommended Videos: <div>
+                        <div class="sinkhole"> Videos recommended the most: <div>
                     `
                 )
             }
