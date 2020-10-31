@@ -170,10 +170,16 @@
                             </div>
                         </div>
                         <div class="col-xs-2">
-                            <button class="btn search-btn btn-danger btn-yt" onclick="gotoYouTube">YouTube</button>
+                            <button class="btn search-btn btn-danger btn-yt" onclick="gotoYouTube" style="margin: 0 5px 0 5px">YouTube</button>
                         </div>
                         <div class="col-xs-2">
-                            <button class="btn search-btn btn-danger btn-fb" onclick="gotoFacebook">Facebook</button>
+                            <button class="btn search-btn btn-danger btn-fb" onclick="gotoGoogle" style="margin: 0 5px 0 5px">Google</button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn search-btn btn-danger btn-fb" onclick="gotoTwitter" style="margin: 0 5px 0 5px">Twitter</button>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn search-btn btn-danger btn-fb" onclick="gotoFacebook" style="margin: 0 5px 0 5px">Facebook</button>
                         </div>
                     </div>
                 </div>
@@ -571,6 +577,8 @@
 
             $('#facebook').hide()
             $('#youtube').hide()
+            $('#google').hide()
+            $('#twitter').hide()
 
             if (platform === "facebook") {
                 $('#facebook').show()                
