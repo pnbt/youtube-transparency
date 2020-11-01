@@ -467,6 +467,7 @@
 
             var d = $('#date').val();
             var filedate = d[3] + d[4] + '-' + d[0] + d[1] + '-' + d[6] + d[7] + d[8] + d[9];
+            var date_info = d[6] + d[7] + d[8] + d[9] + '-' +  d[0] + d[1]  + '-' + d[3] + d[4];
             const lastDate = filedate;
             console.log('Date =');
             console.log(lastDate);
@@ -482,30 +483,37 @@
             //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
             // });
             // }
-            $.get('/data/info/us-info-' + url + '.json', function (data) {
-                console.log('GOT DATA from file ' + url);
-                jsonLocal = data;
-                let count = 0;
-                console.log('Computing Number of videos ')
-                let videoKey = 'info_channels';
-                count = jsonLocal[videoKey].length;
-                console.log('Number of videos ' + count);
-                videoData = jsonLocal[videoKey];
-                $('#nb_video').append(count);
-                changeUrlParam('date', url);
-                appendSinkHoles();
-            }).fail(function () {
+        
+            if (platform === 'youtube') {
+                $.get('/data/info/us-info-' + url + '.json', function (data) {
+                    console.log('GOT DATA from file ' + url);
+                    jsonLocal = data;
+                    let count = 0;
+                    console.log('Computing Number of videos ')
+                    let videoKey = 'info_channels';
+                    count = jsonLocal[videoKey].length;
+                    console.log('Number of videos ' + count);
+                    videoData = jsonLocal[videoKey];
+                    $('#nb_video').append(count);
+                    changeUrlParam('date', url);
+                    appendSinkHoles();
+                }).fail(function () {
 
-                var the_date = getURLParameter(date);
-                $('#channelstats-title').html(
-                    `
-                    <div class="sinkhole">No data available for <span color=red>` + the_date + `</span>. Please select a different date.<div>
-                `)
-                $('.sink-videos').html('');
-                $('#videostats-title').html('');
-                $('#presentation').css('opacity', 0);
-                $('.sink-videos').css('padding-bottom','800px');
-            });
+                    var the_date = getURLParameter(date);
+                    $('#channelstats-title').html(
+                        `
+                        <div class="sinkhole">No data available for <span color=red>` + the_date + `</span>. Please select a different date.<div>
+                    `)
+                    $('.sink-videos').html('');
+                    $('#videostats-title').html('');
+                    $('#presentation').css('opacity', 0);
+                    $('.sink-videos').css('padding-bottom','800px');
+                });
+            } else if (platform === "twitter") {
+                $.get('/data/twitter/ttrends-' + date_info + '.json', function (data) {
+                    alert('twitter is working');
+                })
+            }
         }
 
         function number_format(number, decimals, dec_point, thousands_sep) {
