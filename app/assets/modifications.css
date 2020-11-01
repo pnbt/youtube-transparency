@@ -103,6 +103,23 @@ strong {
 	max-width: 90%;
 }
 
+.btn-fb {
+    background-color: #385898;
+    border-radius: 3px;
+}
+
+.btn-yt {
+    background-color: #DD2726;
+    border-radius: 3px;
+}
+
+
+.btn-gg {
+    background-color: white;
+    border-radius: 3px;
+}
+
+
 button{
     background-color: transparent;
     color: #0a0a0a;
