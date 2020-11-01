@@ -413,21 +413,25 @@
         var keyword = '';
 
         function gotoTwitter() {
+            console.log('Goto Twitter')
             platform = 'twitter'
             updateDate()
         }
 
         function gotoGoogle() {
+            console.log('Goto Google')
             platform = 'google'
             updateDate()
         }
 
         function gotoFacebook() {
+            console.log('Goto Facebook')
             platform = 'facebook'
             updateDate()
         }
 
         function gotoYouTube() {
+            console.log('Goto YouTube')
             platform = 'youtube'
             updateDate()
         }
@@ -472,10 +476,6 @@
             console.log('Date =');
             console.log(lastDate);
 
-            $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
-                console.log('We call create bar chart 1.0');
-                create_bar_chart('conta', 'Percentage of recommendations for each channel', '', data['names'], data['percent_recos']);
-            });
 
             let url = lastDate; //  getUrlVar('file') ||
             // if (getUrlVar('file')) {
@@ -485,6 +485,10 @@
             // }
         
             if (platform === 'youtube') {
+                $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
+                    console.log('We call create bar chart 1.0');
+                    create_bar_chart('conta', 'Percentage of recommendations for each channel', '', data['names'], data['percent_recos']);
+                });
                 $.get('/data/info/us-info-' + url + '.json', function (data) {
                     console.log('GOT DATA from file ' + url);
                     jsonLocal = data;
