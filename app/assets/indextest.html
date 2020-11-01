@@ -678,7 +678,7 @@
         function appendGoogle() {
             $('#google').show();
             $('#google-data').html('');
-
+            console.log(googleData)
             htm = ''
             for (place in Object.keys(googleData)) {
                 if (googleData.hasOwnProperty(place)) {
