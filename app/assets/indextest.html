@@ -179,7 +179,7 @@
                             <button class="btn search-btn btn-danger btn-yt"  style="padding-left:10px" onclick="gotoYouTube">YouTube</button>
                         </div>
                         <div style="display:inline-block">
-                            <button class="btn search-btn btn-danger btn-fb" style="padding-left:10px" onclick="gotoTwitter">Twitter</button>
+                            <button class="btn search-btn btn-danger btn-tw" style="padding-left:10px" onclick="gotoTwitter">Twitter</button>
                         </div>
                         <div style="display:inline-block">
                             <button class="btn search-btn btn-danger btn-fb" style="padding-left:10px" onclick="gotoFacebook">Facebook</button>
@@ -409,7 +409,7 @@
         let channelData = {};
         let platform = 'youtube'
         const jsonThemeLocal = {};
-        var today_us = '';
+        var date_us = '';
 
         function gotoFacebook() {
             platform = 'facebook'
@@ -449,7 +449,7 @@
                         mm = '0' + mm
                     }
 
-                    today_us = mm + '/' + dd + '/' + yyyy;
+                    var today_us = mm + '/' + dd + '/' + yyyy;
                     $('#date').val(today_us)
                 }
             }
