@@ -412,6 +412,16 @@
         var date_us = '';
         var keyword = '';
 
+        function gotoTwitter() {
+            platform = 'twitter'
+            updateDate()
+        }
+
+        function gotoGoogle() {
+            platform = 'google'
+            updateDate()
+        }
+
         function gotoFacebook() {
             platform = 'facebook'
             updateDate()
@@ -595,9 +605,10 @@
                 appendYouTube();
             }
             if (platform === "twitter") {
+                appendTwitter();
             }
             if (platform === "google") {
-                $('#google').show()
+
             }
 
             console.log('Platform ' + platform)
@@ -605,6 +616,10 @@
 
         function appendTwitter() {
             $('#twitter').show();
+        }
+
+        function appendGoogle() {
+            $('#google').show();
         }
 
         function appendYouTube() {
