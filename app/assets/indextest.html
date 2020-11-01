@@ -191,8 +191,8 @@
     </section>
     <section class="section columns">
         <div class="container column is-8 is-offset-2">
-            <div id="twitter" style="display: none;margin:40px;max-width:600px;font-weight:500"></div>>
-            <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500">
+            <div id="twitter" style="display: none;margin:40px;max-width:600px;font-weight:500"></div>
+            <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500"></div>
             <div id="facebook" style="display: none;margin:40px;max-width:600px;font-weight:500">
                     <a syle="color:red"> 2.7 Billion</a> people use of Facebook every month.<br><br>
     
@@ -548,12 +548,14 @@
             } else if (platform === "twitter") {
                 console.log('Getting twitter data');
                 $.get('/data/twitter/ttrends-' + date_info + '.json', function (data) {
+                    alert('twitter is working');
                     twitterData = data;
                     appendSinkHoles()
                 })
             } else if (platform === "google") {
                 $.get('/data/autocomplete/google-' + date_info + '.json', function (data) {
                     googleData = data;
+                    alert('Google is working');
                     appendSinkHoles()
                 })
             } else {
