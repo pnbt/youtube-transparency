@@ -191,8 +191,10 @@
     </section>
     <section class="section columns">
         <div class="container column is-8 is-offset-2">
+            <div id="twitter" style="display: none;margin:40px;max-width:600px;font-weight:500"></div>>
+            <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500">
             <div id="facebook" style="display: none;margin:40px;max-width:600px;font-weight:500">
-                    2.7 Billion people make use of Facebook every month.<br><br>
+                    <a syle="color:red"> 2.7 Billion</a> people use of Facebook every month.<br><br>
     
                     The number of countries with political disinformation campaigns more than doubled in the last two years; and Facebook is the social media platform with the most disinformation.<br><br>
     
@@ -204,11 +206,9 @@
 
                     The live display is split into 3 panes:<br><br>
 
-                    <ul>
-                      <li><strong>• Pane 1</strong> is a leaderboard of Facebook pages, based on the total number of interactions their election-related posts received (likes, reactions, shares, and comments).</li>
-                      <li><strong>• Pane 2</strong> shows the posts with the most interactions.</li>
-                      <li><strong></strong>• Pane 3</strong> shows the posts that are most overperforming, relative to the account's typical number of interactions. It's an indicator of virality.</li>
-                    </ul>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Pane 1</strong> is a leaderboard of Facebook pages, based on the total number of interactions their election-related posts received (likes, reactions, shares, and comments).</li>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Pane 2</strong> shows the posts with the most interactions.</li>
+                    </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• Pane 3</strong> shows the posts that are most overperforming, relative to the account's typical number of interactions. It's an indicator of virality.</li>
 
                     You can use the settings wheel on each pane to filter for a particular timeframe (defaults to 7 days).<br><br>
 
@@ -440,6 +440,8 @@
         const jsonThemeLocal = {};
         var date_us = '';
         var keyword = '';
+        var autocompleteData = '';
+        var twitterData = null;
 
         function gotoTwitter() {
             console.log('Goto Twitter')
@@ -533,11 +535,10 @@
                     changeUrlParam('date', url);
                     appendSinkHoles();
                 }).fail(function () {
-
                     var the_date = getURLParameter(date);
                     $('#channelstats-title').html(
                         `
-                        <div class="sinkhole">No data available for <span color=red>` + the_date + `</span>. Please select a different date.<div>
+                        <div class="sinkhole">No data available for this date. Please select a different date.<div>
                     `)
                     $('.sink-videos').html('');
                     $('#videostats-title').html('');
@@ -548,13 +549,16 @@
                 console.log('Getting twitter data');
                 $.get('/data/twitter/ttrends-' + date_info + '.json', function (data) {
                     alert('twitter is working');
+                    twitterData = data;
                     appendSinkHoles()
                 })
-            } else {
+            } else if (platform === "google") {
                 $.get('/data/autocomplete/google-' + date_info + '.json', function (data) {
+                    googleData = data;
                     alert('Google is working');
                     appendSinkHoles()
                 })
+            } else {
                 appendSinkHoles()
             }
         }
@@ -667,10 +671,30 @@
 
         function appendTwitter() {
             $('#twitter').show();
+
         }
 
         function appendGoogle() {
             $('#google').show();
+            $('#google-data').html('');
+
+            htm = ''
+            for (place in Object.keys(googleData)) {
+                if (googleData.hasOwnProperty(place)) {
+                    htm += `<h1>${place}</h1>`
+                    for (searchTerm in Object.keys(googleData[place])) {
+                        if (googleData[place].hasOwnProperty(searchTerm)) {
+                            htm += `&nbps;&nbps;&nbps;&nbps;<h2>${searchTerm}</h2>`
+                            for (completion in googleData[place][searchTerm]) {
+                                if (googleData[place][searchTerm].hasOwnProperty(completion)) {
+                                    htm += `&nbps;&nbps;&nbps;&nbps;<h4>${completion}</h4>`
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            $('#google-data').html('htm');
         }
 
         function appendYouTube() {
