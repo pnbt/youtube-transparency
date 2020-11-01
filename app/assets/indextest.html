@@ -548,14 +548,12 @@
             } else if (platform === "twitter") {
                 console.log('Getting twitter data');
                 $.get('/data/twitter/ttrends-' + date_info + '.json', function (data) {
-                    alert('twitter is working');
                     twitterData = data;
                     appendSinkHoles()
                 })
             } else if (platform === "google") {
                 $.get('/data/autocomplete/google-' + date_info + '.json', function (data) {
                     googleData = data;
-                    alert('Google is working');
                     appendSinkHoles()
                 })
             } else {
@@ -659,7 +657,7 @@
                 appendTwitter();
             }
             if (platform === "google") {
-
+                appendGoogle();
             }
 
             console.log('Platform ' + platform)
