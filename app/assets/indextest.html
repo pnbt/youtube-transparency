@@ -415,13 +415,13 @@
         function gotoTwitter() {
             console.log('Goto Twitter')
             platform = 'twitter'
-            updateDate()
+            updateDate();
         }
 
         function gotoGoogle() {
             console.log('Goto Google')
             platform = 'google'
-            updateDate()
+            updateDate();
         }
 
         function gotoFacebook() {
@@ -437,6 +437,8 @@
         }
 
         function updateDate() {
+            console.log('update date')
+
             if ($('#date').val() == '') {
                 if (getUrlVar('date') && getUrlVar('date') != '') {
                     var french_format = getUrlVar('date')
