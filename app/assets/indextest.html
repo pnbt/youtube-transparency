@@ -567,6 +567,10 @@
             console.log('https://www.youtube.com/watch?v=' + id)
         }
 
+        function appendFacebook() {
+
+        }
+
         function appendSinkHoles() {
             $('#panel-block-all').addClass('is-active');
             $('.sink-videos').empty()
@@ -585,19 +589,26 @@
             $('#twitter').hide()
 
             if (platform === "facebook") {
-                $('#facebook').show()                
+                appendFacebook()
             }
             if (platform === "youtube") {
-                $('#youtube').show()                
+                appendYouTube();
             }
             if (platform === "twitter") {
-                $('#twitter').show()                
             }
             if (platform === "google") {
-                $('#google').show()                
+                $('#google').show()
             }
 
             console.log('Platform ' + platform)
+        }
+
+        function appendTwitter() {
+            $('#twitter').show();
+        }
+
+        function appendYouTube() {
+            $('#youtube').show();         
 
             if (keyword !== '') {
                 $('.info-title').css('max-height', '0px')
@@ -648,17 +659,17 @@
                     `
                         <div style="font-size:17px;font-weight:500;margin:30px 30px 0 20px;max-width:800px">
                             YouTube’s recommendation algorithm determines what people watch for more than 70% of the views. That's 700 million hours - or 1,000 human lifetimes - every single day.<br><br>
-                            We monitor 800+ informational channels, including news channels, vlogers, and shows from across the political spectrum.<br><br>
-                            This was done from NYC, which explains why NYC local news channels are so recommended by YouTube. 
+                            We monitor <a href="/methodology.html">800+ top information channels</a>, including news channels, vlogers, and shows from across the political spectrum.<br><br>
+                            The requests to YouTube were done from NYC. As YouTube is boosting local news channels, NYC news channel appear high in the following lists. 
                         </div>
                         <div class="sinkhole"> Most Recommended Channels on&nbsp;<span class="redbold"> ` +
                             $('#date').val() + '</span>' + extra_text
-                        + `<div>
+                        + `</div>
                     `
                 )
                 $('#videostats-title').html(
                     `
-                        <div class="sinkhole"> Videos recommended the most: <div>
+                        <div class="sinkhole"> Most recommended videos: <div>
                     `
                 )
             }
