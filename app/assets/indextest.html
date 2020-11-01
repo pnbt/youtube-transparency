@@ -513,7 +513,10 @@
                 console.log('Getting twitter data');
                 $.get('/data/twitter/ttrends-' + date_info + '.json', function (data) {
                     alert('twitter is working');
+                    appendSinkHoles()
                 })
+            } else {
+                appendSinkHoles()
             }
         }
 
