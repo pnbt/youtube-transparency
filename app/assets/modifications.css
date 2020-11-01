@@ -200,6 +200,11 @@ width: 300px;
 
 }
 
+li {
+    display:list-item;
+    margin-top: 10px;
+}
+
 div {
    display: block; 
 }
