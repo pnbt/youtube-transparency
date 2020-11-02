@@ -690,7 +690,7 @@
         function appendTwitter() {
             $('#twitter').show();
             $('#twitter-data').html('');
-            htm = '<div style="font-weight:bold;font-size:23px;"> Trending topics on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
+            htm = '<div style="font-weight:bold;font-size:23px;margin-top:25px"> Trending topics on Twitter on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
             console.log(twitterData)
             for (const [place, trendsContainer] of Object.entries(twitterData)) {
                 if (trendsContainer.length > 0) {
@@ -721,12 +721,14 @@
             console.log(Object.keys(googleData))
 
             for (const [place, searchTerms] of Object.entries(googleData)) {
-                    htm += `<h1 style="margin-top:25px">${place}</h1>`
-                    for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
-                            htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
-                            for (const completion of autocompletes) {
-                                    htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">${completion}</div>`
-                            }
+                    // htm += `<h1 style="margin-top:25px">${place}</h1>`
+                    if (place === 'Los Angeles') {
+                        for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
+                                htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
+                                for (const completion of autocompletes) {
+                                        htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;"><a href="${searchTerm}">${completion}</a></div>`
+                                }
+                        }
                     }
                     htm += `<br><br>`
             }
