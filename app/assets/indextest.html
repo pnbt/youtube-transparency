@@ -201,8 +201,7 @@
                 Some trends have a lot of mentions, while others do not.<br>
                 Some are amplified by bots, who trick the AI into thinking these must be trending.<br><br>
                 
-                We monitor twitter trending daily. 
-
+                We monitor twitter trending daily.
                 <div id="twitter-data"></div>
             </div>
             <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500">
@@ -691,12 +690,12 @@
         function appendTwitter() {
             $('#twitter').show();
             $('#twitter-data').html('');
-            htm = ''
+            htm = '<div class="sinkhole"> Trending topics on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
             console.log(twitterData)
             for (const [place, trendsContainer] of Object.entries(twitterData)) {
                 if (trendsContainer.length > 0) {
                     trends = trendsContainer[0]['trends'] 
-                    htm += `<h1>${place}</h1>`
+                    htm += `<h1 style="margin-top:25px">${place}</h1>`
                     var nb = 0
                     for (const trend of trends) {
                         nb += 1
@@ -716,13 +715,13 @@
             $('#google').show();
             $('#google-data').html('');
             console.log(googleData)
-            htm = ''
+            htm = '<div class="sinkhole"> Autocomplete suggestions on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
             console.log('KEYS: ')
 
             console.log(Object.keys(googleData))
 
             for (const [place, searchTerms] of Object.entries(googleData)) {
-                    htm += `<h1>${place}</h1>`
+                    htm += `<h1 style="margin-top:25px">${place}</h1>`
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                             htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
                             for (const completion of autocompletes) {
