@@ -690,7 +690,7 @@
                     for (const trend of trends) {
                         nb += 1
                         var volume = `<span style="font-size:14px"> ${trend.tweet_volume} tweets</span>`
-                        if (trend.volume === null || trend.volume === 0 || trend.volume === 'null' ) {
+                        if (trend.tweet_volume === null || trend.tweet_volume === 0 || trend.tweet_volume === 'null' ) {
                             volume = ''
                         }
                         htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${nb}) ${trend.name}</a> ${volume}</div>`
