@@ -728,6 +728,9 @@
                                 for (const completion of autocompletes) {
                                         htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;"><a href="${searchTerm}">${completion}</a></div>`
                                 }
+                                if (autocompletes.length === 0) {
+                                    htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">[Google blocked autocompletes for this search]</div>`
+                                }
                         }
                     }
                     htm += `<br><br>`
