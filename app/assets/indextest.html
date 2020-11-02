@@ -690,11 +690,11 @@
         function appendTwitter() {
             $('#twitter').show();
             $('#twitter-data').html('');
-            htm = '<div class="sinkhole"> Trending topics on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
+            htm = '<div style="font-weight:bold;font-size:23px;"> Trending topics on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
             console.log(twitterData)
             for (const [place, trendsContainer] of Object.entries(twitterData)) {
                 if (trendsContainer.length > 0) {
-                    trends = trendsContainer[0]['trends'] 
+                    trends = trendsContainer[0]['trends']
                     htm += `<h1 style="margin-top:25px">${place}</h1>`
                     var nb = 0
                     for (const trend of trends) {
@@ -715,7 +715,7 @@
             $('#google').show();
             $('#google-data').html('');
             console.log(googleData)
-            htm = '<div class="sinkhole"> Autocomplete suggestions on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
+            htm = '<div style="font-weight:bold;font-size:23px;"> Google autocomplete suggestions on<span class="redbold"> ' + $('#date').val() + '</span>:</div>'
             console.log('KEYS: ')
 
             console.log(Object.keys(googleData))
@@ -730,6 +730,7 @@
                     }
                     htm += `<br><br>`
             }
+
             console.log(htm)
             $('#google-data').html(htm);
         }
