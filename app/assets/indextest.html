@@ -687,10 +687,10 @@
             for (const [place, searchTerms] of Object.entries(googleData)) {
                     htm += `<h1>${place}</h1>`
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
-                            htm += `    <h2>${searchTerm}</h2>`
+                            htm += `&#160;&#160;&#160;&#160;<strong><h2>${searchTerm}</h2></strong>`
                             for (const completion of autocompletes) {
                                     if (googleData[place][searchTerm].hasOwnProperty(completion)) {
-                                        htm += `        <h4>${completion}</h4>`
+                                        htm += `&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<h4>${completion}</h4>`
                                     }
                             }
                     }
