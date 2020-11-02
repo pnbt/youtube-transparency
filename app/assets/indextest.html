@@ -676,7 +676,9 @@
             $('#twitter').show();
             $('#twitter-data').html('');
             htm = ''
-            for (const [place, trends] of Object.entries(twitterData)) {
+            for (const [place, trendsContainer] of Object.entries(twitterData)) {
+                if (trendsContainer.length > 0) {
+                    trends = trendsContainer[0]['trends'] 
                     htm += `<h1>${place}</h1>`
                     for (const trend of trends) {
                         var volume = `<span style="font-size:14px"> ${trend.volume} tweets</span>`
@@ -685,6 +687,7 @@
                         }
                         htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${trend.name}</a> ${volume}</div>`
                     }
+                }
             }
             $('#twitter-data').html(htm);
         }
@@ -698,9 +701,7 @@
 
             console.log(Object.keys(googleData))
 
-            for (const [place, trendsContainer] of Object.entries(googleData)) {
-                if (trendsContainer.length > 0) {
-                    var trends = trendsContainer[0]['trends']
+            for (const [place, searchTerms] of Object.entries(googleData)) {
                     htm += `<h1>${place}</h1>`
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                             htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
@@ -709,9 +710,8 @@
                             }
                     }
                     htm += `<br><br>`
-                }
             }
-            console.log(htm);
+            console.log(htm)
             $('#google-data').html(htm);
         }
 
