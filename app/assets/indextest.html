@@ -195,7 +195,12 @@
                 <div id="twitter-data"></div>
             </div>
             <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500">
-                <div id="google-data"></div>
+                    3.5 Billion searches are done on Google search daily.<br><br>
+
+                    Google's auto-complete influences what people search, and therefore the results that they see. It's one of the most impactful AIs of the world. <br><br>
+
+                    What does it recommend? We monitor that daily. <br><br>
+                    <div id="google-data"></div>
             </div>
             <div id="facebook" style="display: none;margin:40px;max-width:600px;font-weight:500">
                     <a syle="color:red"> 2.7 Billion</a> people use of Facebook every month.<br><br>
@@ -681,12 +686,14 @@
                 if (trendsContainer.length > 0) {
                     trends = trendsContainer[0]['trends'] 
                     htm += `<h1>${place}</h1>`
+                    var nb = 0
                     for (const trend of trends) {
-                        var volume = `<span style="font-size:14px"> ${trend.volume} tweets</span>`
-                        if (trend.volume === null) {
+                        nb += 1
+                        var volume = `<span style="font-size:14px"> ${trend.tweet_volume} tweets</span>`
+                        if (trend.volume === null || trend.volume === 0 || trend.volume === 'null' ) {
                             volume = ''
                         }
-                        htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${trend.name}</a> ${volume}</div>`
+                        htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${nb}) ${trend.name}</a> ${volume}</div>`
                     }
                 }
             }
