@@ -689,9 +689,7 @@
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                             htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
                             for (const completion of autocompletes) {
-                                    if (googleData[place][searchTerm].hasOwnProperty(completion)) {
-                                        htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">${completion}</div>`
-                                    }
+                                    htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">${completion}</div>`
                             }
                     }
             }
