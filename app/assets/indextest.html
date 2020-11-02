@@ -676,6 +676,7 @@
             $('#twitter').show();
             $('#twitter-data').html('');
             htm = ''
+            console.log(twitterData)
             for (const [place, trendsContainer] of Object.entries(twitterData)) {
                 if (trendsContainer.length > 0) {
                     trends = trendsContainer[0]['trends'] 
