@@ -698,7 +698,9 @@
 
             console.log(Object.keys(googleData))
 
-            for (const [place, searchTerms] of Object.entries(googleData)) {
+            for (const [place, trendsContainer] of Object.entries(googleData)) {
+                if (trendsContainer.length > 0) {
+                    var trends = trendsContainer[0]['trends']
                     htm += `<h1>${place}</h1>`
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                             htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
@@ -707,8 +709,9 @@
                             }
                     }
                     htm += `<br><br>`
+                }
             }
-            console.log(htm)
+            console.log(htm);
             $('#google-data').html(htm);
         }
 
