@@ -680,14 +680,19 @@
             $('#google-data').html('');
             console.log(googleData)
             htm = ''
-            for (place in Object.keys(googleData)) {
+
+            console.log('KEYS: ')
+
+            console.log(Object.keys(googleData))
+
+            for (const [place, searchTerms] of Object.entries(googleData)) {
                     htm += `<h1>${place}</h1>`
-                    for (searchTerm in Object.keys(googleData[place])) {
+                    for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                             htm += `&nbps;&nbps;&nbps;&nbps;<h2>${searchTerm}</h2>`
-                            for (completion in googleData[place][searchTerm]) {
-                                if (googleData[place][searchTerm].hasOwnProperty(completion)) {
-                                    htm += `&nbps;&nbps;&nbps;&nbps;<h4>${completion}</h4>`
-                                }
+                            for (const completion of autocompletes) {
+                                    if (googleData[place][searchTerm].hasOwnProperty(completion)) {
+                                        htm += `&nbps;&nbps;&nbps;&nbps;<h4>${completion}</h4>`
+                                    }
                             }
                     }
             }
