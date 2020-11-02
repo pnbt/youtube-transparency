@@ -191,7 +191,9 @@
     </section>
     <section class="section columns">
         <div class="container column is-8 is-offset-2">
-            <div id="twitter" style="display: none;margin:40px;max-width:600px;font-weight:500"></div>
+            <div id="twitter" style="display: none;margin:40px;max-width:600px;font-weight:500">
+                <div id="twitter-data"></div>
+            </div>
             <div id="google" style="display: none;margin:40px;max-width:600px;font-weight:500">
                 <div id="google-data"></div>
             </div>
@@ -672,7 +674,19 @@
 
         function appendTwitter() {
             $('#twitter').show();
-
+            $('#twitter-data').html('');
+            htm = ''
+            for (const [place, trends] of Object.entries(twitterData)) {
+                    htm += `<h1>${place}</h1>`
+                    for (const trend of trends) {
+                        var volume = `<span style="font-size:14px"> ${trend.volume} tweets</span>`
+                        if (trend.volume === null) {
+                            volume = ''
+                        }
+                        htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${trend.name}</a> ${volume}</div>`
+                    }
+            }
+            $('#twitter-data').html(htm);
         }
 
         function appendGoogle() {
@@ -692,6 +706,7 @@
                                     htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">${completion}</div>`
                             }
                     }
+                    htm += `<br><br>`
             }
             console.log(htm)
             $('#google-data').html(htm);
