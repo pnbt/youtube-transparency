@@ -216,7 +216,7 @@
                     <a syle="color:red"> 2.7 Billion</a> people use of Facebook every month.<br><br>
     
                     The number of countries with political disinformation campaigns more than doubled in the last two years; and Facebook is the social media platform with the most disinformation.<br><br>
-    
+                
                     What US election related content is currently circulating on Facebook?<br><br>
                     
                     Find out with the live display below. It captures public Facebook posts that mention the words "Biden", "Trump" or "Election".<br><br>
@@ -227,7 +227,7 @@
 
                     You can use the settings wheel on each pane to filter for a particular timeframe (defaults to 7 days).<br><br>
 
-                    <span style="font-weight:bold;font-size:25px;">Spanish</span>
+                    <div style="font-weight:bold;font-size:25px;margin-bottom: 5px;">Other Languages</div>
 
                     Social media moderation efforts and journalistic attention are disproportionately focussing on English content.<br><br>
                     Spanish is the first language of more than 40 million Americans. What election-related content shows up on their feed?<br><br>
@@ -459,30 +459,31 @@
 
         function gotoTwitter() {
             console.log('Goto Twitter')
-            platform = 'twitter'
+            changeUrlParam('platform', 'twitter')
             updateDate();
         }
 
         function gotoGoogle() {
             console.log('Goto Google')
-            platform = 'google'
+            changeUrlParam('platform', 'google')
             updateDate();
         }
 
         function gotoFacebook() {
             console.log('Goto Facebook')
-            platform = 'facebook'
+            changeUrlParam('platform', 'facebook')
             updateDate()
         }
 
         function gotoYouTube() {
             console.log('Goto YouTube')
-            platform = 'youtube'
+            changeUrlParam('platform', 'youtube')
             updateDate()
         }
 
         function updateDate() {
             console.log('update date')
+            platform = getURLParameter('platform', 'youtube')
 
             if ($('#date').val() == '') {
                 if (getUrlVar('date') && getUrlVar('date') != '') {
