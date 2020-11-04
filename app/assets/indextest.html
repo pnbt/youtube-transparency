@@ -530,13 +530,17 @@
             //       if ($(this)[0].value === getUrlVar('file')) $(this)[0].selected = true;
             // });
             // }
-        
+
+            if (filedate === '04-11-2020') {
+                filedate = '04-11-2020b'
+            }
+
             if (platform === 'youtube') {
                 $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
                     console.log('We call create bar chart 1.0');
                     create_bar_chart('conta', 'Percentage of recommendations for each channel', '', data['names'], data['percent_recos']);
                 });
-                $.get('/data/info/us-info-' + url + '.json', function (data) {
+                $.get('/data/info/us-info-' + filedate + '.json', function (data) {
                     console.log('GOT DATA from file ' + url);
                     jsonLocal = data;
                     let count = 0;
