@@ -483,7 +483,10 @@
 
         function updateDate() {
             console.log('update date')
-            platform = getURLParameter('platform', 'youtube')
+            platform = getURLParameter('platform')
+            if (platform === null || platform === 'null') {
+                platform = 'youtube'
+            }
 
             if ($('#date').val() == '') {
                 if (getUrlVar('date') && getUrlVar('date') != '') {
