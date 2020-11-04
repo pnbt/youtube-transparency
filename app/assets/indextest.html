@@ -535,6 +535,8 @@
                 filedate = '04-11-2020b'
             }
 
+            console.log('date tried' + filedate)
+
             if (platform === 'youtube') {
                 $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
                     console.log('We call create bar chart 1.0');
