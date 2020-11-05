@@ -566,11 +566,7 @@
             // });
             // }
 
-            if (filedate === '04-11-2020') {
-                filedate = '04-11-2020b'
-            }
-
-            console.log('date tried' + filedate)
+            console.log('date tried ' + filedate)
 
             if (platform === 'youtube') {
                 $.get('/data/info/us-info-' + filedate + '-chans.json', function (data) {
@@ -758,7 +754,6 @@
 
             for (const [place, searchTerms] of Object.entries(googleData)) {
                 // htm += `<h1 style="margin-top:25px">${place}</h1>`
-                if (place === 'Los Angeles') {
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                         htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
                         for (const completion of autocompletes) {
@@ -769,7 +764,6 @@
                         }
                     }
                     htm += `<br><br>`
-                }
             }
 
             console.log(htm)

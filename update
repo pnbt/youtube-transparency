@@ -1,6 +1,7 @@
 #!/bin/sh
 
 git status
+git pull
 git fetch origin
 git add *
 git commit -m "Update data"
