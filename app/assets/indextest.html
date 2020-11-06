@@ -736,7 +736,7 @@
                             volume = `<span style="font-size:14px"> ${trend.tweet_volume} tweets</span>`
                         }
                         console.log(trend.tweet_volume)
-                        htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" style="font-weight:bold">${nb}) ${trend.name}</a> ${volume}</div>`
+                        htm += `<div style="font-size:16px;margin-left:100px;"><a href="${trend.url}" onclick="window.open(this.href);return false" style="font-weight:bold">${nb}) ${trend.name}</a> ${volume}</div>`
                     }
                 }
             }
@@ -757,7 +757,7 @@
                     for (const [searchTerm, autocompletes] of Object.entries(searchTerms)) {
                         htm += `<div style="font-weight:bold;font-size:22px;margin-left:50px;">${searchTerm}</div>`
                         for (const completion of autocompletes) {
-                            htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;"><a href="https://www.google.com/search?q=${completion}">${completion}</a></div>`
+                            htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;"><a href="https://www.google.com/search?q=${completion}" onclick="window.open(this.href);return false">${completion}</a></div>`
                         }
                         if (autocompletes.length === 0) {
                             htm += `<div style="font-weight:normal;font-size:16px;margin-left:100px;">[Google blocked autocompletes for this search]</div>`
