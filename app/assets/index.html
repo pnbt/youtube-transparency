@@ -836,7 +836,7 @@
             }
             console.log('Number of stuff')
             console.log(filtered_vids)
-            filtered_vids.slice(0, 100).forEach((elem) => {
+            filtered_vids.slice(0, 500).forEach((elem) => {
                 console.log('Elem')
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
