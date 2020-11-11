@@ -840,6 +840,7 @@
             filtered_vids.slice(0, 500).forEach((elem) => {
                 console.log('Elem')
                 var item = videos_info[elem[0]];
+                console.log(item)
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
                 const mult = multiplicator ? `
