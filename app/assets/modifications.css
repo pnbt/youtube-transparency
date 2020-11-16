@@ -1102,23 +1102,18 @@ body {
     margin-top: 10px;
     padding: 0px;
     max-width: 600px;
-
 }
 
 strong {
     color: #363636;
     font-weight: 400;
-    margin-left: -40px;
-	margin-top: 0px;
 }
 
 .mission {
     font-size: 20px;
     font-style: italic;
     background-color: #f3ffdc;
-
 }
-
 
 .general-section {
     display: flex;
