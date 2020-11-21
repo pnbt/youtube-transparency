@@ -848,7 +848,7 @@
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
-                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon=""> Top <div class="mult-text"> </div> <div class="mult-x">${int(10000 * index / totalVideosRecommended)/100} %</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
+                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon=""> Top <div class="mult-text"> </div> <div class="mult-x">${Math.round(10000 * index / totalVideosRecommended)/100} %</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
 //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
                 const mult = multiplicator ? `</div>` : '';
 
