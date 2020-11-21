@@ -492,6 +492,7 @@
         var keyword = '';
         var autocompleteData = '';
         var twitterData = null;
+        var totalVideosRecommended = null;
 
         function gotoTwitter() {
             console.log('Goto Twitter')
@@ -586,6 +587,11 @@
                     count = jsonLocal[videoKey].length;
                     console.log('Number of videos ' + count);
                     videoData = jsonLocal[videoKey];
+                    try {
+                        totalVideosRecommended = jsonLocal['total_videos_recommended'];
+                    } catch {
+                        console.log('No total videos found')
+                    }
                     $('#nb_video').append(count);
                     changeUrlParam('date', url);
                     appendSinkHoles();
@@ -837,16 +843,14 @@
             }
             console.log('Number of stuff')
             console.log(filtered_vids)
-            filtered_vids.slice(0, 500).forEach((elem) => {
+            filtered_vids.slice(0, 500).forEach((elem, index) => {
                 console.log('Elem')
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
+                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>` : `<div class="mult right" data-balloon-length="large" data-balloon=""> Top <div class="mult-text"> </div> <div class="mult-x">${int(10000 * index / totalVideosRecommended)/100} %</div>`;
 //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
-                const mult = multiplicator ? `
-          <div class="mult right" data-balloon-length="large" data-balloon=""> <div class="mult-text">  </div><div class="mult-x"> </div>
-          </div>`
-                    : '';
+                const mult = multiplicator ? `</div>` : '';
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
 
@@ -874,9 +878,8 @@
                 </div>
               </div>
               </article>` +
-                        mult +
-                        `</div>
-        `
+                    rightPanel +
+                        `</div>`
                     );
                 }
             });
