@@ -421,6 +421,15 @@ input[type=range] {
   margin-right: auto;
   font-weight: 500;
 }
+.nbchans {
+  margin-top: 10px;
+  color: #DD2726;
+  font-size: 18px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
 .mult-yy {
   margin-top: 10px;
   color: #DD2726;
