@@ -268,7 +268,7 @@
                     YouTube’s recommendation algorithm determines what people watch for more than 70% of the views. That's
                     700 million hours - or 1,000 human lifetimes - every single day.<br><br>
                     We monitor <a href="/methodology.html">800+ top information channels</a>, including news channels,
-                    vlogers, and shows from across the political spectrum. Details on how we collect this data is available <a href="/methodology.html">here</a><br><br>
+                    vlogers, and shows from across the political spectrum. Details on how we collect this data are available <a href="/methodology.html">here</a><br><br>
                     Our data collection requests to YouTube were made from NYC. As YouTube is boosting local news channels,
                     NYC news channel appear high in the following lists.
                 </span>
@@ -492,6 +492,7 @@
         var keyword = '';
         var autocompleteData = '';
         var twitterData = null;
+        var totalVideosRecommended = null;
 
         function gotoTwitter() {
             console.log('Goto Twitter')
@@ -586,6 +587,11 @@
                     count = jsonLocal[videoKey].length;
                     console.log('Number of videos ' + count);
                     videoData = jsonLocal[videoKey];
+                    try {
+                        totalVideosRecommended = jsonLocal['total_videos_recommended'];
+                    } catch {
+                        console.log('No total videos found')
+                    }
                     $('#nb_video').append(count);
                     changeUrlParam('date', url);
                     appendSinkHoles();
@@ -837,16 +843,23 @@
             }
             console.log('Number of stuff')
             console.log(filtered_vids)
-            filtered_vids.slice(0, 500).forEach((elem) => {
+            filtered_vids.slice(0, 2000).forEach((elem, index) => {
                 console.log('Elem')
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
+                var nth = item + 'th '
+                if (item === 1) {
+                    nth = ''
+                }
+                if (item === 2 ) {
+                    nth = 'second '
+                }
+                if (item === 3 ) {
+                    nth = 'third '
+                }                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of ${totalVideosRecommended} videos recommended in our scrapping, this video was the ${nth}most recommended."> In the top <div class="mult-x">${1 + Math.round(100 * index / totalVideosRecommended)} %</div><div class="mult-text">of <span style="font-weight:bold;color:dark-grey">${totalVideosRecommended}</span> videos recommended that day</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
 //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
-                const mult = multiplicator ? `
-          <div class="mult right" data-balloon-length="large" data-balloon=""> <div class="mult-text">  </div><div class="mult-x"> </div>
-          </div>`
-                    : '';
+                const mult = multiplicator ? `</div>` : '';
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
 
@@ -871,12 +884,12 @@
                         `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
+                    <div>YouTube recommended this video from <span class="mult-x"> ${Math.round(multiplicator * 10) / 10}</span> different channels</div>
                 </div>
               </div>
               </article>` +
-                        mult +
-                        `</div>
-        `
+                    rightPanel +
+                        `</div>`
                     );
                 }
             });
