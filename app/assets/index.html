@@ -848,7 +848,7 @@
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
-                var nth = item + 'th '
+                var nth = index + 'th '
                 if (item === 1) {
                     nth = ''
                 }
