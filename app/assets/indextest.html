@@ -269,8 +269,6 @@
                     700 million hours - or 1,000 human lifetimes - every single day.<br><br>
                     We monitor <a href="/methodology.html">800+ top information channels</a>, including news channels,
                     vlogers, and shows from across the political spectrum. Details on how we collect this data are available <a href="/methodology.html">here</a><br><br>
-                    Our data collection requests to YouTube were made from NYC. As YouTube is boosting local news channels,
-                    NYC news channel appear high in the following lists.
                 </span>
                 <div id="channelstats-title">
                 </div>
@@ -858,8 +856,9 @@
                 }
                 if (indexplus === 3 ) {
                     nth = 'third '
-                }                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of ${totalVideosRecommended} videos recommended in our scrapping, this video was the ${nth}most recommended."> In the top <div class="mult-x">${1 + Math.round(100 * index / totalVideosRecommended)} %</div><div class="mult-text">of <span style="font-weight:bold;color:dark-grey">${totalVideosRecommended}</span> videos recommended that day</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
-//                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+                }
+                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of ${totalVideosRecommended} videos recommended in our scrapping, this video was the ${nth}most recommended."> In the top <div class="mult-x">${1 + Math.round(100 * index / totalVideosRecommended)} %</div><div class="mult-text">of <span style="font-weight:bold;color:dark-grey">${totalVideosRecommended}</span> videos recommended that day</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
+            //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
                 const mult = multiplicator ? `</div>` : '';
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
