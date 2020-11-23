@@ -863,6 +863,11 @@
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
 
+                var from_chans = '';
+                if ('from_chans' in item) {
+                    from_chans = ', including ' + item.from_chans.join(', ') 
+                }
+
                 if (item.views > 0 && multiplicator > 0) {
                     $('.sink-videos').append(
                         `
@@ -884,7 +889,7 @@
                         `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
-                    <div>YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels</div>
+                    <div>YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels${from_chans}</div>
                 </div>
               </div>
               </article>` +
