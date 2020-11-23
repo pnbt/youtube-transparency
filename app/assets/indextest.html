@@ -865,7 +865,7 @@
 
                 var from_chans = '';
                 if ('from_chans' in item) {
-                    from_chans = ', including ' + item.from_chans.map(chan => '<a href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">chan</a>').join(', ') 
+                    from_chans = ', including ' + item.from_chans.map(chan => '<a href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
                 }
 
                 if (item.views > 0 && multiplicator > 0) {
