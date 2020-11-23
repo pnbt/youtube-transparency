@@ -848,14 +848,15 @@
                 var item = videos_info[elem[0]];
                 const views = item.views > 0 ? `${number_format(item.views)} views` : '';
                 const multiplicator = item['nb_recommendations'];
-                var nth = index + 'th '
-                if (item === 1) {
+                var indexplus = index + 1
+                var nth = indexplus + 'th '
+                if (indexplus === 1) {
                     nth = ''
                 }
-                if (item === 2 ) {
+                if (indexplus === 2 ) {
                     nth = 'second '
                 }
-                if (item === 3 ) {
+                if (indexplus === 3 ) {
                     nth = 'third '
                 }                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of ${totalVideosRecommended} videos recommended in our scrapping, this video was the ${nth}most recommended."> In the top <div class="mult-x">${1 + Math.round(100 * index / totalVideosRecommended)} %</div><div class="mult-text">of <span style="font-weight:bold;color:dark-grey">${totalVideosRecommended}</span> videos recommended that day</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
 //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
