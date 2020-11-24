@@ -873,7 +873,7 @@
                 `
                 if ('from_chans' in item) {
                     from_chans += `
-                        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapse-reco-${index}" aria-expanded="false" aria-controls="collapse-reco-${index}">
+                        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapse-reco-${index}" aria-expanded="false" aria-controls="collapse-reco-${index}" onclick="document.getElementById("collapse-reco-${index}").classList.toggle("collapse");">
                             See recommendations
                         </a>
                     <div id="collapse-reco-${index}" class="collapse">
