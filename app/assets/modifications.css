@@ -1122,9 +1122,7 @@ body {
     max-width: 600px;
 }
 
-strong {
-    color: #363636;
-}
+strong {}
 
 .mission {
     font-size: 20px;
