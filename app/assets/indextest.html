@@ -21,9 +21,9 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!--
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
 
     <!--  jQuery -->
@@ -863,10 +863,31 @@
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
 
-                var from_chans = '';
+                var from_chans_inner = ''
                 if ('from_chans' in item) {
-                    from_chans = ', including ' + item.from_chans.map(chan => '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
+                    from_chans_inner = item.from_chans.map(chan => '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
                 }
+
+                var from_chans = `
+                    <div style="margin-top:10px;font-size:12px;">YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels
+                `
+                if ('from_chans' in item) { 
+                    from_chans += `
+                        <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapse-reco-${index}" aria-expanded="false" aria-controls="collapseExample">
+                            See recommendations
+                        </a>
+                    </div>
+                    <div id="collapse-reco-${index}" class="collapse">
+                        ${from_chans_inner}
+                    </div>
+                    `;
+                } else {
+                    from_chans += '</div>'
+                }
+
+                // if ('from_chans' in item) {
+                //     from_chans = ', including ' + item.from_chans.map(chan => '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
+                // }
 
                 if (item.views > 0 && multiplicator > 0) {
                     $('.sink-videos').append(
@@ -889,7 +910,6 @@
                         `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
-                    <div style="margin-top:10px;font-size:12px;">YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels${from_chans}</div>
                 </div>
               </div>
               </article>` +
