@@ -866,9 +866,9 @@
                 var from_chans_inner = ''
                 if ('from_chans' in item) {
                     from_chans_inner = item.from_chans.map(chan => 
-                        '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan[0] + '&sp=EgIQAg%253D%253D">' + chan[0] + '</a>: ' +
+                        '<strong>' + chan[0] + '</strong>: from ' +
                         '<a target="_blank" href="https://www.youtube.com/watch?v=' + chan[1] +'">' + chan[2] + '</a>'
-                    ).join('<br>') 
+                    ).join('<br>')
                 }
 
                 var from_chans = `
@@ -876,8 +876,8 @@
                 `
                 if ('from_chans' in item) {
                     from_chans += `
-                        <a class="btn see-recos" role="button" onclick="document.getElementById('collapse-reco-${index}').classList.toggle('collapse');">
-                            See recommendations
+                        <a class="btn btn-primary see-recos" role="button" onclick="document.getElementById('collapse-reco-${index}').classList.toggle('collapse');">
+                            See All
                         </a>
                     <div id="collapse-reco-${index}" class="collapse">
                         ${from_chans_inner}

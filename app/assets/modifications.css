@@ -424,7 +424,7 @@ input[type=range] {
 .see-recos {
   padding: 3px 7px !important;
   margin: 3px;
-  font-size: 12px;
+  font-size: 12px !important;
   display: inline;
   vertical-align: bottom;
   top: 10px;
