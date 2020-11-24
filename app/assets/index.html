@@ -21,9 +21,9 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script> -->
 
     <!--  jQuery -->
@@ -269,8 +269,6 @@
                     700 million hours - or 1,000 human lifetimes - every single day.<br><br>
                     We monitor <a href="/methodology.html">800+ top information channels</a>, including news channels,
                     vlogers, and shows from across the political spectrum. Details on how we collect this data are available <a href="/methodology.html">here</a><br><br>
-                    Our data collection requests to YouTube were made from NYC. As YouTube is boosting local news channels,
-                    NYC news channel appear high in the following lists.
                 </span>
                 <div id="channelstats-title">
                 </div>
@@ -493,6 +491,7 @@
         var autocompleteData = '';
         var twitterData = null;
         var totalVideosRecommended = null;
+        var totalRecommendations = null;
 
         function gotoTwitter() {
             console.log('Goto Twitter')
@@ -589,6 +588,7 @@
                     videoData = jsonLocal[videoKey];
                     try {
                         totalVideosRecommended = jsonLocal['total_videos_recommended'];
+                        totalRecommendations = jsonLocal['total_recommendations'];
                     } catch {
                         console.log('No total videos found')
                     }
@@ -858,11 +858,39 @@
                 }
                 if (indexplus === 3 ) {
                     nth = 'third '
-                }                const rightPanel = totalVideosRecommended ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of ${totalVideosRecommended} videos recommended in our scrapping, this video was the ${nth}most recommended."> In the top <div class="mult-x">${1 + Math.round(100 * index / totalVideosRecommended)} %</div><div class="mult-text">of <span style="font-weight:bold;color:dark-grey">${totalVideosRecommended}</span> videos recommended that day</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
-//                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
+                }
+                const rightPanel = totalRecommendations ? `<div class="mult right" data-balloon-length="large" data-balloon="Out of the ${totalRecommendations} recommendations we observed that day, this video was recommended ${multiplicator} times."><div class="mult-x">${1 + Math.round(10000 * multiplicator / totalRecommendations)}</div><div class="mult-text">recommendations per 10k</div>`: `<div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>`;
+            //                <div class="mult right" data-balloon-length="large" data-balloon="YouTube recommended this video from ${Math.round(multiplicator * 10) / 10} different channels"><div class="mult-text"> Number of channels recommending it: </div><div class="mult-x">${Math.round(multiplicator * 10) / 10} </div>
                 const mult = multiplicator ? `</div>` : '';
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
+
+                var from_chans_inner = '<br><br>'
+                if ('from_chans' in item) {
+                    from_chans_inner = item.from_chans.map(chan => 
+                        '<strong>' + chan[0] + '</strong>: ' +
+                        '<a target="_blank" href="https://www.youtube.com/watch?v=' + chan[1] +'">' + chan[2] + '</a>'
+                    ).join('<br>')
+                }
+
+                var from_chans = `
+                    <div style="margin-top:10px;font-size:12px;">YouTube recommended this video from at least <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels
+                `
+                if ('from_chans' in item) {
+                    from_chans += `
+                        <a class="btn btn-primary see-recos" role="button" onclick="document.getElementById('collapse-reco-${index}').classList.toggle('collapse');">
+                            See All
+                        </a>
+                    <div id="collapse-reco-${index}" class="collapse">
+                        ${from_chans_inner}
+                    </div>
+                    `;
+                }     
+                from_chans += '</div>'
+
+                // if ('from_chans' in item) {
+                //     from_chans = ', including ' + item.from_chans.map(chan => '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
+                // }
 
                 if (item.views > 0 && multiplicator > 0) {
                     $('.sink-videos').append(
@@ -885,7 +913,7 @@
                         `<i class="fa fa-thumbs-up" aria-hidden="true" onclick="print_item('${item.id}')"></i>
                     ${number_format(item.likes)}
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>${number_format(item.dislikes)}${pDate}</small></div>
-                    <div>YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels</div>
+                    ${from_chans}
                 </div>
               </div>
               </article>` +
