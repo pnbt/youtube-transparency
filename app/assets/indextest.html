@@ -865,7 +865,10 @@
 
                 var from_chans_inner = ''
                 if ('from_chans' in item) {
-                    from_chans_inner = item.from_chans.map(chan => '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan + '&sp=EgIQAg%253D%253D">' + chan + '</a>').join(', ') 
+                    from_chans_inner = item.from_chans.map(chan => 
+                        '<a target="_blank" href="https://www.youtube.com/results?search_query=' + chan[0] + '&sp=EgIQAg%253D%253D">' + chan[0] + '</a>: ' +
+                        '<a target="_blank" href="https://www.youtube.com/watch?v=' + chan[1] +'">' + chan[2] + '</a>'
+                    ).join('<br>') 
                 }
 
                 var from_chans = `
