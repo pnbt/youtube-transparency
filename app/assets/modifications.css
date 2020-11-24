@@ -421,6 +421,15 @@ input[type=range] {
   margin-right: auto;
   font-weight: 500;
 }
+.see-recos {
+  padding: 3px 7px !important;
+  margin: 3px;
+  font-size: 12px;
+  display: inline;
+  vertical-align: bottom;
+  top: 10px;
+  position: relative;
+}
 .nbchans {
   margin-top: 10px;
   color: #DD2726;
