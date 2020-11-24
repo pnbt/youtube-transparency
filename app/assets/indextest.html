@@ -863,7 +863,7 @@
 
                 const pDate = item.pDate ? ' published on ' + item.pDate : ''
 
-                var from_chans_inner = ''
+                var from_chans_inner = '<br><br>'
                 if ('from_chans' in item) {
                     from_chans_inner = item.from_chans.map(chan => 
                         '<strong>' + chan[0] + '</strong>: ' +
@@ -872,7 +872,7 @@
                 }
 
                 var from_chans = `
-                    <div style="margin-top:10px;font-size:12px;">YouTube recommended this video from <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels
+                    <div style="margin-top:10px;font-size:12px;">YouTube recommended this video from at least <span class="nbchans"> ${Math.round(multiplicator * 10) / 10}</span> different channels
                 `
                 if ('from_chans' in item) {
                     from_chans += `
