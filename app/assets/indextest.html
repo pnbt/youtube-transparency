@@ -866,7 +866,7 @@
                 var from_chans_inner = ''
                 if ('from_chans' in item) {
                     from_chans_inner = item.from_chans.map(chan => 
-                        '<strong>' + chan[0] + '</strong>: from ' +
+                        '<strong>' + chan[0] + '</strong>: ' +
                         '<a target="_blank" href="https://www.youtube.com/watch?v=' + chan[1] +'">' + chan[2] + '</a>'
                     ).join('<br>')
                 }
