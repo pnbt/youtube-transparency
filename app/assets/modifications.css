@@ -178,6 +178,10 @@ a:hover {
 .news-band {
   width: 100%;
 }
+.ct-desc {
+  font-size: 13px;
+  margin-bottom: 30px;
+}
 .superblack {
   color: black !important;
   font-weight: bold;
