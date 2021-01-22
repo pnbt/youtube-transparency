@@ -5,8 +5,8 @@
     {"name": "Angela Merkel", "picture": "/images/angela_merkel.jpg", "tag": "Angela Merkel"},
     {"name": "Theresa May", "picture": "/images/theresa_may.jpg", "tag": "Theresa May"},
     {"name": "Emmanuel Macron", "picture": "/images/emmanuel_macron.jpg", "tag": "Emmanuel Macron"},
-    {"name": "Vladimir Putin", "picture": "https://external.xx.fbcdn.net/safe_image.php?d=AQAmOxarZ3uHOCbz&w=264&h=264&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F4%2F45%2FVladimir_Putin_-_2006.jpg%2F720px-Vladimir_Putin_-_2006.jpg&colorbox&f&_nc_hash=AQDlp7G-sHqT3SjN", "tag": "Vladimir Putin"},
+    {"name": "Vladimir Putin", "picture": "/images/putin.jpg", "tag": "Vladimir Putin"},
     {"name": "Justin Trudeau", "picture": "/images/justin_trudeau.jpg", "tag": "Justin Trudeau"},
-    {"name": "Pope Francis", "picture": "https://external.xx.fbcdn.net/safe_image.php?d=AQAwlHQEQX4tLvqY&w=264&h=264&url=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F3%2F3a%2FPope_Francis_South_Korea_2014.png%2F720px-Pope_Francis_South_Korea_2014.png&colorbox&f&_nc_hash=AQBtXd0HR8HrhqmQ", "tag": "Pope Francis"}
+    {"name": "Pope Francis", "picture": "/images/pope.jpg", "tag": "Pope Francis"}
  ]
 }
