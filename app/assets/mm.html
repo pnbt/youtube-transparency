@@ -6,65 +6,85 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .cell {
-          width: 10%;
-          height: 10%;
+          width:120px;
+          height:120px;
+        }
+        .table {
+          margin-top:100px;
+          margin-left:100px;
         }
         .centered {
-          display:block;
-          margin-left: auto;
-          margin-right: auto;
+          margin-left:60px;
+          margin-right:auto;
+        }
+        .coordinate {
+          text-align:center;
+        }
+        .word {
+          font-weight:bold;
+          text-align:center;
         }
     </style>
+    <script type = "text/javascript">
+    window.onload = function(){
+      document.getElementById("1").innerHTML = "red";
+      document.getElementById("A").innerHTML = "300px";
+      document.getElementById("B").innerHTML = "300px";
+    }
+    </script>
+
+
+
 </head>
 <body>
-    <table class="centered">
+    <table class="table">
       <tr>
-        <th id="o" class="cell"></th>
-        <th id="A" class="cell">A</th>
-        <th id="B" class="cell">B</th>
-        <th id="C" class="cell">C</th>
-        <th id="D" class="cell">D</th>
-        <th id="E" class="cell">D</th>
+        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">A</div><div id="A" class="word">YOGA</div></td>
+        <td class="cell"><div class="coordinate">B</div><div id="B" class="word">TEST</div></td>
+        <td class="cell"><div class="coordinate">C</div><div id="C" class="word">OTHER</div></td>
+        <td class="cell"><div class="coordinate">D</div><div id="D" class="word">WORD</div></td>
+        <td class="cell"><div class="coordinate">E</div><div id="E" class="word">THERE</div></td>
       </tr>
       <tr>
-        <td class="cell">1</td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">1</div><div id="1" class="word">VERTICAL</div></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
       </tr>
       <tr>
-        <td class="cell">2</td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">2</div><div id="2" class="word">VERTICAL</div></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
       </tr>
       <tr>
-        <td class="cell">3</td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">3</div><div id="3" class="word">VERTICAL</div></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
       </tr>
       <tr>
-        <td class="cell">4</td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">4</div><div id="4" class="word">VERTICAL</div></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
       </tr>
       <tr>
-        <td class="cell">5</td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td class="cell"><div class="coordinate">5</div><div id="5" class="word">VERTICAL</div></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
+        <td class="cell"><input type="checkbox" class="centered"/></td>
       </tr>
     </table>
 </body>
