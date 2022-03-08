@@ -324,6 +324,7 @@ function updateDate(){
       $.get('/data/france/france-' + url + '.json', function(data) {
             console.log('GOT DATA from file ' + url);
             jsonLocal = data;
+            console.log(jsonLocal);
             let count = 0;
             Object.keys(jsonLocal).forEach((item) => {
                   count += jsonLocal[item].length;
